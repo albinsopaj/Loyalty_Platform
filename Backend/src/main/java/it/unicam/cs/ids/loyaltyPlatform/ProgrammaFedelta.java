@@ -1,11 +1,11 @@
-package app.src.main.java.it.unicam.cs.ids.loyaltyPlatform;
+package it.unicam.cs.ids.loyaltyPlatform;
 
 public class ProgrammaFedelta {
     private String nome;
     private int id;
-    private Tipologia tipologia;
+    private it.unicam.cs.ids.loyaltyPlatform.Tipologia tipologia;
 
-    public ProgrammaFedelta(String nome, int id, Tipologia tipologia) {
+    public ProgrammaFedelta(String nome, int id, it.unicam.cs.ids.loyaltyPlatform.Tipologia tipologia) {
         this.nome = nome;
         this.id = id;
         this.tipologia = tipologia;
@@ -19,7 +19,7 @@ public class ProgrammaFedelta {
         return id;
     }
 
-    public Tipologia getTipologia() {
+    public it.unicam.cs.ids.loyaltyPlatform.Tipologia getTipologia() {
         return tipologia;
     }
 }

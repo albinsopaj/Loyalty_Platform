@@ -1,6 +1,6 @@
-package app.src.main.java.it.unicam.cs.ids.loyaltyPlatform;
+package it.unicam.cs.ids.loyaltyPlatform;
 
-public class Manager implements UtenteAutenticato {
+public class Manager implements it.unicam.cs.ids.loyaltyPlatform.UtenteAutenticato {
     private String nome;
     private String cognome;
     private char sesso;

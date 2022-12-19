@@ -1,4 +1,4 @@
-package app.src.main.java.it.unicam.cs.ids.loyaltyPlatform;
+package it.unicam.cs.ids.loyaltyPlatform;
 
 public class TesseraDigitale {
     private int id;

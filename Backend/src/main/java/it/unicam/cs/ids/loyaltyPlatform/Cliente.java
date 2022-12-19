@@ -1,4 +1,4 @@
-package app.src.main.java.it.unicam.cs.ids.loyaltyPlatform;
+package it.unicam.cs.ids.loyaltyPlatform;
 
 import java.util.Date;
 
@@ -22,7 +22,7 @@ public class Cliente {
         this.sesso = sesso;
     }
 
-    public TesseraDigitale visualizzaTesseraDigitale() {
+    public it.unicam.cs.ids.loyaltyPlatform.TesseraDigitale visualizzaTesseraDigitale() {
 
     }
 
