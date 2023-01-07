@@ -24,7 +24,7 @@
 ---
 Per sviluppare l'applicativo è stato scelto di seguire il processo standardizzato **Unified Process (UP)**, processo iterativo incrementale, utilizzando come strumento di lavoro **Visual Paradigm** basato sull'**Unified Modeling Language (UML)**.
 
-In totale sono state svolte 5 iterazioni dove è stato possibile effettuare l'analisi dei requisiti, la progettazione del sistema, l'implementazione e la fase di testing.
+In totale sono state svolte 4 iterazioni dove è stato possibile effettuare l'analisi dei requisiti, la progettazione del sistema e l'implementazione.
 
 Come strumento di versioning è stato utilizzato **Git** attraverso il quale sono stati distinti due branch per sviluppo.
 - main: utilizzato per pubblicare la baseline (artefatti) sviluppati a fine iterazione e per lo sviluppo in corrispondenza alla consegna per Ingegneria del Software
