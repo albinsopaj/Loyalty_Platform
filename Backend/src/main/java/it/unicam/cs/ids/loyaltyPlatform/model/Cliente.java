@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyPlatform;
+package it.unicam.cs.ids.loyaltyPlatform.model;
 
 import java.util.Date;
 
@@ -22,8 +22,8 @@ public class Cliente {
         this.sesso = sesso;
     }
 
-    public it.unicam.cs.ids.loyaltyPlatform.TesseraDigitale visualizzaTesseraDigitale() {
-
+    public TesseraDigitale visualizzaTesseraDigitale() {
+        return null;
     }
 
     public void scaricaTesseraDigitale() {

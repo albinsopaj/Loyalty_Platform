@@ -1,33 +1,36 @@
-package it.unicam.cs.ids.loyaltyPlatform;
+package it.unicam.cs.ids.loyaltyPlatform.model;
 
-public class TitolareNegozio implements it.unicam.cs.ids.loyaltyPlatform.UtenteAutenticato {
+public class AddettoCassa implements UtenteAutenticato {
     private String nome;
     private String cognome;
+    private char sesso;
     private String email;
     private String numeroCellulare;
-    private char sesso;
     private String username;
     private String password;
 
-    public TitolareNegozio(String nome, String cognome, String email, String numeroCellulare, char sesso, String username, String password) {
+    public AddettoCassa(String nome, String cognome, char sesso, String email, String numeroCellulare, String username) {
         this.nome = nome;
         this.cognome = cognome;
+        this.sesso = sesso;
         this.email = email;
         this.numeroCellulare = numeroCellulare;
-        this.sesso = sesso;
         this.username = username;
-        this.password = password;
     }
 
-    public void creaCampagna(it.unicam.cs.ids.loyaltyPlatform.ProgrammaFedelta programmaFedelta) {
-
-    }
-
-    public void creaProgrammaFedelta() {
+    public void visualizzaProfiloUtente() {
 
     }
 
-    public void creaRuoloStaff() {
+    public void aggiornaStatoPuntiManualmente() {
+
+    }
+
+    public void scansionaTesseraDigitale() {
+
+    }
+
+    public void notificaClienteSulleUltimePromozioni() {
 
     }
 
@@ -39,16 +42,16 @@ public class TitolareNegozio implements it.unicam.cs.ids.loyaltyPlatform.UtenteA
         return cognome;
     }
 
+    public char getSesso() {
+        return sesso;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public String getNumeroCellulare() {
         return numeroCellulare;
-    }
-
-    public char getSesso() {
-        return sesso;
     }
 
     public String getUsername() {

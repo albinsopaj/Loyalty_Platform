@@ -1,31 +1,33 @@
-package it.unicam.cs.ids.loyaltyPlatform;
+package it.unicam.cs.ids.loyaltyPlatform.model;
 
-public class Manager implements it.unicam.cs.ids.loyaltyPlatform.UtenteAutenticato {
+public class TitolareNegozio implements UtenteAutenticato {
     private String nome;
     private String cognome;
-    private char sesso;
     private String email;
-    private int id;
     private String numeroCellulare;
+    private char sesso;
     private String username;
     private String password;
 
-    public Manager(String nome, String cognome, char sesso, String email, int id, String numeroCellulare, String username, String password) {
+    public TitolareNegozio(String nome, String cognome, String email, String numeroCellulare, char sesso, String username, String password) {
         this.nome = nome;
         this.cognome = cognome;
-        this.sesso = sesso;
         this.email = email;
-        this.id = id;
         this.numeroCellulare = numeroCellulare;
+        this.sesso = sesso;
         this.username = username;
         this.password = password;
     }
 
-    public void aggiornaPuntiManualmente() {
+    public void creaCampagna(ProgrammaFedelta programmaFedelta) {
 
     }
 
-    public void inviaComunicazioni() {
+    public void creaProgrammaFedelta() {
+
+    }
+
+    public void creaRuoloStaff() {
 
     }
 
@@ -37,20 +39,16 @@ public class Manager implements it.unicam.cs.ids.loyaltyPlatform.UtenteAutentica
         return cognome;
     }
 
-    public char getSesso() {
-        return sesso;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getNumeroCellulare() {
         return numeroCellulare;
+    }
+
+    public char getSesso() {
+        return sesso;
     }
 
     public String getUsername() {
