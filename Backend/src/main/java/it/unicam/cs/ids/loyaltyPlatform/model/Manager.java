@@ -21,8 +21,8 @@ public class Manager implements UtenteAutenticato {
         this.password = password;
     }
 
-    public void aggiornaPuntiManualmente() {
-
+    public void aggiornaPuntiManualmente(Cliente cliente, int punteggio) {
+        cliente.visualizzaTesseraDigitale().setPunti(punteggio);
     }
 
     public void inviaComunicazioni() {
