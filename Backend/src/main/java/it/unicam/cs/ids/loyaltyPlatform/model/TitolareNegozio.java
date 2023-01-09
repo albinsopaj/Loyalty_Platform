@@ -19,7 +19,7 @@ public class TitolareNegozio implements UtenteAutenticato {
         this.password = password;
     }
 
-    public void creaCampagna(ProgrammaFedelta programmaFedelta) {
+    public void creaCampagna(FidelityProgram fidelityProgram) {
 
     }
 

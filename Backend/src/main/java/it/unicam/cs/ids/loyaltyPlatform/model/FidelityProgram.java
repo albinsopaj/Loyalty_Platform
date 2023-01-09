@@ -2,18 +2,14 @@ package it.unicam.cs.ids.loyaltyPlatform.model;
 
 import lombok.*;
 
-import java.util.Date;
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
-public class Campagna {
-
+public class FidelityProgram {
     private @NonNull String nome;
     private @NonNull int id;
-    private @NonNull Date inizio;
-    private @NonNull Date fine;
+    private @NonNull Tipologia tipologia;
 
 }
