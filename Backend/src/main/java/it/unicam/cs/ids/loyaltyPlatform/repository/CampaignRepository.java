@@ -10,5 +10,5 @@ import java.util.UUID;
  * Interfaccia per gestire tutte le operazioni CRUD sul repository del {@link Campagna}.
  */
 @Repository
-public interface CampagnaRepository extends JpaRepository<CampagnaRepository, UUID> {
+public interface CampaignRepository extends JpaRepository<Campagna, UUID> {
 }

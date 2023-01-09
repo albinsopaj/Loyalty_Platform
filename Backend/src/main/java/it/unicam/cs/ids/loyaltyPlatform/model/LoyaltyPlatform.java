@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class LoyaltyPlatform {
     private String nome;
-    private ProgrammaFedelta[] programmiFedelta;
+    private FidelityProgram[] programmiFedelta;
     private ArrayList<Cliente> clienti;
     private ArrayList<Campagna> campagne;
 
-    public LoyaltyPlatform(String nome, ProgrammaFedelta[] programmiFedelta, ArrayList<Cliente> clienti, ArrayList<Campagna> campagne) {
+    public LoyaltyPlatform(String nome, FidelityProgram[] programmiFedelta, ArrayList<Cliente> clienti, ArrayList<Campagna> campagne) {
         this.nome = nome;
         this.programmiFedelta = programmiFedelta;
         this.clienti = clienti;
@@ -19,7 +19,7 @@ public class LoyaltyPlatform {
         return nome;
     }
 
-    public ProgrammaFedelta[] getProgrammiFedelta() {
+    public FidelityProgram[] getProgrammiFedelta() {
         return programmiFedelta;
     }
 
