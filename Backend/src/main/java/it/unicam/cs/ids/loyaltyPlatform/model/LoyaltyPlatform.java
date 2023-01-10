@@ -1,33 +1,13 @@
 package it.unicam.cs.ids.loyaltyPlatform.model;
 
-import java.util.ArrayList;
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 
 public class LoyaltyPlatform {
-    private String nome;
-    private FidelityProgram[] programmiFedelta;
-    private ArrayList<Cliente> clienti;
-    private ArrayList<Campagna> campagne;
-
-    public LoyaltyPlatform(String nome, FidelityProgram[] programmiFedelta, ArrayList<Cliente> clienti, ArrayList<Campagna> campagne) {
-        this.nome = nome;
-        this.programmiFedelta = programmiFedelta;
-        this.clienti = clienti;
-        this.campagne = campagne;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public FidelityProgram[] getProgrammiFedelta() {
-        return programmiFedelta;
-    }
-
-    public ArrayList<Cliente> getClienti() {
-        return clienti;
-    }
-
-    public ArrayList<Campagna> getCampagne() {
-        return campagne;
-    }
+    private @NonNull String name;
 }

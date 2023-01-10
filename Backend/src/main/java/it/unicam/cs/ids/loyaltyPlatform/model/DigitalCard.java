@@ -8,16 +8,16 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 @AllArgsConstructor
-public class TesseraDigitale {
+public class DigitalCard {
     @Id
     private int id;
-    private @Setter @NonNull int punti;
-    public TesseraDigitale(int id) {
+    private @Setter @NonNull int points;
+    public DigitalCard(int id) {
         this.id = id;
     }
 
-    public void setPunti(int punteggio){
-        this.punti = punteggio;
+    public void setPoints(int points){
+        this.points = points;
     }
     public int getId() {
         return id;
