@@ -9,11 +9,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Campagna {
+public class Campaign {
 
-    private @NonNull String nome;
+    private @NonNull String name;
     private @NonNull int id;
-    private @NonNull Date inizio;
-    private @NonNull Date fine;
+    private @NonNull Date start;
+    private @NonNull Date end;
 
 }
