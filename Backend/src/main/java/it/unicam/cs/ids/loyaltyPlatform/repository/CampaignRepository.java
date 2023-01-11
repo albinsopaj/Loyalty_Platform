@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 /**
- * Interfaccia per gestire tutte le operazioni CRUD sul repository del {@link Campaign}.
+ * Interface to manage all CRUD operations on the repository of {@link Campaign}.
  */
 @Repository
 public interface CampaignRepository extends JpaRepository<Campaign, UUID> {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 /**
- * Interfaccia per gestire tutte le operazioni CRUD sul repository del {@link PointsFidelityProgram}.
+ * Interface to manage all CRUD operations on the repository of {@link PointsFidelityProgram}.
  */
 @Repository
 public interface FidelityProgramRepository extends JpaRepository<PointsFidelityProgram, UUID> {

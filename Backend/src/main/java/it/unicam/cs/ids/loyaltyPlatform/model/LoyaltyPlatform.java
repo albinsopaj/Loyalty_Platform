@@ -6,8 +6,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
-
 public class LoyaltyPlatform {
     private @NonNull String name;
 }

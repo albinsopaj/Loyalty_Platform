@@ -6,8 +6,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
-
 public class Cashier implements AuthenticatedUser {
 
     private @NonNull String name;

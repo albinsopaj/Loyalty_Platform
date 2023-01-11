@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 /**
- * Interfaccia per gestire tutte le operazioni CRUD sul repository del {@link DigitalWallet}.
+ * Interface to manage all CRUD operations on the repository of {@link DigitalWallet}.
  */
 @Repository
 public interface DigitalWalletRepository extends JpaRepository<DigitalWallet, UUID> {
