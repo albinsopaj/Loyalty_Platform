@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.PointsFidelityProgram;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
