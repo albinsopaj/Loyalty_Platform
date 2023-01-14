@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.Client;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 
 /**
  * Interface that defines fidelity programs

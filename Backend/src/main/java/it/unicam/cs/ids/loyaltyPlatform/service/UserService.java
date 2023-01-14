@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.service;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.AuthenticatedUser;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserInterface;
 import it.unicam.cs.ids.loyaltyPlatform.repository.UserRepository;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +18,14 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public List<AuthenticatedUser> getAllUsers() {
+    public List<AuthenticatedUserInterface> getAllUsers() {
     }
 
-    public AuthenticatedUser getUserByID(UUID id) {
+    public AuthenticatedUserInterface getUserByID(UUID id) {
 
     }
 
-    public AuthenticatedUser addAuthenticatedUser(@NonNull AuthenticatedUser user) {
+    public AuthenticatedUserInterface addAuthenticatedUser(@NonNull AuthenticatedUserInterface user) {
         if (userExists(user.getID()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user is already present!");
         return repository.addUser(user);
@@ -49,8 +49,8 @@ public class UserService {
     }
 
     //TODO incomplete method definition
-    public AuthenticatedUser updateAuthenticatedUser(@NonNull AuthenticatedUser user) {
-        Optional<AuthenticatedUser> oldUser = this.repository.findById(user.getID());
+    public AuthenticatedUserInterface updateAuthenticatedUser(@NonNull AuthenticatedUserInterface user) {
+        Optional<AuthenticatedUserInterface> oldUser = this.repository.findById(user.getID());
         //TODO implement method body
     }
 

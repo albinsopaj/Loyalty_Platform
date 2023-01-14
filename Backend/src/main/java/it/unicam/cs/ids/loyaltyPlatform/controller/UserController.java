@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.controller;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.AuthenticatedUser;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserInterface;
 import it.unicam.cs.ids.loyaltyPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -21,23 +21,23 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("")
-    public void addAuthenticatedUser(@RequestBody @Param("user") AuthenticatedUser user) {
+    public void addAuthenticatedUser(@RequestBody @Param("user") AuthenticatedUserInterface user) {
         //TODO implement authentication credentials and their relative setRole, updateRoles
         userService.addAuthenticatedUser(user);
     }
 
-    public AuthenticatedUser getUserByID(UUID id) {
+    public AuthenticatedUserInterface getUserByID(UUID id) {
         return userService.getUserByID(id);
     }
 
     @GetMapping("")
-    public List<AuthenticatedUser> getAllUsers() {
+    public List<AuthenticatedUserInterface> getAllUsers() {
         return this.userService.getAllUsers();
     }
 
     @PutMapping("")
     @PatchMapping("")
-    public AuthenticatedUser updateAuthenticatedUser(@RequestBody @Param("user") AuthenticatedUser user) {
+    public AuthenticatedUserInterface updateAuthenticatedUser(@RequestBody @Param("user") AuthenticatedUserInterface user) {
         //TODO implement logic of updating users
         //incomplete method body
         var u = this.userService.getUserByID(user.getID());
