@@ -4,7 +4,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import java.util.UUID;
 
 /**
- * Class that defines a cashier of the company
+ * Class that defines a cashier
  */
 public class Cashier extends AuthenticatedUser {
 

@@ -5,7 +5,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import java.util.UUID;
 
 /**
- * Class that defines the owner of the company and of the platform
+ * Class that defines the owner
  */
 public class Owner extends AuthenticatedUser {
 

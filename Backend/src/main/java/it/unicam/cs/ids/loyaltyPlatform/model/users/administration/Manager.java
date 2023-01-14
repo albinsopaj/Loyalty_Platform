@@ -3,7 +3,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.administration;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 
 /**
- * Class that defines a manager of the company
+ * Class that defines a manager
  */
 public class Manager extends AuthenticatedUser {
 
