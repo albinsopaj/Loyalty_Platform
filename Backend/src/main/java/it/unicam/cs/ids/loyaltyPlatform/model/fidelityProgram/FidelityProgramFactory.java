@@ -10,14 +10,14 @@ public class FidelityProgramFactory {
      * @param name of the fidelity program
      * @return fidelityProgram of the correct type
      */
-    public FidelityProgram getFidelityProgram(String fidelityProgramTypeName, String name ){
+    public FidelityProgram getFidelityProgram(String fidelityProgramTypeName, String name, long ref ){
         if(fidelityProgramTypeName == null){
             return null;
         }
         if(fidelityProgramTypeName.equalsIgnoreCase("Points")){
-            return new PointsFidelityProgram(name);
+            return new PointsFidelityProgram(name, ref);
         } else {
-            return new LevelFidelityProgram(name);
+            return new LevelFidelityProgram(name, ref);
         }
     }
 }

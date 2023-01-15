@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 
@@ -11,12 +12,15 @@ import java.util.ArrayList;
 @Getter
 public class LevelFidelityProgram implements FidelityProgram {
     private @NonNull String name;
-    private static @NonNull int id = 0;
+    private static @NonNull long idSaver = 0;
+    private @NonNull @Id long id;
+    private @NonNull long ref;
     private @NonNull boolean activated = false;
     private @NonNull ArrayList<Client> clientsList;
-    public LevelFidelityProgram(String name){
+    public LevelFidelityProgram(String name, long ref){
         this.name = name;
-        id = id++;
+        this.id = LevelFidelityProgram.getNextRefId();
+        this.ref = ref;
         this.clientsList = new ArrayList<>();
     }
 
@@ -46,5 +50,15 @@ public class LevelFidelityProgram implements FidelityProgram {
     @Override
     public void addClient(Client client) {
         this.clientsList.add(client);
+    }
+
+    /**
+     * Calculates next unique refId
+     * @return the next unique refId
+     */
+    public static long getNextRefId(){
+        long id = idSaver;
+        idSaver++;
+        return id;
     }
 }

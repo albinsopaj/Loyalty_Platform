@@ -5,7 +5,6 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * Class that defines a loyalty platform

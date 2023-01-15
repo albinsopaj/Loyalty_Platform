@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.users.administration;
+package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 

@@ -1,23 +1,22 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.users.administration;
+package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.PointsFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import java.util.UUID;
 
 /**
- * Class that defines the owner
+ * Class that defines a cashier
  */
-public class Owner extends AuthenticatedUser {
+public class Cashier extends AuthenticatedUser {
 
-    public void createCampaign(PointsFidelityProgram fidelityProgram) {
-
-    }
-
-    public void createNewFidelityProgram() {
+    public void viewClientProfile() {
 
     }
 
-    public void createNewRole() {
+    public void updatePointsStatusManually() {
+
+    }
+
+    public void scanQrCode() {
 
     }
 

@@ -14,14 +14,17 @@ import java.util.Scanner;
 @Getter
 public class PointsFidelityProgram implements FidelityProgram {
     private @NonNull String name;
-    private static @NonNull int id = 0;
+    private static @NonNull long idSaver = 0;
+    private @NonNull long id;
+    private @NonNull long ref;
     private @NonNull boolean activated = false;
     private @NonNull int rewardsNumber = 0;
     private @NonNull ArrayList<Client> clientsList;
     private @NonNull ArrayList<Map.Entry<String,Integer>> catalogue;
-    public PointsFidelityProgram(String name){
+    public PointsFidelityProgram(String name, long ref){
         this.name = name;
-        id = id++;
+        this.id = PointsFidelityProgram.getNextRefId();
+        this.ref = ref;
         this.clientsList = new ArrayList<>();
         this.catalogue = new ArrayList<>();
     }
@@ -69,4 +72,13 @@ public class PointsFidelityProgram implements FidelityProgram {
         this.clientsList.add(client);
     }
 
+    /**
+     * Calculates next unique refId
+     * @return the next unique refId
+     */
+    public static long getNextRefId(){
+        long id = idSaver;
+        idSaver++;
+        return id;
+    }
 }

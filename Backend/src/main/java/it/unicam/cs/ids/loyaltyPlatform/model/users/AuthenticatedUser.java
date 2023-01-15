@@ -21,7 +21,7 @@ public abstract class AuthenticatedUser implements AuthenticatedUserInterface {
     private @NonNull String domicile;
     private @NonNull String username;
     private @NonNull String password;
-
+    private @NonNull long ref;
     public abstract AuthenticatedUser createNewAuthenticatedUser(String name, String surname, String email, String phoneNumber, Character biologicalGender, String domicile);
 
     @Override
