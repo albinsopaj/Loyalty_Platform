@@ -2,12 +2,15 @@ package it.unicam.cs.ids.loyaltyPlatform.controller;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.service.CampaignService;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @Controller
@@ -18,33 +21,28 @@ public class CampaignController {
     private CampaignService campaignService;
 
     @PostMapping
-    public CampaignService addCampaign(@RequestBody Campaign campaign) {
+    public Campaign addCampaign(@RequestBody Campaign campaign) {
         return this.campaignService.addCampaign(campaign);
     }
 
-    @PatchMapping
-    public Campaign updateCampaign(@RequestBody @Param("campaign") Campaign campaign) {
-        return this.campaignService.updateCampaign(campaign);
-    }
-
-    @DeleteMapping("/delete/{name}")
-    public Campaign deleteCampaign(String campaignName) {
-        return this.campaignService.deleteCampaign(campaignName);
-    }
-
     @GetMapping("")
-    public Campaign getCampaign() {
-
-    }
-
-    // may not be necessary.
-    public Campaign searchCampaign(String name) {
-        return this.campaignService.getByName(name);
+    public Optional<Campaign> searchCampaign(@NonNull UUID id) {
+        return this.campaignService.searchCampaign(id);
     }
 
     @GetMapping("")
     public List<Campaign> getAllCampaigns() {
         return this.campaignService.getAllCampaigns();
+    }
+
+    @PatchMapping
+    public Optional<Campaign> updateCampaign(@RequestBody @Param("campaign") UUID campaignId) {
+        return this.campaignService.updateCampaign(campaignId);
+    }
+
+    @DeleteMapping("/delete/{name}")
+    public void deleteCampaign(@NonNull UUID campaignId) {
+        this.campaignService.deleteCampaign(campaignId);
     }
 
 }
