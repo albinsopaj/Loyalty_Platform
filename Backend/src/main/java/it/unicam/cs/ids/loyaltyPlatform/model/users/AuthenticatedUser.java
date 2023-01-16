@@ -28,4 +28,5 @@ public abstract class AuthenticatedUser implements AuthenticatedUserInterface {
     public UUID getID() {
         return null;
     }
+
 }
