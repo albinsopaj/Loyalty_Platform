@@ -11,17 +11,13 @@ import org.springframework.data.annotation.Id;
 public class DigitalCard {
     @Id
     private int id;
-    private @Setter @NonNull int points;
+    private @Setter
+    @NonNull int points;
+    private @NonNull
+    @Getter
+    @Setter String tierLevel;
     public DigitalCard(int id) {
         this.id = id;
     }
-
-    public void setPoints(int points){
-        this.points = points;
-    }
-    public int getId() {
-        return id;
-    }
-
 
 }

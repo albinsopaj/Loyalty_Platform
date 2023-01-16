@@ -28,5 +28,6 @@ public class CampaignService {
     }
 
     public CampaignService addCampaign(Campaign campaign) {
+        return this.repository.save();
     }
 }

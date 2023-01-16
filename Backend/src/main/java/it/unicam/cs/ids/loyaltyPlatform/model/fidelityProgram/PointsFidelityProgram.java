@@ -1,7 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
@@ -74,11 +75,20 @@ public class PointsFidelityProgram implements FidelityProgram {
 
     /**
      * Calculates next unique refId
+     *
      * @return the next unique refId
      */
-    public static long getNextRefId(){
+    public static long getNextRefId() {
         long id = idSaver;
         idSaver++;
         return id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getRef() {
+        return ref;
     }
 }
