@@ -15,9 +15,10 @@ public class Manager extends AuthenticatedUser {
 
     }
 
-    @Override
+//    @Override
     public AuthenticatedUser createNewAuthenticatedUser(String name, String surname, String email, String phoneNumber, Character biologicalGender, String domicile) {
         //TODO
         return null;
     }
+
 }

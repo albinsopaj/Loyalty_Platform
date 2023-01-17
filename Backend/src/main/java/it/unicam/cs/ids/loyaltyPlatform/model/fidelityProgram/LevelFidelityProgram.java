@@ -1,7 +1,13 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
-import lombok.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
@@ -10,14 +16,19 @@ import java.util.ArrayList;
  * Fidelity program based on levels
  */
 @Getter
+@Setter
+@AllArgsConstructor
 public class LevelFidelityProgram implements FidelityProgram {
-    private @NonNull String name;
-    private static @NonNull long idSaver = 0;
-    private @NonNull @Id long id;
-    private @NonNull long ref;
-    private @NonNull boolean activated = false;
-    private @NonNull ArrayList<Client> clientsList;
-    public LevelFidelityProgram(String name, long ref){
+    private static long idSaver = 0;
+    private final @NonNull String name;
+    private final long ref;
+    private final @NonNull ArrayList<Client> clientsList;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    private boolean activated = false;
+
+    public LevelFidelityProgram(@NotNull String name, long ref) {
         this.name = name;
         this.id = LevelFidelityProgram.getNextRefId();
         this.ref = ref;

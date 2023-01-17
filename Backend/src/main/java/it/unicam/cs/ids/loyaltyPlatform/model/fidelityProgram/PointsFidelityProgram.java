@@ -1,8 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
@@ -13,18 +13,22 @@ import java.util.Scanner;
  * Fidelity program based on points
  */
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PointsFidelityProgram implements FidelityProgram {
     private @NonNull String name;
-    private static @NonNull long idSaver = 0;
-    private @NonNull long id;
-    private @NonNull long ref;
-    private @NonNull boolean activated = false;
-    private @NonNull int rewardsNumber = 0;
+    private static long idSaver = 0;
+    private long id;
+    private long ref;
+    private boolean activated = false;
+    private int rewardsNumber = 0;
     private @NonNull ArrayList<Client> clientsList;
-    private @NonNull ArrayList<Map.Entry<String,Integer>> catalogue;
-    public PointsFidelityProgram(String name, long ref){
+    private @NonNull ArrayList<Map.Entry<String, Integer>> catalogue;
+
+    public PointsFidelityProgram(@NotNull String name, long ref) {
         this.name = name;
-        this.id = PointsFidelityProgram.getNextRefId();
+        this.id = this.getNextRefId();
         this.ref = ref;
         this.clientsList = new ArrayList<>();
         this.catalogue = new ArrayList<>();
@@ -78,17 +82,14 @@ public class PointsFidelityProgram implements FidelityProgram {
      *
      * @return the next unique refId
      */
-    public static long getNextRefId() {
+    public long getNextRefId() {
         long id = idSaver;
         idSaver++;
         return id;
     }
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
-    public long getRef() {
-        return ref;
-    }
 }

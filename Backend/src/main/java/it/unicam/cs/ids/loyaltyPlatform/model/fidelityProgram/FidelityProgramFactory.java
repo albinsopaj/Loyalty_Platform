@@ -20,4 +20,5 @@ public class FidelityProgramFactory {
             return new LevelFidelityProgram(name, ref);
         }
     }
+
 }

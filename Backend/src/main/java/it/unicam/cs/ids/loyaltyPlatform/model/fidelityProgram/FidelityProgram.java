@@ -2,8 +2,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 
-import java.util.UUID;
-
 /**
  * Interface that defines fidelity programs
  */
@@ -39,6 +37,6 @@ public interface FidelityProgram {
      */
     void addClient(Client client);
 
-    UUID getId();
+    long getId();
 
 }

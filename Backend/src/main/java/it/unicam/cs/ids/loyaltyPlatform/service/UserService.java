@@ -4,9 +4,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import it.unicam.cs.ids.loyaltyPlatform.repository.UserRepository;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -18,9 +16,9 @@ public class UserService {
     private UserRepository repository;
 
     public AuthenticatedUser addUser(@NonNull AuthenticatedUser user) {
-        if (userExists(user.getID())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user is already present!");
-        }
+//        if (userExists(user.getID())) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user is already present!");
+//        }
         return this.repository.save(user);
     }
 
@@ -50,7 +48,7 @@ public class UserService {
 
     //TODO incomplete method definition
     public AuthenticatedUser updateAuthenticatedUser(@NonNull AuthenticatedUser user) {
-        Optional<AuthenticatedUser> oldUser = this.repository.findById(user.getID());
+//        Optional<AuthenticatedUser> oldUser = this.repository.findById(user.getID());
         return this.repository.save(user);
     }
 

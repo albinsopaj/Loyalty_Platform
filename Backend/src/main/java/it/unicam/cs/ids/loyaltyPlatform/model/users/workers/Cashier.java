@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
-import java.util.UUID;
 
 /**
  * Class that defines a cashier
@@ -26,8 +25,4 @@ public class Cashier extends AuthenticatedUser {
         return null;
     }
 
-    @Override
-    public UUID getID() {
-        return null;
-    }
 }

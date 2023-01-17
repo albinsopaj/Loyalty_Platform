@@ -1,9 +1,12 @@
 package it.unicam.cs.ids.loyaltyPlatform.model;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Owner;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -15,10 +18,12 @@ public class Company {
 
     private @NonNull String name;
     private @NonNull Owner owner;
-    private @NonNull @Id long refId;
-    private static @NonNull long idSaver = 0;
+    private static long idSaver = 0;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long refId;
 
-    public Company(String name, Owner owner){
+    public Company(@NotNull String name, @NotNull Owner owner) {
         this.name = name;
         this.owner = owner;
         this.refId = Company.getNextRefId();
