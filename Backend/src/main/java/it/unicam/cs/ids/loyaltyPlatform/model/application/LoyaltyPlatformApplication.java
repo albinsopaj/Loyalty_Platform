@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyPlatform.model;
+package it.unicam.cs.ids.loyaltyPlatform.model.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

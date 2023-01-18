@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.repository;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.Company;
+import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

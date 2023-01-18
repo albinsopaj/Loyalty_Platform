@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.controller;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.Campaign;
+import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.service.CampaignService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;

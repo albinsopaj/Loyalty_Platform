@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.service;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.Campaign;
+import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.repository.CampaignRepository;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
