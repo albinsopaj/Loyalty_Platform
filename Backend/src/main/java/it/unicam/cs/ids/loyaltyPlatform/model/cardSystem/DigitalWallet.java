@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -27,6 +28,7 @@ public class DigitalWallet {
      * @param digitalCard the digital card to add
      */
     public void addDigitalCard(DigitalCard digitalCard){
+        Client client = new Client();
         this.digitalCards.add(digitalCard);
     }
 

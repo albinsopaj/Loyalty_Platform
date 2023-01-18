@@ -27,4 +27,5 @@ public class Campaign {
         this.start = start;
         this.end = end;
     }
+
 }

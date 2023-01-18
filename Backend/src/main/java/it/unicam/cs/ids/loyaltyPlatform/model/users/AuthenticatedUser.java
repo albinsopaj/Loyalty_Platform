@@ -33,5 +33,4 @@ public abstract class AuthenticatedUser {
         this.domicile = domicile;
     }
 
-    public abstract AuthenticatedUser createNewAuthenticatedUser(String name, String surname, String email, String phoneNumber, Character biologicalGender, String domicile);
 }

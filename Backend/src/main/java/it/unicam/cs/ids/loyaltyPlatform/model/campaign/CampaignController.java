@@ -1,7 +1,5 @@
-package it.unicam.cs.ids.loyaltyPlatform.controller;
+package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
-import it.unicam.cs.ids.loyaltyPlatform.service.CampaignService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;

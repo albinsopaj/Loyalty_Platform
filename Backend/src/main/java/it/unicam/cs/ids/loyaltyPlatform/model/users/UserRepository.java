@@ -1,6 +1,5 @@
-package it.unicam.cs.ids.loyaltyPlatform.repository;
+package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

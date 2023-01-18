@@ -1,7 +1,5 @@
-package it.unicam.cs.ids.loyaltyPlatform.service;
+package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
-import it.unicam.cs.ids.loyaltyPlatform.repository.UserRepository;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

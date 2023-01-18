@@ -1,7 +1,5 @@
-package it.unicam.cs.ids.loyaltyPlatform.controller;
+package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.service.FidelityProgramService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

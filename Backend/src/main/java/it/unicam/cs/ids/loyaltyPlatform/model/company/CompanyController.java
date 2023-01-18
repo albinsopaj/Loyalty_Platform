@@ -1,7 +1,5 @@
-package it.unicam.cs.ids.loyaltyPlatform.controller;
+package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
-import it.unicam.cs.ids.loyaltyPlatform.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
