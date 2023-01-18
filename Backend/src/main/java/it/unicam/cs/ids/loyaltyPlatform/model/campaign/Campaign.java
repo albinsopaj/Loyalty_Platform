@@ -1,7 +1,11 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,7 +21,7 @@ public class Campaign {
     private @NonNull Date start;
     private @NonNull Date end;
 
-    public Campaign(String name, Date start, Date end){
+    public Campaign(@NotNull String name, @NotNull Date start, @NotNull Date end) {
         this.campaignId = UUID.randomUUID();
         this.name = name;
         this.start = start;

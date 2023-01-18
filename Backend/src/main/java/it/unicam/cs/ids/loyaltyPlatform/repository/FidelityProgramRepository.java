@@ -5,13 +5,11 @@ import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.PointsFidelityProg
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-
 /**
  * Interface to manage all CRUD operations on the repository of {@link PointsFidelityProgram}.
  */
 @Repository
-public interface FidelityProgramRepository extends JpaRepository<FidelityProgram, UUID> {
+public interface FidelityProgramRepository extends JpaRepository<FidelityProgram, Long> {
 
     FidelityProgram updateFidelityProgram(FidelityProgram fidelityProgram);
 

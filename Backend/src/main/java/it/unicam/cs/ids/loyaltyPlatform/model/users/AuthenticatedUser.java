@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 
@@ -30,4 +32,6 @@ public abstract class AuthenticatedUser {
         this.biologicalGender = biologicalGender;
         this.domicile = domicile;
     }
+
+    public abstract AuthenticatedUser createNewAuthenticatedUser(String name, String surname, String email, String phoneNumber, Character biologicalGender, String domicile);
 }
