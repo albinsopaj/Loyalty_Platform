@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
-import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@AllArgsConstructor
 @RestController
 @Controller
 public class UserController {
@@ -19,7 +17,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("")
+    @Autowired
+    private AuthenticatedUser authenticatedUser;
+
+    @PostMapping("/a")
     public void addUser(@NonNull @RequestBody @Param("user") AuthenticatedUser user) {
         //TODO implement authentication credentials and their relative setRole, updateRoles
         userService.addUser(user);
@@ -29,11 +30,13 @@ public class UserController {
         return this.userService.getUser(id);
     }
 
+    @GetMapping("")
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public AuthenticatedUser getUser(String email) {
         return this.userService.getUser(email);
     }
 
-    @GetMapping("")
+    @GetMapping("/authenticatedUsers")
     public List<AuthenticatedUser> getAllUsers() {
         //TODO da implementare
         return null;
@@ -46,12 +49,14 @@ public class UserController {
         return this.userService.updateAuthenticatedUser(user);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/authenticatedUsers/{id}")
+    @RequestMapping(value = "/authenticatedUsers/{id}", method = RequestMethod.DELETE)
     public void deleteUserByID(@NonNull UUID id) {
         this.userService.deleteUser(id);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/authenticatedUsers/{email}")
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
     public void deleteUserByEmail(@NonNull String email) {
         this.userService.deleteUser(email);
     }

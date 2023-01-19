@@ -2,33 +2,39 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.PointsFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
-import org.jetbrains.annotations.NotNull;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.UUID;
 
 /**
  * Class that defines the owner
  */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Owner extends AuthenticatedUser {
 
-    public Owner(@NotNull String name, @NotNull String surname, @NotNull String email, @NotNull String phoneNumber, @NotNull Character biologicalGender, @NotNull String domicile) {
-        super(name, surname, email, phoneNumber, biologicalGender, domicile);
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false)
+    private UUID id;
 
     public void createCampaign(PointsFidelityProgram fidelityProgram) {
-
+        //TODO
     }
 
     public void createNewFidelityProgram() {
-
+        //TODO
     }
 
     public void createNewRole() {
-
-    }
-
-    //    @Override
-    public AuthenticatedUser createNewAuthenticatedUser(String name, String surname, String email, String phoneNumber, Character biologicalGender, String domicile) {
         //TODO
-        return null;
     }
 
 }

@@ -14,6 +14,9 @@ public class CompanyController {
     @Autowired
     private CompanyService service;
 
+    @Autowired
+    private Company company;
+
     public Company addCompany(long id) {
         return this.service.addCompany(id);
     }

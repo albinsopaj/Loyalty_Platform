@@ -5,11 +5,9 @@ import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Cashier;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Manager;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Owner;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -19,9 +17,19 @@ import java.util.UUID;
  */
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Company {
-    private @Id @NonNull UUID companyId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false)
+    private UUID id;
+
     private @NonNull String name;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private @NonNull Owner owner;
     private @NonNull ArrayList<FidelityProgram> fidelityPrograms;
     private @NonNull ArrayList<Campaign> campaigns;
@@ -29,7 +37,7 @@ public class Company {
     private @NonNull ArrayList<Cashier> cashiers;
 
     public Company(@NotNull String name, @NotNull Owner owner) {
-        this.companyId = UUID.randomUUID();
+        this.id = UUID.randomUUID();
         this.name = name;
         this.owner = owner;
         this.fidelityPrograms = new ArrayList<>();

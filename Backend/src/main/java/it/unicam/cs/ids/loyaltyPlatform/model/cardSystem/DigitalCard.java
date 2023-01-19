@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+
 import java.util.UUID;
 
 
@@ -19,4 +20,5 @@ public class DigitalCard {
     public DigitalCard(){
         this.digitalCardId = UUID.randomUUID();
     }
+
 }
