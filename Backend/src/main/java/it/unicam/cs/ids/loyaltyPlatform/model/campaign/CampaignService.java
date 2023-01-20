@@ -1,38 +1,28 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
-import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@AllArgsConstructor
-@Service
-public class CampaignService {
+public interface CampaignService {
 
-    @Autowired
-    private CampaignRepository repository;
+    void save(Campaign campaign);
 
-    public Campaign addCampaign(Campaign campaign) {
-        return this.repository.save(campaign);
-    }
+    //TODO must be implemented by scratch.
+    void saveById(UUID id);
 
-    public Optional<Campaign> searchCampaign(@NonNull UUID id) {
-        return this.repository.findById(id);
-    }
+    Campaign update(@NonNull Campaign campaign);
 
-    public List<Campaign> getAllCampaigns() {
-        return this.repository.findAll();
-    }
+    Campaign findById(@NonNull UUID id);
 
-    public Optional<Campaign> updateCampaign(@NonNull UUID campaignId) {
-        return this.repository.findById(campaignId);
-    }
+    Optional<Campaign> getById(UUID id);
 
-    public void deleteCampaign(@NonNull UUID campaignId) {
-        this.repository.deleteById(campaignId);
-    }
+    List<Campaign> getAll();
+
+    void delete(Campaign campaign);
+
+    void deleteById(UUID id);
+
 }

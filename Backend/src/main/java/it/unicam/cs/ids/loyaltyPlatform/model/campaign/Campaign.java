@@ -1,10 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.UUID;
@@ -12,17 +10,24 @@ import java.util.UUID;
 /**
  * Class that defines a campaign
  */
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+@Entity
+@Component
+@Data
 public class Campaign {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private @NonNull UUID id;
     private @NonNull String name;
-    private @NonNull @Id UUID campaignId;
     private @NonNull Date start;
     private @NonNull Date end;
 
-    public Campaign(@NotNull String name, @NotNull Date start, @NotNull Date end) {
-        this.campaignId = UUID.randomUUID();
+    public Campaign(@NonNull String name, @NonNull Date start, @NonNull Date end) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.start = start;
         this.end = end;

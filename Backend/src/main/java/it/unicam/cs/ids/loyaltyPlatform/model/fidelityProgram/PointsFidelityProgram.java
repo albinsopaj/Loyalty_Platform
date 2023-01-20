@@ -4,6 +4,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
+
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Map;
@@ -17,6 +18,8 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class PointsFidelityProgram implements FidelityProgram {
     private @Id @NonNull UUID fidelityProgramId;
     private @NonNull String name;

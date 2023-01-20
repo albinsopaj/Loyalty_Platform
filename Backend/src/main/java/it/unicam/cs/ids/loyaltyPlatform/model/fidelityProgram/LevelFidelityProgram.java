@@ -1,10 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 
@@ -17,6 +14,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class LevelFidelityProgram implements FidelityProgram {
     private final @Id @NonNull UUID fidelityProgramId;
     private final @NonNull String name;

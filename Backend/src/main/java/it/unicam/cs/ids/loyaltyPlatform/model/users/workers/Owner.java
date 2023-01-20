@@ -3,10 +3,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.PointsFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -18,6 +15,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@EqualsAndHashCode
+@ToString
 public class Owner extends AuthenticatedUser {
 
     @Id
