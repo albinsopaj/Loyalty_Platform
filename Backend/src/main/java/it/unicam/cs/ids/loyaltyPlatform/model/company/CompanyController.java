@@ -1,38 +1,47 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @RestController
+@RequestMapping("loyaltyPlatform/campaign")
 public class CompanyController {
 
     @Autowired
-    private CompanyService service;
+    private CompanyServiceImpl service;
 
-    @Autowired
-    private Company company;
-
-    public Company addCompany(long id) {
-        return this.service.addCompany(id);
+    @PostMapping("/company")
+    public Company addCompany(@RequestBody UUID id) {
+        return this.service.saveById(id);
     }
 
-    public Optional<Company> getCompany(long id) {
-        return this.service.getCompany(id);
+    @GetMapping("company/{id}")
+    public Company getCompany(@NonNull @PathVariable("id") UUID id) {
+        return this.service.findById(id);
     }
 
+    @GetMapping("companies")
     public List<Company> getAllCompanies() {
-        return this.service.findAll();
+        return this.service.getAll();
     }
 
-    public boolean updateCompany(long id) {
-        return this.service.updateCompany(id);
+    @PutMapping("/update/{company}")
+    public Company updateCompany(@RequestBody @PathVariable Company company) {
+        return this.service.update(company);
     }
 
-    public void deleteCompany(long id) {
-        this.service.deleteCompany(id);
+    @DeleteMapping("delete/{company}")
+    public void deleteCampaign(@NonNull @PathVariable Company company) {
+        this.service.delete(company);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteCompany(@NonNull @PathVariable("id") UUID id) {
+        this.service.deleteById(id);
     }
 
 }
