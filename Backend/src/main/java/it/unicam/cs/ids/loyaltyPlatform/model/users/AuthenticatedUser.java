@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
+@EqualsAndHashCode
 public abstract class AuthenticatedUser {
 
     //private final @Id @NonNull UUID userId; >> Servira' avere una chiave primaria per l'AuthenticatedUser come classe astratta

@@ -3,11 +3,10 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -18,6 +17,7 @@ import java.util.UUID;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Client extends AuthenticatedUser {
 
     @Id
@@ -35,4 +35,16 @@ public class Client extends AuthenticatedUser {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Client client = (Client) o;
+        return id != null && Objects.equals(id, client.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

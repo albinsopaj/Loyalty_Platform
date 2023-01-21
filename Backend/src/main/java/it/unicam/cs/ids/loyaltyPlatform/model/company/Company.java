@@ -20,6 +20,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@EqualsAndHashCode
+@ToString
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

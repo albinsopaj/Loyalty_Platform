@@ -3,7 +3,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@Controller
 public class UserController {
 
     @Autowired
