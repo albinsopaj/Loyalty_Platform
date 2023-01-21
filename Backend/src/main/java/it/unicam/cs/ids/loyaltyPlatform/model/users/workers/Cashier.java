@@ -3,7 +3,9 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.Hibernate;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -14,6 +16,7 @@ import java.util.UUID;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Cashier extends AuthenticatedUser {
 
     @Id
@@ -34,4 +37,16 @@ public class Cashier extends AuthenticatedUser {
         //TODO
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Cashier cashier = (Cashier) o;
+        return Objects.equals(id, cashier.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
