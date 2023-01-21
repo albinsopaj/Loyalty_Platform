@@ -2,9 +2,11 @@ package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -15,22 +17,30 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Entity
 @Component
-@Data
+@Getter
+@Setter
+@ToString
 public class Campaign {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column
     private @NonNull UUID id;
     private @NonNull String name;
     private @NonNull Date start;
     private @NonNull Date end;
 
-    public Campaign(@NonNull String name, @NonNull Date start, @NonNull Date end) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.start = start;
-        this.end = end;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Campaign campaign = (Campaign) o;
+        return Objects.equals(id, campaign.id);
     }
 
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

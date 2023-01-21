@@ -8,12 +8,14 @@ import java.util.UUID;
 
 public interface CampaignService {
 
-    void save(Campaign campaign);
+    Campaign save(Campaign campaign);
 
     //TODO must be implemented by scratch.
     void saveById(UUID id);
 
     Campaign update(@NonNull Campaign campaign);
+
+    Campaign updateById(@NonNull UUID id);
 
     Campaign findById(@NonNull UUID id);
 

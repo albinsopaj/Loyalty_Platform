@@ -2,7 +2,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +17,13 @@ public class CampaignController {
     @Autowired
     private Campaign campaign;
 
-    @PostMapping("")
+    @PostMapping("/campaign")
     public Campaign addCampaign(@RequestBody Campaign campaign) {
-        this.campaignService.save(campaign);
-        return this.campaignService.findById(campaign.getId());
+        return this.campaignService.save(campaign);
     }
 
     @GetMapping("campaign/{id}")
-    public Campaign searchCampaign(@NonNull UUID id) {
+    public Campaign getCampaign(@NonNull @PathVariable("id") UUID id) {
         return this.campaignService.findById(id);
     }
 
@@ -35,12 +33,12 @@ public class CampaignController {
     }
 
     @PutMapping("/update/{campaign}")
-    public Campaign updateCampaign(@RequestBody @Param("campaign") Campaign campaign) {
+    public Campaign updateCampaign(@RequestBody @PathVariable("campaign") Campaign campaign) {
         return this.campaignService.update(campaign);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteCampaign(@NonNull UUID id) {
+    public void deleteCampaign(@NonNull @PathVariable("id") UUID id) {
         this.campaignService.deleteById(id);
     }
 
