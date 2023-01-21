@@ -7,6 +7,7 @@ import java.util.UUID;
 /**
  * Interface that defines fidelity programs
  */
+
 public interface FidelityProgram {
 
     /**
