@@ -1,8 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -21,8 +21,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company saveById(@NonNull Long id) {
-        Company comp = this.findById(id);
-        return this.repository.save(comp);
+        return this.repository.save(this.findById(id));
     }
 
     @Override
@@ -36,7 +35,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Company update(Company company) {
+    public Company update(@NonNull Company company) {
         //TODO implement business logic here
         return this.repository.save(company);
     }

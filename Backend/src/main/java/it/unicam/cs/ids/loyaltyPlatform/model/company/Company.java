@@ -46,31 +46,34 @@ public class Company {
      *
      * @param fidelityProgram the fidelity program to add
      */
-    public void addFidelityProgram(FidelityProgram fidelityProgram) {
+    public void addFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
         this.fidelityPrograms.add(fidelityProgram);
     }
 
     /**
      * Method to add a campaign to the company
+     *
      * @param campaign the campaign to add
      */
-    public void addCampaign(Campaign campaign){
+    public void addCampaign(@NonNull Campaign campaign) {
         this.campaigns.add(campaign);
     }
 
     /**
      * Method to add a manager to the company
+     *
      * @param manager the manager to add
      */
-    public void addManager(Manager manager){
+    public void addManager(@NonNull Manager manager) {
         this.managers.add(manager);
     }
 
     /**
      * Method to add a cashier to the company
+     *
      * @param cashier the cashier to add
      */
-    public void addCashier(Cashier cashier){
+    public void addCashier(@NonNull Cashier cashier) {
         this.cashiers.add(cashier);
     }
 
@@ -79,7 +82,7 @@ public class Company {
      *
      * @param fidelityProgramId the fidelity program's id
      */
-    public void removeFidelityProgram(Long fidelityProgramId) {
+    public void removeFidelityProgram(@NonNull Long fidelityProgramId) {
         this.fidelityPrograms.removeIf(fidelityProgram -> fidelityProgram.getFidelityProgramId().equals(fidelityProgramId));
     }
 
@@ -88,7 +91,7 @@ public class Company {
      *
      * @param campaignId the campaign's id
      */
-    public void removeCampaign(Long campaignId) {
+    public void removeCampaign(@NonNull Long campaignId) {
         this.campaigns.removeIf(campaign -> campaign.getId().equals(campaignId));
     }
 
@@ -97,7 +100,7 @@ public class Company {
      *
      * @param userId the manager's id
      */
-    public void removeManager(Long userId) {
+    public void removeManager(@NonNull Long userId) {
         this.managers.removeIf(manager -> manager.getId().equals(userId));
     }
 
@@ -106,7 +109,7 @@ public class Company {
      *
      * @param userId the cashier's id
      */
-    public void removeCashier(Long userId) {
+    public void removeCashier(@NonNull Long userId) {
         this.cashiers.removeIf(cashier -> cashier.getId().equals(userId));
     }
 

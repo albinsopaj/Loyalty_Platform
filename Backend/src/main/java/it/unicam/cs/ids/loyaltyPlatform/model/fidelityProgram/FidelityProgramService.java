@@ -2,33 +2,31 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import lombok.NonNull;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-@Service
-public class FidelityProgramService {
+public interface FidelityProgramService {
 
-    @Autowired
-    private FidelityProgramRepository repository;
+    FidelityProgram save(@NonNull FidelityProgram fidelityProgram);
 
-    public FidelityProgram addFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        return this.repository.save(fidelityProgram);
-    }
+    FidelityProgram saveById(@NonNull UUID id);
 
-    public Optional<FidelityProgram> getFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        return this.repository.findById(fidelityProgram.getFidelityProgramId());
-    }
+    FidelityProgram findById(@NonNull UUID id);
 
-    public FidelityProgram updateFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        return this.repository.updateFidelityProgram(fidelityProgram);
-    }
+    Optional<FidelityProgram> get(@NonNull FidelityProgram fidelityProgram);
 
-    public void deleteFidelityProgram(@NonNull @NotNull FidelityProgram fidelityProgram) {
-        // one of the lines below is to be removed
-        this.repository.deleteById(fidelityProgram.getFidelityProgramId());
-        this.repository.delete(fidelityProgram);
-    }
+    List<FidelityProgram> getAll();
+
+    FidelityProgram update(@NonNull FidelityProgram fidelityProgram);
+
+    FidelityProgram updateById(@NonNull UUID id);
+
+    public void deleteFidelityProgram(@NotNull FidelityProgram fidelityProgram);
+
+    void delete(@NonNull FidelityProgram fidelityProgram);
+
+    void deleteById(@NonNull UUID id);
 
 }

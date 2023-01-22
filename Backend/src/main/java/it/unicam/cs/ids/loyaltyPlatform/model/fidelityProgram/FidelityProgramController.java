@@ -17,21 +17,21 @@ public class FidelityProgramController {
 
     @PostMapping("")
     public FidelityProgram addFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        return this.service.addFidelityProgram(fidelityProgram);
+        return this.service.save(fidelityProgram);
     }
 
     @PutMapping("")
     public Optional<FidelityProgram> getFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        return this.service.getFidelityProgram(fidelityProgram);
+        return this.service.get(fidelityProgram);
     }
 
-    public FidelityProgram updateFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        return this.service.updateFidelityProgram(fidelityProgram);
+    public FidelityProgram update(@NonNull FidelityProgram fidelityProgram) {
+        return this.service.update(fidelityProgram);
     }
 
     @DeleteMapping("")
     public void deleteFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        this.service.deleteFidelityProgram(fidelityProgram);
+        this.service.delete(fidelityProgram);
     }
 
 }
