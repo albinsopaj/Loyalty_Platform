@@ -7,9 +7,10 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Manager;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Owner;
 import jakarta.persistence.*;
 import lombok.*;
-import org.jetbrains.annotations.NotNull;
+import org.hibernate.Hibernate;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -19,40 +20,34 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@EqualsAndHashCode
 @ToString
+@Entity(name = "Company")
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", nullable = false)
+    @Column(name = "", nullable = false)
     private UUID id;
 
     private @NonNull String name;
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private @NonNull Owner owner;
-    private @NonNull ArrayList<FidelityProgram> fidelityPrograms;
-    private @NonNull ArrayList<Campaign> campaigns;
-    private @NonNull ArrayList<Manager> managers;
-    private @NonNull ArrayList<Cashier> cashiers;
 
-    public Company(@NotNull String name, @NotNull Owner owner) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.owner = owner;
-        this.fidelityPrograms = new ArrayList<>();
-        this.campaigns = new ArrayList<>();
-        this.managers = new ArrayList<>();
-        this.cashiers = new ArrayList<>();
-    }
+    @Transient
+    private @NonNull List<FidelityProgram> fidelityPrograms;
+    @Transient
+    private @NonNull List<Campaign> campaigns;
+    @Transient
+    private @NonNull List<Manager> managers;
+    @Transient
+    private @NonNull List<Cashier> cashiers;
 
     /**
      * Method to add a fidelity program to the company
+     *
      * @param fidelityProgram the fidelity program to add
      */
-    public void addFidelityProgram(FidelityProgram fidelityProgram){
+    public void addFidelityProgram(FidelityProgram fidelityProgram) {
         this.fidelityPrograms.add(fidelityProgram);
     }
 
@@ -93,22 +88,36 @@ public class Company {
      * @param campaignId the campaign's id
      */
     public void removeCampaign(UUID campaignId){
-        this.campaigns.removeIf(campaign -> campaign.getCampaignId().equals(campaignId));
+        this.campaigns.removeIf(campaign -> campaign.getId().equals(campaignId));
     }
 
     /**
      * Method to remove a manager from the company
      * @param userId the manager's id
      */
-    public void removeManager(UUID userId){
-        this.managers.removeIf(manager -> manager.getUserId().equals(userId));
+    public void removeManager(UUID userId) {
+        this.managers.removeIf(manager -> manager.getId().equals(userId));
     }
 
     /**
      * Method to remove a cashier from the company
+     *
      * @param userId the cashier's id
      */
-    public void removeCashier(UUID userId){
-        this.cashiers.removeIf(cashier -> cashier.getUserId().equals(userId));
+    public void removeCashier(UUID userId) {
+        this.cashiers.removeIf(cashier -> cashier.getId().equals(userId));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Company company = (Company) o;
+        return id != null && Objects.equals(id, company.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

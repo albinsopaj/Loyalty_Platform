@@ -1,38 +1,25 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
-@Service
-public class CompanyService {
+public interface CompanyService {
 
-    @Autowired
-    private CompanyRepository repository;
+    Company save(Company company);
 
-    public Company addCompany(long id) {
-        return this.repository.save(this.repository.getReferenceById(id));
-    }
+    Company saveById(UUID id);
 
-    public Optional<Company> getCompany(long id) {
-        return this.repository.findById(id);
-    }
+    Company findById(UUID id);
 
-    public List<Company> getAllCompanies() {
-        return this.repository.findAll();
-    }
+    List<Company> getAll();
 
-    public boolean updateCompany(long id) {
-        return this.repository.updateCompany(id);
-    }
+    Company update(Company company);
 
-    public void deleteCompany(long id) {
-        this.repository.deleteById(id);
-    }
+    Company updateById(UUID id);
 
-    public List<Company> findAll() {
-        return this.repository.findAll();
-    }
+    void delete(Company company);
+
+    void deleteById(UUID id);
+
+
 }

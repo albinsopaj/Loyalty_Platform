@@ -16,6 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+
 public class LevelFidelityProgram implements FidelityProgram {
     private final @Id @NonNull UUID fidelityProgramId;
     private final @NonNull String name;
