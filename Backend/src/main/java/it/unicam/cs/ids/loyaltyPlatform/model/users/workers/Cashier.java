@@ -25,7 +25,13 @@ public class Cashier extends AuthenticatedUser {
     private @NonNull Long id;
 
     public void viewClientProfile() {
-        //TODO
+        String firstName = this.getFirstName();
+        String lastName = this.getLastName();
+        String email=this.getEmail();
+        String phoneNumber = this.getPhoneNumber();
+        Character biologicalGender = this.getBiologicalGender();
+        String domicile = this.getDomicile();
+
     }
 
     public void updatePointsStatusManually() {
