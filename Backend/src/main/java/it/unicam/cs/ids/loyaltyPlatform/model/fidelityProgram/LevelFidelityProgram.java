@@ -1,12 +1,16 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+import org.springframework.lang.NonNull;
 
-import java.util.ArrayList;
-import java.util.UUID;
+import java.util.List;
 
 /**
  * Fidelity program based on levels
@@ -14,24 +18,27 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode
 @ToString
-
 public class LevelFidelityProgram implements FidelityProgram {
-    private final @Id @NonNull UUID fidelityProgramId;
-    private final @NonNull String name;
-    private final @NonNull ArrayList<Client> clients;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    @JdbcTypeCode(SqlTypes.BIGINT)
+    private @NonNull Long id;
+
+    private @NonNull String name;
+    private @NonNull List<Client> clients;
     private boolean activated = false;
 
-    public LevelFidelityProgram(@NotNull String name) {
-        this.fidelityProgramId = UUID.randomUUID();
-        this.name = name;
-        this.clients = new ArrayList<>();
-    }
     @Override
     public void personalizeFidelityProgram() {
         //TODO
     }
+
     @Override
     public void activateFidelityProgram() {
         this.activated = true;
@@ -44,13 +51,20 @@ public class LevelFidelityProgram implements FidelityProgram {
 
     @Override
     public void resetFidelityProgram() {
-        for(Client client: clients){
+        for (Client client : clients) {
             //TODO reset client's digital card ??
         }
         this.clients.clear();
     }
+
     @Override
     public void addClient(Client client) {
         this.clients.add(client);
     }
+
+    @Override
+    public Long getFidelityProgramId() {
+        return this.id;
+    }
+
 }

@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
-
 @RestController
 public class ClientController {
 
@@ -21,8 +19,8 @@ public class ClientController {
         this.service.addClient(clientName);
     }
 
-    @PostMapping
-    public void updatePoints(@NonNull UUID id) {
+    @PostMapping("")
+    public void updatePoints(@NonNull Long id) {
 
     }
 

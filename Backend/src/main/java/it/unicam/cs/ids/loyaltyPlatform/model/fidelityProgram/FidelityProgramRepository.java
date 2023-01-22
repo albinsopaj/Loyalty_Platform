@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FidelityProgramRepository extends JpaRepository<FidelityProgram, Long> {
 
-    FidelityProgram updateFidelityProgram(FidelityProgram fidelityProgram);
+    FidelityProgram updateFidelityProgram(@NonNull FidelityProgram fidelityProgram);
 
 }

@@ -7,7 +7,6 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Class that defines a client of the platform
@@ -21,9 +20,9 @@ import java.util.UUID;
 public class Client extends AuthenticatedUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private UUID id;
+    private Long id;
 
     public DigitalCard obtainDigitalCard() {
         //TODO

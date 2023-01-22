@@ -3,11 +3,12 @@ package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Class that defines a campaign
@@ -24,8 +25,9 @@ public class Campaign {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
-    private @NonNull UUID id;
+    @Column(name = "id", nullable = false)
+    @JdbcTypeCode(SqlTypes.BIGINT)
+    private @NonNull Long id;
     private @NonNull String name;
     private @NonNull Date start;
     private @NonNull Date end;

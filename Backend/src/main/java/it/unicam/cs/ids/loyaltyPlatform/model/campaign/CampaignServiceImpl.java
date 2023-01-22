@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
 import jakarta.persistence.Table;
 import lombok.NonNull;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @Table(name = "")
@@ -20,12 +20,12 @@ public class CampaignServiceImpl implements CampaignService {
 
 
     @Override
-    public Campaign save(Campaign campaign) {
+    public Campaign save(@NotNull Campaign campaign) {
         return this.repository.save(campaign);
     }
 
     @Override
-    public void saveById(UUID id) {
+    public void saveById(@NonNull Long id) {
         //TODO implement
         // repository doesn't provide a ready to use saveById method.
     }
@@ -42,7 +42,7 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
-    public Campaign updateById(@NonNull UUID id) {
+    public Campaign updateById(@NonNull Long id) {
         Optional<Campaign> old = this.repository.findById(id);
 
         if (old.isPresent()) {
@@ -53,12 +53,12 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
-    public Campaign findById(@NonNull UUID id) {
+    public Campaign findById(@NonNull Long id) {
         return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found"));
     }
 
     @Override
-    public Optional<Campaign> getById(@NonNull UUID id) {
+    public Optional<Campaign> getById(@NonNull Long id) {
         Optional<Campaign> campaign = this.repository.findById(id);
         if (campaign.isPresent()) {
             return this.repository.findById(id);
@@ -78,7 +78,7 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(@NonNull Long id) {
         if (this.repository.findById(id).isPresent()) {
             this.repository.deleteById(id);
             System.out.println("Campaign deleted successfully");
@@ -87,7 +87,7 @@ public class CampaignServiceImpl implements CampaignService {
         }
     }
 
-    private boolean existsById(@NonNull UUID id) {
+    private boolean existsById(@NonNull Long id) {
         return this.repository.existsById(id);
     }
 

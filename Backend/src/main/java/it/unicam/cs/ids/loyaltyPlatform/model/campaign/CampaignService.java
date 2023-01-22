@@ -4,27 +4,26 @@ import lombok.NonNull;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface CampaignService {
 
-    Campaign save(Campaign campaign);
+    Campaign save(@NonNull Campaign campaign);
 
     //TODO must be implemented by scratch.
-    void saveById(UUID id);
+    void saveById(Long id);
 
     Campaign update(@NonNull Campaign campaign);
 
-    Campaign updateById(@NonNull UUID id);
+    Campaign updateById(@NonNull Long id);
 
-    Campaign findById(@NonNull UUID id);
+    Campaign findById(@NonNull Long id);
 
-    Optional<Campaign> getById(UUID id);
+    Optional<Campaign> getById(@NonNull Long id);
 
     List<Campaign> getAll();
 
-    void delete(Campaign campaign);
+    void delete(@NonNull Campaign campaign);
 
-    void deleteById(UUID id);
+    void deleteById(@NonNull Long id);
 
 }

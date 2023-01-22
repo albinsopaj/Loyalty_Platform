@@ -1,15 +1,19 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+import org.springframework.lang.NonNull;
 
 import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.UUID;
 
 /**
  * Fidelity program based on points
@@ -21,19 +25,18 @@ import java.util.UUID;
 @EqualsAndHashCode
 @ToString
 public class PointsFidelityProgram implements FidelityProgram {
-    private @Id @NonNull UUID fidelityProgramId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    @JdbcTypeCode(SqlTypes.BIGINT)
+    private @NonNull Long id;
+
     private @NonNull String name;
     private boolean activated = false;
     private int rewardsNumber = 0;
-    private @NonNull ArrayList<Client> clients;
-    private @NonNull ArrayList<Map.Entry<String, Integer>> catalogue;
-
-    public PointsFidelityProgram(@NotNull String name) {
-        this.fidelityProgramId = UUID.randomUUID();
-        this.name = name;
-        this.clients = new ArrayList<>();
-        this.catalogue = new ArrayList<>();
-    }
+    private @NonNull List<Client> clients;
+    private @NonNull List<Map.Entry<String, Integer>> catalogue;
 
     @Override
     public void personalizeFidelityProgram() {
@@ -67,7 +70,7 @@ public class PointsFidelityProgram implements FidelityProgram {
 
     @Override
     public void resetFidelityProgram() {
-        for(Client client: clients){
+        for (Client client : clients) {
             //TODO reset client's digital card ??
         }
         this.clients.clear();
@@ -77,4 +80,10 @@ public class PointsFidelityProgram implements FidelityProgram {
     public void addClient(Client client) {
         this.clients.add(client);
     }
+
+    @Override
+    public Long getFidelityProgramId() {
+        return this.id;
+    }
+
 }

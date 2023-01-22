@@ -18,7 +18,7 @@ public class FidelityProgramService {
     }
 
     public Optional<FidelityProgram> getFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        return this.repository.findById(fidelityProgram.getId());
+        return this.repository.findById(fidelityProgram.getFidelityProgramId());
     }
 
     public FidelityProgram updateFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
@@ -27,7 +27,7 @@ public class FidelityProgramService {
 
     public void deleteFidelityProgram(@NonNull @NotNull FidelityProgram fidelityProgram) {
         // one of the lines below is to be removed
-        this.repository.deleteById(fidelityProgram.getId());
+        this.repository.deleteById(fidelityProgram.getFidelityProgramId());
         this.repository.delete(fidelityProgram);
     }
 

@@ -5,8 +5,6 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.UUID;
-
 /**
  * Class that defines the owner
  */
@@ -20,11 +18,11 @@ import java.util.UUID;
 public class Owner extends AuthenticatedUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private UUID id;
+    private @NonNull Long id;
 
-    public void createCampaign(PointsFidelityProgram fidelityProgram) {
+    public void createCampaign(@NonNull PointsFidelityProgram fidelityProgram) {
         //TODO
     }
 

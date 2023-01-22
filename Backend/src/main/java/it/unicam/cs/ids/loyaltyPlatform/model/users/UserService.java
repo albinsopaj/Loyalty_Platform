@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -20,25 +19,19 @@ public class UserService {
         return this.repository.save(user);
     }
 
-    public Optional<AuthenticatedUser> getUser(@NonNull UUID id) {
+    public Optional<AuthenticatedUser> getUser(@NonNull Long id) {
         if (this.userExists(id) || this.repository.existsById(id)) {
             return this.repository.findById(id);
         }
         return Optional.empty();
     }
 
-    public AuthenticatedUser getUser(@NonNull String email) {
-        return this.repository.getUserByUsername(email);
+    public AuthenticatedUser getUser(@NonNull AuthenticatedUser user) {
+        //TODO implement
+        return null;
     }
 
-    //TODO incomplete method
-    public void deleteUser(@NonNull String email) {
-        if (userExists(email)) {
-            this.repository.delete(getUser(email));
-        }
-    }
-
-    public void deleteUser(@NonNull UUID id) {
+    public void deleteUser(@NonNull Long id) {
         if (userExists(id)) {
             this.repository.deleteById(id);
         }
@@ -50,7 +43,7 @@ public class UserService {
         return this.repository.save(user);
     }
 
-    private boolean userExists(@NonNull UUID id) {
+    private boolean userExists(@NonNull Long id) {
         return this.repository.existsById(id);
     }
 

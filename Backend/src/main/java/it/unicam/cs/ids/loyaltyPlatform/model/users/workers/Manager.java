@@ -7,8 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.util.UUID;
-
 /**
  * Class that defines a manager
  */
@@ -21,9 +19,8 @@ import java.util.UUID;
 public class Manager extends AuthenticatedUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private UUID id;
+    private Long id;
 
 }

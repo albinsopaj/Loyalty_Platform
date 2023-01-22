@@ -1,25 +1,26 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
+import lombok.NonNull;
+
 import java.util.List;
-import java.util.UUID;
 
 public interface CompanyService {
 
-    Company save(Company company);
+    Company save(@NonNull Company company);
 
-    Company saveById(UUID id);
+    Company saveById(@NonNull Long id);
 
-    Company findById(UUID id);
+    Company findById(@NonNull Long id);
 
     List<Company> getAll();
 
     Company update(Company company);
 
-    Company updateById(UUID id);
+    Company updateById(@NonNull Long id);
 
-    void delete(Company company);
+    void delete(@NonNull Company company);
 
-    void deleteById(UUID id);
+    void deleteById(@NonNull Long id);
 
 
 }

@@ -17,7 +17,7 @@ public class FidelityProgramFactory {
         if(fidelityProgramTypeName.equalsIgnoreCase("Points")){
             return new PointsFidelityProgram(name);
         } else {
-            return new LevelFidelityProgram(name);
+            return new LevelFidelityProgram();
         }
     }
 

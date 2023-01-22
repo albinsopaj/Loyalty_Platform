@@ -11,7 +11,6 @@ import org.hibernate.Hibernate;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Class that defines a company in the platform
@@ -26,7 +25,7 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "", nullable = false)
-    private UUID id;
+    private Long id;
 
     private @NonNull String name;
     @ManyToOne
@@ -77,25 +76,28 @@ public class Company {
 
     /**
      * Method to remove a fidelity program from the company
+     *
      * @param fidelityProgramId the fidelity program's id
      */
-    public void removeFidelityProgram(UUID fidelityProgramId){
+    public void removeFidelityProgram(Long fidelityProgramId) {
         this.fidelityPrograms.removeIf(fidelityProgram -> fidelityProgram.getFidelityProgramId().equals(fidelityProgramId));
     }
 
     /**
      * Method to remove a campaign from the company
+     *
      * @param campaignId the campaign's id
      */
-    public void removeCampaign(UUID campaignId){
+    public void removeCampaign(Long campaignId) {
         this.campaigns.removeIf(campaign -> campaign.getId().equals(campaignId));
     }
 
     /**
      * Method to remove a manager from the company
+     *
      * @param userId the manager's id
      */
-    public void removeManager(UUID userId) {
+    public void removeManager(Long userId) {
         this.managers.removeIf(manager -> manager.getId().equals(userId));
     }
 
@@ -104,7 +106,7 @@ public class Company {
      *
      * @param userId the cashier's id
      */
-    public void removeCashier(UUID userId) {
+    public void removeCashier(Long userId) {
         this.cashiers.removeIf(cashier -> cashier.getId().equals(userId));
     }
 

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -18,18 +17,17 @@ public class UserController {
     @Autowired
     private AuthenticatedUser authenticatedUser;
 
-    @PostMapping("/a")
-    public void addUser(@NonNull @RequestBody @Param("user") AuthenticatedUser user) {
+    @PostMapping("/add/{user}")
+    public void addUser(@NonNull @RequestBody @Param("user") @PathVariable AuthenticatedUser user) {
         //TODO implement authentication credentials and their relative setRole, updateRoles
         userService.addUser(user);
     }
 
-    public Optional<AuthenticatedUser> getUser(@NonNull UUID id) {
+    public Optional<AuthenticatedUser> getUser(@NonNull Long id) {
         return this.userService.getUser(id);
     }
 
     @GetMapping("")
-    @RequestMapping(value = "", method = RequestMethod.POST)
     public AuthenticatedUser getUser(String email) {
         return this.userService.getUser(email);
     }
@@ -48,13 +46,11 @@ public class UserController {
     }
 
     @DeleteMapping("/authenticatedUsers/{id}")
-    @RequestMapping(value = "/authenticatedUsers/{id}", method = RequestMethod.DELETE)
-    public void deleteUserByID(@NonNull UUID id) {
+    public void deleteUserByID(@NonNull Long id) {
         this.userService.deleteUser(id);
     }
 
     @DeleteMapping("/authenticatedUsers/{email}")
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
     public void deleteUserByEmail(@NonNull String email) {
         this.userService.deleteUser(email);
     }
