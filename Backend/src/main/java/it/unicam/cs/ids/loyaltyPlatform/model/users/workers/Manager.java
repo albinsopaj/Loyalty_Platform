@@ -23,7 +23,7 @@ public class Manager extends AuthenticatedUser {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     //@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", null able = false)
     private UUID id;
 
 }

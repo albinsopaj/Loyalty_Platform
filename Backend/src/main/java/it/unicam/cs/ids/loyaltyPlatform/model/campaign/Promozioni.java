@@ -11,7 +11,7 @@ public class Promozioni {
     private @NonNull final int  ultimiArrivi;
     private @NonNull final int sconti;
 
-    public Promozioni(@NonNull int ultimiArrivi,@NonNull int sconti){
+    public  Promozioni(@NonNull int ultimiArrivi,@NonNull int sconti){
         this.ultimiArrivi=ultimiArrivi;
         this.sconti=sconti;
     }
