@@ -1,47 +1,79 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+import org.springframework.lang.NonNull;
+import java.util.List;
 
 /**
- * Interface that defines fidelity programs
+ * Class that defines a general fidelity program
  */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+public abstract class FidelityProgram {
 
-public interface FidelityProgram {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    @JdbcTypeCode(SqlTypes.BIGINT)
+    private @NonNull Long id;
+    private @NonNull String name;
+    private @NonNull List<Client> clients;
+    private @NonNull Boolean activated = false;
 
     /**
      * Personalizes a fidelity program
      */
-    void personalizeFidelityProgram();
+    public abstract void personalizeFidelityProgram();
 
     /**
      * Activates the fidelity program
      *
      */
-    void activateFidelityProgram();
+    public void activateFidelityProgram(){
+        this.activated = true;
+    }
 
     /**
      * Deactivates the fidelity program
      *
      */
-    void deactivateFidelityProgram();
+    public void deactivateFidelityProgram(){
+        this.activated = false;
+    }
 
     /**
      * Resets a fidelity program, this means that every client's progress using that program will be resetted
      *
      */
-    void resetFidelityProgram();
+    public void resetFidelityProgram(){
+        this.clients.clear();
+    }
 
     /**
      * Adds a client to the fidelity program
      *
      * @param client the client to addCampaign
      */
-    void addClient(Client client);
+    public void addClient(Client client){
+        this.clients.add(client);
+    }
 
     /**
-     * Returns the fidelityProgramId
-     *
-     * @return the fidelityProgramId
+     * Method to change the status of the digital card
+     * @param value the amount of money
+     * @param digitalCard the digital card to change
      */
-    Long getFidelityProgramId();
+    public abstract void changeStatus(Integer value, DigitalCard digitalCard);
 }

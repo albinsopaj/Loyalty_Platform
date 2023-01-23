@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.platform.LoyaltyPlatform;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -13,7 +14,7 @@ import org.hibernate.type.SqlTypes;
 @Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class DigitalCard {
+public abstract class DigitalCard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,4 +22,14 @@ public class DigitalCard {
     @JdbcTypeCode(SqlTypes.BIGINT)
     private @NonNull Long id;
 
+    private @NonNull Long companyId;
+    private @NonNull Long fidelityProgramId;
+    private @NonNull Long clientId;
+
+    /**
+     * Method to update the status of a digital card based on the amount of money spent
+     * @param value the money amount
+     * @param platform the loyalty platform
+     */
+    public abstract void updateStatus(LoyaltyPlatform platform, Integer value);
 }

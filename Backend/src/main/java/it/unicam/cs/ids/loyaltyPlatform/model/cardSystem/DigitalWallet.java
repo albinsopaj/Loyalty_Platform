@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +25,7 @@ public class DigitalWallet {
     @JdbcTypeCode(SqlTypes.BIGINT)
     private @NonNull Long id;
 
+    private @NonNull Long clientId;
     private @NonNull List<DigitalCard> digitalCards;
 
     /**
@@ -34,7 +34,6 @@ public class DigitalWallet {
      * @param digitalCard the digital card to add
      */
     public void addDigitalCard(@NonNull DigitalCard digitalCard) {
-        Client client = new Client();
         this.digitalCards.add(digitalCard);
     }
 

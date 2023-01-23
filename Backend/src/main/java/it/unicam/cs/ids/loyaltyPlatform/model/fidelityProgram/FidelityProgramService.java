@@ -5,15 +5,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface FidelityProgramService {
 
     FidelityProgram save(@NonNull FidelityProgram fidelityProgram);
 
-    FidelityProgram saveById(@NonNull UUID id);
+    FidelityProgram saveById(@NonNull Long id);
 
-    FidelityProgram findById(@NonNull UUID id);
+    FidelityProgram findById(@NonNull Long id);
 
     Optional<FidelityProgram> get(@NonNull FidelityProgram fidelityProgram);
 
@@ -21,12 +20,12 @@ public interface FidelityProgramService {
 
     FidelityProgram update(@NonNull FidelityProgram fidelityProgram);
 
-    FidelityProgram updateById(@NonNull UUID id);
+    FidelityProgram updateById(@NonNull Long id);
 
     public void deleteFidelityProgram(@NotNull FidelityProgram fidelityProgram);
 
     void delete(@NonNull FidelityProgram fidelityProgram);
 
-    void deleteById(@NonNull UUID id);
+    void deleteById(@NonNull Long id);
 
 }

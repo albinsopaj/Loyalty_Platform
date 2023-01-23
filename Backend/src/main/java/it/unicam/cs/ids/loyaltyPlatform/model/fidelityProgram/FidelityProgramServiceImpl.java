@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import lombok.NonNull;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class FidelityProgramServiceImpl implements FidelityProgramService {
@@ -22,18 +22,18 @@ public class FidelityProgramServiceImpl implements FidelityProgramService {
     }
 
     @Override
-    public FidelityProgram saveById(@NonNull UUID id) {
+    public FidelityProgram saveById(@NonNull Long id) {
         return this.repository.save(this.findById(id));
     }
 
     @Override
-    public FidelityProgram findById(@NonNull UUID id) {
+    public FidelityProgram findById(@NonNull Long id) {
         return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Fidelity Program not found"));
     }
 
     @Override
     public Optional<FidelityProgram> get(@NonNull FidelityProgram fidelityProgram) {
-        return this.repository.findById(fidelityProgram.getFidelityProgramId());
+        return this.repository.findById(fidelityProgram.getId());
     }
 
     @Override
@@ -47,8 +47,13 @@ public class FidelityProgramServiceImpl implements FidelityProgramService {
     }
 
     @Override
-    public FidelityProgram updateById(@NonNull UUID id) {
+    public FidelityProgram updateById(@NonNull Long id) {
         return null;
+    }
+
+    @Override
+    public void deleteFidelityProgram(@NotNull FidelityProgram fidelityProgram) {
+        //TODO
     }
 
     @Override
@@ -57,7 +62,7 @@ public class FidelityProgramServiceImpl implements FidelityProgramService {
     }
 
     @Override
-    public void deleteById(@NonNull UUID id) {
+    public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
     }
 

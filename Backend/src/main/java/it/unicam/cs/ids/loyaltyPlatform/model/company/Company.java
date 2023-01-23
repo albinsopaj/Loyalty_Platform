@@ -113,6 +113,18 @@ public class Company {
         this.cashiers.removeIf(cashier -> cashier.getId().equals(userId));
     }
 
+    /**
+     * returns the fidelity program with the specified id
+     * @param fidelityProgramId the specified id
+     */
+    public FidelityProgram getFidelityProgram( Long fidelityProgramId){
+        for(FidelityProgram fidelityProgram: fidelityPrograms){
+            if(fidelityProgram.getFidelityProgramId().equals(fidelityProgramId)){
+                return fidelityProgram;
+            }
+        }
+        return null;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
