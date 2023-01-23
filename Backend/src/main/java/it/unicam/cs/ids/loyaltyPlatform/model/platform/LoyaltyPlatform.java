@@ -54,4 +54,5 @@ public class LoyaltyPlatform {
     public void removeCompany(@NonNull Long id) {
         this.companies.removeIf(company -> company.getId().equals(id));
     }
+
 }

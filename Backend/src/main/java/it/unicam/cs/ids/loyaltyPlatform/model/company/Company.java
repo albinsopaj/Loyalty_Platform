@@ -83,7 +83,7 @@ public class Company {
      * @param fidelityProgramId the fidelity program's id
      */
     public void removeFidelityProgram(@NonNull Long fidelityProgramId) {
-        this.fidelityPrograms.removeIf(fidelityProgram -> fidelityProgram.getFidelityProgramId().equals(fidelityProgramId));
+        this.fidelityPrograms.removeIf(fidelityProgram -> fidelityProgram.getId().equals(fidelityProgramId));
     }
 
     /**
@@ -119,12 +119,13 @@ public class Company {
      */
     public FidelityProgram getFidelityProgram( Long fidelityProgramId){
         for(FidelityProgram fidelityProgram: fidelityPrograms){
-            if(fidelityProgram.getFidelityProgramId().equals(fidelityProgramId)){
+            if (fidelityProgram.getId().equals(fidelityProgramId)) {
                 return fidelityProgram;
             }
         }
         return null;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

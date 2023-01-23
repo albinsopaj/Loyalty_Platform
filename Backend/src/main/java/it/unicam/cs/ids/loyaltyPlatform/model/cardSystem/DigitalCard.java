@@ -32,4 +32,5 @@ public abstract class DigitalCard {
      * @param platform the loyalty platform
      */
     public abstract void updateStatus(LoyaltyPlatform platform, Integer value);
+
 }

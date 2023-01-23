@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,5 +24,11 @@ public class Manager extends AuthenticatedUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    private Long companyId;
+
+    public void addClientToFidelityProgram(Client client, FidelityProgram fidelityProgram) {
+        //TODO implement
+    }
 
 }

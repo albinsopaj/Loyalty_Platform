@@ -54,6 +54,8 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public Campaign findById(@NonNull Long id) {
+        //one of the lines below should be removed
+        //return this.repository.getReferenceById(id);
         return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found"));
     }
 

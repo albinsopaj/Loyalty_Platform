@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalWallet;
+import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,8 +26,18 @@ public class Client extends AuthenticatedUser {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    public DigitalCard obtainDigitalCard() {
-        //TODO
+    private DigitalWallet digitalWallet;
+
+    public void createReview(String review, FidelityProgram fidelityProgram) {
+        //TODO implement
+    }
+
+    public void subscribeToFidelityProgram(Company company) {
+        //TODO implement
+    }
+
+    public String getProfile() {
+        //TODO implement
         return null;
     }
 
