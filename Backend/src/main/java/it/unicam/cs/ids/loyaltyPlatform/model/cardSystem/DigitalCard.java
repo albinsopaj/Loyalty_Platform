@@ -29,8 +29,7 @@ public abstract class DigitalCard {
     /**
      * Method to update the status of a digital card based on the amount of money spent
      * @param value the money amount
-     * @param platform the loyalty platform
      */
-    public abstract void updateStatus(LoyaltyPlatform platform, Integer value);
+    public abstract void updateStatus(Integer value);
 
 }

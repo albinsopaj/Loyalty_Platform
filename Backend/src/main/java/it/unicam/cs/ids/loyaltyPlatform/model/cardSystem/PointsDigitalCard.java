@@ -1,5 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.platform.LoyaltyPlatform;
 import jakarta.persistence.Entity;
 import lombok.Getter;
@@ -28,9 +30,10 @@ public class PointsDigitalCard extends DigitalCard {
     }
 
     @Override
-    public void updateStatus(LoyaltyPlatform platform, Integer value) {
-        platform.getCompanies().get(value).getFidelityProgram(getFidelityProgramId());
-        //TODO
+    public void updateStatus(Integer value) {
+        Company company = LoyaltyPlatform.getInstance().getCompany(getCompanyId());
+        FidelityProgram fidelityProgram = company.getFidelityProgram(getFidelityProgramId());
+        fidelityProgram.changeStatus(value, this);
     }
 
 }

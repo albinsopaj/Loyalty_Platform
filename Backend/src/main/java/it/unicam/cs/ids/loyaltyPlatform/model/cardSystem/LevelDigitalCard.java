@@ -17,7 +17,7 @@ public class LevelDigitalCard extends DigitalCard {
     }
 
     @Override
-    public void updateStatus(LoyaltyPlatform platform, Integer value) {
+    public void updateStatus( Integer value) {
 
     }
 
