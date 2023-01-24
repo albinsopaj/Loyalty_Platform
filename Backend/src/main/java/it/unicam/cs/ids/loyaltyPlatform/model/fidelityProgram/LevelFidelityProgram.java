@@ -16,4 +16,5 @@ public class LevelFidelityProgram extends FidelityProgram {
     public void changeStatus(Integer value, DigitalCard digitalCard) {
 
     }
+
 }

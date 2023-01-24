@@ -58,4 +58,5 @@ public class Client extends AuthenticatedUser {
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }

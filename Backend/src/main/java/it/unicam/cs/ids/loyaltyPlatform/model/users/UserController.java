@@ -27,10 +27,10 @@ public class UserController {
         return this.userService.getUser(id);
     }
 
-    @GetMapping("")
-    public AuthenticatedUser getUser(String email) {
-        return this.userService.getUser(email);
-    }
+//    @GetMapping("")
+//    public AuthenticatedUser getUser(String email) {
+//        return this.userService.getUser(email);
+//    }
 
     @GetMapping("/authenticatedUsers")
     public List<AuthenticatedUser> getAllUsers() {

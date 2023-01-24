@@ -25,7 +25,9 @@ public class LoyaltyPlatform {
      * @param client the client to add
      */
     public void addClient(@NonNull Client client) {
-        this.clients.add(client);
+        if (!this.clients.contains(client)) {
+            this.clients.add(client);
+        }
     }
 
     /**
@@ -34,7 +36,9 @@ public class LoyaltyPlatform {
      * @param company the company to add
      */
     public void addCompany(@NonNull Company company) {
-        this.companies.add(company);
+        if (!this.companies.contains(company)) {
+            this.companies.add(company);
+        }
     }
 
     /**

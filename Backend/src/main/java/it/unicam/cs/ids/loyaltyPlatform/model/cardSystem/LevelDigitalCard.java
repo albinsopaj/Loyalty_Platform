@@ -4,16 +4,16 @@ import it.unicam.cs.ids.loyaltyPlatform.model.platform.LoyaltyPlatform;
 
 public class LevelDigitalCard extends DigitalCard {
 
-    private int level;
+    private int level = 0;
 
     private int experience;
 
     public void addExperience(int experience) {
-        //TODO implement
+        this.experience += experience;
     }
 
     public void levelUp() {
-        //TODO implement
+        this.level++;
     }
 
     @Override

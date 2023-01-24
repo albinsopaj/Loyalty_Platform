@@ -34,7 +34,9 @@ public class DigitalWallet {
      * @param digitalCard the digital card to add
      */
     public void addDigitalCard(@NonNull DigitalCard digitalCard) {
-        this.digitalCards.add(digitalCard);
+        if (!this.digitalCards.contains(digitalCard)) {
+            this.digitalCards.add(digitalCard);
+        }
     }
 
     /**

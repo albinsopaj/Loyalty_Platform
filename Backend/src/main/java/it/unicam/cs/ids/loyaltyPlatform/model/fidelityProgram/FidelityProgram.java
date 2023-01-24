@@ -10,6 +10,7 @@ import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.lang.NonNull;
+
 import java.util.List;
 
 /**
@@ -66,8 +67,10 @@ public abstract class FidelityProgram {
      *
      * @param client the client to addCampaign
      */
-    public void addClient(Client client){
-        this.clients.add(client);
+    public void addClient(Client client) {
+        if (!this.clients.contains(client)) {
+            this.clients.add(client);
+        }
     }
 
     /**

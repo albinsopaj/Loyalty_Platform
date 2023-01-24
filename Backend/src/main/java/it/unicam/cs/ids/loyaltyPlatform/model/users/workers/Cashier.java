@@ -79,4 +79,5 @@ public class Cashier extends AuthenticatedUser {
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }

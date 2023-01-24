@@ -8,6 +8,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Owner;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.ObjectNotFoundException;
 
 import java.util.List;
 import java.util.Objects;
@@ -47,7 +48,9 @@ public class Company {
      * @param fidelityProgram the fidelity program to add
      */
     public void addFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        this.fidelityPrograms.add(fidelityProgram);
+        if (!this.fidelityPrograms.contains(fidelityProgram)) {
+            this.fidelityPrograms.add(fidelityProgram);
+        }
     }
 
     /**
@@ -56,7 +59,9 @@ public class Company {
      * @param campaign the campaign to add
      */
     public void addCampaign(@NonNull Campaign campaign) {
-        this.campaigns.add(campaign);
+        if (!this.campaigns.contains(campaign)) {
+            this.campaigns.add(campaign);
+        }
     }
 
     /**
@@ -65,7 +70,9 @@ public class Company {
      * @param manager the manager to add
      */
     public void addManager(@NonNull Manager manager) {
-        this.managers.add(manager);
+        if (!this.managers.contains(manager)) {
+            this.managers.add(manager);
+        }
     }
 
     /**
@@ -74,7 +81,9 @@ public class Company {
      * @param cashier the cashier to add
      */
     public void addCashier(@NonNull Cashier cashier) {
-        this.cashiers.add(cashier);
+        if (!this.cashiers.contains(cashier)) {
+            this.cashiers.add(cashier);
+        }
     }
 
     /**
@@ -114,16 +123,17 @@ public class Company {
     }
 
     /**
-     * returns the fidelity program with the specified id
+     * Returns the fidelity program with the specified id
+     *
      * @param fidelityProgramId the specified id
      */
-    public FidelityProgram getFidelityProgram( Long fidelityProgramId){
-        for(FidelityProgram fidelityProgram: fidelityPrograms){
+    public FidelityProgram getFidelityProgram(@NonNull Long fidelityProgramId) {
+        for (FidelityProgram fidelityProgram : fidelityPrograms) {
             if (fidelityProgram.getId().equals(fidelityProgramId)) {
                 return fidelityProgram;
             }
         }
-        return null;
+        throw new ObjectNotFoundException(fidelityProgramId, "Fidelity Program not present");
     }
 
     @Override

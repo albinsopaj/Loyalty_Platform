@@ -2,7 +2,9 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -13,10 +15,10 @@ public class UserService {
     private UserRepository repository;
 
     public AuthenticatedUser addUser(@NonNull AuthenticatedUser user) {
-//        if (userExists(user.getID())) {
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user is already present!");
-//        }
-        return this.repository.save(user);
+        if (!userExists(user.getUserId())) {
+            return this.repository.save(user);
+        }
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user is already present!");
     }
 
     public Optional<AuthenticatedUser> getUser(@NonNull Long id) {

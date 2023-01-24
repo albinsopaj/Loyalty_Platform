@@ -17,14 +17,14 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class PointsDigitalCard extends DigitalCard {
 
-    private int points;
+    private int points = 0;
 
     public void addPoints(int points) {
-        //TODO implement
+        this.points += points;
     }
 
     public void removePoints(int points) {
-        //TODO implement
+        this.points -= points;
     }
 
     @Override
@@ -32,4 +32,5 @@ public class PointsDigitalCard extends DigitalCard {
         platform.getCompanies().get(value).getFidelityProgram(getFidelityProgramId());
         //TODO
     }
+
 }
