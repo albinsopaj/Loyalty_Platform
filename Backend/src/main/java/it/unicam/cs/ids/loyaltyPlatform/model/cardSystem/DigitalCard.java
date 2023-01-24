@@ -1,5 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.platform.LoyaltyPlatform;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,8 +14,8 @@ import org.hibernate.type.SqlTypes;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 public abstract class DigitalCard {
 
     @Id
@@ -30,6 +32,9 @@ public abstract class DigitalCard {
      * Method to update the status of a digital card based on the amount of money spent
      * @param value the money amount
      */
-    public abstract void updateStatus(Integer value);
-
+    public void updateStatus(Integer value) {
+        Company company = LoyaltyPlatform.getInstance().getCompany(getCompanyId());
+        FidelityProgram fidelityProgram = company.getFidelityProgram(getFidelityProgramId());
+        fidelityProgram.changeStatus(value, this);
+    }
 }

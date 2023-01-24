@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
+import java.util.ArrayList;
 
 /**
  * Fidelity program based on points
@@ -17,10 +18,7 @@ public class PointsFidelityProgram extends FidelityProgram {
 
     private @NonNull Integer conversionRate;
 
-    @Override
-    public void personalizeFidelityProgram() {
-
-    }
+    private @NonNull ArrayList<PointsReward> catalogue;
 
     @Override
     public void changeStatus(Integer value, DigitalCard digitalCard) {
@@ -31,6 +29,13 @@ public class PointsFidelityProgram extends FidelityProgram {
         }
     }
 
+    /**
+     * Method to add a reward to the fidelity program
+     * @param pointsReward the reward to add
+     */
+    public void addReward(PointsReward pointsReward){
+        this.catalogue.add(pointsReward);
+    }
     private Integer valueConvert(Integer value){
         return value*conversionRate;
     }

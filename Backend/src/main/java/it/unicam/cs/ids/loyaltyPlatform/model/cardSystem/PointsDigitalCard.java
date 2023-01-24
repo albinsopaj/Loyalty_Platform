@@ -1,13 +1,10 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.platform.LoyaltyPlatform;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.PointsReward;
 import jakarta.persistence.Entity;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.ArrayList;
 
 /**
  * Class that defines a digital card of a points based fidelity program
@@ -15,25 +12,35 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PointsDigitalCard extends DigitalCard {
 
-    private int points = 0;
+    private @NonNull int points;
 
+    private @NonNull ArrayList<PointsReward> rewards;
+
+    /**
+     * Method to add points to the digital card
+     * @param points the points to add
+     */
     public void addPoints(int points) {
         this.points += points;
     }
 
+    /**
+     * Method to remove points to the digital card
+     * @param points the points to remove
+     */
     public void removePoints(int points) {
         this.points -= points;
     }
 
-    @Override
-    public void updateStatus(Integer value) {
-        Company company = LoyaltyPlatform.getInstance().getCompany(getCompanyId());
-        FidelityProgram fidelityProgram = company.getFidelityProgram(getFidelityProgramId());
-        fidelityProgram.changeStatus(value, this);
+    /**
+     * Method that removes a reward and spends the points to do so
+     * @param reward the reward to "buy"
+     */
+    public void buyReward(PointsReward reward){
+        removePoints(reward.getPrice());
+        rewards.remove(reward);
     }
-
 }

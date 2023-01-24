@@ -18,8 +18,6 @@ import java.util.List;
  */
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @ToString
 public abstract class FidelityProgram {
@@ -29,14 +27,10 @@ public abstract class FidelityProgram {
     @Column(name = "id", nullable = false)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private @NonNull Long id;
+
     private @NonNull String name;
     private @NonNull List<Client> clients;
     private @NonNull Boolean activated = false;
-
-    /**
-     * Personalizes a fidelity program
-     */
-    public abstract void personalizeFidelityProgram();
 
     /**
      * Activates the fidelity program
