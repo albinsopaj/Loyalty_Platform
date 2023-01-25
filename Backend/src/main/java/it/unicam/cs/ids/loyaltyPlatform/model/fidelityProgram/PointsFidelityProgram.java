@@ -23,9 +23,9 @@ public class PointsFidelityProgram extends FidelityProgram {
     @Override
     public void changeStatus(Integer value, DigitalCard digitalCard) {
         if(digitalCard instanceof PointsDigitalCard pointsDigitalCard){
-            pointsDigitalCard.setPoints(valueConvert(value));
+            pointsDigitalCard.addPoints(valueConvert(value));
         } else {
-            System.out.println("Error, this digital card isn't a points digital card");
+            System.out.println("Error: this digital card isn't a points digital card");
         }
     }
 

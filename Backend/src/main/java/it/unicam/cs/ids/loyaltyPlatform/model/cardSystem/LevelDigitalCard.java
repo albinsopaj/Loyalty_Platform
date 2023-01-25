@@ -1,14 +1,12 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.LevelFidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.platform.LoyaltyPlatform;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+
+import java.util.ArrayList;
 
 /**
  * Fidelity program based on levels
@@ -21,6 +19,9 @@ public class LevelDigitalCard extends DigitalCard {
 
     private @NonNull Integer level;
     private @NonNull Integer experience;
+    private @NonNull ArrayList<String> rewardsUnlocked;
+
+    private @NonNull boolean completed;
 
     /**
      * Method to add experience to the digital card
@@ -28,17 +29,28 @@ public class LevelDigitalCard extends DigitalCard {
      */
     public void addExperience(Integer experience) {
         this.experience += experience;
-        levelUp();
     }
 
     /**
+     * Method to remove experience to the digital card
+     * @param experience the experience to remove
+     */
+    public void removeExperience(Integer experience){
+        this.experience -= experience;
+    }
+
+    /**
+     * Method to add the unlocked rewards
+     * @param rewards the rewards to add
+     */
+    public void addRewards(ArrayList<String> rewards){
+        rewardsUnlocked.addAll(rewards);
+    }
+    /**
      * Method used to calculate if there is a level up
      */
-    private void levelUp() {
-        Company company = LoyaltyPlatform.getInstance().getCompany(getCompanyId());
-        FidelityProgram fidelityProgram = company.getFidelityProgram(getFidelityProgramId());
-        if(fidelityProgram instanceof LevelFidelityProgram levelFidelityProgram){
-            //TODO
-        }
+    public void levelUp() {
+        this.level++;
     }
+
 }

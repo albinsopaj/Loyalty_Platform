@@ -19,6 +19,8 @@ public class PointsDigitalCard extends DigitalCard {
 
     private @NonNull ArrayList<PointsReward> rewards;
 
+    private @NonNull boolean completed;
+
     /**
      * Method to add points to the digital card
      * @param points the points to add
@@ -42,5 +44,8 @@ public class PointsDigitalCard extends DigitalCard {
     public void buyReward(PointsReward reward){
         removePoints(reward.getPrice());
         rewards.remove(reward);
+        if(rewards.isEmpty()){
+            this.completed = true;
+        }
     }
 }
