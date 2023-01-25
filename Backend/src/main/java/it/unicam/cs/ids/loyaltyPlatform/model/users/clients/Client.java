@@ -21,11 +21,6 @@ import java.util.Objects;
 @ToString
 public class Client extends AuthenticatedUser {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
     private DigitalWallet digitalWallet;
 
     public void createReview(String review, FidelityProgram fidelityProgram) {
@@ -51,7 +46,7 @@ public class Client extends AuthenticatedUser {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Client client = (Client) o;
-        return id != null && Objects.equals(id, client.id);
+        return this.getId() != null && Objects.equals(this.getId(), client.getId());
     }
 
     @Override

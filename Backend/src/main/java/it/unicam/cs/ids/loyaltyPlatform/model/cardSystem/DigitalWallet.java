@@ -33,7 +33,7 @@ public class DigitalWallet {
      *
      * @param digitalCard the digital card to add
      */
-    public void addDigitalCard(@NonNull DigitalCard digitalCard) {
+    public void addDigitalCard(DigitalCard digitalCard) {
         if (!this.digitalCards.contains(digitalCard)) {
             this.digitalCards.add(digitalCard);
         }
@@ -44,7 +44,7 @@ public class DigitalWallet {
      *
      * @param digitalCardId the digital card's id to remove
      */
-    public void removeDigitalCard(@NonNull Long digitalCardId) {
+    public void removeDigitalCard(Long digitalCardId) {
         this.digitalCards.removeIf(digitalCard -> digitalCard.getId().equals(digitalCardId));
     }
 }

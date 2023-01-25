@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.marketingModule;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
-import it.unicam.cs.ids.loyaltyPlatform.model.platform.LoyaltyPlatform;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,7 +17,7 @@ public class MarketingModule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     private @NonNull Long companyId;

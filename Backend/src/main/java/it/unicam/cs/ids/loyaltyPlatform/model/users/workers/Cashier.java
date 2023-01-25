@@ -5,9 +5,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -24,12 +22,16 @@ import java.util.Objects;
 @ToString
 public class Cashier extends AuthenticatedUser {
 
-    @Id
-    @Column(name = "id", nullable = false)
-    private @NonNull Long id;
+    private @NonNull Long companyId;
 
-    private Long companyId;
-
+    /**
+     * Method that updates the digital card of the client
+     * @param digitalCard the digital card to update
+     * @param value the amount spent by the client
+     */
+    public void updateClientDigitalCard(DigitalCard digitalCard, Integer value){
+        digitalCard.updateStatus(value);
+    }
     public void clientRegistration(String name, String surname, String email, String phoneNumber, char gender, String domicile) {
         //TODO implement
     }
@@ -72,7 +74,7 @@ public class Cashier extends AuthenticatedUser {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Cashier cashier = (Cashier) o;
-        return Objects.equals(id, cashier.id);
+        return Objects.equals(this.getId(), cashier.getId());
     }
 
     @Override

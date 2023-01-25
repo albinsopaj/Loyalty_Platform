@@ -5,6 +5,8 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+
 /**
  * Class that defines the owner
  */
@@ -17,10 +19,7 @@ import lombok.*;
 @ToString
 public class Owner extends AuthenticatedUser {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private @NonNull Long id;
+    private @NonNull ArrayList<Long> companyIds;
 
     public void createCampaign(@NonNull String name, String description) {
         //TODO

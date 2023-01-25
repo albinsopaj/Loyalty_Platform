@@ -1,5 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -15,8 +18,10 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode
 public abstract class AuthenticatedUser {
 
-    private @Id
-    @NonNull Long userId; // --> Servira' avere una chiave primaria per l'AuthenticatedUser come classe astratta ???
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private @NonNull Long id;
     private @NonNull String firstName;
     private @NonNull String lastName;
     private @NonNull String email;

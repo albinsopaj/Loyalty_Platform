@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.LevelDigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
@@ -19,6 +20,20 @@ public class LevelFidelityProgram extends FidelityProgram {
     private @NonNull Integer conversionRate;
 
     private @NonNull ArrayList<FidelityLevel> levels;
+
+    /**
+     * Method to add a client to the fidelity program, the method also creates a digital card and adds it to the client
+     * @param client the client to add
+     */
+    @Override
+    public void addClient(Client client) {
+        if (!this.getClients().contains(client)) {
+            this.getClients().add(client);
+        }
+        //TODO
+        //client.getDigitalWallet().addDigitalCard(levelDigitalCard);
+    }
+
     @Override
     public void changeStatus(Integer value, DigitalCard digitalCard) {
         if(digitalCard instanceof LevelDigitalCard levelDigitalCard){

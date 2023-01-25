@@ -61,11 +61,7 @@ public abstract class FidelityProgram {
      *
      * @param client the client to addCampaign
      */
-    public void addClient(Client client) {
-        if (!this.clients.contains(client)) {
-            this.clients.add(client);
-        }
-    }
+    public abstract void addClient(Client client);
 
     /**
      * Method to change the status of the digital card

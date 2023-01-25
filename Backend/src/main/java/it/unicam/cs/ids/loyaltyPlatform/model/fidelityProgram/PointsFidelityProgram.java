@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.PointsDigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,13 @@ public class PointsFidelityProgram extends FidelityProgram {
     private @NonNull Integer conversionRate;
 
     private @NonNull ArrayList<PointsReward> catalogue;
+
+    @Override
+    public void addClient(Client client) {
+        if (!this.getClients().contains(client)) {
+            this.getClients().add(client);
+        }
+    }
 
     @Override
     public void changeStatus(Integer value, DigitalCard digitalCard) {

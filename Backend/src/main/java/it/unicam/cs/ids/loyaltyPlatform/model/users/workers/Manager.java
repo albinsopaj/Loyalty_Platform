@@ -3,10 +3,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.*;
 
 /**
@@ -20,15 +16,15 @@ import lombok.*;
 @ToString
 public class Manager extends AuthenticatedUser {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
     private Long companyId;
 
+    /**
+     * Method to add a client into a fidelity program
+     * @param client the client
+     * @param fidelityProgram the fidelity program to add the client into
+     */
     public void addClientToFidelityProgram(Client client, FidelityProgram fidelityProgram) {
-        //TODO implement
+        fidelityProgram.addClient(client);
     }
 
 }
