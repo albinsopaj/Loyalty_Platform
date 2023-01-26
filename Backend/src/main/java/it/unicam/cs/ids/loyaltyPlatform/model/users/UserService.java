@@ -1,5 +1,11 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCardService;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.LevelDigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.LevelFidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,9 +19,29 @@ public class UserService {
 
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private DigitalCardService digitalCardService;
+
+
+    /**
+     * Method to add a client to the fidelity program, the method also creates a digital card and adds it to the client
+     * @param client the client to add
+     */
+    public void addClient(Client client, FidelityProgram fidelityProgram) {
+        if(fidelityProgram.getClients().contains(client)){
+            throw new ResponseStatusException(HttpStatus.FOUND, "This user already exists inside this fidelity program");
+        } else {
+            if(fidelityProgram instanceof LevelFidelityProgram){
+
+            }
+        }
+
+        //LevelDigitalCard levelDigitalCard = new LevelDigitalCard()
+        //client.getDigitalWallet().addDigitalCard(levelDigitalCard);
+    }
 
     public AuthenticatedUser addUser(@NonNull AuthenticatedUser user) {
-        if (!userExists(user.getUserId())) {
+        if (!userExists(user.getId())) {
             return this.repository.save(user);
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user is already present!");

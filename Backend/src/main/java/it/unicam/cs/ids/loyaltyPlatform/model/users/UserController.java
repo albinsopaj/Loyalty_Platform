@@ -49,10 +49,12 @@ public class UserController {
     public void deleteUserByID(@NonNull Long id) {
         this.userService.deleteUser(id);
     }
-
+    /*
     @DeleteMapping("/authenticatedUsers/{email}")
     public void deleteUserByEmail(@NonNull String email) {
         this.userService.deleteUser(email);
     }
+    */
+
 
 }

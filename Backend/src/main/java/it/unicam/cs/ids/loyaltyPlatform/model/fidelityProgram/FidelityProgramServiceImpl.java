@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import lombok.NonNull;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,11 @@ public class FidelityProgramServiceImpl implements FidelityProgramService {
 
     @Override
     public FidelityProgram save(@NonNull FidelityProgram fidelityProgram) {
-        return this.repository.save(fidelityProgram);
+        if(!repository.findAll().contains(fidelityProgram)){
+            return this.repository.save(fidelityProgram);
+        } else {
+            throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity Program already exists");
+        }
     }
 
     @Override
@@ -52,7 +55,7 @@ public class FidelityProgramServiceImpl implements FidelityProgramService {
     }
 
     @Override
-    public void deleteFidelityProgram(@NotNull FidelityProgram fidelityProgram) {
+    public void deleteFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
         //TODO
     }
 
@@ -65,5 +68,6 @@ public class FidelityProgramServiceImpl implements FidelityProgramService {
     public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
     }
+
 
 }
