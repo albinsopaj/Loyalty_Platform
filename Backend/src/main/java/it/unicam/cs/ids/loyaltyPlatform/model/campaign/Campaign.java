@@ -31,7 +31,7 @@ public class Campaign {
     private @NonNull String name;
     private @NonNull Date start;
     private @NonNull Date end;
-
+    private @NonNull String description;
 
     @Override
     public boolean equals(Object o) {

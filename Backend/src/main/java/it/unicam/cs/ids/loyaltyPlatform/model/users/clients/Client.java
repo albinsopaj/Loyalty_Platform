@@ -23,8 +23,13 @@ public class Client extends AuthenticatedUser {
 
     private DigitalWallet digitalWallet;
 
+    /**
+     * Method to create a review and add it to the selected fidelity program
+     * @param review the review wrote
+     * @param fidelityProgram the selected fidelity program
+     */
     public void createReview(String review, FidelityProgram fidelityProgram) {
-        //TODO implement
+        fidelityProgram.addReview(this, review);
     }
 
     public void subscribeToFidelityProgram(Company company) {
