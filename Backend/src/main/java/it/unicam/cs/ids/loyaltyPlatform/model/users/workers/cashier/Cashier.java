@@ -63,6 +63,7 @@ public class Cashier extends AuthenticatedUser {
 
     public void updatePointsStatusManually() {
         //TODO
+
     }
 
     @Override
