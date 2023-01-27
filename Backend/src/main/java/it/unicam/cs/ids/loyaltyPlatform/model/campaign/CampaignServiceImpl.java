@@ -17,7 +17,6 @@ public class CampaignServiceImpl implements CampaignService {
     @Autowired
     private CampaignRepository repository;
 
-
     @Override
     public Campaign save(@NonNull Campaign campaign) {
         return this.repository.save(campaign);
@@ -37,7 +36,7 @@ public class CampaignServiceImpl implements CampaignService {
             if (oldCampaign.getId().equals(campaign.getId())) {
                 return this.repository.save(campaign);
             } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "...");
-        } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "non-existent campaign.");
+        } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "non-existent campaign.");
     }
 
     @Override

@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,6 +60,7 @@ public class LevelFidelityProgram extends FidelityProgram {
             System.out.println("Digital Card completed");
         }
     }
+
     private Integer valueConvert(Integer value){
         return value*conversionRate;
     }
