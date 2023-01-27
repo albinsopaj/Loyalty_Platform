@@ -41,9 +41,8 @@ Le varie iterazioni hanno dato origine ai seguenti artefatti:
 
 ---
 # Iterazioni
----
-Abbiamo deciso di fare quattro iterazioni e ogni iterazione è durata due settimane.
 
+---
 # Roadmap
 Backend:    
     Autenicazione e Registrazione
