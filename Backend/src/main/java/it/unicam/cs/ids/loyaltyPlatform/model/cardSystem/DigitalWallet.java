@@ -28,23 +28,14 @@ public class DigitalWallet {
     private @NonNull Long clientId;
     private @NonNull List<DigitalCard> digitalCards;
 
-    /**
-     * Method to add a digital card to the wallet
-     *
-     * @param digitalCard the digital card to add
-     */
-    public void addDigitalCard(DigitalCard digitalCard) {
-        if (!this.digitalCards.contains(digitalCard)) {
-            this.digitalCards.add(digitalCard);
-        }
-    }
+//    public void addDigitalCard(DigitalCard digitalCard) {
+//        if (!this.digitalCards.contains(digitalCard)) {
+//            this.digitalCards.add(digitalCard);
+//        }
+//    }
 
-    /**
-     * Method to remove a digital card from the wallet
-     *
-     * @param digitalCardId the digital card's id to remove
-     */
-    public void removeDigitalCard(Long digitalCardId) {
-        this.digitalCards.removeIf(digitalCard -> digitalCard.getId().equals(digitalCardId));
-    }
+//    public void removeDigitalCard(Long digitalCardId) {
+//        this.digitalCards.removeIf(digitalCard -> digitalCard.getId().equals(digitalCardId));
+//    }
+
 }

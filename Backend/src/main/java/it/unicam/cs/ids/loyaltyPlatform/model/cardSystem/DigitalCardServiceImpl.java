@@ -4,9 +4,9 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
 
 public class DigitalCardServiceImpl implements DigitalCardService {
     @Autowired
@@ -23,7 +23,7 @@ public class DigitalCardServiceImpl implements DigitalCardService {
 
     @Override
     public DigitalCard findById(@NonNull Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found"));
+        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Digital Card not found"));
     }
 
     @Override
@@ -35,7 +35,6 @@ public class DigitalCardServiceImpl implements DigitalCardService {
     public DigitalCard update(@NonNull DigitalCard digitalCard) {
         return this.repository.save(digitalCard);
     }
-
 
     @Override
     public DigitalCard updateById(@NonNull Long id) {

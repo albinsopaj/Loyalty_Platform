@@ -65,10 +65,6 @@ public class Cashier extends AuthenticatedUser {
         //TODO
     }
 
-    public void scanQrCode() {
-        //TODO implement
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

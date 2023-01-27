@@ -16,33 +16,33 @@ public class CampaignController {
     @Autowired
     private Campaign campaign;
 
-    @PostMapping("/campaign")
-    public Campaign addCampaign(@NonNull @RequestBody Campaign campaign) {
+    @PostMapping(path = "/add/{campaign}/")
+    public Campaign addCampaign(@NonNull @RequestBody @PathVariable("campaign") Campaign campaign) {
         return this.campaignService.save(campaign);
     }
 
-    @GetMapping("campaign/{id}")
-    public Campaign getCampaign(@NonNull @PathVariable Long id) {
+    @GetMapping(path = "/campaign/{campaignId}")
+    public Campaign getCampaign(@NonNull @PathVariable("campaignId") Long id) {
         return this.campaignService.findById(id);
     }
 
-    @GetMapping("/campaigns")
+    @GetMapping(path = "/campaigns")
     public List<Campaign> getAllCampaigns() {
         return this.campaignService.getAll();
     }
 
-    @PutMapping("/update/{campaign}")
+    @PutMapping(path = "/update/{campaign}")
     public Campaign updateCampaign(@NonNull @RequestBody @PathVariable("campaign") Campaign campaign) {
         return this.campaignService.update(campaign);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteCampaign(@NonNull @PathVariable("id") Long id) {
+    @DeleteMapping(path = "/delete/{campaignId}")
+    public void deleteCampaign(@NonNull @PathVariable("campaignId") Long id) {
         this.campaignService.deleteById(id);
     }
 
-    @DeleteMapping("delete/{campaign}")
-    public void deleteCampaign(@NonNull @PathVariable Campaign campaign) {
+    @DeleteMapping(path = "/delete/{campaign}")
+    public void deleteCampaign(@NonNull @PathVariable("campaign") Campaign campaign) {
         this.campaignService.delete(campaign);
     }
 
