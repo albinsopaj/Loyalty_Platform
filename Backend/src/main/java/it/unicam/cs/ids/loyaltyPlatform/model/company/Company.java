@@ -30,7 +30,7 @@ public class Company {
 
     private @NonNull String name;
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "")
     private @NonNull Owner owner;
 
     @Transient

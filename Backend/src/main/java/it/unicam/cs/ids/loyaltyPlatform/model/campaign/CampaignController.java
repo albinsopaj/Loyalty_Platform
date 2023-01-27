@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,23 +17,23 @@ public class CampaignController {
     @Autowired
     private Campaign campaign;
 
-    @PostMapping(path = "/add/{campaign}/")
-    public Campaign addCampaign(@NonNull @RequestBody @PathVariable("campaign") Campaign campaign) {
+    @PostMapping(path = "/add")
+    public Campaign addCampaign(@NonNull @RequestBody Campaign campaign) {
         return this.campaignService.save(campaign);
     }
 
-    @GetMapping(path = "/campaign/{campaignId}")
+    @GetMapping(path = "/{campaignId}")
     public Campaign getCampaign(@NonNull @PathVariable("campaignId") Long id) {
         return this.campaignService.findById(id);
     }
 
-    @GetMapping(path = "/campaigns")
+    @GetMapping(path = "/getAll")
     public List<Campaign> getAllCampaigns() {
         return this.campaignService.getAll();
     }
 
-    @PutMapping(path = "/update/{campaign}")
-    public Campaign updateCampaign(@NonNull @RequestBody @PathVariable("campaign") Campaign campaign) {
+    @PutMapping(path = "/update/{campaignId}")
+    public Campaign updateCampaign(@NonNull @PathVariable("campaignId") Long id, @RequestBody Campaign campaign) {
         return this.campaignService.update(campaign);
     }
 
@@ -41,8 +42,8 @@ public class CampaignController {
         this.campaignService.deleteById(id);
     }
 
-    @DeleteMapping(path = "/delete/{campaign}")
-    public void deleteCampaign(@NonNull @PathVariable("campaign") Campaign campaign) {
+    @DeleteMapping(path = "/delete")
+    public void deleteCampaign(@NonNull @Param("campaign") Campaign campaign) {
         this.campaignService.delete(campaign);
     }
 

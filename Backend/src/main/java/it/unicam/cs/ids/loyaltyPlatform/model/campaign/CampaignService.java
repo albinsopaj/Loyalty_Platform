@@ -9,9 +9,6 @@ public interface CampaignService {
 
     Campaign save(@NonNull Campaign campaign);
 
-    //TODO must be implemented by scratch.
-    void saveById(Long id);
-
     Campaign update(@NonNull Campaign campaign);
 
     Campaign updateById(@NonNull Long id);

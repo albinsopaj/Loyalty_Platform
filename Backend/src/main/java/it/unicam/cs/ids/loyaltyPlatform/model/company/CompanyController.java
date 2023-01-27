@@ -7,38 +7,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("loyaltyPlatform/campaign")
+@RequestMapping("loyaltyPlatform/company")
 public class CompanyController {
 
     @Autowired
     private CompanyServiceImpl service;
 
-    @PostMapping("/company/{id}")
-    public Company addCompany(@NonNull @RequestBody @PathVariable Long id) {
+    @PostMapping(path = "/add/{id}")
+    public Company addCompany(@NonNull @RequestBody @PathVariable("id") Long id) {
         return this.service.saveById(id);
     }
 
-    @GetMapping("/company/{id}")
+    @GetMapping(path = "/get/{id}")
     public Company getCompany(@NonNull @PathVariable("id") Long id) {
         return this.service.findById(id);
     }
 
-    @GetMapping("/companies")
+    @GetMapping(path = "/getAll")
     public List<Company> getAllCompanies() {
         return this.service.getAll();
     }
 
-    @PutMapping("/update/{company}")
+    @PutMapping(path = "/update/{company}")
     public Company updateCompany(@NonNull @RequestBody @PathVariable Company company) {
         return this.service.update(company);
     }
 
-    @DeleteMapping("delete/{company}")
+    @DeleteMapping(path = "/delete/{company}")
     public void deleteCampaign(@NonNull @PathVariable Company company) {
         this.service.delete(company);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public void deleteCompany(@NonNull @PathVariable("id") Long id) {
         this.service.deleteById(id);
     }

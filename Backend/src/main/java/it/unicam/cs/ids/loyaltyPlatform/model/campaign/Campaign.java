@@ -39,9 +39,9 @@ public class Campaign {
         Campaign campaign = (Campaign) o;
         return Objects.equals(id, campaign.id);
     }
-
     @Override
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }
