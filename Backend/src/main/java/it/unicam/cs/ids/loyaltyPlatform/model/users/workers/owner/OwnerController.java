@@ -7,22 +7,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "loyaltyPlatform/owners")
-public class OwnerController  {
+@RequestMapping(path = "loyaltyPlatform/owner")
+public class OwnerController {
 
     @Autowired
     private OwnerServiceImpl ownerService;
 
-    @Autowired
-    private Owner owner;
-
-    @PostMapping("/owner")
+    @PostMapping("/add")
     public Owner add(@NonNull @RequestBody Owner owner) {
         return this.ownerService.save(owner);
     }
 
-    @GetMapping("/{id}")
-    public Owner get(@NonNull Long id) {
+    @GetMapping("/get/{id}")
+    public Owner get(@NonNull @PathVariable("id") Long id) {
         return this.ownerService.findById(id);
     }
 
@@ -31,9 +28,9 @@ public class OwnerController  {
         return this.ownerService.getAll();
     }
 
-    @PutMapping("/update/{owner}")
-    public Owner update(@NonNull @RequestBody @PathVariable("owner") Owner owner) {
-        return this.ownerService.update(owner);
+    @PutMapping("/update/{id}")
+    public Owner update(@NonNull @RequestBody @PathVariable("id") Long id) {
+        return this.ownerService.update(this.ownerService.findById(id));
     }
 
     @DeleteMapping("/delete/{id}")
@@ -41,13 +38,15 @@ public class OwnerController  {
         this.ownerService.delete(id);
     }
 
-    @DeleteMapping("delete/{owner}")
+    //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto diretto venga passato direttamente nell'URL
+    @DeleteMapping("/delete/{owner}")
     public void delete(@NonNull @RequestBody @PathVariable Owner owner) {
         this.ownerService.delete(owner);
     }
 
-    @DeleteMapping("/{email}")
-    public void delete(@NonNull @PathVariable String email) {
+    @DeleteMapping("/delete/{email}")
+    public void delete(@NonNull @PathVariable("email") String email) {
         this.ownerService.delete(email);
     }
+
 }

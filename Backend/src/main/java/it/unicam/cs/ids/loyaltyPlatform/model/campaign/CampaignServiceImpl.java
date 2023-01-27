@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CampaignServiceImpl implements CampaignService {
@@ -26,13 +25,6 @@ public class CampaignServiceImpl implements CampaignService {
     @Override
     public Campaign findById(@NonNull Long id) {
         return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found"));
-    }
-
-    @Override
-    public Optional<Campaign> getById(@NonNull Long id) {
-        if (this.repository.findById(id).isPresent()) {
-            return this.repository.findById(id);
-        } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found!");
     }
 
     @Override

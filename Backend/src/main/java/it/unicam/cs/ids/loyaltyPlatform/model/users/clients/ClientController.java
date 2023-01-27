@@ -7,21 +7,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "loyaltyPlatform/clients")
-public class ClientController{
+@RequestMapping(path = "loyaltyPlatform/client")
+public class ClientController {
+
     @Autowired
     private ClientServiceImpl clientService;
 
-    @Autowired
-    private Client client;
-
-    @PostMapping("/client")
+    @PostMapping("/add")
     public Client add(@NonNull @RequestBody Client client) {
         return this.clientService.save(client);
     }
 
-    @GetMapping("/{id}")
-    public Client get(@NonNull Long id) {
+    @GetMapping("/get/{clientId}")
+    public Client get(@NonNull @PathVariable("clientId") Long id) {
         return this.clientService.findById(id);
     }
 
@@ -40,13 +38,15 @@ public class ClientController{
         this.clientService.delete(id);
     }
 
+    //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto venga passato direttamente nell'URL
     @DeleteMapping("delete/{client}")
     public void delete(@NonNull @RequestBody @PathVariable Client client) {
         this.clientService.delete(client);
     }
 
-    @DeleteMapping("/{email}")
+    @DeleteMapping("/delete/{email}")
     public void delete(@NonNull @PathVariable String email) {
         this.clientService.delete(email);
     }
+
 }

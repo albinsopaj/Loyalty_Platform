@@ -9,8 +9,6 @@ public interface AuthenticatedUserService<T extends  AuthenticatedUser> {
 
     T save(@NonNull T authenticatedUser);
 
-    T saveById(@NonNull Long id);
-
     T update(@NonNull T authenticatedUser);
 
     T updateById(@NonNull Long id);

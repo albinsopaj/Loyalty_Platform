@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CashierRepository extends AuthenticatedUserRepository<Cashier, Long> {
+
 }

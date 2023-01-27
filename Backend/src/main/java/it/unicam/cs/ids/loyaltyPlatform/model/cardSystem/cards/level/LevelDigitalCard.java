@@ -16,13 +16,13 @@ import java.util.ArrayList;
 @Entity
 public class LevelDigitalCard extends DigitalCard {
 
-    private @NonNull Integer level;
-    private @NonNull Integer experience;
+    private Integer level;
+    private Integer experience;
     private @NonNull ArrayList<String> rewardsUnlocked;
     private @NonNull boolean completed;
 
-    public LevelDigitalCard(Long id, long companyId, Long fidelityProgramId, Long clientId, Integer level, Integer experience, ArrayList<String> rewardsUnlocked){
-        super(id,companyId,fidelityProgramId,clientId);
+    public LevelDigitalCard(Long id, long companyId, Long fidelityProgramId, Long clientId, Integer level, Integer experience, ArrayList<String> rewardsUnlocked) {
+        super(id, companyId, fidelityProgramId, clientId);
         this.level = level;
         this.experience = experience;
         this.rewardsUnlocked = rewardsUnlocked;

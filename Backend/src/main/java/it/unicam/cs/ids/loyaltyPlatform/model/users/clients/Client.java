@@ -22,7 +22,6 @@ public class Client extends AuthenticatedUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private @NonNull Long id;
 
     @Transient

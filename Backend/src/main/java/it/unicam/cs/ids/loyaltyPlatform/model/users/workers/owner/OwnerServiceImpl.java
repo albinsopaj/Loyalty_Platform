@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class OwnerServiceImpl implements AuthenticatedUserService<Owner> {
+
     @Autowired
     private OwnerRepository repository;
 
@@ -20,12 +22,6 @@ public class OwnerServiceImpl implements AuthenticatedUserService<Owner> {
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "Owner already exists");
         }
-    }
-
-    @Override
-    public Owner saveById(@NonNull Long id) {
-        //TODO
-        return null;
     }
 
     @Override
@@ -42,7 +38,6 @@ public class OwnerServiceImpl implements AuthenticatedUserService<Owner> {
     public List<Owner> getAll() {
         return this.repository.findAll();
     }
-
 
     @Override
     public Owner update(@NonNull Owner owner) {
@@ -72,4 +67,5 @@ public class OwnerServiceImpl implements AuthenticatedUserService<Owner> {
             }
         }
     }
+
 }

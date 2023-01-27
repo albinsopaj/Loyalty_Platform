@@ -1,31 +1,27 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserService;
-
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CashierServiceImpl implements AuthenticatedUserService<Cashier> {
+
     @Autowired
     private CashierRepository repository;
+
     public Cashier save(@NonNull Cashier cashier) {
         if (!repository.findAll().contains(cashier)) {
             return this.repository.save(cashier);
         } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "cashier already exists");
+            throw new ResponseStatusException(HttpStatus.FOUND, "Cashier already exists");
         }
-    }
-
-    @Override
-    public Cashier saveById(@NonNull Long id) {
-        //TODO
-        return null;
     }
 
     @Override
@@ -71,4 +67,5 @@ public class CashierServiceImpl implements AuthenticatedUserService<Cashier> {
             }
         }
     }
+
 }

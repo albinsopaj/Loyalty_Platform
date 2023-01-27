@@ -2,24 +2,24 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "loyaltyPlatform/cashiers")
+@RequestMapping(path = "loyaltyPlatform/cashier")
 public class CashierController {
+
     @Autowired
     private CashierServiceImpl cashierService;
 
-    @Autowired
-    private Cashier cashier;
-
-    @PostMapping("/cashier")
-    public Cashier add(@NonNull @RequestBody Cashier cashier) {
+    @PostMapping("/add")
+    public Cashier add(@NonNull @RequestBody @Param("cashier") Cashier cashier) {
         return this.cashierService.save(cashier);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public Cashier get(@NonNull Long id) {
         return this.cashierService.findById(id);
     }
@@ -29,9 +29,9 @@ public class CashierController {
         return this.cashierService.getAll();
     }
 
-    @PutMapping("/update/{cashier}")
-    public Cashier update(@NonNull @RequestBody @PathVariable("cashier") Cashier cashier) {
-        return this.cashierService.update(cashier);
+    @PutMapping("/update/{cashierId}")
+    public Cashier update(@RequestBody @PathVariable("cashierId") Long id) {
+        return this.cashierService.update(get(id));
     }
 
     @DeleteMapping("/delete/{id}")
@@ -39,8 +39,9 @@ public class CashierController {
         this.cashierService.delete(id);
     }
 
+    //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto venga passato direttamente nell'URL
     @DeleteMapping("delete/{cashier}")
-    public void delete(@NonNull @RequestBody @PathVariable Cashier cashier) {
+    public void delete(@NonNull @PathVariable Cashier cashier) {
         this.cashierService.delete(cashier);
     }
 
@@ -48,4 +49,5 @@ public class CashierController {
     public void delete(@NonNull @PathVariable String email) {
         this.cashierService.delete(email);
     }
+
 }

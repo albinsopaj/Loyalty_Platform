@@ -6,25 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ManagerServiceImpl implements AuthenticatedUserService<Manager> {
+
     @Autowired
     private ManagerRepository repository;
+
     public Manager save(@NonNull Manager manager) {
         if (!repository.findAll().contains(manager)) {
             return this.repository.save(manager);
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "manager already exists");
         }
-    }
-
-    @Override
-    public Manager saveById(@NonNull Long id) {
-        //TODO
-        return null;
     }
 
     @Override
@@ -41,7 +38,6 @@ public class ManagerServiceImpl implements AuthenticatedUserService<Manager> {
     public List<Manager> getAll() {
         return this.repository.findAll();
     }
-
 
     @Override
     public Manager update(@NonNull Manager manager) {
@@ -71,4 +67,5 @@ public class ManagerServiceImpl implements AuthenticatedUserService<Manager> {
             }
         }
     }
+
 }

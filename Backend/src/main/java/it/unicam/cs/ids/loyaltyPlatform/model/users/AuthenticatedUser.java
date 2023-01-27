@@ -5,7 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 /**
  * AuthenticatedUser general class, it will be extended by the roles of the platform
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
 @EqualsAndHashCode
 public abstract class AuthenticatedUser {
 
@@ -22,6 +20,7 @@ public abstract class AuthenticatedUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private @NonNull Long id;
+
     private @NonNull String firstName;
     private @NonNull String lastName;
     private @NonNull String email;
