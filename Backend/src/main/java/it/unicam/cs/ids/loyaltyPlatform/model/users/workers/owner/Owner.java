@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
+package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;

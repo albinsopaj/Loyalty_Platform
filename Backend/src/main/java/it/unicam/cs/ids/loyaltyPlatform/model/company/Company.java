@@ -2,9 +2,9 @@ package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Cashier;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Manager;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.Owner;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier.Cashier;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.Owner;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;

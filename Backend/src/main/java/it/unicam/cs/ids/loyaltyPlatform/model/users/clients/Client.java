@@ -45,7 +45,6 @@ public class Client extends AuthenticatedUser {
         //TODO
 
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
