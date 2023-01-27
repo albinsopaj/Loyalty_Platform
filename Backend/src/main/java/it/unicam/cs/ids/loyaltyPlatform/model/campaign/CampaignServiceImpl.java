@@ -2,7 +2,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
 import jakarta.persistence.Table;
 import lombok.NonNull;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,9 +17,8 @@ public class CampaignServiceImpl implements CampaignService {
     @Autowired
     private CampaignRepository repository;
 
-
     @Override
-    public Campaign save(@NotNull Campaign campaign) {
+    public Campaign save(@NonNull Campaign campaign) {
         return this.repository.save(campaign);
     }
 
@@ -38,7 +36,7 @@ public class CampaignServiceImpl implements CampaignService {
             if (oldCampaign.getId().equals(campaign.getId())) {
                 return this.repository.save(campaign);
             } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "...");
-        } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Inexistent campaign.");
+        } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "non-existent campaign.");
     }
 
     @Override

@@ -1,8 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import lombok.NonNull;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +20,7 @@ public interface FidelityProgramService {
 
     FidelityProgram updateById(@NonNull Long id);
 
-    public void deleteFidelityProgram(@NotNull FidelityProgram fidelityProgram);
+    public void deleteFidelityProgram(@NonNull FidelityProgram fidelityProgram);
 
     void delete(@NonNull FidelityProgram fidelityProgram);
 

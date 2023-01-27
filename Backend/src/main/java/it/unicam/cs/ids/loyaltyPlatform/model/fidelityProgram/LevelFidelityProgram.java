@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Fidelity program based on levels
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class LevelFidelityProgram extends FidelityProgram {
     private @NonNull Integer conversionRate;
 
-    private @NonNull ArrayList<FidelityLevel> levels;
+    private @NonNull List<FidelityLevel> levels;
 
     /**
      * Method to add a client to the fidelity program, the method also creates a digital card and adds it to the client
@@ -30,7 +30,7 @@ public class LevelFidelityProgram extends FidelityProgram {
         if (!this.getClients().contains(client)) {
             this.getClients().add(client);
         }
-        //TODO
+        //LevelDigitalCard levelDigitalCard = new LevelDigitalCard()
         //client.getDigitalWallet().addDigitalCard(levelDigitalCard);
     }
 
@@ -60,6 +60,7 @@ public class LevelFidelityProgram extends FidelityProgram {
             System.out.println("Digital Card completed");
         }
     }
+
     private Integer valueConvert(Integer value){
         return value*conversionRate;
     }

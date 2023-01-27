@@ -2,14 +2,11 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-public class UserController {
+public abstract class UserController {
 
     @Autowired
     private UserService userService;
@@ -17,42 +14,33 @@ public class UserController {
     @Autowired
     private AuthenticatedUser authenticatedUser;
 
-    @PostMapping("/add/{user}")
-    public void addUser(@NonNull @RequestBody @Param("user") @PathVariable AuthenticatedUser user) {
-        //TODO implement authentication credentials and their relative setRole, updateRoles
-        userService.addUser(user);
+    @GetMapping("AuthenticatedUser/{id}")
+    public AuthenticatedUser getAuthenticatedUser(@NonNull @PathVariable Long id) {
+        return this.userService.findById(id);
     }
 
-    public Optional<AuthenticatedUser> getUser(@NonNull Long id) {
-        return this.userService.getUser(id);
+    @GetMapping("/AuthenticatedUsers")
+    public List<AuthenticatedUser> getAllAuthenticatedUsers() {
+        return this.userService.getAll();
     }
 
-//    @GetMapping("")
-//    public AuthenticatedUser getUser(String email) {
-//        return this.userService.getUser(email);
-//    }
-
-    @GetMapping("/authenticatedUsers")
-    public List<AuthenticatedUser> getAllUsers() {
-        //TODO da implementare
-        return null;
+    @PutMapping("/update/{AuthenticatedUser}")
+    public AuthenticatedUser updateAuthenticatedUser(@NonNull @RequestBody @PathVariable("AuthenticatedUser") AuthenticatedUser authenticatedUser) {
+        return this.userService.update(authenticatedUser);
     }
 
-    @PutMapping("")
-    @PatchMapping("")
-    public AuthenticatedUser updateAuthenticatedUser(@RequestBody @Param("user") AuthenticatedUser user) {
-        //TODO implement logic of updating users
-        return this.userService.updateAuthenticatedUser(user);
+    @DeleteMapping("/delete/{id}")
+    public void deleteAuthenticatedUser(@NonNull @PathVariable("id") Long id) {
+        this.userService.deleteById(id);
     }
 
-    @DeleteMapping("/authenticatedUsers/{id}")
-    public void deleteUserByID(@NonNull Long id) {
-        this.userService.deleteUser(id);
+    @DeleteMapping("delete/{AuthenticatedUser}")
+    public void deleteAuthenticatedUser(@NonNull @PathVariable AuthenticatedUser authenticatedUser) {
+        this.userService.delete(authenticatedUser);
     }
 
     @DeleteMapping("/authenticatedUsers/{email}")
     public void deleteUserByEmail(@NonNull String email) {
-        this.userService.deleteUser(email);
+        this.userService.deleteByEmail(email);
     }
-
 }

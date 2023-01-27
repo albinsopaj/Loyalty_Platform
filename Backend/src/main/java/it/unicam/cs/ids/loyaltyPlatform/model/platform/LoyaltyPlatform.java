@@ -7,9 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Class that defines the loyalty platform
@@ -49,6 +48,25 @@ public class LoyaltyPlatform {
     }
 
     /**
+     * Method to generate a random 16 char string password
+     * @return a 16 char password
+     */
+    public String createPassword(){
+        String capitalCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
+        String specialCharacters = "!@#$";
+        String numbers = "1234567890";
+        String combinedChars = capitalCaseLetters + lowerCaseLetters + specialCharacters + numbers;
+        Random random = new Random();
+        char[] password = new char[16];
+        for(int i = 0; i< 16 ; i++) {
+            password[i] = combinedChars.charAt(random.nextInt(combinedChars.length()));
+        }
+        String passwordString = String.valueOf(password);
+        return passwordString;
+    }
+
+    /**
      * Method to remove a client from the platform
      *
      * @param clientId the client's id to remove
@@ -68,7 +86,7 @@ public class LoyaltyPlatform {
 
     public Client getClient(@NonNull long clientId){
         for(Client client: clients){
-            if(client.getUserId().equals(clientId)){
+            if(client.getId().equals(clientId)){
                 return client;
             }
         }

@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.users.workers;
+package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
@@ -64,10 +64,6 @@ public class Cashier extends AuthenticatedUser {
     public void updatePointsStatusManually() {
         //TODO
 
-    }
-
-    public void scanQrCode() {
-        //TODO implement
     }
 
     @Override

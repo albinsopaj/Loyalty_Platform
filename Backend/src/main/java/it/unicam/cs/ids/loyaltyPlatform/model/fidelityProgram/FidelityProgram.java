@@ -6,11 +6,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.lang.NonNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -31,6 +35,7 @@ public abstract class FidelityProgram {
     private @NonNull String name;
     private @NonNull List<Client> clients;
     private @NonNull Boolean activated = false;
+    private @NonNull HashMap<Client,String> reviews;
 
     /**
      * Activates the fidelity program
@@ -69,4 +74,14 @@ public abstract class FidelityProgram {
      * @param digitalCard the digital card to change
      */
     public abstract void changeStatus(Integer value, DigitalCard digitalCard);
+
+    /**
+     * Method to add a review to the fidelity program
+     * @param client the client writing the review
+     * @param review the review to add
+     */
+    public void addReview(Client client, String review){
+        this.addReview(client,review);
+    }
+
 }

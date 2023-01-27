@@ -1,57 +1,26 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
+import java.util.List;
 import java.util.Optional;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    @Autowired
-    private UserRepository repository;
+    AuthenticatedUser update(@NonNull AuthenticatedUser authenticatedUser);
 
-    public AuthenticatedUser addUser(@NonNull AuthenticatedUser user) {
-        if (!userExists(user.getUserId())) {
-            return this.repository.save(user);
-        }
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user is already present!");
-    }
+    AuthenticatedUser updateById(@NonNull Long id);
 
-    public Optional<AuthenticatedUser> getUser(@NonNull Long id) {
-        if (this.userExists(id) || this.repository.existsById(id)) {
-            return this.repository.findById(id);
-        }
-        return Optional.empty();
-    }
+    AuthenticatedUser findById(@NonNull Long id);
 
-    public AuthenticatedUser getUser(@NonNull AuthenticatedUser user) {
-        //TODO implement
-        return null;
-    }
+    Optional<AuthenticatedUser> get(@NonNull AuthenticatedUser authenticatedUser);
 
-    public void deleteUser(@NonNull Long id) {
-        if (userExists(id)) {
-            this.repository.deleteById(id);
-        }
-    }
+    List<AuthenticatedUser> getAll();
 
-    //TODO incomplete method definition
-    public AuthenticatedUser updateAuthenticatedUser(@NonNull AuthenticatedUser user) {
-//        Optional<AuthenticatedUser> oldUser = this.repository.findById(user.getID());
-        return this.repository.save(user);
-    }
+    void delete(@NonNull AuthenticatedUser authenticatedUser);
 
-    private boolean userExists(@NonNull Long id) {
-        return this.repository.existsById(id);
-    }
+    void deleteById(@NonNull Long id);
 
-    //TODO incomplete method. method existsByEmail() in UserRepository isn't complete.
-    private boolean userExists(@NonNull String email) {
-        return this.repository.existsByEmail(email);
-    }
+    void deleteByEmail(@NonNull String email);
+
 
 }
