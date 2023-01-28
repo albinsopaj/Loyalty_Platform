@@ -4,22 +4,24 @@ import lombok.NonNull;
 import java.util.List;
 import java.util.Optional;
 
-public interface FidelityProgramService {
+public interface FidelityProgramService<T extends FidelityProgram> {
 
-    FidelityProgram saveById(@NonNull Long id);
+    T save(@NonNull T fidelityProgram);
 
-    FidelityProgram findById(@NonNull Long id);
+    T saveById(@NonNull Long id);
 
-    Optional<FidelityProgram> get(@NonNull FidelityProgram fidelityProgram);
+    T update(@NonNull T fidelityProgram);
 
-    List<FidelityProgram> getAll();
+    T updateById(@NonNull Long id);
 
-    FidelityProgram update(@NonNull FidelityProgram fidelityProgram);
+    T findById(@NonNull Long id);
 
-    FidelityProgram updateById(@NonNull Long id);
+    Optional<T> get(@NonNull T fidelityProgram);
 
-    void delete(@NonNull FidelityProgram fidelityProgram);
+    List<T> getAll();
 
-    void deleteById(@NonNull Long id);
+    void delete(@NonNull T fidelityProgram);
+
+    void delete(@NonNull Long id);
 
 }
