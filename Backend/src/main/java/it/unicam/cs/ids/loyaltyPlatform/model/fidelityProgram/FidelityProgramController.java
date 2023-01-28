@@ -19,10 +19,21 @@ public abstract class FidelityProgramController {
         return this.service.get(fidelityProgram);
     }
 
+    /**
+     *  Method to update the status of FidelityProgram
+     *
+     * @param fidelityProgram
+     * @return
+     */
     public FidelityProgram update(@NonNull FidelityProgram fidelityProgram) {
         return this.service.update(fidelityProgram);
     }
 
+    /**
+     * Method to remove a FidelityProgram
+     *
+     * @param fidelityProgram
+     */
     @DeleteMapping("")
     public void deleteFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
         this.service.delete(fidelityProgram);
