@@ -15,6 +15,12 @@ public class ManagerControllerAuthenticated extends AuthenticatedUserController 
     @Autowired
     private Manager manager;
 
+    /**
+     *  Method to add a manager
+     *
+     * @param manager the manager to add
+     * @return
+     */
     @PostMapping("/manager")
     public Manager addManager(@NonNull @RequestBody Manager manager) {
         return this.managerService.save(manager);

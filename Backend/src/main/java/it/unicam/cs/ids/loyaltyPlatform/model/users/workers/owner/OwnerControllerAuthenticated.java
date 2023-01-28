@@ -16,6 +16,12 @@ public class OwnerControllerAuthenticated extends AuthenticatedUserController {
     @Autowired
     private Owner owner;
 
+    /**
+     *  Method to add a owner
+     *
+     * @param owner the owner to add
+     * @return
+     */
     @PostMapping("/owner")
     public Owner addOwner(@NonNull @RequestBody Owner owner) {
         return this.ownerService.save(owner);

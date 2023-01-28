@@ -13,6 +13,12 @@ public class ManagerServiceImplAuthenticated extends AuthenticatedUserServiceImp
     @Autowired
     private AuthenticatedUserRepository repository;
 
+    /**
+     *  Method to save  a manager
+     *
+     * @param manager the manager to save
+     * @return
+     */
     public Manager save(@NonNull Manager manager) {
         if (!repository.findAll().contains(manager)) {
             return this.repository.save(manager);

@@ -13,6 +13,12 @@ public class OwnerServiceImplAuthenticated extends AuthenticatedUserServiceImpl 
     @Autowired
     private AuthenticatedUserRepository repository;
 
+    /**
+     *  Method to add a owner
+     *
+     * @param owner the owner to save
+     * @return
+     */
     public Owner save(@NonNull Owner owner) {
         if (!repository.findAll().contains(owner)) {
             return this.repository.save(owner);
