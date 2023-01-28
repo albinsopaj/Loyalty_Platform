@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
+package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;

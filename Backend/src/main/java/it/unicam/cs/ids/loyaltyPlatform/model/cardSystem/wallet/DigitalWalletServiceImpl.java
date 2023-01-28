@@ -1,5 +1,8 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
+package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWalletRepository;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWalletService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

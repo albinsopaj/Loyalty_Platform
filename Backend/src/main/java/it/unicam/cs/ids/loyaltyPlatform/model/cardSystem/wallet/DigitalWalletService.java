@@ -1,5 +1,6 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
+package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
 import lombok.NonNull;
 
 import java.util.List;

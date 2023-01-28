@@ -1,7 +1,8 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
+package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.PointsDigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,20 +1,15 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
+package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
 public class DigitalCardServiceImpl implements DigitalCardService {
     @Autowired
     private DigitalCardRepository repository;
-
-    public DigitalCard save(@NonNull DigitalCard digitalCard) {
-        return this.repository.save(digitalCard);
-    }
 
     @Override
     public DigitalCard saveById(@NonNull Long id) {

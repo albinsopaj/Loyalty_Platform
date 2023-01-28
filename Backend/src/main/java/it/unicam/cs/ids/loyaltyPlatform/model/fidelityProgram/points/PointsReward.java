@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
+package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

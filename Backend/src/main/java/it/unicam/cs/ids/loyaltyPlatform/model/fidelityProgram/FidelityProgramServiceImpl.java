@@ -15,14 +15,6 @@ public class FidelityProgramServiceImpl implements FidelityProgramService {
     @Autowired
     private FidelityProgramRepository repository;
 
-    @Override
-    public FidelityProgram save(@NonNull FidelityProgram fidelityProgram) {
-        if(!repository.findAll().contains(fidelityProgram)){
-            return this.repository.save(fidelityProgram);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity Program already exists");
-        }
-    }
 
     @Override
     public FidelityProgram saveById(@NonNull Long id) {
@@ -52,11 +44,6 @@ public class FidelityProgramServiceImpl implements FidelityProgramService {
     @Override
     public FidelityProgram updateById(@NonNull Long id) {
         return null;
-    }
-
-    @Override
-    public void deleteFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
-        //TODO
     }
 
     @Override

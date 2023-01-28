@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.marketingModule;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import jakarta.persistence.*;
 import lombok.*;
 

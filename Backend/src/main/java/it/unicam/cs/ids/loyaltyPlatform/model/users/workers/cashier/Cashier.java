@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;

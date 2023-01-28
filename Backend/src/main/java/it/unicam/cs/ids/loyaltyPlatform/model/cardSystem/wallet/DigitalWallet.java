@@ -1,5 +1,6 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
+package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

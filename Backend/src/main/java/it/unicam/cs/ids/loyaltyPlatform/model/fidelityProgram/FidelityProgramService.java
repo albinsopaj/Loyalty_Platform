@@ -6,8 +6,6 @@ import java.util.Optional;
 
 public interface FidelityProgramService {
 
-    FidelityProgram save(@NonNull FidelityProgram fidelityProgram);
-
     FidelityProgram saveById(@NonNull Long id);
 
     FidelityProgram findById(@NonNull Long id);
@@ -19,8 +17,6 @@ public interface FidelityProgramService {
     FidelityProgram update(@NonNull FidelityProgram fidelityProgram);
 
     FidelityProgram updateById(@NonNull Long id);
-
-    public void deleteFidelityProgram(@NonNull FidelityProgram fidelityProgram);
 
     void delete(@NonNull FidelityProgram fidelityProgram);
 

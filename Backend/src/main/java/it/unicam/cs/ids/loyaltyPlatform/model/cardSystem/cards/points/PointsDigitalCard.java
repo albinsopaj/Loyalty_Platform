@@ -1,6 +1,7 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
+package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.PointsReward;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
 import jakarta.persistence.Entity;
 import lombok.*;
 

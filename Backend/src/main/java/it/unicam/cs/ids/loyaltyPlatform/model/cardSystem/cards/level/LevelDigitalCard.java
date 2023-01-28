@@ -1,5 +1,6 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
+package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NonNull;

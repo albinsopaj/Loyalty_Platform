@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem;
+package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,22 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class DigitalCardController {
+public abstract class DigitalCardController {
 
     @Autowired
     private DigitalCardService cardService;
 
     private DigitalCard digitalCard;
-
-    /**
-     * Method to add a digital card to the wallet
-     *
-     * @param digitalCard the digital card to add
-     */
-    @PostMapping(path = "/add/{digitalCard}/")
-    public DigitalCard addDigitalCard(@NonNull @RequestBody @PathVariable("digitalCard") DigitalCard digitalCard) {
-        return this.cardService.save(digitalCard);
-    }
 
     @GetMapping(path = "/DigitalCard/{digitalCardId}")
     public DigitalCard getDigitalCard(@NonNull @PathVariable("digitalCardId") Long id) {
