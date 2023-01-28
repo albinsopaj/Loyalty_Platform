@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "loyaltyPlatform/cashiers")
 public class CashierController {
     @Autowired
     private CashierServiceImpl cashierService;
