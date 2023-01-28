@@ -13,6 +13,12 @@ public class CashierServiceImpl extends AuthenticatedUserServiceImpl {
     @Autowired
     private AuthenticatedUserRepository repository;
 
+    /**
+     *  Method to save a cashier
+     *
+     * @param cashier the cashier to save
+     * @return
+     */
     public Cashier save(@NonNull Cashier cashier) {
         if (!repository.findAll().contains(cashier)) {
             return this.repository.save(cashier);

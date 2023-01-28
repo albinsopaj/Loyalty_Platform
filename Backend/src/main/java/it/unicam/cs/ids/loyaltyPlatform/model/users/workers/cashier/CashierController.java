@@ -13,6 +13,12 @@ public class CashierController extends AuthenticatedUserController {
     @Autowired
     private CashierServiceImpl cashierService;
 
+    /**
+     *  Method to add a cashier
+     *
+     * @param cashier the cashier to add
+     * @return
+     */
 
     @PostMapping("/cashier")
     public Cashier addCashier(@NonNull @RequestBody Cashier cashier) {
