@@ -14,6 +14,12 @@ public class ClientServiceImplAuthenticated extends AuthenticatedUserServiceImpl
     @Autowired
     private AuthenticatedUserRepository repository;
 
+    /**
+     *  Method to save a client
+     *
+     * @param client the client to save
+     * @return
+     */
     public Client save(@NonNull Client client) {
         if (!repository.findAll().contains(client)) {
             return this.repository.save(client);

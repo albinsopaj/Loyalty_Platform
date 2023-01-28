@@ -16,6 +16,12 @@ public class ClientControllerAuthenticated extends AuthenticatedUserController {
     @Autowired
     private Client client;
 
+    /**
+     * Method to add a client
+     *
+     * @param client the client to add
+     * @return
+     */
     @PostMapping("/client")
     public Client addClient(@NonNull @RequestBody Client client) {
         return this.clientService.save(client);
