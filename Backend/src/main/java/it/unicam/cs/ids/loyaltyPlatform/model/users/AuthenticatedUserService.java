@@ -1,10 +1,15 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users;
 
 import lombok.NonNull;
+
 import java.util.List;
 import java.util.Optional;
 
-public interface UserService {
+public interface AuthenticatedUserService {
+
+    AuthenticatedUser save(@NonNull AuthenticatedUser authenticatedUser);
+
+    AuthenticatedUser saveById(@NonNull Long id);
 
     AuthenticatedUser update(@NonNull AuthenticatedUser authenticatedUser);
 

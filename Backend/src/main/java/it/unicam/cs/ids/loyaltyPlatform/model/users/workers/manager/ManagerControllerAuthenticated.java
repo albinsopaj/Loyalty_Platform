@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.users.UserController;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserController;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ManagerController extends UserController {
+public class ManagerControllerAuthenticated extends AuthenticatedUserController {
     @Autowired
-    private ManagerServiceImpl managerService;
+    private ManagerServiceImplAuthenticated managerService;
 
     @Autowired
     private Manager manager;

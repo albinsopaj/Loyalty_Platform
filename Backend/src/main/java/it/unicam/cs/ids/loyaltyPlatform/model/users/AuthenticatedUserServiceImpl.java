@@ -5,14 +5,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class AuthenticatedUserServiceImpl implements AuthenticatedUserService {
 
     @Autowired
-    private UserRepository repository;
+    private AuthenticatedUserRepository repository;
+
+    @Override
+    public AuthenticatedUser save(@NonNull AuthenticatedUser authenticatedUser) {
+        return null;
+    }
+
+    @Override
+    public AuthenticatedUser saveById(@NonNull Long id) {
+        return null;
+    }
 
     @Override
     public AuthenticatedUser findById(@NonNull Long id) {
@@ -28,6 +39,7 @@ public class UserServiceImpl implements UserService {
     public List<AuthenticatedUser> getAll() {
         return this.repository.findAll();
     }
+
 
     @Override
     public AuthenticatedUser update(@NonNull AuthenticatedUser authenticatedUser) {

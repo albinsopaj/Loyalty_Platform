@@ -3,44 +3,44 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-public abstract class UserController {
+@RequestMapping(path = "loayltyPlatform/authenticateduser")
+public abstract class AuthenticatedUserController {
 
     @Autowired
-    private UserService userService;
+    private AuthenticatedUserService authenticatedUserService;
 
-    @Autowired
-    private AuthenticatedUser authenticatedUser;
-
-    @GetMapping("AuthenticatedUser/{id}")
+    @GetMapping("/{id}")
     public AuthenticatedUser getAuthenticatedUser(@NonNull @PathVariable Long id) {
-        return this.userService.findById(id);
+        return this.authenticatedUserService.findById(id);
     }
 
-    @GetMapping("/AuthenticatedUsers")
+    @GetMapping("/getall")
     public List<AuthenticatedUser> getAllAuthenticatedUsers() {
-        return this.userService.getAll();
+        return this.authenticatedUserService.getAll();
     }
 
     @PutMapping("/update/{AuthenticatedUser}")
     public AuthenticatedUser updateAuthenticatedUser(@NonNull @RequestBody @PathVariable("AuthenticatedUser") AuthenticatedUser authenticatedUser) {
-        return this.userService.update(authenticatedUser);
+        return this.authenticatedUserService.update(authenticatedUser);
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteAuthenticatedUser(@NonNull @PathVariable("id") Long id) {
-        this.userService.deleteById(id);
+        this.authenticatedUserService.deleteById(id);
     }
 
-    @DeleteMapping("delete/{AuthenticatedUser}")
+    @DeleteMapping("delete/{authenticatedUser}")
     public void deleteAuthenticatedUser(@NonNull @PathVariable AuthenticatedUser authenticatedUser) {
-        this.userService.delete(authenticatedUser);
+        this.authenticatedUserService.delete(authenticatedUser);
     }
 
-    @DeleteMapping("/authenticatedUsers/{email}")
+    @DeleteMapping("/{email}")
     public void deleteUserByEmail(@NonNull String email) {
-        this.userService.deleteByEmail(email);
+        this.authenticatedUserService.deleteByEmail(email);
     }
+
 }

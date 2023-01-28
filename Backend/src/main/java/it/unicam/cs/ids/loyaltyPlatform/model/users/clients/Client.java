@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
-import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
@@ -15,36 +14,30 @@ import java.util.Objects;
  */
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Entity
 public class Client extends AuthenticatedUser {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private @NonNull Long id;
+
+    @Transient
     private DigitalWallet digitalWallet;
 
     /**
      * Method to create a review and add it to the selected fidelity program
-     * @param review the review wrote
+     *
+     * @param review          the review wrote
      * @param fidelityProgram the selected fidelity program
      */
     public void createReview(String review, FidelityProgram fidelityProgram) {
         fidelityProgram.addReview(this, review);
     }
 
-    public void subscribeToFidelityProgram(Company company) {
-        //TODO implement
-    }
-
-    public String getProfile() {
-        //TODO implement
-        return null;
-    }
-
-    public void requestFidelityProgram() {
-        //TODO
-
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

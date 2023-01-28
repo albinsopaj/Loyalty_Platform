@@ -5,9 +5,11 @@ import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.Objects;
 
@@ -16,22 +18,28 @@ import java.util.Objects;
  */
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Entity
 public class Cashier extends AuthenticatedUser {
 
-    private @NonNull Long companyId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    @JdbcTypeCode(SqlTypes.BIGINT)
+    private @NonNull Long id;
 
     /**
      * Method that updates the digital card of the client
+     *
      * @param digitalCard the digital card to update
-     * @param value the amount spent by the client
+     * @param value       the amount spent by the client
      */
-    public void updateClientDigitalCard(DigitalCard digitalCard, Integer value){
+    public void updateClientDigitalCard(DigitalCard digitalCard, Integer value) {
         digitalCard.updateStatus(value);
     }
+
     public void clientRegistration(String name, String surname, String email, String phoneNumber, char gender, String domicile) {
         //TODO implement
     }
@@ -58,11 +66,6 @@ public class Cashier extends AuthenticatedUser {
         String phoneNumber = this.getPhoneNumber();
         Character biologicalGender = this.getBiologicalGender();
         String domicile = this.getDomicile();
-
-    }
-
-    public void updatePointsStatusManually() {
-        //TODO
 
     }
 

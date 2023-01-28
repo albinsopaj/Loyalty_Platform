@@ -25,10 +25,10 @@ import java.util.Objects;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "", nullable = false)
     private Long id;
 
     private @NonNull String name;
+
     @ManyToOne
     @JoinColumn(name = "")
     private @NonNull Owner owner;

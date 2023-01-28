@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
+package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserController;
 import lombok.NonNull;
@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CashierController extends AuthenticatedUserController {
+public class ClientControllerAuthenticated extends AuthenticatedUserController {
 
     @Autowired
-    private CashierServiceImpl cashierService;
+    private ClientServiceImplAuthenticated clientService;
 
+    @Autowired
+    private Client client;
 
-    @PostMapping("/cashier")
-    public Cashier addCashier(@NonNull @RequestBody Cashier cashier) {
-        return this.cashierService.save(cashier);
+    @PostMapping("/client")
+    public Client addClient(@NonNull @RequestBody Client client) {
+        return this.clientService.save(client);
     }
 
 }

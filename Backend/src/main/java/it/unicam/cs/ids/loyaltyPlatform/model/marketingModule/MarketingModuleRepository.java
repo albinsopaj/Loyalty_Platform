@@ -7,4 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface MarketingModuleRepository extends JpaRepository<MarketingModule, Long> {
+
 }

@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
  * Interface to manage all CRUD operations on the repository of {@link AuthenticatedUser}.
  */
 @Repository
-public interface UserRepository extends JpaRepository<AuthenticatedUser, Long> {
+public interface AuthenticatedUserRepository extends JpaRepository<AuthenticatedUser, Long> {
+
 }
