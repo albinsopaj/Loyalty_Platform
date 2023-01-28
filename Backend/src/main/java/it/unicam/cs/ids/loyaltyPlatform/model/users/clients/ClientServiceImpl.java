@@ -12,9 +12,9 @@ public class ClientServiceImpl extends UserServiceImpl {
 
     private UserRepository repository;
 
-    public Client save(@NonNull Client Client) {
-        if(!repository.findAll().contains(Client)){
-            return this.repository.save(Client);
+    public Client save(@NonNull Client client) {
+        if(!repository.findAll().contains(client)){
+            return this.repository.save(client);
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "Client already exists");
         }
