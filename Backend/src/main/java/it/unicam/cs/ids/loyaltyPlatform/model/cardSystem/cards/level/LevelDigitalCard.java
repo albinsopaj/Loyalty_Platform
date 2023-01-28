@@ -19,7 +19,6 @@ public class LevelDigitalCard extends DigitalCard {
     private @NonNull Integer level;
     private @NonNull Integer experience;
     private @NonNull ArrayList<String> rewardsUnlocked;
-
     private @NonNull boolean completed;
 
     public LevelDigitalCard(Long id, long companyId, Long fidelityProgramId, Long clientId, Integer level, Integer experience, ArrayList<String> rewardsUnlocked){

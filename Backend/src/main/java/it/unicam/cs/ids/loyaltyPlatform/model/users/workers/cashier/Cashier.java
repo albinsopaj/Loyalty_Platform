@@ -10,7 +10,6 @@ import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
-
 import java.util.Objects;
 
 /**

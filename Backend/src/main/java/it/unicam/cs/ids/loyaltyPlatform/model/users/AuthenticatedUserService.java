@@ -5,27 +5,25 @@ import lombok.NonNull;
 import java.util.List;
 import java.util.Optional;
 
-public interface AuthenticatedUserService {
+public interface AuthenticatedUserService<T extends  AuthenticatedUser> {
 
-    AuthenticatedUser save(@NonNull AuthenticatedUser authenticatedUser);
+    T save(@NonNull T authenticatedUser);
 
-    AuthenticatedUser saveById(@NonNull Long id);
+    T saveById(@NonNull Long id);
 
-    AuthenticatedUser update(@NonNull AuthenticatedUser authenticatedUser);
+    T update(@NonNull T authenticatedUser);
 
-    AuthenticatedUser updateById(@NonNull Long id);
+    T updateById(@NonNull Long id);
 
-    AuthenticatedUser findById(@NonNull Long id);
+    T findById(@NonNull Long id);
 
-    Optional<AuthenticatedUser> get(@NonNull AuthenticatedUser authenticatedUser);
+    Optional<T> get(@NonNull T authenticatedUser);
 
-    List<AuthenticatedUser> getAll();
+    List<T> getAll();
 
-    void delete(@NonNull AuthenticatedUser authenticatedUser);
+    void delete(@NonNull T authenticatedUser);
 
-    void deleteById(@NonNull Long id);
+    void delete(@NonNull Long id);
 
-    void deleteByEmail(@NonNull String email);
-
-
+    void delete(@NonNull String email);
 }
