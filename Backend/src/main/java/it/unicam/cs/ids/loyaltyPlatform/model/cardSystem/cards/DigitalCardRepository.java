@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

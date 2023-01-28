@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
@@ -16,7 +15,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@EqualsAndHashCode
 @ToString
 public class Owner extends AuthenticatedUser {
 
