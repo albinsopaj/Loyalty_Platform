@@ -11,14 +11,6 @@ public class PointsFidelityProgramController {
     @Autowired
     private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
 
-    @Autowired
-    private PointsFidelityProgram pointsFidelityProgram;
-
-    @PostMapping("/pointsFidelityProgram")
-    public PointsFidelityProgram add(@NonNull @RequestBody PointsFidelityProgram pointsFidelityProgram) {
-        return this.pointsFidelityProgramService.save(pointsFidelityProgram);
-    }
-
     @GetMapping("/{id}")
     public PointsFidelityProgram get(@NonNull Long id) {
         return this.pointsFidelityProgramService.findById(id);

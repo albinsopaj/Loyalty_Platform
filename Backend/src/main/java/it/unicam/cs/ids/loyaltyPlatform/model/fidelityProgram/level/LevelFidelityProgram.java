@@ -4,6 +4,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level.LevelDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
@@ -17,25 +18,17 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@Entity
+@Table(name="levelFidelityProgram")
 public class LevelFidelityProgram extends FidelityProgram {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private @NonNull Long id;
     private @NonNull Integer conversionRate;
-
+    @ElementCollection
+    @Embedded
     private @NonNull List<FidelityLevel> levels;
 
-    /**
-     * Method to add a client to the fidelity program, the method also creates a digital card and adds it to the client
-     * @param client the client to add
-     */
-    @Override
-    public void addClient(Client client) {
-        if (!this.getClients().contains(client)) {
-            this.getClients().add(client);
-        }
-        //LevelDigitalCard levelDigitalCard = new LevelDigitalCard()
-        //client.getDigitalWallet().addDigitalCard(levelDigitalCard);
-    }
-
-    @Override
     public void changeStatus(Integer value, DigitalCard digitalCard) {
         if(digitalCard instanceof LevelDigitalCard levelDigitalCard){
             updateDigitalCardStatus(valueConvert(value), levelDigitalCard);

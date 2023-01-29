@@ -1,11 +1,9 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -22,23 +20,22 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table(name="cashiers")
 public class Cashier extends AuthenticatedUser {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JdbcTypeCode(SqlTypes.BIGINT)
     private @NonNull Long id;
 
-    /**
-     * Method that updates the digital card of the client
-     *
-     * @param digitalCard the digital card to update
-     * @param value       the amount spent by the client
-     */
+    @ManyToOne
+    @JoinColumn(name="company_id", nullable = false)
+    private @NonNull Company company;
+
+
+    /*
     public void updateClientDigitalCard(DigitalCard digitalCard, Integer value) {
         digitalCard.updateStatus(value);
     }
-
+    */
     public void viewClientProfile() {
         String firstName = this.getFirstName();
         String lastName = this.getLastName();

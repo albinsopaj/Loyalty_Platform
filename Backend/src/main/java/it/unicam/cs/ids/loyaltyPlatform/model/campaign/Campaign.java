@@ -1,9 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -24,9 +22,13 @@ public class Campaign {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private @NonNull Long id;
 
+    @ManyToOne
+    @JoinColumn(name="company_id",nullable = false)
+    private @NonNull Company company;
     private @NonNull String name;
     private @NonNull Date start;
     private @NonNull Date end;
     private @NonNull String description;
+
 
 }

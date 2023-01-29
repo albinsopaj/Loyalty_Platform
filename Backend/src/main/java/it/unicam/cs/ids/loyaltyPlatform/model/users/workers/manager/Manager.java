@@ -1,12 +1,10 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -20,13 +18,14 @@ import org.hibernate.type.SqlTypes;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table(name="managers")
 public class Manager extends AuthenticatedUser {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JdbcTypeCode(SqlTypes.BIGINT)
-    private Long id;
-
+    private @NonNull Long id;
+    @ManyToOne
+    @JoinColumn(name="company_id",nullable = false)
+    private @NonNull Company company;
     /**
      * Method to add a client into a fidelity program
      *

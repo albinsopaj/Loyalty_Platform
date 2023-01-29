@@ -4,6 +4,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,20 +17,19 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Getter
 @Setter
+@Entity
+@Table(name="pointsFidelityPrograms")
 public class PointsFidelityProgram extends FidelityProgram {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private @lombok.NonNull Long id;
     private @NonNull Integer conversionRate;
 
+    @OneToMany(mappedBy = "pointsFidelityProgram")
     private @NonNull ArrayList<PointsReward> catalogue;
 
-    @Override
-    public void addClient(Client client) {
-        if (!this.getClients().contains(client)) {
-            this.getClients().add(client);
-        }
-    }
 
-    @Override
+
     public void changeStatus(Integer value, DigitalCard digitalCard) {
         if(digitalCard instanceof PointsDigitalCard pointsDigitalCard){
             pointsDigitalCard.addPoints(valueConvert(value));

@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level.LevelDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramService;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,11 +24,6 @@ public class LevelFidelityProgramServiceImpl implements FidelityProgramService<L
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");
         }
-    }
-
-    @Override
-    public LevelFidelityProgram saveById(@NonNull Long id) {
-        return this.repository.save(this.findById(id));
     }
 
     @Override
@@ -63,5 +60,18 @@ public class LevelFidelityProgramServiceImpl implements FidelityProgramService<L
     @Override
     public void delete(@NonNull Long id) {
         this.repository.deleteById(id);
+    }
+
+    @Override
+    public LevelDigitalCard registerClient(@NonNull Client client, @NonNull LevelFidelityProgram fidelityProgram) {
+        if(fidelityProgram.getLikedFidelityPrograms().contains(client)){
+            throw new ResponseStatusException(HttpStatus.FOUND, "Client already in fidelity program");
+        } else {
+            fidelityProgram.addClient(client);
+            LevelDigitalCard digitalCard = new LevelDigitalCard();
+            digitalCard.setDigitalWallet(client.getDigitalWallet());
+            digitalCard.setFidelityProgramId(fidelityProgram.getId());
+            return digitalCard;
+        }
     }
 }

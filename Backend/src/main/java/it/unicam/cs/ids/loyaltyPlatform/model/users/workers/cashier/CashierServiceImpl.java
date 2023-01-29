@@ -61,17 +61,8 @@ public class CashierServiceImpl implements AuthenticatedUserService<Cashier> {
     }
 
     @Override
-    public void delete(@NonNull Long id) {
+    public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
-    }
-
-    @Override
-    public void delete(@NonNull String email) {
-        for(Cashier cashier: this.repository.findAll()){
-            if(cashier.getEmail().equals(email)){
-                delete(cashier);
-            }
-        }
     }
 
     public void updatePointsDigitalCard(@NonNull PointsDigitalCard pointsDigitalCard, @NonNull Integer value){

@@ -38,7 +38,7 @@ public class MarketingModuleController {
 
     @PostMapping("/{digitalCardId}/{value}")
     public void updateDigitalCardStatus(@NonNull @PathVariable("digitalCardId") Long id, @PathVariable int value) {
-        this.digitalCardService.findById(id).updateStatus(value);
+        //this.digitalCardService.findById(id).updateStatus(value);
     }
 
     @DeleteMapping("/delete/{id}")

@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.marketingModule.MarketingModule;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier.Cashier;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.Owner;
@@ -21,7 +22,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity(name = "Company")
+@Entity
+@Table(name="companies")
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,17 +32,19 @@ public class Company {
     private @NonNull String name;
 
     @ManyToOne
-    @JoinColumn(name = "")
+    @JoinColumn(name = "owner_id", nullable = false)
     private @NonNull Owner owner;
 
-    @Transient
+    @OneToMany(mappedBy = "company")
     private @NonNull List<FidelityProgram> fidelityPrograms;
-    @Transient
+    @OneToMany(mappedBy = "company")
     private @NonNull List<Campaign> campaigns;
-    @Transient
+    @OneToMany(mappedBy = "company")
     private @NonNull List<Manager> managers;
-    @Transient
+    @OneToMany(mappedBy = "company")
     private @NonNull List<Cashier> cashiers;
+    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
+    private @NonNull MarketingModule marketingModule;
 
     /**
      * Method to add a fidelity program to the company

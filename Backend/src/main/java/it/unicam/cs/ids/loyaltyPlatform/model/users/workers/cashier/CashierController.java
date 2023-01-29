@@ -41,7 +41,7 @@ public class CashierController {
 
     @DeleteMapping("/delete/{id}")
     public void delete(@NonNull @PathVariable("id") Long id) {
-        this.cashierService.delete(id);
+        this.cashierService.deleteById(id);
     }
 
     //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto venga passato direttamente nell'URL
@@ -50,10 +50,7 @@ public class CashierController {
         this.cashierService.delete(cashier);
     }
 
-    @DeleteMapping("/{email}")
-    public void delete(@NonNull @PathVariable String email) {
-        this.cashierService.delete(email);
-    }
+
 
     @PutMapping("/update/pointsDigitalCard/{id}/{value}")
     public void updatePointsDigitalCard(@NonNull @PathVariable Long pointsDigitalCardId, @NonNull Integer value){

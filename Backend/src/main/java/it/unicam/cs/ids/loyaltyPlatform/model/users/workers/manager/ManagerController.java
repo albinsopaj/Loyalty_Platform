@@ -34,18 +34,13 @@ public class ManagerController  {
 
     @DeleteMapping("/delete/{id}")
     public void delete(@NonNull @PathVariable("id") Long id) {
-        this.managerService.delete(id);
+        this.managerService.deleteById(id);
     }
 
     //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto venga passato direttamente nell'URL
     @DeleteMapping("delete/{manager}")
     public void delete(@NonNull @RequestBody @PathVariable Manager manager) {
         this.managerService.delete(manager);
-    }
-
-    @DeleteMapping("/delete/{email}")
-    public void delete(@NonNull @PathVariable String email) {
-        this.managerService.delete(email);
     }
 
 }

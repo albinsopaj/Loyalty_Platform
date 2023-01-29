@@ -1,12 +1,14 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramService;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +17,8 @@ public class ClientServiceImpl implements AuthenticatedUserService<Client> {
 
     @Autowired
     private ClientRepository repository;
+    @Autowired
+    private FidelityProgramService fidelityProgramService;
 
     public Client save(@NonNull Client client) {
         if (!repository.findAll().contains(client)) {
@@ -55,17 +59,12 @@ public class ClientServiceImpl implements AuthenticatedUserService<Client> {
     }
 
     @Override
-    public void delete(@NonNull Long id) {
+    public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
     }
 
-    @Override
-    public void delete(@NonNull String email) {
-        for(Client client: this.repository.findAll()){
-            if(client.getEmail().equals(email)){
-                delete(client);
-            }
-        }
+    public void registerToFidelityProgram(@NonNull Client client, @NonNull FidelityProgram fidelityProgram){
+        DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
+        client.getDigitalWallet().addDigitalCard(digitalCard);
     }
-
 }

@@ -35,18 +35,13 @@ public class OwnerController {
 
     @DeleteMapping("/delete/{id}")
     public void delete(@NonNull @PathVariable("id") Long id) {
-        this.ownerService.delete(id);
+        this.ownerService.deleteById(id);
     }
 
     //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto diretto venga passato direttamente nell'URL
     @DeleteMapping("/delete/{owner}")
     public void delete(@NonNull @RequestBody @PathVariable Owner owner) {
         this.ownerService.delete(owner);
-    }
-
-    @DeleteMapping("/delete/{email}")
-    public void delete(@NonNull @PathVariable("email") String email) {
-        this.ownerService.delete(email);
     }
 
 }

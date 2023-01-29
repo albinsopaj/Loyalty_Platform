@@ -2,7 +2,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -14,11 +14,16 @@ import java.util.ArrayList;
 @Setter
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 public class PointsDigitalCard extends DigitalCard {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private @NonNull Long id;
     private @NonNull Integer points;
 
-    private @NonNull ArrayList<PointsReward> rewards;
+    @CollectionTable
+    private @NonNull ArrayList<String> rewards;
 
     private boolean completed;
 
@@ -44,7 +49,7 @@ public class PointsDigitalCard extends DigitalCard {
      */
     public void buyReward(PointsReward reward){
         removePoints(reward.getPrice());
-        rewards.remove(reward);
+        rewards.add(reward.getName());
         if(rewards.isEmpty()){
             this.completed = true;
         }

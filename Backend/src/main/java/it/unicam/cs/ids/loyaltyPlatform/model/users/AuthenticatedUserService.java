@@ -21,7 +21,6 @@ public interface AuthenticatedUserService<T extends  AuthenticatedUser> {
 
     void delete(@NonNull T authenticatedUser);
 
-    void delete(@NonNull Long id);
+    void deleteById(@NonNull Long id);
 
-    void delete(@NonNull String email);
 }

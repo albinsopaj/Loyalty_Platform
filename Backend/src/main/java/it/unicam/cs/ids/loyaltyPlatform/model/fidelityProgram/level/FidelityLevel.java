@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,8 +13,11 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Getter
 @Setter
+@Embeddable
 public class FidelityLevel {
+
     private @NonNull String name;
+    @CollectionTable
     private @NonNull ArrayList<String> rewardsList;
 
     private @NonNull Integer experienceToUnlock;

@@ -55,17 +55,8 @@ public class ManagerServiceImpl implements AuthenticatedUserService<Manager> {
     }
 
     @Override
-    public void delete(@NonNull Long id) {
+    public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
-    }
-
-    @Override
-    public void delete(@NonNull String email) {
-        for(Manager manager: this.repository.findAll()){
-            if(manager.getEmail().equals(email)){
-                delete(manager);
-            }
-        }
     }
 
 }

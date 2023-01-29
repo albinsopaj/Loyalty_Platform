@@ -3,7 +3,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -33,20 +32,19 @@ public class ClientController {
         return this.clientService.update(client);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @PutMapping("/update/{clientId}")
+    public Client update(@NonNull @RequestBody @PathVariable("clientId") Long id) {
+        return this.clientService.updateById(id);
+    }
+
+    @DeleteMapping("/delete/{clientId}")
     public void delete(@NonNull @PathVariable("id") Long id) {
-        this.clientService.delete(id);
+        this.clientService.deleteById(id);
     }
 
-    //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto venga passato direttamente nell'URL
     @DeleteMapping("delete/{client}")
-    public void delete(@NonNull @RequestBody @PathVariable Client client) {
+    public void delete(@NonNull @RequestBody @PathVariable("client") Client client) {
         this.clientService.delete(client);
-    }
-
-    @DeleteMapping("/delete/{email}")
-    public void delete(@NonNull @PathVariable String email) {
-        this.clientService.delete(email);
     }
 
 }
