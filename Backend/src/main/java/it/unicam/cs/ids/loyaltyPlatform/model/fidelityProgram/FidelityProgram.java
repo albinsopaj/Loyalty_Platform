@@ -14,8 +14,8 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.lang.NonNull;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class that defines a general fidelity program
@@ -35,7 +35,7 @@ public abstract class FidelityProgram {
     private @NonNull String name;
     private @NonNull List<Client> clients;
     private @NonNull Boolean activated = false;
-    private @NonNull HashMap<Client,String> reviews;
+    private @NonNull Map<Client, String> reviews;
 
     /**
      * Activates the fidelity program
