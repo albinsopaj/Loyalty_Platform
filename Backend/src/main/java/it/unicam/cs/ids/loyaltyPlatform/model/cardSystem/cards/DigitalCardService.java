@@ -2,24 +2,26 @@ package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards;
 
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public interface DigitalCardService {
+public interface DigitalCardService<T extends DigitalCard> {
+    T save(@NonNull T digitalCard);
 
-    DigitalCard saveById(@NonNull Long id);
+    T saveById(@NonNull Long id);
 
-    DigitalCard findById(@NonNull Long id);
+    T update(@NonNull T digitalCard);
 
-    List<DigitalCard> getAll();
+    T updateById(@NonNull Long id);
 
-    DigitalCard update(DigitalCard digitalCard);
+    T findById(@NonNull Long id);
 
-    DigitalCard updateById(@NonNull Long id);
+    Optional<T> get(@NonNull T digitalCard);
 
-    void delete(@NonNull DigitalCard digitalCard);
+    List<T> getAll();
 
-    void deleteById(@NonNull Long id);
+    void delete(@NonNull T digitalCard);
 
+    void delete(@NonNull Long id);
 }
