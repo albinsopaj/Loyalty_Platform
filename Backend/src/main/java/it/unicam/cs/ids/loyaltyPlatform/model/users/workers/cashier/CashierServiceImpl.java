@@ -18,10 +18,13 @@ public class CashierServiceImpl implements AuthenticatedUserService<Cashier> {
 
     @Autowired
     private CashierRepository repository;
+
     @Autowired
     private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
+
     @Autowired
     private PointsDigitalCardServiceImpl pointsDigitalCardService;
+
     public Cashier save(@NonNull Cashier cashier) {
         if (!repository.findAll().contains(cashier)) {
             return this.repository.save(cashier);
@@ -69,4 +72,5 @@ public class CashierServiceImpl implements AuthenticatedUserService<Cashier> {
         Integer points = pointsFidelityProgramService.valueConvert(pointsFidelityProgramService.findById(pointsDigitalCard.getFidelityProgramId()), value);
         pointsDigitalCardService.addPoints(pointsDigitalCard,points);
     }
+
 }
