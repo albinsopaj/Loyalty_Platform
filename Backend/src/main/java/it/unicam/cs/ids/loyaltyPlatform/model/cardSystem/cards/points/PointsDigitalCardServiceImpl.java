@@ -63,4 +63,8 @@ public class PointsDigitalCardServiceImpl implements DigitalCardService<PointsDi
     public void delete(@NonNull Long id) {
         this.repository.deleteById(id);
     }
+
+    public void addPoints(@NonNull PointsDigitalCard pointsDigitalCard, @NonNull Integer points){
+       pointsDigitalCard.setPoints(pointsDigitalCard.getPoints() + points);
+    }
 }

@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,9 @@ public class PointsFidelityProgramServiceImpl implements FidelityProgramService<
     @Override
     public void delete(@NonNull Long id) {
         this.repository.deleteById(id);
+    }
+
+    public Integer valueConvert(@NonNull PointsFidelityProgram pointsFidelityProgram, @NonNull Integer value){
+        return pointsFidelityProgram.getConversionRate()*value;
     }
 }

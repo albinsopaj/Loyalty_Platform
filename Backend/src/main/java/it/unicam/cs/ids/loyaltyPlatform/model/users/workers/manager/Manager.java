@@ -18,7 +18,6 @@ import org.hibernate.type.SqlTypes;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @ToString
 @Entity
 public class Manager extends AuthenticatedUser {

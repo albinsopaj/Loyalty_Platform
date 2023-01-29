@@ -1,5 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,10 @@ public class CashierServiceImpl implements AuthenticatedUserService<Cashier> {
 
     @Autowired
     private CashierRepository repository;
-
+    @Autowired
+    private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
+    @Autowired
+    private PointsDigitalCardServiceImpl pointsDigitalCardService;
     public Cashier save(@NonNull Cashier cashier) {
         if (!repository.findAll().contains(cashier)) {
             return this.repository.save(cashier);
@@ -68,4 +74,8 @@ public class CashierServiceImpl implements AuthenticatedUserService<Cashier> {
         }
     }
 
+    public void updatePointsDigitalCard(@NonNull PointsDigitalCard pointsDigitalCard, @NonNull Integer value){
+        Integer points = pointsFidelityProgramService.valueConvert(pointsFidelityProgramService.findById(pointsDigitalCard.getFidelityProgramId()), value);
+        pointsDigitalCardService.addPoints(pointsDigitalCard,points);
+    }
 }

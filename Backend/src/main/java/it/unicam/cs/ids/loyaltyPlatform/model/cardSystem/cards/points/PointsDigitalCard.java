@@ -16,11 +16,11 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class PointsDigitalCard extends DigitalCard {
 
-    private @NonNull int points;
+    private @NonNull Integer points;
 
     private @NonNull ArrayList<PointsReward> rewards;
 
-    private @NonNull boolean completed;
+    private boolean completed;
 
     /**
      * Method to add points to the digital card

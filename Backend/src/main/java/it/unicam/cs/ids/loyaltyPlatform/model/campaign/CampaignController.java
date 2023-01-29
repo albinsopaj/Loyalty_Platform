@@ -14,11 +14,9 @@ public class CampaignController {
 
     @Autowired
     private CampaignService campaignService;
-    private Owner owner;
 
     @PostMapping(path = "/add")
     public Campaign addCampaign(@NonNull @RequestBody Campaign campaign) {
-        this.owner.createCampaign(campaign.getName(), campaign.getStart(), campaign.getEnd(), campaign.getDescription());
         return this.campaignService.save(campaign);
     }
 

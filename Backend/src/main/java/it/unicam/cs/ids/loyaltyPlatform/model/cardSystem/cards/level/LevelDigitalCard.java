@@ -19,7 +19,7 @@ public class LevelDigitalCard extends DigitalCard {
     private Integer level;
     private Integer experience;
     private @NonNull ArrayList<String> rewardsUnlocked;
-    private @NonNull boolean completed;
+    private boolean completed;
 
     public LevelDigitalCard(Long id, long companyId, Long fidelityProgramId, Long clientId, Integer level, Integer experience, ArrayList<String> rewardsUnlocked) {
         super(id, companyId, fidelityProgramId, clientId);
