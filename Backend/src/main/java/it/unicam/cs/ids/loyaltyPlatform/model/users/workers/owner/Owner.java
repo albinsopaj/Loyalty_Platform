@@ -19,9 +19,7 @@ import java.util.ArrayList;
 @Entity
 @Table(name="owners")
 public class Owner extends AuthenticatedUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+
     @OneToMany(mappedBy = "owner")
     private @NonNull ArrayList<Company> companies;
 

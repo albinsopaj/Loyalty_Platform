@@ -34,7 +34,7 @@ public class LevelFidelityProgramController {
 
     @DeleteMapping("/delete/{id}")
     public void delete(@NonNull @PathVariable("id") Long id) {
-        this.levelFidelityProgramService.delete(id);
+        this.levelFidelityProgramService.deleteById(id);
     }
 
     @DeleteMapping("delete/{levelFidelityProgram}")

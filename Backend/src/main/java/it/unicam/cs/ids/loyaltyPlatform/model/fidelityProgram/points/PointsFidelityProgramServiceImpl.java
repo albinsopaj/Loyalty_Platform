@@ -1,26 +1,24 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardService;
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramService;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
+
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PointsFidelityProgramServiceImpl implements FidelityProgramService<PointsFidelityProgram> {
+public class PointsFidelityProgramServiceImpl implements GeneralService<PointsFidelityProgram> {
 
     @Autowired
     private PointsFidelityProgramRepository repository;
 
     @Autowired
-    private DigitalCardService<PointsDigitalCard> digitalCardService;
+    private PointsDigitalCardServiceImpl digitalCardService;
     @Override
     public PointsFidelityProgram save(@NonNull PointsFidelityProgram fidelityProgram) {
         if (!repository.findAll().contains(fidelityProgram)) {
@@ -62,24 +60,10 @@ public class PointsFidelityProgramServiceImpl implements FidelityProgramService<
     }
 
     @Override
-    public void delete(@NonNull Long id) {
+    public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
     }
 
-    @Override
-    public PointsDigitalCard registerClient(@NonNull Client client, @NonNull PointsFidelityProgram fidelityProgram) {
-        if(fidelityProgram.getLikedFidelityPrograms().contains(client)){
-            throw new ResponseStatusException(HttpStatus.FOUND, "Client already in fidelity program");
-        } else {
-            fidelityProgram.addClient(client);
-            PointsDigitalCard digitalCard = new PointsDigitalCard();
-            digitalCard.setDigitalWallet(client.getDigitalWallet());
-            digitalCard.setFidelityProgramId(fidelityProgram.getId());
-            client.getDigitalWallet().addDigitalCard(digitalCard);
-            digitalCardService.save(digitalCard);
-            return digitalCard;
-        }
-    }
 
     public Integer valueConvert(@NonNull PointsFidelityProgram pointsFidelityProgram, @NonNull Integer value){
         return pointsFidelityProgram.getConversionRate()*value;

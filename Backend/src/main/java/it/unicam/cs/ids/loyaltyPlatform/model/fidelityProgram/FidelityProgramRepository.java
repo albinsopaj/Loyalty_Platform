@@ -3,11 +3,12 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.stereotype.Repository;
 
 /**
  * Interface to manage all CRUD operations on the repository of {@link PointsFidelityProgram}.
  */
-@NoRepositoryBean
-public interface FidelityProgramRepository<T extends FidelityProgram, Long> extends JpaRepository<T, Long> {
+@Repository
+public interface FidelityProgramRepository extends JpaRepository<FidelityProgram, Long> {
 
 }

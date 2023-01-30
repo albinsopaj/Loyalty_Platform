@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping(path = "loyaltyPlatform/marketingModule")
 public class MarketingModuleController {
     @Autowired
-    private MarketingModuleService marketingModuleService;
+    private MarketingModuleServiceImpl marketingModuleService;
 
     @PostMapping("/add")
     public MarketingModule addMarketingModule(@NonNull @RequestBody MarketingModule marketingModule) {

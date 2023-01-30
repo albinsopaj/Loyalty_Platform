@@ -1,11 +1,11 @@
-package it.unicam.cs.ids.loyaltyPlatform.model.users;
+package it.unicam.cs.ids.loyaltyPlatform.model.util;
 
 import lombok.NonNull;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface AuthenticatedUserService<T extends  AuthenticatedUser> {
+public interface GeneralService<T> {
 
     T save(@NonNull T authenticatedUser);
 
@@ -22,5 +22,4 @@ public interface AuthenticatedUserService<T extends  AuthenticatedUser> {
     void delete(@NonNull T authenticatedUser);
 
     void deleteById(@NonNull Long id);
-
 }

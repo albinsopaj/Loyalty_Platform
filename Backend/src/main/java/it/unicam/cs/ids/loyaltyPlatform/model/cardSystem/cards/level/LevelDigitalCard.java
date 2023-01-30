@@ -16,9 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 public class LevelDigitalCard extends DigitalCard {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
     private Integer level;
     private Integer experience;
     @CollectionTable
@@ -60,6 +57,10 @@ public class LevelDigitalCard extends DigitalCard {
         this.level++;
     }
 
+    @Override
+    public DigitalCard create() {
+        return new LevelDigitalCard();
+    }
 }
 
 

@@ -18,9 +18,7 @@ import java.util.List;
 @Entity
 @Table(name="levelFidelityProgram")
 public class LevelFidelityProgram extends FidelityProgram {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+
     private @NonNull Integer conversionRate;
 
     @OneToMany(mappedBy = "levelFidelityProgram")

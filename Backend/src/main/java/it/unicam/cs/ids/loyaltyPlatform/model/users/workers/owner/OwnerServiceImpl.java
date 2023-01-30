@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserService;
+import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OwnerServiceImpl implements AuthenticatedUserService<Owner> {
+public class OwnerServiceImpl implements GeneralService<Owner> {
 
     @Autowired
     private OwnerRepository repository;

@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,9 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class CampaignServiceImpl implements CampaignService {
+public class CampaignServiceImpl implements GeneralService<Campaign> {
 
     @Autowired
     private CampaignRepository repository;
@@ -25,6 +27,11 @@ public class CampaignServiceImpl implements CampaignService {
     @Override
     public Campaign findById(@NonNull Long id) {
         return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found"));
+    }
+
+    @Override
+    public Optional<Campaign> get(@NonNull Campaign campaign) {
+        return this.repository.findById(campaign.getId());
     }
 
     @Override

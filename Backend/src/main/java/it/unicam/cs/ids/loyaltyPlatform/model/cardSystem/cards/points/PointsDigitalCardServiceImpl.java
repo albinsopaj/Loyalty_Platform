@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardService;
+import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PointsDigitalCardServiceImpl implements DigitalCardService<PointsDigitalCard> {
+public class PointsDigitalCardServiceImpl implements GeneralService<PointsDigitalCard> {
     @Autowired
     private PointsDigitalCardRepository repository;
 
@@ -21,11 +21,6 @@ public class PointsDigitalCardServiceImpl implements DigitalCardService<PointsDi
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "Digital card already exists");
         }
-    }
-
-    @Override
-    public PointsDigitalCard saveById(@NonNull Long id) {
-        return this.repository.save(this.findById(id));
     }
 
     @Override
@@ -60,7 +55,7 @@ public class PointsDigitalCardServiceImpl implements DigitalCardService<PointsDi
     }
 
     @Override
-    public void delete(@NonNull Long id) {
+    public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
     }
 

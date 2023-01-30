@@ -22,9 +22,7 @@ import org.hibernate.type.SqlTypes;
 @Entity
 @Table(name="managers")
 public class Manager extends AuthenticatedUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+
     @ManyToOne
     @JoinColumn(name="company_id",nullable = false)
     private @NonNull Company company;

@@ -16,10 +16,6 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PointsDigitalCard extends DigitalCard {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
     private @NonNull Integer points;
 
     @CollectionTable
@@ -42,6 +38,11 @@ public class PointsDigitalCard extends DigitalCard {
 
     public void removePoints(int points) {
         this.points -= points;
+    }
+
+    @Override
+    public DigitalCard create() {
+        return new PointsDigitalCard();
     }
 
     /*

@@ -20,9 +20,7 @@ import java.util.ArrayList;
 @Entity
 @Table(name="pointsFidelityPrograms")
 public class PointsFidelityProgram extends FidelityProgram {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private @lombok.NonNull Long id;
+
     private @NonNull Integer conversionRate;
 
     @OneToMany(mappedBy = "pointsFidelityProgram")

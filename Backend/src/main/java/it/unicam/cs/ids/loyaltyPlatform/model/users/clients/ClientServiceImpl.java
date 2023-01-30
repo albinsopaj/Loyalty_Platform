@@ -1,13 +1,11 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWalletServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramService;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgramServiceImpl;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserService;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,14 +16,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClientServiceImpl implements AuthenticatedUserService<Client> {
+public class ClientServiceImpl implements GeneralService<Client> {
 
     @Autowired
     private ClientRepository repository;
     @Autowired
-    private LevelFidelityProgramServiceImpl levelFidelityProgramService;
+    private DigitalCardServiceImpl digitalCardService;
     @Autowired
-    private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
+    private DigitalWalletServiceImpl digitalWalletService;
+
+    @Autowired
+    private FidelityProgramServiceImpl fidelityProgramService;
+
     public Client save(@NonNull Client client) {
         if (!repository.findAll().contains(client)) {
             return this.repository.save(client);
@@ -69,12 +71,18 @@ public class ClientServiceImpl implements AuthenticatedUserService<Client> {
         this.repository.deleteById(id);
     }
 
-    public void registerToPointsFidelityProgram(@NonNull Client client, @NonNull PointsFidelityProgram fidelityProgram){
-        DigitalCard digitalCard = this.pointsFidelityProgramService.registerClient(client, fidelityProgram);
+    public void registerToFidelityProgram(@NonNull Client client, @NonNull FidelityProgram fidelityProgram){
+        DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
         client.getDigitalWallet().addDigitalCard(digitalCard);
+        digitalCard.setDigitalWallet(client.getDigitalWallet());
         }
-    public void registerToLevelFidelityProgram(@NonNull Client client, @NonNull LevelFidelityProgram fidelityProgram){
-        DigitalCard digitalCard = this.levelFidelityProgramService.registerClient(client, fidelityProgram);
-        client.getDigitalWallet().addDigitalCard(digitalCard);
+
+    public DigitalCard viewDigitalCard(@NonNull Long clientId, @NonNull Long digitalWalletId, @NonNull Long digitalCardId){
+        if(this.repository.getReferenceById(clientId).getDigitalWallet().getId().equals(digitalWalletId) && this.digitalWalletService.findById(digitalWalletId).getDigitalCards().contains(this.digitalCardService.findById(digitalCardId))){
+            return this.digitalCardService.findById(digitalCardId);
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Client doesn't have access to this resource");
+        }
     }
+
 }

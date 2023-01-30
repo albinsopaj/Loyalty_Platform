@@ -14,10 +14,9 @@ import lombok.*;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="digitalCard")
 public abstract class DigitalCard {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private @NonNull Long id;
@@ -28,4 +27,5 @@ public abstract class DigitalCard {
     @JoinColumn(name="digitalWallet_id",nullable=false)
     private @NonNull DigitalWallet digitalWallet;
 
+    public abstract DigitalCard create();
 }

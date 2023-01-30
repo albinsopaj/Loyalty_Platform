@@ -13,7 +13,7 @@ import java.util.List;
 public class CampaignController {
 
     @Autowired
-    private CampaignService campaignService;
+    private CampaignServiceImpl campaignService;
 
     @PostMapping(path = "/add")
     public Campaign addCampaign(@NonNull @RequestBody Campaign campaign) {

@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DigitalWalletServiceImpl implements DigitalWalletService {
+public class DigitalWalletServiceImpl implements GeneralService<DigitalWallet> {
 
     @Autowired
     private DigitalWalletRepository repository;
@@ -21,13 +22,13 @@ public class DigitalWalletServiceImpl implements DigitalWalletService {
     }
 
     @Override
-    public DigitalWallet saveById(@NonNull Long id) {
-        return this.repository.save(this.findById(id));
+    public DigitalWallet findById(@NonNull Long id) {
+        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Digital Wallet not found"));
     }
 
     @Override
-    public DigitalWallet findById(@NonNull Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Digital Wallet not found"));
+    public Optional<DigitalWallet> get(@NonNull DigitalWallet digitalWallet) {
+        return this.repository.findById(digitalWallet.getId());
     }
 
     @Override

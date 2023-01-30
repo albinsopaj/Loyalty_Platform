@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,9 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class CompanyServiceImpl implements CompanyService {
+public class CompanyServiceImpl implements GeneralService<Company> {
 
     @Autowired
     private CompanyRepository repository;
@@ -22,15 +24,13 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Company saveById(@NonNull Long id) {
-        if (!this.repository.existsById(id)) {
-            return this.repository.save(this.findById(id));
-        } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Company already exists!");
+    public Company findById(@NonNull Long id) {
+        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found"));
     }
 
     @Override
-    public Company findById(@NonNull Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found"));
+    public Optional<Company> get(@NonNull Company company) {
+        return this.repository.findById(company.getId());
     }
 
     @Override

@@ -21,9 +21,7 @@ import java.util.Set;
 @Entity
 @Table(name="clients")
 public class Client extends AuthenticatedUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+
 
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
     private @NonNull DigitalWallet digitalWallet;

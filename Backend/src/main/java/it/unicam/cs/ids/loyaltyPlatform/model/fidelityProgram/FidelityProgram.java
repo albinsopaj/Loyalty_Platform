@@ -23,7 +23,7 @@ import java.util.Set;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "fidelityPrograms")
 public abstract class FidelityProgram {
 

@@ -28,7 +28,7 @@ public class PointsFidelityProgramController {
 
     @DeleteMapping("/delete/{id}")
     public void delete(@NonNull @PathVariable("id") Long id) {
-        this.pointsFidelityProgramService.delete(id);
+        this.pointsFidelityProgramService.deleteById(id);
     }
 
     @DeleteMapping("delete/{pointsFidelityProgram}")

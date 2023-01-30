@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.marketingModule;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MarketingModuleServiceImpl implements  MarketingModuleService {
+public class MarketingModuleServiceImpl implements GeneralService<MarketingModule> {
 
     @Autowired
     private MarketingModuleRepository repository;
@@ -22,11 +23,6 @@ public class MarketingModuleServiceImpl implements  MarketingModuleService {
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "Marketing Module already exists");
         }
-    }
-
-    @Override
-    public MarketingModule saveById(@NonNull Long id) {
-        return this.repository.save(this.findById(id));
     }
 
     @Override

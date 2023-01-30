@@ -1,9 +1,10 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserService;
+import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CashierServiceImpl implements AuthenticatedUserService<Cashier> {
+public class CashierServiceImpl implements GeneralService<Cashier> {
 
     @Autowired
     private CashierRepository repository;
@@ -68,9 +69,13 @@ public class CashierServiceImpl implements AuthenticatedUserService<Cashier> {
         this.repository.deleteById(id);
     }
 
-    public void updatePointsDigitalCard(@NonNull PointsDigitalCard pointsDigitalCard, @NonNull Integer value){
-        Integer points = pointsFidelityProgramService.valueConvert(pointsFidelityProgramService.findById(pointsDigitalCard.getFidelityProgramId()), value);
-        pointsDigitalCardService.addPoints(pointsDigitalCard,points);
+    public void updatePointsDigitalCard(@NonNull DigitalCard digitalCard, @NonNull Integer value){
+        if(digitalCard instanceof PointsDigitalCard pointsDigitalCard){
+            Integer points = pointsFidelityProgramService.valueConvert(pointsFidelityProgramService.findById(pointsDigitalCard.getFidelityProgramId()), value);
+            pointsDigitalCardService.addPoints(pointsDigitalCard,points);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Digital card isn't points based");
+        }
     }
 
 }

@@ -10,9 +10,7 @@ import java.util.List;
 public class DigitalWalletController {
 
     @Autowired
-    private DigitalWalletService digitalWalletService;
-
-    private DigitalWallet digitalWallet;
+    private DigitalWalletServiceImpl digitalWalletService;
 
     @PostMapping(path = "/add/{digitalWallet}/")
     public DigitalWallet addDigitalWallet(@NonNull @RequestBody @PathVariable("digitalWallet") DigitalWallet digitalWallet) {

@@ -23,9 +23,7 @@ import java.util.Objects;
 @Entity
 @Table(name="cashiers")
 public class Cashier extends AuthenticatedUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+
 
     @ManyToOne
     @JoinColumn(name="company_id", nullable = false)
