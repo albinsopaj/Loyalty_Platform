@@ -5,7 +5,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that defines the owner
@@ -23,7 +23,7 @@ public class Owner extends AuthenticatedUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private @NonNull Long id;
     @OneToMany(mappedBy = "owner")
-    private @NonNull ArrayList<Company> companies;
+    private @NonNull List<Company> companies;
 
     public void addCompany( Company company){
         companies.add(company);
