@@ -3,7 +3,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 /**
@@ -51,6 +50,9 @@ public class LevelDigitalCard extends DigitalCard {
         rewardsUnlocked.addAll(rewards);
     }
 
+    public void removeRewards(List<String> rewards){
+        rewardsUnlocked.removeAll(rewards);
+    }
     /**
      * Method used to calculate if there is a level up
      */

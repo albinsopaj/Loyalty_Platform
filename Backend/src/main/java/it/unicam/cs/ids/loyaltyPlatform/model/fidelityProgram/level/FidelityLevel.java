@@ -16,7 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Embeddable
 @Entity
 public class FidelityLevel {
 
@@ -28,13 +27,13 @@ public class FidelityLevel {
     @CollectionTable
     private @NonNull List<String> rewardsList;
 
+    @ManyToOne
+    @JoinColumn(name="levelFidelityProgram_id", nullable = false)
+    private @NonNull LevelFidelityProgram levelFidelityProgram;
+
     private @NonNull Integer experienceToUnlock;
 
-    /**
-     * Method to add a reward to the list of rewards
-     * @param reward the reward to add
-     */
-    public void addReward(String reward){
+    public void addReward(String reward) {
         this.rewardsList.add(reward);
     }
 

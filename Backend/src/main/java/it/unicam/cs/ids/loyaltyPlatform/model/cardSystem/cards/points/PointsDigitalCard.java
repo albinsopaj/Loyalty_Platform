@@ -27,26 +27,24 @@ public class PointsDigitalCard extends DigitalCard {
 
     private boolean completed;
 
-    /**
-     * Method to add points to the digital card
-     * @param points the points to add
-     */
+    public void addReward(String reward){
+        rewards.add(reward);
+    }
+
+    public void removeReward(String reward){
+        rewards.remove(reward);
+    }
+
     public void addPoints(int points) {
         this.points += points;
     }
 
-    /**
-     * Method to remove points to the digital card
-     * @param points the points to remove
-     */
+
     public void removePoints(int points) {
         this.points -= points;
     }
 
-    /**
-     * Method that removes a reward and spends the points to do so
-     * @param reward the reward to "buy"
-     */
+    /*
     public void buyReward(PointsReward reward){
         removePoints(reward.getPrice());
         rewards.add(reward.getName());
@@ -54,4 +52,6 @@ public class PointsDigitalCard extends DigitalCard {
             this.completed = true;
         }
     }
+
+    */
 }

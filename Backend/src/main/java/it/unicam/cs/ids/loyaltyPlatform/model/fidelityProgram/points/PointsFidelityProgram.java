@@ -28,8 +28,15 @@ public class PointsFidelityProgram extends FidelityProgram {
     @OneToMany(mappedBy = "pointsFidelityProgram")
     private @NonNull ArrayList<PointsReward> catalogue;
 
+    public void addReward(PointsReward pointsReward){
+        catalogue.add(pointsReward);
+    }
 
+    public void removeReward(PointsReward pointsReward){
+        catalogue.remove(pointsReward);
+    }
 
+    /*
     public void changeStatus(Integer value, DigitalCard digitalCard) {
         if(digitalCard instanceof PointsDigitalCard pointsDigitalCard){
             pointsDigitalCard.addPoints(valueConvert(value));
@@ -38,15 +45,13 @@ public class PointsFidelityProgram extends FidelityProgram {
         }
     }
 
-    /**
-     * Method to add a reward to the fidelity program
-     * @param pointsReward the reward to add
-     */
     public void addReward(PointsReward pointsReward){
         this.catalogue.add(pointsReward);
     }
+
+
     private Integer valueConvert(Integer value){
         return value*conversionRate;
     }
-
+    */
 }

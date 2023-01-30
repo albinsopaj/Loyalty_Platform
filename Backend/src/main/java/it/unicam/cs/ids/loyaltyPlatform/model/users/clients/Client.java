@@ -2,11 +2,12 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramReview;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
+import java.util.Set;
 
 /**
  * Class that defines a client of the platform
@@ -28,12 +29,23 @@ public class Client extends AuthenticatedUser {
     private @NonNull DigitalWallet digitalWallet;
     @ManyToMany(mappedBy = "likedFidelityPrograms")
     private @NonNull List<FidelityProgram> fidelityPrograms;
-    /**
-     * Method to create a review and add it to the selected fidelity program
-     *
-     * @param review          the review wrote
-     * @param fidelityProgram the selected fidelity program
-     */
+
+    @OneToMany(mappedBy = "client")
+    private @NonNull Set<FidelityProgramReview> reviews;
+
+    public void addReview( FidelityProgramReview review){
+        reviews.add(review);
+    }
+    public void removeReview( FidelityProgramReview review){
+        reviews.remove(review);
+    }
+    public void addFidelityProgram( FidelityProgram fidelityProgram){
+        fidelityPrograms.add(fidelityProgram);
+    }
+
+    public void removeFidelityProgram( FidelityProgram fidelityProgram){
+        fidelityPrograms.remove(fidelityProgram);
+    }
 
     /*
     public void createReview(String review, FidelityProgram fidelityProgram) {

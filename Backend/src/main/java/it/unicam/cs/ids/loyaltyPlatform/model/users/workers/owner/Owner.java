@@ -15,6 +15,7 @@ import java.util.ArrayList;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name="owners")
 public class Owner extends AuthenticatedUser {
@@ -23,4 +24,12 @@ public class Owner extends AuthenticatedUser {
     private @NonNull Long id;
     @OneToMany(mappedBy = "owner")
     private @NonNull ArrayList<Company> companies;
+
+    public void addCompany( Company company){
+        companies.add(company);
+    }
+
+    public void removeCompany( Company company){
+        companies.remove(company);
+    }
 }

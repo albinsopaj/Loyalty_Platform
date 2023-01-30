@@ -11,6 +11,7 @@ import org.springframework.lang.NonNull;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Class that defines a general fidelity program
@@ -42,28 +43,26 @@ public abstract class FidelityProgram {
             joinColumns = @JoinColumn(name = "fidelityProgram_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id"))
     private @NonNull List<Client> likedFidelityPrograms;
-    /*
-    @CollectionTable
-    private @NonNull Map<Client,String> reviews;
-    */
 
+    @OneToMany(mappedBy = "fidelityProgram")
+    private Set<FidelityProgramReview> reviews;
+
+    public void addReview( FidelityProgramReview fidelityProgramReview){
+        reviews.add(fidelityProgramReview);
+    }
+    public void removeReview( FidelityProgramReview fidelityProgramReview){
+        reviews.remove(fidelityProgramReview);
+    }
     public void addClient(Client client) {
         likedFidelityPrograms.add(client);
     }
+    public void removeClient(Client client){
+        likedFidelityPrograms.remove(client);
+    }
 
-    /**
-     * Method to change the status of the digital card
-     *
-     * @param value       the amount of money
-     * @param digitalCard the digital card to change
-     */
     //public  void changeStatus(Integer value, DigitalCard digitalCard);
 
-    /**
-     * Method to add a review to the fidelity program
-     * @param client the client writing the review
-     * @param review the review to add
-     */
+
 
     /*
     public void addReview(Client client, String review){

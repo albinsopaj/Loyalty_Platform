@@ -18,6 +18,7 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @ToString
 @Entity
 @Table(name="cashiers")
@@ -32,10 +33,6 @@ public class Cashier extends AuthenticatedUser {
 
 
     /*
-    public void updateClientDigitalCard(DigitalCard digitalCard, Integer value) {
-        digitalCard.updateStatus(value);
-    }
-    */
     public void viewClientProfile() {
         String firstName = this.getFirstName();
         String lastName = this.getLastName();
@@ -58,5 +55,5 @@ public class Cashier extends AuthenticatedUser {
     public int hashCode() {
         return getClass().hashCode();
     }
-
+    */
 }

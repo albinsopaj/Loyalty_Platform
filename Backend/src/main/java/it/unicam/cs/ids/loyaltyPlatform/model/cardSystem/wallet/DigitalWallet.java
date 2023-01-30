@@ -34,4 +34,8 @@ public class DigitalWallet {
     public void addDigitalCard(DigitalCard digitalCard){
         digitalCards.add(digitalCard);
     }
+
+    public void removeDigitalCard(DigitalCard digitalCard){
+        digitalCards.remove(digitalCard);
+    }
 }

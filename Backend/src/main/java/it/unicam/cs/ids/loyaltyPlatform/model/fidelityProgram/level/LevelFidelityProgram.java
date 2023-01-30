@@ -22,10 +22,18 @@ public class LevelFidelityProgram extends FidelityProgram {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private @NonNull Long id;
     private @NonNull Integer conversionRate;
-    @ElementCollection
-    @Embedded
+
+    @OneToMany(mappedBy = "levelFidelityProgram")
     private @NonNull List<FidelityLevel> levels;
 
+    public void addFidelityLevel(FidelityLevel fidelityLevel){
+        levels.add(fidelityLevel);
+    }
+
+    public void removeFidelityLevel(FidelityLevel fidelityLevel){
+        levels.remove(fidelityLevel);
+    }
+    /*
     public void changeStatus(Integer value, DigitalCard digitalCard) {
         if(digitalCard instanceof LevelDigitalCard levelDigitalCard){
             updateDigitalCardStatus(valueConvert(value), levelDigitalCard);
@@ -55,4 +63,6 @@ public class LevelFidelityProgram extends FidelityProgram {
     private Integer valueConvert(Integer value){
         return value*conversionRate;
     }
+    */
+
 }
