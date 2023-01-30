@@ -13,8 +13,8 @@ public class CompanyController {
     @Autowired
     private CompanyServiceImpl service;
 
-    @PostMapping(path = "/add/{company}")
-    public Company addCompany(@NonNull @RequestBody @PathVariable("company") Company company) {
+    @PostMapping(path = "/add")
+    public Company addCompany(@NonNull @PathVariable("id") Long id, @NonNull @RequestBody Company company) {
         return this.service.save(company);
     }
 

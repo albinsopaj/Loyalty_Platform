@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -62,4 +63,5 @@ public class PointsDigitalCardServiceImpl implements GeneralService<PointsDigita
     public void addPoints(@NonNull PointsDigitalCard pointsDigitalCard, @NonNull Integer points){
        pointsDigitalCard.setPoints(pointsDigitalCard.getPoints() + points);
     }
+
 }

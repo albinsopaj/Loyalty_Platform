@@ -65,4 +65,5 @@ public class DigitalWalletServiceImpl implements GeneralService<DigitalWallet> {
         //da verificare se l'elemento da cancellare è presente o no
         this.repository.deleteById(id);
     }
+
 }

@@ -5,8 +5,6 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-
 /**
  * Class that defines the owner
  */
@@ -21,7 +19,7 @@ import java.util.ArrayList;
 public class Owner extends AuthenticatedUser {
 
     @OneToMany(mappedBy = "owner")
-    private @NonNull ArrayList<Company> companies;
+    private @NonNull List<Company> companies;
 
     public void addCompany( Company company){
         companies.add(company);

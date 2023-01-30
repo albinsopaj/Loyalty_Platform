@@ -1,16 +1,12 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -60,13 +56,4 @@ public abstract class FidelityProgram {
         likedFidelityPrograms.remove(client);
     }
 
-    //public  void changeStatus(Integer value, DigitalCard digitalCard);
-
-
-
-    /*
-    public void addReview(Client client, String review){
-        this.addReview(client,review);
-    }
-    */
 }
