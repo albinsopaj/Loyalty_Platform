@@ -9,15 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PointsFidelityProgramServiceImpl implements FidelityProgramService<PointsFidelityProgram> {
+
     @Autowired
     private PointsFidelityProgramRepository repository;
+
     @Autowired
-    private DigitalCardService digitalCardService;
+    private DigitalCardService<PointsDigitalCard> digitalCardService;
     @Override
     public PointsFidelityProgram save(@NonNull PointsFidelityProgram fidelityProgram) {
         if (!repository.findAll().contains(fidelityProgram)) {

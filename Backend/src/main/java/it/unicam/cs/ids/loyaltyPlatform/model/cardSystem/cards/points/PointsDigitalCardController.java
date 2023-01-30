@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -10,9 +11,6 @@ import java.util.List;
 public class PointsDigitalCardController {
     @Autowired
     private PointsDigitalCardServiceImpl pointsDigitalCardService;
-
-    @Autowired
-    private PointsDigitalCard pointsDigitalCard;
 
     @PostMapping("/pointsDigitalCard")
     public PointsDigitalCard add(@NonNull @RequestBody PointsDigitalCard pointsDigitalCard) {

@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -10,9 +11,6 @@ import java.util.List;
 public class LevelFidelityProgramController {
     @Autowired
     private LevelFidelityProgramServiceImpl levelFidelityProgramService;
-
-    @Autowired
-    private LevelFidelityProgram levelFidelityProgram;
 
     @PostMapping("/levelFidelityProgram")
     public LevelFidelityProgram add(@NonNull @RequestBody LevelFidelityProgram levelFidelityProgram) {

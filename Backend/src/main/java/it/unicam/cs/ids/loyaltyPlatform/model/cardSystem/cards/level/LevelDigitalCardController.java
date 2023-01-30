@@ -13,9 +13,6 @@ public class LevelDigitalCardController {
     @Autowired
     private LevelDigitalCardServiceImpl levelDigitalCardService;
 
-    @Autowired
-    private LevelDigitalCard levelDigitalCard;
-
     @PostMapping("/levelDigitalCard")
     public LevelDigitalCard add(@NonNull @RequestBody LevelDigitalCard levelDigitalCard) {
         return this.levelDigitalCardService.save(levelDigitalCard);

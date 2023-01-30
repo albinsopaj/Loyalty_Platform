@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.marketingModule;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +11,6 @@ import java.util.List;
 public class MarketingModuleController {
     @Autowired
     private MarketingModuleService marketingModuleService;
-
-    @Autowired
-    private DigitalCardService digitalCardService;
 
     @PostMapping("/add")
     public MarketingModule addMarketingModule(@NonNull @RequestBody MarketingModule marketingModule) {

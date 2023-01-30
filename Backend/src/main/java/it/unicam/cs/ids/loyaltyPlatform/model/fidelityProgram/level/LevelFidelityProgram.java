@@ -3,12 +3,8 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level.LevelDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,6 +12,7 @@ import java.util.List;
  * Fidelity program based on levels
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity

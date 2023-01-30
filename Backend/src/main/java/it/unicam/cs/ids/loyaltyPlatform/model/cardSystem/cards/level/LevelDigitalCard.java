@@ -3,7 +3,8 @@ package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.ArrayList;
+
+import java.util.List;
 
 /**
  * Fidelity program based on levels
@@ -22,7 +23,7 @@ public class LevelDigitalCard extends DigitalCard {
     private Integer level;
     private Integer experience;
     @CollectionTable
-    private @NonNull ArrayList<String> rewardsUnlocked;
+    private @NonNull List<String> rewardsUnlocked;
     private boolean completed;
 
     /**
@@ -43,11 +44,13 @@ public class LevelDigitalCard extends DigitalCard {
 
     /**
      * Method to add the unlocked rewards
+     *
      * @param rewards the rewards to add
      */
-    public void addRewards(ArrayList<String> rewards){
+    public void addRewards(List<String> rewards) {
         rewardsUnlocked.addAll(rewards);
     }
+
     /**
      * Method used to calculate if there is a level up
      */
