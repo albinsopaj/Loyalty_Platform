@@ -5,8 +5,6 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-
 /**
  * Class that defines the owner
  */

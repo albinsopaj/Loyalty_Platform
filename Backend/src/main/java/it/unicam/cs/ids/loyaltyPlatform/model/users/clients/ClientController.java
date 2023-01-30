@@ -1,11 +1,11 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramService;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController

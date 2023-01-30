@@ -1,8 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramService;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
@@ -77,4 +75,5 @@ public class ClientServiceImpl implements AuthenticatedUserService<Client> {
         DigitalCard digitalCard = this.levelFidelityProgramService.registerClient(client, fidelityProgram);
         client.getDigitalWallet().addDigitalCard(digitalCard);
     }
+
 }
