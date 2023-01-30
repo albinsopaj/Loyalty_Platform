@@ -41,7 +41,6 @@ public class Cashier extends AuthenticatedUser {
         Character biologicalGender = this.getBiologicalGender();
         String domicile = this.getDomicile();
 
-    }
 
     @Override
     public boolean equals(Object o) {
