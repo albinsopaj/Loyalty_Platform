@@ -3,6 +3,10 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramService;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +22,10 @@ public class ClientServiceImpl implements AuthenticatedUserService<Client> {
 
     @Autowired
     private ClientRepository repository;
-
-    private FidelityProgramService fidelityProgramService;
-
+    @Autowired
+    private LevelFidelityProgramServiceImpl levelFidelityProgramService;
+    @Autowired
+    private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
     public Client save(@NonNull Client client) {
         if (!repository.findAll().contains(client)) {
             return this.repository.save(client);
@@ -64,8 +69,12 @@ public class ClientServiceImpl implements AuthenticatedUserService<Client> {
         this.repository.deleteById(id);
     }
 
-    public void registerToFidelityProgram(@NonNull Client client, @NonNull FidelityProgram fidelityProgram){
-        DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
+    public void registerToPointsFidelityProgram(@NonNull Client client, @NonNull PointsFidelityProgram fidelityProgram){
+        DigitalCard digitalCard = this.pointsFidelityProgramService.registerClient(client, fidelityProgram);
+        client.getDigitalWallet().addDigitalCard(digitalCard);
+        }
+    public void registerToLevelFidelityProgram(@NonNull Client client, @NonNull LevelFidelityProgram fidelityProgram){
+        DigitalCard digitalCard = this.levelFidelityProgramService.registerClient(client, fidelityProgram);
         client.getDigitalWallet().addDigitalCard(digitalCard);
     }
 }

@@ -75,6 +75,7 @@ public class PointsFidelityProgramServiceImpl implements FidelityProgramService<
             PointsDigitalCard digitalCard = new PointsDigitalCard();
             digitalCard.setDigitalWallet(client.getDigitalWallet());
             digitalCard.setFidelityProgramId(fidelityProgram.getId());
+            client.getDigitalWallet().addDigitalCard(digitalCard);
             digitalCardService.save(digitalCard);
             return digitalCard;
         }
