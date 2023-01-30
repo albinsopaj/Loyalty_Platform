@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -44,14 +43,4 @@ public class PointsDigitalCard extends DigitalCard {
         this.points -= points;
     }
 
-    /*
-    public void buyReward(PointsReward reward){
-        removePoints(reward.getPrice());
-        rewards.add(reward.getName());
-        if(rewards.isEmpty()){
-            this.completed = true;
-        }
-    }
-
-    */
 }

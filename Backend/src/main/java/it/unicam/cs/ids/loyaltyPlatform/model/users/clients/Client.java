@@ -6,6 +6,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramRev
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.List;
 import java.util.Set;
 
@@ -47,9 +48,4 @@ public class Client extends AuthenticatedUser {
         fidelityPrograms.remove(fidelityProgram);
     }
 
-    /*
-    public void createReview(String review, FidelityProgram fidelityProgram) {
-        fidelityProgram.addReview(this, review);
-    }
-    */
 }

@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.Owner;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;

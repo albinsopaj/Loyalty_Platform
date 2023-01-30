@@ -8,11 +8,8 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.Owner;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.Hibernate;
-import org.hibernate.ObjectNotFoundException;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Class that defines a company in the platform
@@ -78,46 +75,5 @@ public class Company {
     public void removeCashier(@NonNull Cashier cashier){
         cashiers.remove(cashier);
     }
-    /*
-    public void removeFidelityProgram(@NonNull Long fidelityProgramId) {
-        this.fidelityPrograms.removeIf(fidelityProgram -> fidelityProgram.getId().equals(fidelityProgramId));
-    }
 
-
-    public void removeCampaign(@NonNull Long campaignId) {
-        this.campaigns.removeIf(campaign -> campaign.getId().equals(campaignId));
-    }
-
-
-    public void removeManager(@NonNull Long userId) {
-        this.managers.removeIf(manager -> manager.getId().equals(userId));
-    }
-
-
-    public void removeCashier(@NonNull Long userId) {
-        this.cashiers.removeIf(cashier -> cashier.getId().equals(userId));
-    }
-
-    public FidelityProgram getFidelityProgram(@NonNull Long fidelityProgramId) {
-        for (FidelityProgram fidelityProgram : fidelityPrograms) {
-            if (fidelityProgram.getId().equals(fidelityProgramId)) {
-                return fidelityProgram;
-            }
-        }
-        throw new ObjectNotFoundException(fidelityProgramId, "Fidelity Program not present");
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Company company = (Company) o;
-        return id != null && Objects.equals(id, company.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
-    */
 }

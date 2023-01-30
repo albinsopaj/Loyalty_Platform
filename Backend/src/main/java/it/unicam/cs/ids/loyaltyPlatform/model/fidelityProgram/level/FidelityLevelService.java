@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FidelityLevelService {
@@ -25,11 +25,6 @@ public class FidelityLevelService {
         return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Fidelity level not found"));
     }
 
-    /*
-    public Optional<FidelityLevel> get(@NonNull FidelityLevel fidelityLevel) {
-        return this.repository.findById(fidelityLevel.getId());
-    }
-    */
     public List<FidelityLevel> getAll() {
         return this.repository.findAll();
     }
@@ -50,4 +45,5 @@ public class FidelityLevelService {
     public void delete(@NonNull Long id) {
         this.repository.deleteById(id);
     }
+
 }

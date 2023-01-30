@@ -41,4 +41,5 @@ public class PointsDigitalCardController {
     public void delete(@NonNull @RequestBody @PathVariable PointsDigitalCard pointsDigitalCard) {
         this.pointsDigitalCardService.delete(pointsDigitalCard);
     }
+
 }

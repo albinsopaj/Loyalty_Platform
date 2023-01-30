@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.marketingModule;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,10 +28,4 @@ public class MarketingModule {
 
     private @NonNull String name;
 
-
-    /*
-    public void updateDigitalCardStatus(DigitalCard digitalCard, Integer value){
-        digitalCard.updateStatus(value);
-    }
-    */
 }
