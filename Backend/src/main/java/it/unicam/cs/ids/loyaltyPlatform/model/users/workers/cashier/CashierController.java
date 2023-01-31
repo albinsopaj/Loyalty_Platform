@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardServiceImpl;
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -18,27 +17,27 @@ public class CashierController {
     @Autowired
     private DigitalCardServiceImpl digitalCardService;
 
-    @PostMapping("/add")
+    @PostMapping(path = "/add")
     public Cashier add(@NonNull @RequestBody @Param("cashier") Cashier cashier) {
         return this.cashierService.save(cashier);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping(path = "/get/{id}")
     public Cashier get(@NonNull Long id) {
         return this.cashierService.findById(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping(path = "/getAll")
     public List<Cashier> getAll() {
         return this.cashierService.getAll();
     }
 
-    @PutMapping("/update/{cashierId}")
+    @PutMapping(path = "/update/{cashierId}")
     public Cashier update(@RequestBody @PathVariable("cashierId") Long id) {
         return this.cashierService.update(get(id));
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public void delete(@NonNull @PathVariable("id") Long id) {
         this.cashierService.deleteById(id);
     }
