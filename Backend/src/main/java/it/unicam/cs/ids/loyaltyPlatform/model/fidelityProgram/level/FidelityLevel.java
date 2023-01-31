@@ -31,7 +31,7 @@ public class FidelityLevel {
     @ManyToOne
     @JoinColumn(name="levelFidelityProgram_id")
     @JsonIgnore
-    private @NonNull LevelFidelityProgram levelFidelityProgram;
+    private LevelFidelityProgram levelFidelityProgram;
 
     private @NonNull Integer experienceToUnlock;
 

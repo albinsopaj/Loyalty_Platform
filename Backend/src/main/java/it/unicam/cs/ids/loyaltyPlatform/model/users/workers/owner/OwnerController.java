@@ -3,8 +3,10 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner;
 import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.FidelityLevel;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +70,14 @@ public class OwnerController {
     @PostMapping("/{ownerId}/addCompany")
     public Company addCompany(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @RequestBody Company company){
         return this.ownerService.addCompany(ownerId,company);
+    }
+    @PostMapping("/{ownerId}/getCompanies/{companyId}/getPointsFidelityProgram/{pointsFidelityProgramId}/addReward")
+    public PointsReward addPointsReward(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @PathVariable("pointsFidelityProgramId") Long pointsFidelityProgramId, @NonNull @RequestBody PointsReward pointsReward){
+        return this.ownerService.addPointsReward(ownerId,companyId,pointsFidelityProgramId,pointsReward);
+    }
+
+    @PostMapping("/{ownerId}/getCompanies/{companyId}/getLevelFidelityProgram/{levelFidelityProgramId}/addLevel")
+    public FidelityLevel addFidelityLevel(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @PathVariable("levelFidelityProgramId") Long levelFidelityProgramId, @NonNull @RequestBody FidelityLevel fidelityLevel){
+        return this.ownerService.addFidelityLevel(ownerId, companyId, levelFidelityProgramId, fidelityLevel);
     }
 }

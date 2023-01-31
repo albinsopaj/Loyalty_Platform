@@ -6,10 +6,14 @@ import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.CompanyServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.FidelityLevel;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.FidelityLevelServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsRewardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.ManagerServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
@@ -39,6 +43,10 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
     private LevelFidelityProgramServiceImpl levelFidelityProgramService;
     @Autowired
     private FidelityProgramServiceImpl fidelityProgramService;
+    @Autowired
+    private PointsRewardServiceImpl pointsRewardService;
+    @Autowired
+    private FidelityLevelServiceImpl fidelityLevelService;
     public Owner save(@NonNull Owner owner) {
         if (!repository.findAll().contains(owner)) {
             owner.setCompanies(new ArrayList<>());
@@ -139,5 +147,25 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
     public Company addCompany(@NonNull Long ownerId, @NonNull Company company){
         company.setOwner(findById(ownerId));
         return this.companyService.save(company);
+    }
+
+    public PointsReward addPointsReward(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Long pointsFidelityProgramId, @NonNull PointsReward pointsReward){
+        if(findById(ownerId).getCompanies().contains(this.companyService.findById(companyId)) && this.companyService.findById(companyId).getFidelityPrograms().contains(pointsFidelityProgramService.findById(pointsFidelityProgramId))){
+            pointsReward.setPointsFidelityProgram(this.pointsFidelityProgramService.findById(pointsFidelityProgramId));
+            this.pointsFidelityProgramService.findById(pointsFidelityProgramId).addReward(pointsReward);
+            return this.pointsRewardService.save(pointsReward);
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Owner doesn't own this company or fidelity program");
+        }
+    }
+
+    public FidelityLevel addFidelityLevel(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Long levelFidelityProgramId, @NonNull FidelityLevel fidelityLevel){
+        if(findById(ownerId).getCompanies().contains(this.companyService.findById(companyId)) && this.companyService.findById(companyId).getFidelityPrograms().contains(levelFidelityProgramService.findById(levelFidelityProgramId))){
+            fidelityLevel.setLevelFidelityProgram(this.levelFidelityProgramService.findById(levelFidelityProgramId));
+            this.levelFidelityProgramService.findById(levelFidelityProgramId).addFidelityLevel(fidelityLevel);
+            return this.fidelityLevelService.save(fidelityLevel);
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Owner doesn't own this company or fidelity program");
+        }
     }
 }

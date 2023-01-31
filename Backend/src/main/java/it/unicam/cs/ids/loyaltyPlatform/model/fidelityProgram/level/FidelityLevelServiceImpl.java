@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FidelityLevelService implements GeneralService<FidelityLevel> {
+public class FidelityLevelServiceImpl implements GeneralService<FidelityLevel> {
     @Autowired
     private FidelityLevelRepository repository;
 
