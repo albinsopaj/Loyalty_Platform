@@ -26,7 +26,7 @@ public class MarketingModule {
     @MapsId
     @JoinColumn(name="company_id")
     @JsonIgnore
-    private @NonNull Company company;
+    private Company company;
 
     private @NonNull String name;
 

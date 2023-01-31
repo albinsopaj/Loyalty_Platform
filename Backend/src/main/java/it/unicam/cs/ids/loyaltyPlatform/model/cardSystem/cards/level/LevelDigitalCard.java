@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -16,11 +17,15 @@ import java.util.List;
 @AllArgsConstructor
 public class LevelDigitalCard extends DigitalCard {
 
-    private Integer level;
-    private Integer experience;
+    private Integer level = 0;
+    private Integer experience = 0;
     @CollectionTable
     private @NonNull List<String> rewardsUnlocked;
     private boolean completed;
+
+    public LevelDigitalCard(Long levelFidelityProgramId, DigitalWallet digitalWallet){
+        super(levelFidelityProgramId,digitalWallet);
+    }
 
     /**
      * Method to add experience to the digital card
@@ -57,10 +62,6 @@ public class LevelDigitalCard extends DigitalCard {
         this.level++;
     }
 
-    @Override
-    public DigitalCard create() {
-        return new LevelDigitalCard();
-    }
 }
 
 

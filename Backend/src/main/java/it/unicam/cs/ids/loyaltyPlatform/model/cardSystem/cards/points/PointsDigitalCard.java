@@ -1,10 +1,12 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that defines a digital card of a points based fidelity program
@@ -15,13 +17,17 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PointsDigitalCard extends DigitalCard {
-    private @NonNull Integer points;
+    private @NonNull Integer points = 0;
 
     @CollectionTable
-    private @NonNull ArrayList<String> rewards;
+    private @NonNull List<String> rewards;
 
     private boolean completed;
 
+    public PointsDigitalCard(Long pointsFidelityProgramId, DigitalWallet digitalWallet){
+        super(pointsFidelityProgramId,digitalWallet);
+        this.rewards = new ArrayList<>();
+    }
     public void addReward(String reward){
         rewards.add(reward);
     }
@@ -39,10 +45,6 @@ public class PointsDigitalCard extends DigitalCard {
         this.points -= points;
     }
 
-    @Override
-    public DigitalCard create() {
-        return new PointsDigitalCard();
-    }
 
     /*
     public void buyReward(PointsReward reward){

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +21,9 @@ public class LevelFidelityProgramServiceImpl implements GeneralService<LevelFide
     @Override
     public LevelFidelityProgram save(@NonNull LevelFidelityProgram fidelityProgram) {
         if (!repository.findAll().contains(fidelityProgram)) {
+            fidelityProgram.setLikedFidelityPrograms(new ArrayList<>());
+            fidelityProgram.setReviews(new HashSet<>());
+            fidelityProgram.setLevels(new ArrayList<>());
             return this.repository.save(fidelityProgram);
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");

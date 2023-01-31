@@ -1,22 +1,26 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.lang.NonNull;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Fidelity program based on points
  */
-@AllArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString
 @Entity
 @Table(name="pointsFidelityPrograms")
 public class PointsFidelityProgram extends FidelityProgram {
@@ -24,7 +28,7 @@ public class PointsFidelityProgram extends FidelityProgram {
     private @NonNull Integer conversionRate;
 
     @OneToMany(mappedBy = "pointsFidelityProgram")
-    private @NonNull ArrayList<PointsReward> catalogue;
+    private List<PointsReward> catalogue;
 
     public void addReward(PointsReward pointsReward){
         catalogue.add(pointsReward);

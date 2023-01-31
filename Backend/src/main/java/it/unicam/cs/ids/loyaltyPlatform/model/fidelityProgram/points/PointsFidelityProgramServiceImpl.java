@@ -2,12 +2,16 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points;
 
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramRepository;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +26,9 @@ public class PointsFidelityProgramServiceImpl implements GeneralService<PointsFi
     @Override
     public PointsFidelityProgram save(@NonNull PointsFidelityProgram fidelityProgram) {
         if (!repository.findAll().contains(fidelityProgram)) {
+            fidelityProgram.setLikedFidelityPrograms(new ArrayList<>());
+            fidelityProgram.setCatalogue(new ArrayList<>());
+            fidelityProgram.setReviews(new HashSet<>());
             return this.repository.save(fidelityProgram);
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");

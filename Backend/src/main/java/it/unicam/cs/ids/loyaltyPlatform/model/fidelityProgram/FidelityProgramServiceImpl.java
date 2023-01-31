@@ -3,7 +3,9 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level.LevelDigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
@@ -21,8 +23,6 @@ public class FidelityProgramServiceImpl implements GeneralService<FidelityProgra
     private FidelityProgramRepository repository;
     @Autowired
     private DigitalCardServiceImpl digitalCardService;
-
-    private DigitalCard digitalCardInstance;
 
     @Override
     public FidelityProgram save(@NonNull FidelityProgram fidelityProgram) {
@@ -75,7 +75,12 @@ public class FidelityProgramServiceImpl implements GeneralService<FidelityProgra
             throw new ResponseStatusException(HttpStatus.FOUND, "Client already in fidelity program");
         } else {
             fidelityProgram.addClient(client);
-            DigitalCard digitalCard = digitalCardInstance.create();
+            DigitalCard digitalCard;
+            if(fidelityProgram instanceof PointsFidelityProgram pointsFidelityProgram){
+                 digitalCard = new PointsDigitalCard(fidelityProgram.getId(),client.getDigitalWallet());
+            } else {
+                digitalCard = new LevelDigitalCard(fidelityProgram.getId(), client.getDigitalWallet());
+            }
             digitalCard.setDigitalWallet(client.getDigitalWallet());
             digitalCard.setFidelityProgramId(fidelityProgram.getId());
             client.getDigitalWallet().addDigitalCard(digitalCard);

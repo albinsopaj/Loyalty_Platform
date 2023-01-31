@@ -5,10 +5,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardServic
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWalletServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramReview;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramReviewService;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.*;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,8 +103,10 @@ public class ClientServiceImpl implements GeneralService<Client> {
     }
     public void writeReview(Long clientId,Long fidelityProgramId, FidelityProgramReview review ){
         if(findById(clientId).getFidelityPrograms().contains(fidelityProgramService.findById(fidelityProgramId))){
-            this.fidelityProgramReviewService.save(review);
+            review.setFidelityProgram(this.fidelityProgramService.findById(fidelityProgramId));
+            review.setClient(findById(clientId));
             findById(clientId).addReview(review);
+            this.fidelityProgramReviewService.save(review);
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Client doesn't have access to this resource");
         }

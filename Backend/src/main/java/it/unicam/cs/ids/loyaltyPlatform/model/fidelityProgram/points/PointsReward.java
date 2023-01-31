@@ -19,12 +19,13 @@ public class PointsReward {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name="pointsFidelityProgram_id", nullable = false)
+    @JoinColumn(name="pointsFidelityProgram_id")
     @JsonIgnore
-    private @NonNull PointsFidelityProgram pointsFidelityProgram;
+    private PointsFidelityProgram pointsFidelityProgram;
+
     private @NonNull String name;
     private @NonNull Integer price;
 }

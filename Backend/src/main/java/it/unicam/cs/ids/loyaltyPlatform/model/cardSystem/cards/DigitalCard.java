@@ -29,5 +29,8 @@ public abstract class DigitalCard {
     @JsonIgnore
     private @NonNull DigitalWallet digitalWallet;
 
-    public abstract DigitalCard create();
+    public DigitalCard(Long fidelityProgramId, DigitalWallet digitalWallet){
+        this.fidelityProgramId = fidelityProgramId;
+        this.digitalWallet = digitalWallet;
+    }
 }

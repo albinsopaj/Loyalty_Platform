@@ -2,7 +2,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -9,6 +9,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.Owner;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ import java.util.List;
 @Entity
 @Table(name="companies")
 public class Company {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -32,18 +34,19 @@ public class Company {
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     @JsonIgnore
-    private @NonNull Owner owner;
+    private Owner owner;
 
     @OneToMany(mappedBy = "company")
-    private @NonNull List<FidelityProgram> fidelityPrograms;
+    private List<FidelityProgram> fidelityPrograms;
     @OneToMany(mappedBy = "company")
-    private @NonNull List<Campaign> campaigns;
+    private List<Campaign> campaigns;
     @OneToMany(mappedBy = "company")
-    private @NonNull List<Manager> managers;
+    private List<Manager> managers;
     @OneToMany(mappedBy = "company")
-    private @NonNull List<Cashier> cashiers;
+    private List<Cashier> cashiers;
+
     @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
-    private @NonNull MarketingModule marketingModule;
+    private MarketingModule marketingModule;
 
 
     public void addFidelityProgram(@NonNull FidelityProgram fidelityProgram) {

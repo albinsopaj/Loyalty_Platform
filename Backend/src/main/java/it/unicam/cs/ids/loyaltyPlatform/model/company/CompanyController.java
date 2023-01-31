@@ -14,7 +14,7 @@ public class CompanyController {
     private CompanyServiceImpl service;
 
     @PostMapping(path = "/add")
-    public Company addCompany(@NonNull @PathVariable("id") Long id, @NonNull @RequestBody Company company) {
+    public Company addCompany(@NonNull @RequestBody Company company) {
         return this.service.save(company);
     }
 
@@ -33,10 +33,6 @@ public class CompanyController {
         return this.service.update(company);
     }
 
-    @DeleteMapping(path = "/delete/{company}")
-    public void deleteCampaign(@NonNull @PathVariable Company company) {
-        this.service.delete(company);
-    }
 
     @DeleteMapping(path = "/delete/{id}")
     public void deleteCompany(@NonNull @PathVariable("id") Long id) {

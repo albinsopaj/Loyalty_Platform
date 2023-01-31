@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.OwnerServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,17 +17,20 @@ public class CompanyServiceImpl implements GeneralService<Company> {
 
     @Autowired
     private CompanyRepository repository;
-
+    @Override
     public Company save(@NonNull Company company) {
-        if (!this.repository.existsById(company.getId())) {
-            this.repository.save(company);
-            return company;
+        if (!repository.findAll().contains(company)) {
+            company.setManagers(new ArrayList<>());
+            company.setCashiers(new ArrayList<>());
+            company.setFidelityPrograms(new ArrayList<>());
+            company.setCampaigns(new ArrayList<>());
+            return this.repository.save(company);
         } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Company is already present!");
     }
 
     @Override
     public Company findById(@NonNull Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found"));
+        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found"));
     }
 
     @Override
@@ -57,7 +62,7 @@ public class CompanyServiceImpl implements GeneralService<Company> {
     @Override
     public void delete(@NonNull Company company) {
         for (Company c : this.repository.findAll()) {
-            if (this.repository.existsById(c.getId())) {
+            if (this.repository.existsById(company.getId())) {
                 this.repository.delete(company);
             } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found");
         }

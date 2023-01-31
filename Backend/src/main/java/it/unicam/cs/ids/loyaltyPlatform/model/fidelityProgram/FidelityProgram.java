@@ -6,6 +6,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 import java.util.Set;
@@ -26,10 +27,10 @@ public abstract class FidelityProgram {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name="company_id", nullable = false)
+    @JoinColumn(name = "company_id")
     @JsonIgnore
     private @NonNull Company company;
 
@@ -40,7 +41,8 @@ public abstract class FidelityProgram {
             name = "fidelityProgram_like",
             joinColumns = @JoinColumn(name = "fidelityProgram_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id"))
-    private @NonNull List<Client> likedFidelityPrograms;
+    @JsonIgnore
+    private List<Client> likedFidelityPrograms;
 
     @OneToMany(mappedBy = "fidelityProgram")
     private Set<FidelityProgramReview> reviews;

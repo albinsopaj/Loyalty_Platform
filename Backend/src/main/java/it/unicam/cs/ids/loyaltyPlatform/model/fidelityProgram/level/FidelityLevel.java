@@ -29,7 +29,7 @@ public class FidelityLevel {
     private @NonNull List<String> rewardsList;
 
     @ManyToOne
-    @JoinColumn(name="levelFidelityProgram_id", nullable = false)
+    @JoinColumn(name="levelFidelityProgram_id")
     @JsonIgnore
     private @NonNull LevelFidelityProgram levelFidelityProgram;
 

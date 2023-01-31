@@ -9,17 +9,22 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @Entity
 @Table(name="FidelityProgramReview")
 public class FidelityProgramReview {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    /*
     @EmbeddedId
+    @JsonIgnore
     private FidelityProgramReviewKey id;
-
+    */
     @ManyToOne
     @MapsId("clientId")
     @JoinColumn(name = "client_id")
+    @JsonIgnore
     private Client client;
 
     @ManyToOne
@@ -47,4 +52,20 @@ public class FidelityProgramReview {
         fidelityProgramReview.setRating(rating);
         return fidelityProgramReview;
     }
+    @Override
+    public boolean equals(Object o){
+        if(o == this) return true;
+        if(!(o instanceof FidelityProgramReview fidelityProgramReview)){
+            return false;
+        }
+        return fidelityProgramReview.client.equals(client) && fidelityProgramReview.fidelityProgram.equals(fidelityProgram);
+    }
+    @Override
+    public int hashCode(){
+        int result = 17;
+        result = 31 * result + client.hashCode();
+        result = 31 * result + fidelityProgram.hashCode();
+        return result;
+    }
+
 }

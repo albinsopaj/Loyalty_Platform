@@ -47,7 +47,7 @@ public class ClientController {
         this.clientService.registerToFidelityProgram(this.companyService.findById(companyId), this.fidelityProgramService.findById(fidelityProgramId), this.clientService.findById(clientId));
     }
 
-    @PostMapping("/{clientId}/fidelityPrograms/{fidelityProgramId}/{review}")
+    @PostMapping("/{clientId}/fidelityPrograms/{fidelityProgramId}/writeReview")
     public void writeReview(@NonNull @PathVariable Long clientId, @NonNull @PathVariable Long fidelityProgramId, @NonNull @RequestBody FidelityProgramReview review){
         this.clientService.writeReview(clientId, fidelityProgramId, review );
     }
