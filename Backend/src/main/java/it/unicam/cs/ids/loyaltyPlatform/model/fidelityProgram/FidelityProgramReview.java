@@ -30,4 +30,12 @@ public class FidelityProgramReview {
 
     private @NonNull Integer rating;
 
+    public FidelityProgramReview createReview(Client client, FidelityProgram fidelityProgram, String review, Integer rating){
+        FidelityProgramReview fidelityProgramReview = new FidelityProgramReview();
+        fidelityProgramReview.setClient(client);
+        fidelityProgramReview.setFidelityProgram(fidelityProgram);
+        fidelityProgramReview.setReview(review);
+        fidelityProgramReview.setRating(rating);
+        return fidelityProgramReview;
+    }
 }

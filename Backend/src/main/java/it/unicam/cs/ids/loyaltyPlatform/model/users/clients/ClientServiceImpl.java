@@ -3,7 +3,10 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWalletServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramReview;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramReviewService;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
@@ -24,9 +27,11 @@ public class ClientServiceImpl implements GeneralService<Client> {
     private DigitalCardServiceImpl digitalCardService;
     @Autowired
     private DigitalWalletServiceImpl digitalWalletService;
-
     @Autowired
     private FidelityProgramServiceImpl fidelityProgramService;
+    @Autowired
+    private FidelityProgramReviewService fidelityProgramReviewService;
+    private FidelityProgramReview fidelityProgramReviewInstance;
 
     public Client save(@NonNull Client client) {
         if (!repository.findAll().contains(client)) {
@@ -71,11 +76,15 @@ public class ClientServiceImpl implements GeneralService<Client> {
         this.repository.deleteById(id);
     }
 
-    public void registerToFidelityProgram(@NonNull Client client, @NonNull FidelityProgram fidelityProgram){
-        DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
-        client.getDigitalWallet().addDigitalCard(digitalCard);
-        digitalCard.setDigitalWallet(client.getDigitalWallet());
+    public void registerToFidelityProgram(@NonNull Company company, @NonNull FidelityProgram fidelityProgram, @NonNull Client client){
+        if(company.getFidelityPrograms().contains(fidelityProgram)){
+            DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
+            client.getDigitalWallet().addDigitalCard(digitalCard);
+            digitalCard.setDigitalWallet(client.getDigitalWallet());
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company doesn't own this fidelity program");
         }
+    }
 
     public DigitalCard viewDigitalCard(@NonNull Long clientId, @NonNull Long digitalWalletId, @NonNull Long digitalCardId){
         if(this.repository.getReferenceById(clientId).getDigitalWallet().getId().equals(digitalWalletId) && this.digitalWalletService.findById(digitalWalletId).getDigitalCards().contains(this.digitalCardService.findById(digitalCardId))){
@@ -83,6 +92,16 @@ public class ClientServiceImpl implements GeneralService<Client> {
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Client doesn't have access to this resource");
         }
+    }
+    public void writeReview(Long clientId,Long fidelityProgramId, String review, Integer rating ){
+        if(findById(clientId).getFidelityPrograms().contains(fidelityProgramService.findById(fidelityProgramId))){
+            FidelityProgramReview fidelityProgramReview = fidelityProgramReviewInstance.createReview(findById(clientId),this.fidelityProgramService.findById(fidelityProgramId),review,rating);
+            findById(clientId).addReview(fidelityProgramReview);
+            this.fidelityProgramReviewService.save(fidelityProgramReview);
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Client doesn't have access to this resource");
+        }
+
     }
 
 }
