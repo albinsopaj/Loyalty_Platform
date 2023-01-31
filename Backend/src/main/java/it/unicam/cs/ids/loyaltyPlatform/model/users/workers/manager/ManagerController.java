@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -12,33 +13,33 @@ public class ManagerController  {
     @Autowired
     private ManagerServiceImpl managerService;
 
-    @PostMapping("/add")
+    @PostMapping(path = "/add")
     public Manager add(@NonNull @RequestBody Manager manager) {
         return this.managerService.save(manager);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping(path = "/get/{id}")
     public Manager get(@NonNull Long id) {
         return this.managerService.findById(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping(path = "/getAll")
     public List<Manager> getAll() {
         return this.managerService.getAll();
     }
 
-    @PutMapping("/update/{manager}")
+    @PutMapping(path = "/update/{manager}")
     public Manager update(@NonNull @RequestBody @PathVariable("manager") Manager manager) {
         return this.managerService.update(manager);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public void delete(@NonNull @PathVariable("id") Long id) {
         this.managerService.deleteById(id);
     }
 
     //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto venga passato direttamente nell'URL
-    @DeleteMapping("delete/{manager}")
+    @DeleteMapping(path = "delete/{manager}")
     public void delete(@NonNull @RequestBody @PathVariable Manager manager) {
         this.managerService.delete(manager);
     }

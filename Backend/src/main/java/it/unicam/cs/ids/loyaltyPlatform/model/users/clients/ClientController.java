@@ -1,13 +1,13 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
-import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.CompanyServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramReview;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -20,19 +20,22 @@ public class ClientController {
     private FidelityProgramServiceImpl fidelityProgramService;
     @Autowired
     private CompanyServiceImpl companyService;
-    @PostMapping("/add")
+    @PostMapping(path = "/add")
     public Client add(@NonNull @RequestBody Client client) {
         return this.clientService.save(client);
     }
-    @GetMapping("/get/{clientId}")
+
+    @GetMapping(path = "/get/{clientId}")
     public Client get(@NonNull @PathVariable("clientId") Long clientId){
         return this.clientService.findById(clientId);
     }
-    @GetMapping("/getAll")
+
+    @GetMapping(path = "/getAll")
     public List<Client> getAll(){
         return this.clientService.getAll();
     }
-    @PutMapping("/update/{client}")
+
+    @PutMapping(path = "/update/{client}")
     public Client update(@NonNull @RequestBody @PathVariable("client") Client client) {
         return this.clientService.update(client);
     }

@@ -12,22 +12,22 @@ public class MarketingModuleController {
     @Autowired
     private MarketingModuleServiceImpl marketingModuleService;
 
-    @PostMapping("/add")
+    @PostMapping(path = "/add")
     public MarketingModule addMarketingModule(@NonNull @RequestBody MarketingModule marketingModule) {
         return this.marketingModuleService.save(marketingModule);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping(path = "/get/{id}")
     public MarketingModule getMarketingModule(@NonNull @PathVariable Long id) {
         return this.marketingModuleService.findById(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping(path = "/getAll")
     public List<MarketingModule> getAllMarketingModules() {
         return this.marketingModuleService.getAll();
     }
 
-    @PutMapping("/update/{marketingModule}")
+    @PutMapping(path = "/update/{marketingModule}")
     public MarketingModule updateMarketingModule(@NonNull @RequestBody @PathVariable("marketingModule") MarketingModule marketingModule) {
         return this.marketingModuleService.update(marketingModule);
     }
