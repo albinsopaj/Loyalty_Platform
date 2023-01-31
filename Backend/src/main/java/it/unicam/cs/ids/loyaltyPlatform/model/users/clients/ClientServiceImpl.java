@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWalletServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
@@ -31,11 +32,16 @@ public class ClientServiceImpl implements GeneralService<Client> {
     private FidelityProgramServiceImpl fidelityProgramService;
     @Autowired
     private FidelityProgramReviewService fidelityProgramReviewService;
+
+    private DigitalWallet digitalWalletInstance;
+    private Client clientInstance;
     private FidelityProgramReview fidelityProgramReviewInstance;
 
     public Client save(@NonNull Client client) {
         if (!repository.findAll().contains(client)) {
-            return this.repository.save(client);
+            Client newClient = clientInstance.createClient(client.getFirstName(),client.getLastName(),client.getEmail(),client.getPhoneNumber(),client.getBiologicalGender(),client.getDomicile());
+            newClient.setDigitalWallet(digitalWalletInstance.createDigitalWallet(newClient));
+            return this.repository.save(newClient);
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "client already exists");
         }
@@ -81,6 +87,7 @@ public class ClientServiceImpl implements GeneralService<Client> {
             DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
             client.getDigitalWallet().addDigitalCard(digitalCard);
             digitalCard.setDigitalWallet(client.getDigitalWallet());
+            client.addFidelityProgram(fidelityProgram);
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company doesn't own this fidelity program");
         }

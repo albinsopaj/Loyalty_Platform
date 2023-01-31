@@ -7,6 +7,8 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -31,7 +33,17 @@ public class Client extends AuthenticatedUser {
 
     @OneToMany(mappedBy = "client")
     private @NonNull Set<FidelityProgramReview> reviews;
-
+    public Client createClient( String firstName, String lastName, String email, String phoneNumber, Character biologicalGender, String domicile){
+        Client client = new Client();
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setEmail(email);
+        client.setBiologicalGender(biologicalGender);
+        client.setDomicile(domicile);
+        client.setFidelityPrograms(new ArrayList<>());
+        client.setReviews(new HashSet<>());
+        return client;
+    }
     public void addReview( FidelityProgramReview review){
         reviews.add(review);
     }

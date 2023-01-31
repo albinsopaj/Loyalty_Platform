@@ -5,6 +5,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +30,12 @@ public class DigitalWallet {
     @OneToMany(mappedBy = "digitalWallet")
     private @NonNull List<DigitalCard> digitalCards;
 
+    public DigitalWallet createDigitalWallet(Client client){
+        DigitalWallet digitalWallet = new DigitalWallet();
+        digitalWallet.setClient(client);
+        digitalWallet.setDigitalCards(new ArrayList<>());
+        return digitalWallet;
+    }
     public void addDigitalCard(DigitalCard digitalCard){
         digitalCards.add(digitalCard);
     }
