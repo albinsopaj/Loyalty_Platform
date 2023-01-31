@@ -27,23 +27,13 @@ public class Client extends AuthenticatedUser {
 
 
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
-    private @NonNull DigitalWallet digitalWallet;
+    private DigitalWallet digitalWallet;
     @ManyToMany(mappedBy = "likedFidelityPrograms")
     private @NonNull List<FidelityProgram> fidelityPrograms;
 
     @OneToMany(mappedBy = "client")
     private @NonNull Set<FidelityProgramReview> reviews;
-    public Client createClient( String firstName, String lastName, String email, String phoneNumber, Character biologicalGender, String domicile){
-        Client client = new Client();
-        client.setFirstName(firstName);
-        client.setLastName(lastName);
-        client.setEmail(email);
-        client.setBiologicalGender(biologicalGender);
-        client.setDomicile(domicile);
-        client.setFidelityPrograms(new ArrayList<>());
-        client.setReviews(new HashSet<>());
-        return client;
-    }
+
     public void addReview( FidelityProgramReview review){
         reviews.add(review);
     }

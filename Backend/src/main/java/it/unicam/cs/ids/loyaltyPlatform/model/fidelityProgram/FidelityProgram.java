@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
@@ -29,6 +30,7 @@ public abstract class FidelityProgram {
 
     @ManyToOne
     @JoinColumn(name="company_id", nullable = false)
+    @JsonIgnore
     private @NonNull Company company;
 
     private @NonNull String name;

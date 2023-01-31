@@ -21,7 +21,7 @@ import java.util.List;
 public class Owner extends AuthenticatedUser {
 
     @OneToMany(mappedBy = "owner")
-    private @NonNull List<Company> companies;
+    private List<Company> companies;
 
     public void addCompany( Company company){
         companies.add(company);

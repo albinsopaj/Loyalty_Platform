@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,18 +8,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DigitalWalletServiceImpl implements GeneralService<DigitalWallet> {
+public class
+DigitalWalletServiceImpl implements GeneralService<DigitalWallet> {
 
     @Autowired
     private DigitalWalletRepository repository;
 
-    @Override
     public DigitalWallet save(@NonNull DigitalWallet digitalWallet) {
-        return this.repository.save(digitalWallet);
+        if (!repository.findAll().contains(digitalWallet)) {
+            digitalWallet.setDigitalCards(new ArrayList<>());
+            return this.repository.save(digitalWallet);
+        } else {
+            throw new ResponseStatusException(HttpStatus.FOUND, "client already exists");
+        }
     }
 
     @Override
@@ -66,4 +73,7 @@ public class DigitalWalletServiceImpl implements GeneralService<DigitalWallet> {
         this.repository.deleteById(id);
     }
 
+    public void deleteAll(){
+        this.repository.deleteAll();
+    }
 }

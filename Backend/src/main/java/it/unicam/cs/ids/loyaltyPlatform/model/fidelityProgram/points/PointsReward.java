@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.lang.NonNull;
@@ -22,6 +23,7 @@ public class PointsReward {
 
     @ManyToOne
     @JoinColumn(name="pointsFidelityProgram_id", nullable = false)
+    @JsonIgnore
     private @NonNull PointsFidelityProgram pointsFidelityProgram;
     private @NonNull String name;
     private @NonNull Integer price;

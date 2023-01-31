@@ -7,22 +7,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "loyaltyPlatform/digitalWallet")
 public class DigitalWalletController {
 
     @Autowired
     private DigitalWalletServiceImpl digitalWalletService;
-
-    @PostMapping(path = "/add/{digitalWallet}/")
-    public DigitalWallet addDigitalWallet(@NonNull @RequestBody @PathVariable("digitalWallet") DigitalWallet digitalWallet) {
-        return this.digitalWalletService.save(digitalWallet);
-    }
 
     @GetMapping(path = "/digitalWallet/{digitalWalletId}")
     public DigitalWallet getDigitalWallet(@NonNull @PathVariable("digitalWalletId") Long id) {
         return this.digitalWalletService.findById(id);
     }
 
-    @GetMapping(path = "/digitalWallets")
+    @GetMapping(path = "/getAll")
     public List<DigitalWallet> getAllDigitalWallets() {
         return this.digitalWalletService.getAll();
     }
@@ -41,5 +37,8 @@ public class DigitalWalletController {
     public void deleteDigitalWallet(@NonNull @PathVariable("digitalWallet") DigitalWallet digitalWallet) {
         this.digitalWalletService.delete(digitalWallet);
     }
-
+    @DeleteMapping(path = "/deleteAll")
+    public void deleteAll(){
+        this.digitalWalletService.deleteAll();
+    }
 }

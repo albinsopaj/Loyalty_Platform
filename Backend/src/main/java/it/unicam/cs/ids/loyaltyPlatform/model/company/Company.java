@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.marketingModule.MarketingModule;
@@ -30,6 +31,7 @@ public class Company {
 
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
+    @JsonIgnore
     private @NonNull Owner owner;
 
     @OneToMany(mappedBy = "company")

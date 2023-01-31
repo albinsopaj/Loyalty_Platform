@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
@@ -21,6 +22,7 @@ public class Cashier extends AuthenticatedUser {
 
     @ManyToOne
     @JoinColumn(name="company_id", nullable = false)
+    @JsonIgnore
     private @NonNull Company company;
 
 }

@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,15 +21,23 @@ public class Campaign {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name="company_id",nullable = false)
-    private @NonNull Company company;
+    @JsonIgnore
+    private Company company;
+
     private @NonNull String name;
-    private @NonNull Date start;
-    private @NonNull Date end;
+    private @NonNull String start;
+    private @NonNull String end;
     private @NonNull String description;
 
+    public Campaign( String name, String start, String end, String description ){
+        this.name = name;
+        this.start = start;
+        this.end = end;
+        this.description = description;
+    }
 
 }

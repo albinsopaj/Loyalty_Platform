@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
@@ -20,6 +21,7 @@ public class Manager extends AuthenticatedUser {
 
     @ManyToOne
     @JoinColumn(name="company_id",nullable = false)
+    @JsonIgnore
     private @NonNull Company company;
 
 }

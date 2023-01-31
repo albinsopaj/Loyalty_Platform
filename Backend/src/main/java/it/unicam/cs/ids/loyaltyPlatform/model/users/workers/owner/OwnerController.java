@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,11 +38,8 @@ public class OwnerController {
     public void delete(@NonNull @PathVariable("id") Long id) {
         this.ownerService.deleteById(id);
     }
-
-    //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto diretto venga passato direttamente nell'URL
-    @DeleteMapping("/delete/{owner}")
-    public void delete(@NonNull @RequestBody @PathVariable Owner owner) {
-        this.ownerService.delete(owner);
+    @PostMapping("/{ownerId}/getCompanies/{companyId}/addCampaign")
+    public Campaign addCampaign(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody @PathVariable Campaign campaign){
+        return this.ownerService.addCampaign(ownerId, companyId, campaign);
     }
-
 }

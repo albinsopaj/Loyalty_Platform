@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,15 +35,17 @@ public class ClientServiceImpl implements GeneralService<Client> {
     @Autowired
     private FidelityProgramReviewService fidelityProgramReviewService;
 
-    private DigitalWallet digitalWalletInstance;
-    private Client clientInstance;
+    private DigitalWallet digitalWalletInstance = new DigitalWallet();
+
+    private Client clientInstance = new Client();
     private FidelityProgramReview fidelityProgramReviewInstance;
 
     public Client save(@NonNull Client client) {
         if (!repository.findAll().contains(client)) {
-            Client newClient = clientInstance.createClient(client.getFirstName(),client.getLastName(),client.getEmail(),client.getPhoneNumber(),client.getBiologicalGender(),client.getDomicile());
-            newClient.setDigitalWallet(digitalWalletInstance.createDigitalWallet(newClient));
-            return this.repository.save(newClient);
+            client.setReviews(new HashSet<>());
+            client.setFidelityPrograms(new ArrayList<>());
+            this.digitalWalletService.save(new DigitalWallet(client));
+            return this.repository.save(client);
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "client already exists");
         }
@@ -100,15 +104,16 @@ public class ClientServiceImpl implements GeneralService<Client> {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Client doesn't have access to this resource");
         }
     }
-    public void writeReview(Long clientId,Long fidelityProgramId, String review, Integer rating ){
+    public void writeReview(Long clientId,Long fidelityProgramId, FidelityProgramReview review ){
         if(findById(clientId).getFidelityPrograms().contains(fidelityProgramService.findById(fidelityProgramId))){
-            FidelityProgramReview fidelityProgramReview = fidelityProgramReviewInstance.createReview(findById(clientId),this.fidelityProgramService.findById(fidelityProgramId),review,rating);
-            findById(clientId).addReview(fidelityProgramReview);
-            this.fidelityProgramReviewService.save(fidelityProgramReview);
+            this.fidelityProgramReviewService.save(review);
+            findById(clientId).addReview(review);
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Client doesn't have access to this resource");
         }
 
     }
-
+    public void deleteAll(){
+        this.repository.deleteAll();
+    }
 }

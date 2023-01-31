@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +17,11 @@ public class CampaignServiceImpl implements GeneralService<Campaign> {
 
     @Override
     public Campaign save(@NonNull Campaign campaign) {
-        if (!this.repository.existsById(campaign.getId())) {
-            this.repository.save(campaign);
-            return campaign;
-        } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Campaign is already present!");
+        if (!repository.findAll().contains(campaign)) {
+            return this.repository.save(campaign);
+        } else {
+            throw new ResponseStatusException(HttpStatus.FOUND, "campaign already exists");
+        }
     }
 
     @Override

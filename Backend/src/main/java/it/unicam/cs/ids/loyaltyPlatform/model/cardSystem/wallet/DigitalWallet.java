@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
@@ -21,15 +22,18 @@ public class DigitalWallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+    private Long id;
 
     @OneToOne
     @MapsId
     @JoinColumn(name = "client_id")
-    private @NonNull Client client;
+    @JsonIgnore
+    private Client client;
     @OneToMany(mappedBy = "digitalWallet")
     private @NonNull List<DigitalCard> digitalCards;
-
+    public DigitalWallet(Client client){
+        this.client = client;
+    }
     public DigitalWallet createDigitalWallet(Client client){
         DigitalWallet digitalWallet = new DigitalWallet();
         digitalWallet.setClient(client);

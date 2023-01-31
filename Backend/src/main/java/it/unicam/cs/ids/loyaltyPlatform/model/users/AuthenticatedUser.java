@@ -18,7 +18,7 @@ public abstract class AuthenticatedUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private @NonNull Long id;
+    private Long id;
 
     private @NonNull String firstName;
     private @NonNull String lastName;

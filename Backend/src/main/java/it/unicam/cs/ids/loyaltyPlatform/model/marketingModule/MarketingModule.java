@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.marketingModule;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,6 +25,7 @@ public class MarketingModule {
     @OneToOne
     @MapsId
     @JoinColumn(name="company_id")
+    @JsonIgnore
     private @NonNull Company company;
 
     private @NonNull String name;
