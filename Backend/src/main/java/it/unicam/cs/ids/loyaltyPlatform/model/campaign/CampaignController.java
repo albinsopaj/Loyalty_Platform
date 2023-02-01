@@ -21,7 +21,7 @@ public class CampaignController {
 //        return this.campaignService.save(campaign);
 //    }
 
-    @GetMapping(path = "/{campaignId}")
+    @GetMapping(path = "/get/{campaignId}")
     public Campaign getCampaign(@NonNull @PathVariable("campaignId") Long id) {
         return this.campaignService.findById(id);
     }

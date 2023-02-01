@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "loyaltyPlatform/levelFidelityPrograms")
+@RequestMapping(path = "loyaltyPlatform/levelFidelityProgram")
 public class LevelFidelityProgramController {
     @Autowired
     private LevelFidelityProgramServiceImpl levelFidelityProgramService;
@@ -17,8 +17,8 @@ public class LevelFidelityProgramController {
         return this.levelFidelityProgramService.save(levelFidelityProgram);
     }
 
-    @GetMapping(path = "/{id}")
-    public LevelFidelityProgram get(@NonNull Long id) {
+    @GetMapping(path = "/get/{id}")
+    public LevelFidelityProgram get(@NonNull @PathVariable("id") Long id) {
         return this.levelFidelityProgramService.findById(id);
     }
 

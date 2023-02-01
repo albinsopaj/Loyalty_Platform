@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "loyaltyPlatform/pointsFidelityPrograms")
+@RequestMapping(path = "loyaltyPlatform/pointsFidelityProgram")
 public class PointsFidelityProgramController {
+
     @Autowired
     private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
 
-    @GetMapping(path = "/{id}")
-    public PointsFidelityProgram get(@NonNull Long id) {
+    @GetMapping(path = "/get/{id}")
+    public PointsFidelityProgram get(@NonNull @PathVariable("id") Long id) {
         return this.pointsFidelityProgramService.findById(id);
     }
 
