@@ -81,9 +81,14 @@ public class OwnerController {
 
     /********************* Compaign related methods  *********************/
 
-    @PostMapping(path = "/{ownerId}/getCompanies/{companyId}/addCampaign")
-    public Campaign addCampaign(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody Campaign campaign) {
-        return this.ownerService.addCampaign(ownerId, companyId, campaign);
+//    @PutMapping(path = "/updateLevelFidelityProgram/{ownerId}/{levelFidelityProgramId}")
+//    public LevelFidelityProgram updateLevelFidelityProgram(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("levelFidelityProgramId") Long levelFidelityProgramId, @NonNull @RequestBody LevelFidelityProgram levelFidelityProgram) {
+//        return this.ownerService.updateLevelFidelityProgram(ownerId, levelFidelityProgramId, levelFidelityProgram);
+//    }
+
+            @DeleteMapping(path = "deleteLevelFidelityProgram/{ownerId}/{levelFidelityProgramId}")
+            public void deleteLevelFidelityProgram(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull@PathVariable("levelFidelityProgramId")Long levelFidelityProgramId) {
+        this.ownerService.deleteLevelFidelityProgram(ownerId, levelFidelityProgramId);
     }
 
     @PutMapping(path = "/updateCampaign/{ownerId}/{campaignId}")
@@ -97,11 +102,9 @@ public class OwnerController {
     }
 
 
-    /********************* Manager related methods  *********************/
-
-    @PostMapping(path = "/{ownerId}/getCompanies/{companyId}/addManager")
-    public Manager addManager(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody Manager manager) {
-        return this.ownerService.addManager(ownerId, companyId, manager);
+    @PostMapping(path = "/addCampaign/{ownerId}/{companyId}")
+    public Campaign addCampaign(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody Campaign campaign) {
+        return this.ownerService.addCampaign(ownerId, companyId, campaign);
     }
 
     @PutMapping(path = "/updateManager/{ownerId}/{managerId}")
@@ -115,11 +118,9 @@ public class OwnerController {
     }
 
 
-    /********************* Fidelity Program related methods  *********************/
-
-    @PostMapping(path = "/{ownerId}/getCompanies/{fidelityProgramId}/addFidelityProgram")
-    public FidelityProgram addFidelityProgram(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId, @NonNull @RequestBody FidelityProgram fidelityProgram) {
-        return this.ownerService.addFidelityProgram(ownerId, fidelityProgramId, fidelityProgram);
+    @PostMapping(path = "/addManager/{ownerId}/{companyId}")
+    public Manager addManager(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody Manager manager) {
+        return this.ownerService.addManager(ownerId, companyId, manager);
     }
 
     @PutMapping(path = "/updateFidelityProgram/{ownerId}/{fidelityProgramId}")
@@ -133,11 +134,9 @@ public class OwnerController {
     }
 
 
-    /********** Points Fidelity Program **********/
-
-    @PostMapping(path = "/{ownerId}/getCompanies/{companyId}/addPointsFidelityProgram")
-    public PointsFidelityProgram addPointsFidelityProgram(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody PointsFidelityProgram pointsFidelityProgram) {
-        return this.ownerService.addPointsFidelityProgram(ownerId, companyId, pointsFidelityProgram);
+    @PostMapping(path = "/addFidelityProgram/{ownerId}/{fidelityProgramId}")
+    public FidelityProgram addFidelityProgram(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId, @NonNull @RequestBody FidelityProgram fidelityProgram) {
+        return this.ownerService.addFidelityProgram(ownerId, fidelityProgramId, fidelityProgram);
     }
 
     @PutMapping(path = "/updatePointsFidelityProgram/{ownerId}/{pointsFidelityProgramId}")
@@ -153,27 +152,17 @@ public class OwnerController {
 
     /********** Level Fidelity Program **********/
 
-    @PostMapping(path = "/{ownerId}/getCompanies/{companyId}/addLevelFidelityProgram")
-    public LevelFidelityProgram addLevelFidelityProgram(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody LevelFidelityProgram levelFidelityProgram) {
-        return this.ownerService.addLevelFidelityProgram(ownerId, companyId, levelFidelityProgram);
+    @PostMapping(path = "/addPointsFidelityProgram/{ownerId}/{companyId}")
+    public PointsFidelityProgram addPointsFidelityProgram(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody PointsFidelityProgram pointsFidelityProgram) {
+        return this.ownerService.addPointsFidelityProgram(ownerId, companyId, pointsFidelityProgram);
     }
 
-    @PutMapping(path = "/updateLevelFidelityProgram/{ownerId}/{levelFidelityProgramId}")
-    public LevelFidelityProgram updateLevelFidelityProgram(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("levelFidelityProgramId") Long levelFidelityProgramId, @NonNull @RequestBody LevelFidelityProgram levelFidelityProgram) {
-        return this.ownerService.updateLevelFidelityProgram(ownerId, levelFidelityProgramId, levelFidelityProgram);
-    }
-
-    @DeleteMapping(path = "deleteLevelFidelityProgram/{ownerId}/{levelFidelityProgramId}")
-    public void deleteLevelFidelityProgram(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("levelFidelityProgramId") Long levelFidelityProgramId) {
-        this.ownerService.deleteLevelFidelityProgram(ownerId, levelFidelityProgramId);
-    }
-
-    @PostMapping(path = "/{ownerId}/getCompanies/{companyId}/getPointsFidelityProgram/{pointsFidelityProgramId}/addReward")
+    @PostMapping(path = "/addReward/{ownerId}/{companyId}/{pointsFidelityProgramId}")
     public PointsReward addPointsReward(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @PathVariable("pointsFidelityProgramId") Long pointsFidelityProgramId, @NonNull @RequestBody PointsReward pointsReward){
         return this.ownerService.addPointsReward(ownerId,companyId,pointsFidelityProgramId,pointsReward);
     }
 
-    @PostMapping(path = "/{ownerId}/getCompanies/{companyId}/getLevelFidelityProgram/{levelFidelityProgramId}/addLevel")
+    @PostMapping(path = "/addLevel/{ownerId}/{companyId}/{levelFidelityProgramId}")
     public FidelityLevel addFidelityLevel(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @PathVariable("levelFidelityProgramId") Long levelFidelityProgramId, @NonNull @RequestBody FidelityLevel fidelityLevel){
         return this.ownerService.addFidelityLevel(ownerId, companyId, levelFidelityProgramId, fidelityLevel);
     }

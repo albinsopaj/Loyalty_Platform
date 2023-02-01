@@ -9,6 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "loyaltyPlatform/pointsFidelityProgram")
 public class PointsFidelityProgramController {
+
     @Autowired
     private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
 
