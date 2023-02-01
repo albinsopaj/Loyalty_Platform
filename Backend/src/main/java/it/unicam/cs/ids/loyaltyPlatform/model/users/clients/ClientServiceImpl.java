@@ -29,9 +29,6 @@ public class ClientServiceImpl implements GeneralService<Client> {
     private DigitalWalletServiceImpl digitalWalletService;
     @Autowired
     private FidelityProgramServiceImpl fidelityProgramService;
-    @Autowired
-    private FidelityProgramReviewService fidelityProgramReviewService;
-
 
     public Client save(@NonNull Client client) {
         if (!repository.findAll().contains(client)) {
@@ -79,9 +76,7 @@ public class ClientServiceImpl implements GeneralService<Client> {
 
     public void registerToFidelityProgram(@NonNull Company company, @NonNull FidelityProgram fidelityProgram, @NonNull Client client){
         if(company.getFidelityPrograms().contains(fidelityProgram)){
-            DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
-            client.getDigitalWallet().addDigitalCard(digitalCard);
-            digitalCard.setDigitalWallet(client.getDigitalWallet());
+            this.fidelityProgramService.registerClient(client, fidelityProgram);
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company doesn't own this fidelity program");
         }
@@ -94,17 +89,7 @@ public class ClientServiceImpl implements GeneralService<Client> {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Client doesn't have access to this resource");
         }
     }
-    public void writeReview(Long clientId,Long fidelityProgramId, FidelityProgramReview review ){
-        if(findById(clientId).getFidelityProgramIds().contains(fidelityProgramId)){
-            review.setFidelityProgram(this.fidelityProgramService.findById(fidelityProgramId));
-            review.setClient(findById(clientId));
-            findById(clientId).addReview(review);
-            this.fidelityProgramReviewService.save(review);
-        } else {
-            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Client doesn't have access to this resource");
-        }
 
-    }
     public void deleteAll(){
         this.repository.deleteAll();
     }

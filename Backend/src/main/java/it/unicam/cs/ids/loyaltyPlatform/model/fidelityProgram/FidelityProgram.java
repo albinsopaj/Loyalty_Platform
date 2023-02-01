@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.lang.NonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -36,12 +38,7 @@ public abstract class FidelityProgram {
 
     @CollectionTable
     private @NonNull Set<Long> clientIds = new HashSet<>();
-    @OneToMany(mappedBy = "fidelityProgram")
-    private @NonNull Set<FidelityProgramReview> reviews = new HashSet<>();
 
-    public void addReview( FidelityProgramReview fidelityProgramReview){
-        reviews.add(fidelityProgramReview);
-    }
     public void addClient(Long clientId) {
         clientIds.add(clientId);
     }

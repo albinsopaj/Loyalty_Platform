@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramReview;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,12 +28,6 @@ public class Client extends AuthenticatedUser {
     @CollectionTable()
     private @NonNull Set<Long> fidelityProgramIds = new HashSet<>();
 
-    @OneToMany(mappedBy = "client")
-    private @NonNull Set<FidelityProgramReview> reviews = new HashSet<>();
-
-    public void addReview( FidelityProgramReview review){
-        reviews.add(review);
-    }
     public void addFidelityProgram( Long fidelityProgramId){
         this.fidelityProgramIds.add(fidelityProgramId);
     }

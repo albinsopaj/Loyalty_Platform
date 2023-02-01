@@ -2,7 +2,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.CompanyServiceImpl;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramReview;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,11 +53,6 @@ public class ClientController {
     @PutMapping(path = "/getCompanies/{companyId}/getFidelityPrograms/{fidelityProgramId}/registerToFidelityProgram/{clientId}")
     public void registerToFidelityProgram(@NonNull @PathVariable("companyId") Long companyId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId){
          this.clientService.registerToFidelityProgram(this.companyService.findById(companyId), this.fidelityProgramService.findById(fidelityProgramId), this.clientService.findById(clientId));
-    }
-
-    @PostMapping(path = "/{clientId}/fidelityPrograms/{fidelityProgramId}/writeReview")
-    public void writeReview(@NonNull @PathVariable Long clientId, @NonNull @PathVariable Long fidelityProgramId, @NonNull @RequestBody FidelityProgramReview review){
-        this.clientService.writeReview(clientId, fidelityProgramId, review );
     }
 
     @GetMapping(path = "/{clientId}/getDigitalWallet/{digitalWalletId}/getDigitalCard/{digitalCardId}")
