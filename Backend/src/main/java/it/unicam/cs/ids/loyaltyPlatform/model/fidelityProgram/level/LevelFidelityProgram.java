@@ -1,9 +1,10 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
+
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.*;
 
 import java.util.List;

@@ -46,30 +46,32 @@ public class ClientController {
         return this.clientService.update(client);
     }
 
-    @PutMapping("/update/{clientId}")
+    @PutMapping(path = "/update/{clientId}")
     public Client update(@NonNull @RequestBody @PathVariable("clientId") Long id) {
         return this.clientService.updateById(id);
     }
 
-    @PutMapping("/getCompanies/{companyId}/getFidelityPrograms/{fidelityProgramId}/registerToFidelityProgram/{clientId}")
+    @PutMapping(path = "/getCompanies/{companyId}/getFidelityPrograms/{fidelityProgramId}/registerToFidelityProgram/{clientId}")
     public void registerToFidelityProgram(@NonNull @PathVariable("companyId") Long companyId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId){
         this.clientService.registerToFidelityProgram(this.companyService.findById(companyId), this.fidelityProgramService.findById(fidelityProgramId), this.clientService.findById(clientId));
     }
 
-    @PostMapping("/{clientId}/fidelityPrograms/{fidelityProgramId}/writeReview")
+    @PostMapping(path = "/{clientId}/fidelityPrograms/{fidelityProgramId}/writeReview")
     public void writeReview(@NonNull @PathVariable Long clientId, @NonNull @PathVariable Long fidelityProgramId, @NonNull @RequestBody FidelityProgramReview review){
         this.clientService.writeReview(clientId, fidelityProgramId, review );
     }
-    @GetMapping("/{clientId}/getDigitalWallet/{digitalWalletId}/getDigitalCard/{digitalCardId}")
+
+    @GetMapping(path = "/{clientId}/getDigitalWallet/{digitalWalletId}/getDigitalCard/{digitalCardId}")
     public DigitalCard viewDigitalCard(@NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("digitalWalletId") Long digitalWalletId, @NonNull @PathVariable("digitalCardId") Long digitalCardId){
         return this.clientService.viewDigitalCard(clientId,digitalWalletId,digitalCardId);
     }
 
-    @DeleteMapping("/delete/{clientId}")
+    @DeleteMapping(path = "/delete/{clientId}")
     public void deleteById(@NonNull @PathVariable("clientId") Long clientId){
         this.clientService.deleteById(clientId);
     }
-    @DeleteMapping("/deleteAll")
+
+    @DeleteMapping(path = "/deleteAll")
     public void deleteAll(){
         this.clientService.deleteAll();
     }

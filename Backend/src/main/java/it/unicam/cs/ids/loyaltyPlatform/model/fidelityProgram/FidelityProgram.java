@@ -6,7 +6,6 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 
 import java.util.List;
 import java.util.Set;

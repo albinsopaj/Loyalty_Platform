@@ -32,17 +32,17 @@ public class MarketingModuleController {
         return this.marketingModuleService.update(marketingModule);
     }
 
-    @PostMapping("/{digitalCardId}/{value}")
+    @PostMapping(path = "/{digitalCardId}/{value}")
     public void updateDigitalCardStatus(@NonNull @PathVariable("digitalCardId") Long id, @PathVariable int value) {
         //this.digitalCardService.findById(id).updateStatus(value);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public void deleteMarketingModule(@NonNull @PathVariable("id") Long id) {
         this.marketingModuleService.deleteById(id);
     }
 
-    @DeleteMapping("delete/{marketingModule}")
+    @DeleteMapping(path = "delete/{marketingModule}")
     public void deleteMarketingModule(@NonNull @PathVariable MarketingModule marketingModule) {
         this.marketingModuleService.delete(marketingModule);
     }

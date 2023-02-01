@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
+
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
