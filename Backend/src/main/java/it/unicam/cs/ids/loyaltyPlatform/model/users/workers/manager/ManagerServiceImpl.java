@@ -83,7 +83,7 @@ public class ManagerServiceImpl implements GeneralService<Manager> {
         if(findById(managerId).getCompany().getFidelityPrograms().contains(this.fidelityProgramService.findById(fidelityProgramId))){
             Client client = this.clientService.findById(clientId);
             FidelityProgram fidelityProgram = this.fidelityProgramService.findById(fidelityProgramId);
-            DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
+            this.fidelityProgramService.registerClient(client, fidelityProgram);
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Cashier doesn't belong to the company that contains this fidelity program");
         }
