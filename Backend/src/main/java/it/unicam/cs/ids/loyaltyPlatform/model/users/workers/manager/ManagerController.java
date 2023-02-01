@@ -13,10 +13,10 @@ public class ManagerController  {
     @Autowired
     private ManagerServiceImpl managerService;
 
-    @PostMapping(path = "/add")
-    public Manager add(@NonNull @RequestBody Manager manager) {
-        return this.managerService.save(manager);
-    }
+//    @PostMapping(path = "/add")
+//    public Manager add(@NonNull @RequestBody Manager manager) {
+//        return this.managerService.save(manager);
+//    }
 
     @GetMapping(path = "/get/{id}")
     public Manager get(@NonNull Long id) {
@@ -38,13 +38,9 @@ public class ManagerController  {
         this.managerService.deleteById(id);
     }
 
-    //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto venga passato direttamente nell'URL
-    @DeleteMapping(path = "delete/{manager}")
-    public void delete(@NonNull @RequestBody @PathVariable Manager manager) {
-        this.managerService.delete(manager);
-    }
-    @DeleteMapping(path = "/{managerId}/getCompanyPrograms/removeClientFromProgram/{clientId}/{fidelityProgramId}")
-    public void removeClient(@NonNull @PathVariable("managerId") Long managerId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId){
+    @DeleteMapping(path = "/removeClientFromFidelityProgram/{managerId}/{clientId}/{fidelityProgramId}")
+    public void removeClient(@NonNull @PathVariable("managerId") Long managerId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId) {
         this.managerService.removeClient(managerId, clientId, fidelityProgramId);
     }
+
 }

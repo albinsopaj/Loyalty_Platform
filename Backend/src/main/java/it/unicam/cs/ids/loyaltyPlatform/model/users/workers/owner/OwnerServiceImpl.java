@@ -234,8 +234,12 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
 
     }
     */
-    public PointsReward addPointsReward(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Long pointsFidelityProgramId, @NonNull PointsReward pointsReward){
-        if(findById(ownerId).getCompanies().contains(this.companyService.findById(companyId)) && this.companyService.findById(companyId).getFidelityPrograms().contains(pointsFidelityProgramService.findById(pointsFidelityProgramId))){
+
+
+    /********** Points Reward **********/
+
+    public PointsReward addPointsReward(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Long pointsFidelityProgramId, @NonNull PointsReward pointsReward) {
+        if (findById(ownerId).getCompanies().contains(this.companyService.findById(companyId)) && this.companyService.findById(companyId).getFidelityPrograms().contains(pointsFidelityProgramService.findById(pointsFidelityProgramId))) {
             pointsReward.setPointsFidelityProgram(this.pointsFidelityProgramService.findById(pointsFidelityProgramId));
             this.pointsFidelityProgramService.findById(pointsFidelityProgramId).addReward(pointsReward);
             return this.pointsRewardService.save(pointsReward);
