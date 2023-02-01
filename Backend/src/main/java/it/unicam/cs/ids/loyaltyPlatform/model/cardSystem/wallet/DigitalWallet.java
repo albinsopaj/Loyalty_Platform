@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,17 +35,31 @@ public class DigitalWallet {
     public DigitalWallet(Client client){
         this.client = client;
     }
-    public DigitalWallet createDigitalWallet(Client client){
-        DigitalWallet digitalWallet = new DigitalWallet();
-        digitalWallet.setClient(client);
-        digitalWallet.setDigitalCards(new ArrayList<>());
-        return digitalWallet;
-    }
+
     public void addDigitalCard(DigitalCard digitalCard){
         digitalCards.add(digitalCard);
     }
 
     public void removeDigitalCard(DigitalCard digitalCard){
         digitalCards.remove(digitalCard);
+    }
+
+    public void removeDigitalCard(FidelityProgram fidelityProgram){
+        Long fidelityProgramId = fidelityProgram.getId();
+        for(DigitalCard digitalCard: digitalCards){
+            if(digitalCard.getFidelityProgramId().equals(fidelityProgramId)){
+                removeDigitalCard(digitalCard);
+            }
+        }
+    }
+
+    public DigitalCard getDigitalCard(FidelityProgram fidelityProgram){
+        Long fidelityProgramId = fidelityProgram.getId();
+        for(DigitalCard digitalCard: digitalCards){
+            if(digitalCard.getFidelityProgramId().equals(fidelityProgramId)){
+                return digitalCard;
+            }
+        }
+        throw new IllegalArgumentException("Card doesn't exist");
     }
 }

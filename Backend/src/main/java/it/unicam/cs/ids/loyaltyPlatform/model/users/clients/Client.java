@@ -6,9 +6,11 @@ import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramRev
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.action.internal.OrphanRemovalAction;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Class that defines a client of the platform
@@ -26,11 +28,12 @@ public class Client extends AuthenticatedUser {
 
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
     private DigitalWallet digitalWallet;
-    @ManyToMany(mappedBy = "likedFidelityPrograms")
-    private @NonNull List<FidelityProgram> fidelityPrograms;
+
+    @CollectionTable()
+    private @NonNull Set<Long> fidelityProgramIds = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
-    private @NonNull Set<FidelityProgramReview> reviews;
+    private @NonNull Set<FidelityProgramReview> reviews = new HashSet<>();
 
     public void addReview( FidelityProgramReview review){
         reviews.add(review);
@@ -38,12 +41,11 @@ public class Client extends AuthenticatedUser {
     public void removeReview( FidelityProgramReview review){
         reviews.remove(review);
     }
-    public void addFidelityProgram( FidelityProgram fidelityProgram){
-        fidelityPrograms.add(fidelityProgram);
+    public void addFidelityProgram( Long fidelityProgramId){
+        this.fidelityProgramIds.add(fidelityProgramId);
     }
-
-    public void removeFidelityProgram( FidelityProgram fidelityProgram){
-        fidelityPrograms.remove(fidelityProgram);
+    public void removeFidelityProgram( Long fidelityProgramId){
+        this.fidelityProgramIds.remove(fidelityProgramId);
     }
 
 }

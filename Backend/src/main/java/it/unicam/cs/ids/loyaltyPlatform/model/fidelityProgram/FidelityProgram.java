@@ -5,8 +5,12 @@ import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.lang.NonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -35,16 +39,10 @@ public abstract class FidelityProgram {
 
     private @NonNull String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "fidelityProgram_like",
-            joinColumns = @JoinColumn(name = "fidelityProgram_id"),
-            inverseJoinColumns = @JoinColumn(name = "client_id"))
-    @JsonIgnore
-    private List<Client> likedFidelityPrograms;
-
+    @CollectionTable
+    private @NonNull Set<Long> clientIds = new HashSet<>();
     @OneToMany(mappedBy = "fidelityProgram")
-    private Set<FidelityProgramReview> reviews;
+    private @NonNull Set<FidelityProgramReview> reviews = new HashSet<>();
 
     public void addReview( FidelityProgramReview fidelityProgramReview){
         reviews.add(fidelityProgramReview);
@@ -52,11 +50,11 @@ public abstract class FidelityProgram {
     public void removeReview( FidelityProgramReview fidelityProgramReview){
         reviews.remove(fidelityProgramReview);
     }
-    public void addClient(Client client) {
-        likedFidelityPrograms.add(client);
+    public void addClient(Long clientId) {
+        clientIds.add(clientId);
     }
-    public void removeClient(Client client){
-        likedFidelityPrograms.remove(client);
+    public void removeClient(Long clientId){
+        clientIds.remove(clientId);
     }
 
 }

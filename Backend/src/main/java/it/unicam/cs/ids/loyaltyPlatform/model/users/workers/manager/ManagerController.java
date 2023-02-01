@@ -43,5 +43,8 @@ public class ManagerController  {
     public void delete(@NonNull @RequestBody @PathVariable Manager manager) {
         this.managerService.delete(manager);
     }
-
+    @DeleteMapping(path = "/{managerId}/getCompanyPrograms/removeClientFromProgram/{clientId}/{fidelityProgramId}")
+    public void removeClient(@NonNull @PathVariable("managerId") Long managerId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId){
+        this.managerService.removeClient(managerId, clientId, fidelityProgramId);
+    }
 }

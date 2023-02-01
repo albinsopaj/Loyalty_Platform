@@ -39,4 +39,5 @@ public class FidelityLevel {
         this.rewardsList.add(reward);
     }
 
+    public void removeReward(String reward){ this.rewardsList.remove(reward);}
 }

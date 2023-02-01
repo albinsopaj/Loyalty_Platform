@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.ClientServiceImpl;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -51,6 +53,10 @@ public class CashierController {
     @PutMapping(path = "/update/pointsDigitalCard/{id}/{value}")
     public void updatePointsDigitalCard(@NonNull @PathVariable("id") Long pointsDigitalCardId, @NonNull Integer value) {
         cashierService.updatePointsDigitalCard(digitalCardService.findById(pointsDigitalCardId), value);
+    }
+    @GetMapping(path = "/getClient/{clientId}")
+    public Client viewClientProfile(@NonNull @PathVariable("clientId") Long clientId){
+        return cashierService.viewClientProfile(clientId);
     }
 
 }

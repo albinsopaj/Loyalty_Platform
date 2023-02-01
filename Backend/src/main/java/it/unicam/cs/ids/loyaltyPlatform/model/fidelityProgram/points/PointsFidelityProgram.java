@@ -6,8 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.lang.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +29,7 @@ public class PointsFidelityProgram extends FidelityProgram {
     private @NonNull Integer conversionRate;
 
     @OneToMany(mappedBy = "pointsFidelityProgram")
-    private List<PointsReward> catalogue;
+    private @NonNull List<PointsReward> catalogue = new ArrayList<>();
 
     public void addReward(PointsReward pointsReward){
         catalogue.add(pointsReward);
@@ -45,13 +48,5 @@ public class PointsFidelityProgram extends FidelityProgram {
         }
     }
 
-    public void addReward(PointsReward pointsReward){
-        this.catalogue.add(pointsReward);
-    }
-
-
-    private Integer valueConvert(Integer value){
-        return value*conversionRate;
-    }
     */
 }

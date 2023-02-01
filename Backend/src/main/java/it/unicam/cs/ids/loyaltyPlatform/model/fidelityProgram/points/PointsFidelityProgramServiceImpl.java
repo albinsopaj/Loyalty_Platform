@@ -25,9 +25,6 @@ public class PointsFidelityProgramServiceImpl implements GeneralService<PointsFi
     @Override
     public PointsFidelityProgram save(@NonNull PointsFidelityProgram fidelityProgram) {
         if (!repository.findAll().contains(fidelityProgram)) {
-            fidelityProgram.setLikedFidelityPrograms(new ArrayList<>());
-            fidelityProgram.setCatalogue(new ArrayList<>());
-            fidelityProgram.setReviews(new HashSet<>());
             return this.repository.save(fidelityProgram);
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");

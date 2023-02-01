@@ -12,15 +12,15 @@ import lombok.*;
 @Entity
 @Table(name="FidelityProgramReview")
 public class FidelityProgramReview {
-
+    /*
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    /*
+    */
     @EmbeddedId
     @JsonIgnore
     private FidelityProgramReviewKey id;
-    */
+
     @ManyToOne
     @MapsId("clientId")
     @JoinColumn(name = "client_id")

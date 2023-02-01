@@ -32,15 +32,9 @@ public class ClientServiceImpl implements GeneralService<Client> {
     @Autowired
     private FidelityProgramReviewService fidelityProgramReviewService;
 
-    private DigitalWallet digitalWalletInstance = new DigitalWallet();
-
-    private Client clientInstance = new Client();
-    private FidelityProgramReview fidelityProgramReviewInstance;
 
     public Client save(@NonNull Client client) {
         if (!repository.findAll().contains(client)) {
-            client.setReviews(new HashSet<>());
-            client.setFidelityPrograms(new ArrayList<>());
             this.digitalWalletService.save(new DigitalWallet(client));
             return this.repository.save(client);
         } else {
@@ -88,7 +82,6 @@ public class ClientServiceImpl implements GeneralService<Client> {
             DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
             client.getDigitalWallet().addDigitalCard(digitalCard);
             digitalCard.setDigitalWallet(client.getDigitalWallet());
-            client.addFidelityProgram(fidelityProgram);
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company doesn't own this fidelity program");
         }
@@ -102,7 +95,7 @@ public class ClientServiceImpl implements GeneralService<Client> {
         }
     }
     public void writeReview(Long clientId,Long fidelityProgramId, FidelityProgramReview review ){
-        if(findById(clientId).getFidelityPrograms().contains(fidelityProgramService.findById(fidelityProgramId))){
+        if(findById(clientId).getFidelityProgramIds().contains(fidelityProgramId)){
             review.setFidelityProgram(this.fidelityProgramService.findById(fidelityProgramId));
             review.setClient(findById(clientId));
             findById(clientId).addReview(review);
@@ -114,5 +107,13 @@ public class ClientServiceImpl implements GeneralService<Client> {
     }
     public void deleteAll(){
         this.repository.deleteAll();
+    }
+
+    public void removeFidelityProgramSubscription(Long clientId, Long fidelityProgramId){
+        Client client = findById(clientId);
+        client.getFidelityProgramIds().remove(fidelityProgramId);
+        FidelityProgram fidelityProgram = this.fidelityProgramService.findById(fidelityProgramId);
+        fidelityProgram.removeClient(client.getId());
+        this.digitalCardService.delete(client.getDigitalWallet().getDigitalCard(fidelityProgram));
     }
 }

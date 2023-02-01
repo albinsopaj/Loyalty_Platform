@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,4 +58,5 @@ public class DigitalCardServiceImpl implements GeneralService<DigitalCard> {
     public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
     }
+
 }

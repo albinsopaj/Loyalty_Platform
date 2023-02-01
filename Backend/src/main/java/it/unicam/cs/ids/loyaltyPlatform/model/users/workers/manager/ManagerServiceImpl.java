@@ -1,5 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.ClientServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,10 @@ public class ManagerServiceImpl implements GeneralService<Manager> {
 
     @Autowired
     private ManagerRepository repository;
-
+    @Autowired
+    private FidelityProgramServiceImpl fidelityProgramService;
+    @Autowired
+    private ClientServiceImpl clientService;
     public Manager save(@NonNull Manager manager) {
         if (!repository.findAll().contains(manager)) {
             return this.repository.save(manager);
@@ -59,4 +64,15 @@ public class ManagerServiceImpl implements GeneralService<Manager> {
         this.repository.deleteById(id);
     }
 
+    public void removeClient(@NonNull Long managerId, @NonNull Long clientId, @NonNull Long fidelityProgramId){
+        if(findById(managerId).getCompany().equals(this.fidelityProgramService.findById(fidelityProgramId).getCompany())){
+            if(this.clientService.findById(clientId).getFidelityProgramIds().contains(fidelityProgramId)){
+                this.clientService.removeFidelityProgramSubscription(clientId, fidelityProgramId);
+            } else {
+                throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Client isn't in this fidelity program");
+            }
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Manager isn't part of the company that owns this fidelity program");
+        }
+    }
 }

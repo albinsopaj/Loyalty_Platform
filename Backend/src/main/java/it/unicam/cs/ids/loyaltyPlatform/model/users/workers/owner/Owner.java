@@ -25,11 +25,11 @@ public class Owner extends AuthenticatedUser {
     @OneToMany(mappedBy = "owner")
     private List<Company> companies;
 
-//    public void addCompany( Company company){
-//        companies.add(company);
-//    }
-//
-//    public void removeCompany( Company company){
-//        companies.remove(company);
-//    }
+   public void addCompany( Company company){
+       companies.add(company);
+    }
+
+    public void removeCompany( Company company){
+        companies.remove(company);
+    }
 }

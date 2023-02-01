@@ -70,10 +70,11 @@ public class FidelityProgramServiceImpl implements GeneralService<FidelityProgra
 
 
     public DigitalCard registerClient(@NonNull Client client, @NonNull FidelityProgram fidelityProgram) {
-        if(fidelityProgram.getLikedFidelityPrograms().contains(client)){
+        if(fidelityProgram.getClientIds().contains(client.getId())){
             throw new ResponseStatusException(HttpStatus.FOUND, "Client already in fidelity program");
         } else {
-            fidelityProgram.addClient(client);
+            fidelityProgram.addClient(client.getId());
+            client.addFidelityProgram(fidelityProgram.getId());
             DigitalCard digitalCard;
             if(fidelityProgram instanceof PointsFidelityProgram pointsFidelityProgram){
                  digitalCard = new PointsDigitalCard(fidelityProgram.getId(),client.getDigitalWallet());

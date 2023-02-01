@@ -28,16 +28,18 @@ public class Campaign {
     @JsonIgnore
     private Company company;
 
+
     private @NonNull String name;
     private @NonNull String start;
     private @NonNull String end;
     private @NonNull String description;
 
+    /*
     public Campaign( String name, String start, String end, String description ){
         this.name = name;
         this.start = start;
         this.end = end;
         this.description = description;
     }
-
+    */
 }

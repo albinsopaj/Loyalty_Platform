@@ -21,9 +21,6 @@ public class LevelFidelityProgramServiceImpl implements GeneralService<LevelFide
     @Override
     public LevelFidelityProgram save(@NonNull LevelFidelityProgram fidelityProgram) {
         if (!repository.findAll().contains(fidelityProgram)) {
-            fidelityProgram.setLikedFidelityPrograms(new ArrayList<>());
-            fidelityProgram.setReviews(new HashSet<>());
-            fidelityProgram.setLevels(new ArrayList<>());
             return this.repository.save(fidelityProgram);
         } else {
             throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");

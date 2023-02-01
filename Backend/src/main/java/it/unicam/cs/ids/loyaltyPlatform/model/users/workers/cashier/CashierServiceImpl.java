@@ -4,6 +4,8 @@ import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.ClientServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
 
     @Autowired
     private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
+
+    @Autowired
+    private ClientServiceImpl clientService;
 
     @Autowired
     private PointsDigitalCardServiceImpl pointsDigitalCardService;
@@ -76,6 +81,10 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Digital card isn't points based");
         }
+    }
+
+    public Client viewClientProfile(@NonNull Long clientId){
+        return this.clientService.findById(clientId);
     }
 
 }
