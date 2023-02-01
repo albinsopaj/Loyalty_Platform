@@ -77,12 +77,11 @@ public class ClientServiceImpl implements GeneralService<Client> {
         this.repository.deleteById(id);
     }
 
-    public Client registerToFidelityProgram(@NonNull Company company, @NonNull FidelityProgram fidelityProgram, @NonNull Client client){
+    public void registerToFidelityProgram(@NonNull Company company, @NonNull FidelityProgram fidelityProgram, @NonNull Client client){
         if(company.getFidelityPrograms().contains(fidelityProgram)){
             DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
             client.getDigitalWallet().addDigitalCard(digitalCard);
             digitalCard.setDigitalWallet(client.getDigitalWallet());
-            return client;
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company doesn't own this fidelity program");
         }

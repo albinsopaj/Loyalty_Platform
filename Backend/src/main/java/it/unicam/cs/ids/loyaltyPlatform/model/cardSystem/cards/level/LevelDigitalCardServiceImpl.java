@@ -58,4 +58,5 @@ public class LevelDigitalCardServiceImpl implements GeneralService<LevelDigitalC
     public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
     }
+
 }

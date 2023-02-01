@@ -25,6 +25,7 @@ public class LevelFidelityProgram extends FidelityProgram {
 
     private @NonNull Integer conversionRate;
 
+    private @NonNull Integer experienceToUnlock;
     @OneToMany(mappedBy = "levelFidelityProgram")
     private @NonNull List<FidelityLevel> levels = new ArrayList<>();
 

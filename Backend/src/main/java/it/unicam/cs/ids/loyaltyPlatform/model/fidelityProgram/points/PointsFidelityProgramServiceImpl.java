@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points;
 
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
@@ -68,7 +69,26 @@ public class PointsFidelityProgramServiceImpl implements GeneralService<PointsFi
     }
 
 
-    public Integer valueConvert(@NonNull PointsFidelityProgram pointsFidelityProgram, @NonNull Integer value){
-        return pointsFidelityProgram.getConversionRate()*value;
+    public void updateStatus(@NonNull Long digitalCardId, @NonNull Integer value){
+        int points = findById(this.digitalCardService.findById(digitalCardId).getFidelityProgramId()).getConversionRate()*value;
+        PointsDigitalCard pointsDigitalCard = this.digitalCardService.findById(digitalCardId);
+        pointsDigitalCard.addPoints(points);
+        this.digitalCardService.update(pointsDigitalCard);
+    }
+
+    public boolean redeemReward(@NonNull Long digitalCardId, @NonNull PointsReward pointsReward){
+        if(findById(this.digitalCardService.findById(digitalCardId).getFidelityProgramId()).getCatalogue().contains(pointsReward)){
+            if(this.digitalCardService.findById(digitalCardId).getPoints()>=pointsReward.getPrice()){
+                PointsDigitalCard pointsDigitalCard = this.digitalCardService.findById(digitalCardId);
+                pointsDigitalCard.removePoints(pointsReward.getPrice());
+                pointsDigitalCard.addReward(pointsReward.getName());
+                this.digitalCardService.update(pointsDigitalCard);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Program doesn't contain this reward");
+        }
     }
 }

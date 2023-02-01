@@ -52,4 +52,6 @@ public class PointsRewardServiceImpl implements GeneralService<PointsReward> {
     public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
     }
+
+
 }

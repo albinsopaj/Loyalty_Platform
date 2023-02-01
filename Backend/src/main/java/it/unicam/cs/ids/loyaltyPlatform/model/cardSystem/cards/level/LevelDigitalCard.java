@@ -6,6 +6,7 @@ import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Entity;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class LevelDigitalCard extends DigitalCard {
     private Integer level = 0;
     private Integer experience = 0;
     @CollectionTable
-    private @NonNull List<String> rewardsUnlocked;
+    private @NonNull List<String> rewardsUnlocked = new ArrayList<>();
     private boolean completed;
 
     public LevelDigitalCard(Long levelFidelityProgramId, DigitalWallet digitalWallet){

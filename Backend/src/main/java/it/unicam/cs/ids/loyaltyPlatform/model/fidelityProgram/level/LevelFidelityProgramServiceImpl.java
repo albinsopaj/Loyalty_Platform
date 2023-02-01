@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level;
 
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level.LevelDigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level.LevelDigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,8 @@ import java.util.Optional;
 public class LevelFidelityProgramServiceImpl implements GeneralService<LevelFidelityProgram> {
     @Autowired
     private LevelFidelityProgramRepository repository;
-
+    @Autowired
+    private LevelDigitalCardServiceImpl digitalCardService;
     @Override
     public LevelFidelityProgram save(@NonNull LevelFidelityProgram fidelityProgram) {
         if (!repository.findAll().contains(fidelityProgram)) {
@@ -61,6 +64,20 @@ public class LevelFidelityProgramServiceImpl implements GeneralService<LevelFide
     @Override
     public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
+    }
+
+    public void updateStatus(@NonNull Long digitalCardId, @NonNull Integer value){
+        int experience = findById(this.digitalCardService.findById(digitalCardId).getFidelityProgramId()).getConversionRate()*value;
+        LevelDigitalCard levelDigitalCard = this.digitalCardService.findById(digitalCardId);
+        LevelFidelityProgram fidelityProgram = findById(this.digitalCardService.findById(digitalCardId).getFidelityProgramId());
+        levelDigitalCard.addExperience(experience);
+        while(levelDigitalCard.getExperience()>=fidelityProgram.getExperienceToUnlock()){
+            Integer currentLevel = levelDigitalCard.getLevel();
+            levelDigitalCard.addRewards(fidelityProgram.getLevels().get(currentLevel).getRewardsList());
+            levelDigitalCard.removeExperience(fidelityProgram.getExperienceToUnlock());
+            levelDigitalCard.levelUp();
+        }
+        this.digitalCardService.update(levelDigitalCard);
     }
 
 }

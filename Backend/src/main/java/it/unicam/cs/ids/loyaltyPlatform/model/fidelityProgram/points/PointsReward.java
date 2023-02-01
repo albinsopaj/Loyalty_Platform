@@ -28,4 +28,20 @@ public class PointsReward {
 
     private @NonNull String name;
     private @NonNull Integer price;
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this) return true;
+        if(!(o instanceof PointsReward pointsReward)){
+            return false;
+        }
+        return pointsReward.name.equals(name) && pointsReward.price.equals(price);
+    }
+    @Override
+    public int hashCode(){
+        int result = 17;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + price.hashCode();
+        return result;
+    }
 }

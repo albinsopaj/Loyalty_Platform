@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.ClientServiceImpl;
 import lombok.NonNull;
@@ -50,22 +51,34 @@ public class CashierController {
         this.cashierService.delete(cashier);
     }
 
-    @PutMapping(path = "/update/pointsDigitalCard/{id}/{value}")
-    public void updatePointsDigitalCard(@NonNull @PathVariable("id") Long pointsDigitalCardId, @NonNull Integer value) {
-        cashierService.updatePointsDigitalCard(digitalCardService.findById(pointsDigitalCardId), value);
-    }
     @GetMapping(path = "/getClient/{clientId}")
-    public Client viewClientProfile(@NonNull @PathVariable("clientId") Long clientId){
+    public Client viewClientProfile(@NonNull @PathVariable("clientId") Long clientId) {
         return cashierService.viewClientProfile(clientId);
     }
 
     @PostMapping(path = "/registerClient")
-    public Client registerClient(@NonNull @RequestBody Client client){
+    public Client registerClient(@NonNull @RequestBody Client client) {
         return this.cashierService.registerClient(client);
     }
+
     @PutMapping(path = "/{cashierId}/getFidelityPrograms/addClientToFidelityProgram/{clientId}/{fidelityProgramId}")
-    public Client registerClientToFidelityProgram(@NonNull @PathVariable("cashierId") Long cashierId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable Long fidelityProgramId ){
-        return this.cashierService.registerClientToFidelityProgram(cashierId,clientId,fidelityProgramId);
+    public void registerClientToFidelityProgram(@NonNull @PathVariable("cashierId") Long cashierId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable Long fidelityProgramId) {
+        this.cashierService.registerClientToFidelityProgram(cashierId, clientId, fidelityProgramId);
     }
+
+    @PutMapping(path = "/{cashierId}/updatePointsDigitalCardStatus/{digitalCardId}")
+    public void updatePointsDigitalCardStatus(@NonNull @PathVariable("cashierId") Long cashierId, @NonNull @PathVariable("digitalCardId") Long digitalCardId, @NonNull @RequestBody Integer value) {
+        this.cashierService.updatePointsDigitalCardStatus(cashierId, digitalCardId, value);
+    }
+
+    @PutMapping(path = "/{cashierId}/updateLevelDigitalCardStatus/{digitalCardId}")
+    public void updateLevelDigitalCardStatus(@NonNull @PathVariable("cashierId") Long cashierId, @NonNull @PathVariable("digitalCardId") Long digitalCardId, @NonNull @RequestBody Integer value){
+        this.cashierService.updateLevelDigitalCardStatus(cashierId, digitalCardId, value);
+    }
+    @PutMapping(path = "/redeemReward/{cashierId}/{pointsDigitalCardId}")
+    public boolean redeemReward(@NonNull @PathVariable("cashierId") Long cashierId, @NonNull @PathVariable("pointsDigitalCardId") Long pointsDigitalCardId, @NonNull @RequestBody PointsReward pointsReward){
+        return this.cashierService.redeemReward(cashierId, pointsDigitalCardId, pointsReward);
+    }
+
 
 }

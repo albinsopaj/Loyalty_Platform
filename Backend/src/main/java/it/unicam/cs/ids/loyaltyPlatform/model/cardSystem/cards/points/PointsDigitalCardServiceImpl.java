@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import java.util.Optional;
 public class PointsDigitalCardServiceImpl implements GeneralService<PointsDigitalCard> {
     @Autowired
     private PointsDigitalCardRepository repository;
-
     @Override
     public PointsDigitalCard save(@NonNull PointsDigitalCard pointsDigitalCard) {
         if (!repository.findAll().contains(pointsDigitalCard)) {
@@ -61,7 +61,7 @@ public class PointsDigitalCardServiceImpl implements GeneralService<PointsDigita
     }
 
     public void addPoints(@NonNull PointsDigitalCard pointsDigitalCard, @NonNull Integer points){
-       pointsDigitalCard.setPoints(pointsDigitalCard.getPoints() + points);
+       pointsDigitalCard.addPoints(points);
     }
 
 }

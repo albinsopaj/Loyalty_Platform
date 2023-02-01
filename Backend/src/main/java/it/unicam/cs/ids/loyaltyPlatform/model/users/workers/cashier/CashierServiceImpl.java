@@ -1,11 +1,16 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level.LevelDigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.ClientServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
@@ -28,8 +33,11 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
     private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
 
     @Autowired
+    private LevelFidelityProgramServiceImpl levelFidelityProgramService;
+    @Autowired
     private ClientServiceImpl clientService;
-
+    @Autowired
+    private LevelDigitalCardServiceImpl levelDigitalCardService;
     @Autowired
     private PointsDigitalCardServiceImpl pointsDigitalCardService;
     @Autowired
@@ -78,14 +86,6 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
         this.repository.deleteById(id);
     }
 
-    public void updatePointsDigitalCard(@NonNull DigitalCard digitalCard, @NonNull Integer value){
-        if(digitalCard instanceof PointsDigitalCard pointsDigitalCard){
-            Integer points = pointsFidelityProgramService.valueConvert(pointsFidelityProgramService.findById(pointsDigitalCard.getFidelityProgramId()), value);
-            pointsDigitalCardService.addPoints(pointsDigitalCard,points);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Digital card isn't points based");
-        }
-    }
 
     public Client viewClientProfile(@NonNull Long clientId){
         return this.clientService.findById(clientId);
@@ -95,16 +95,42 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
         return this.clientService.save(client);
     }
 
-    public Client registerClientToFidelityProgram(@NonNull Long cashierId, @NonNull Long clientId, @NonNull Long fidelityProgramId){
+    public void registerClientToFidelityProgram(@NonNull Long cashierId, @NonNull Long clientId, @NonNull Long fidelityProgramId){
         if(findById(cashierId).getCompany().getFidelityPrograms().contains(this.fidelityProgramService.findById(fidelityProgramId))){
             Client client = this.clientService.findById(clientId);
             FidelityProgram fidelityProgram = this.fidelityProgramService.findById(fidelityProgramId);
             DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
             client.getDigitalWallet().addDigitalCard(digitalCard);
             digitalCard.setDigitalWallet(client.getDigitalWallet());
-            return client;
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Cashier doesn't belong to the company that contains this fidelity program");
+        }
+    }
+
+    public void updatePointsDigitalCardStatus(@NonNull Long cashierId, @NonNull Long digitalCardId, @NonNull Integer value){
+        PointsFidelityProgram pointsFidelityProgram = this.pointsFidelityProgramService.findById(this.pointsDigitalCardService.findById(digitalCardId).getFidelityProgramId());
+        if(findById(cashierId).getCompany().getFidelityPrograms().contains(pointsFidelityProgram)){
+            this.pointsFidelityProgramService.updateStatus(digitalCardId, value);
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Cashier doesn't have access to this digital card");
+        }
+    }
+
+    public void updateLevelDigitalCardStatus(@NonNull Long cashierId, @NonNull Long digitalCardId, @NonNull Integer value){
+        LevelFidelityProgram levelFidelityProgram = this.levelFidelityProgramService.findById(this.levelDigitalCardService.findById(digitalCardId).getFidelityProgramId());
+        if(findById(cashierId).getCompany().getFidelityPrograms().contains(levelFidelityProgram)){
+            this.levelFidelityProgramService.updateStatus(digitalCardId,value);
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Cashier doesn't have access to this digital card");
+        }
+    }
+
+    public boolean redeemReward(@NonNull Long cashierId, @NonNull Long pointsDigitalCardId, @NonNull PointsReward pointsReward){
+        PointsFidelityProgram pointsFidelityProgram = this.pointsFidelityProgramService.findById(this.pointsDigitalCardService.findById(pointsDigitalCardId).getFidelityProgramId());
+        if(findById(cashierId).getCompany().getFidelityPrograms().contains(pointsFidelityProgram)){
+            return this.pointsFidelityProgramService.redeemReward(pointsDigitalCardId,pointsReward);
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Cashier doesn't have access to this digital card");
         }
     }
 }

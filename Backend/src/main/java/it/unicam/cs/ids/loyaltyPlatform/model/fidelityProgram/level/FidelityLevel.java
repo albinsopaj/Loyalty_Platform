@@ -33,8 +33,6 @@ public class FidelityLevel {
     @JsonIgnore
     private LevelFidelityProgram levelFidelityProgram;
 
-    private @NonNull Integer experienceToUnlock;
-
     public void addReward(String reward) {
         this.rewardsList.add(reward);
     }
