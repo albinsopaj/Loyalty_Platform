@@ -23,22 +23,24 @@ public class DigitalWalletController {
         return this.digitalWalletService.getAll();
     }
 
-    @PutMapping(path = "/update/{digitalWallet}")
-    public DigitalWallet updateDigitalWallet(@NonNull @RequestBody @PathVariable("digitalWallet") DigitalWallet digitalWallet) {
-        return this.digitalWalletService.update(digitalWallet);
-    }
+//    @PutMapping(path = "/update/{digitalWallet}")
+//    public DigitalWallet updateDigitalWallet(@NonNull @RequestBody @PathVariable("digitalWallet") DigitalWallet digitalWallet) {
+//        return this.digitalWalletService.update(digitalWallet);
+//    }
+//
+//    @DeleteMapping(path = "/delete/{digitalWalletId}")
+//    public void deleteDigitalWallet(@NonNull @PathVariable("digitalWalletId") Long id) {
+//        this.digitalWalletService.deleteById(id);
+//    }
+//
+//    @DeleteMapping(path = "/delete/{digitalWallet}")
+//    public void deleteDigitalWallet(@NonNull @PathVariable("digitalWallet") DigitalWallet digitalWallet) {
+//        this.digitalWalletService.delete(digitalWallet);
+//    }
 
-    @DeleteMapping(path = "/delete/{digitalWalletId}")
-    public void deleteDigitalWallet(@NonNull @PathVariable("digitalWalletId") Long id) {
-        this.digitalWalletService.deleteById(id);
-    }
-
-    @DeleteMapping(path = "/delete/{digitalWallet}")
-    public void deleteDigitalWallet(@NonNull @PathVariable("digitalWallet") DigitalWallet digitalWallet) {
-        this.digitalWalletService.delete(digitalWallet);
-    }
     @DeleteMapping(path = "/deleteAll")
-    public void deleteAll(){
+    public void deleteAll() {
         this.digitalWalletService.deleteAll();
     }
+
 }

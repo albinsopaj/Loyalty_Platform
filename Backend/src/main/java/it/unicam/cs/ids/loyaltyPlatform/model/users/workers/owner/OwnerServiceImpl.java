@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +40,12 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
     private LevelFidelityProgramServiceImpl levelFidelityProgramService;
     @Autowired
     private FidelityProgramServiceImpl fidelityProgramService;
+
+
+    /***********************************
+     ** Owner related CRUD operations **
+     **********************************/
+
     public Owner save(@NonNull Owner owner) {
         if (!repository.findAll().contains(owner)) {
             owner.setCompanies(new ArrayList<>());
@@ -75,7 +82,10 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
 
     @Override
     public void delete(@NonNull Owner owner) {
-        this.repository.delete(owner);
+        if (this.repository.existsById(owner.getId())) {
+            this.repository.delete(owner);
+        } else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User to be deleted is not present!");
     }
 
     @Override
@@ -83,8 +93,32 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
         this.repository.deleteById(id);
     }
 
-    public Campaign addCampaign(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Campaign campaign){
-        if(findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))){
+
+
+    /* ***********************************************
+     ** Other Operations that the Owner can perform **
+     ************************************************/
+
+    /********************* Company related methods  *********************/
+
+    public Company addCompany(@NonNull Long ownerId, @NonNull Company company) {
+        company.setOwner(findById(ownerId));
+        return this.companyService.save(company);
+    }
+
+    public Company updateCompany(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Company company) {
+
+    }
+
+    public void deleteCompany(@NonNull Long ownerId, @NonNull Long companyId) {
+
+    }
+
+
+    /********************* Compaign related methods  *********************/
+
+    public Campaign addCampaign(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Campaign campaign) {
+        if (findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))) {
             campaign.setCompany(this.companyService.findById(companyId));
             return this.campaignService.save(campaign);
         } else {
@@ -92,8 +126,18 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
         }
     }
 
-    public Manager addManager(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Manager manager){
-        if(findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))){
+    public Company updateCampaign(@NonNull Long ownerId, @NonNull Long campaignId, @NonNull Campaign campaign) {
+
+    }
+
+    public void deleteCampaign(@NonNull Long ownerId, @NonNull Long companyId) {
+
+    }
+
+    /********************* Manager related methods  *********************/
+
+    public Manager addManager(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Manager manager) {
+        if (findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))) {
             manager.setCompany(this.companyService.findById(companyId));
             this.companyService.findById(companyId).addManager(manager);
             return this.managerService.save(manager);
@@ -102,8 +146,43 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
         }
     }
 
-    public PointsFidelityProgram addPointsFidelityProgram(@NonNull Long ownerId, @NonNull Long companyId, @NonNull PointsFidelityProgram pointsFidelityProgram){
-        if(findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))){
+    public Company updateManager(@NonNull Long ownerId, @NonNull Long managerId, @NonNull Manager manager) {
+
+    }
+
+    public void deleteManager(@NonNull Long ownerId, @NonNull Long companyId) {
+
+    }
+
+
+    /********************* Fidelity Program related methods  *********************/
+
+    public FidelityProgram addFidelityProgram(@NonNull Long ownerId, @NonNull Long companyId, @NonNull FidelityProgram fidelityProgram) {
+        if (findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))) {
+            fidelityProgram.setCompany(this.companyService.findById(companyId));
+            this.companyService.findById(companyId).addFidelityProgram(fidelityProgram);
+            if (fidelityProgram instanceof PointsFidelityProgram pointsFidelityProgram) {
+                return this.pointsFidelityProgramService.save(pointsFidelityProgram);
+            } else {
+                return this.levelFidelityProgramService.save((LevelFidelityProgram) fidelityProgram);
+            }
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company now owned by this owner");
+        }
+    }
+
+    public FidelityProgram updateFidelityProgram(@NonNull Long ownerId, @NonNull Long fidelityProgramId, @NonNull FidelityProgram fidelityProgram) {
+
+    }
+
+    public void deleteFidelityProgram(@NonNull Long ownerId, @NonNull Long fidelityProgramId) {
+
+    }
+
+    /********** Points Fidelity Program **********/
+
+    public PointsFidelityProgram addPointsFidelityProgram(@NonNull Long ownerId, @NonNull Long companyId, @NonNull PointsFidelityProgram pointsFidelityProgram) {
+        if (findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))) {
             pointsFidelityProgram.setCompany(this.companyService.findById(companyId));
             this.companyService.findById(companyId).addFidelityProgram(pointsFidelityProgram);
             return this.pointsFidelityProgramService.save(pointsFidelityProgram);
@@ -112,8 +191,19 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
         }
     }
 
-    public LevelFidelityProgram addLevelFidelityProgram(@NonNull Long ownerId, @NonNull Long companyId, @NonNull LevelFidelityProgram levelFidelityProgram){
-        if(findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))){
+    public PointsFidelityProgram updatePointsFidelityProgram(@NonNull Long ownerId, @NonNull Long pointsFidelityProgramId, @NonNull PointsFidelityProgram manager) {
+
+    }
+
+    public void deletePointsFidelityProgram(@NonNull Long ownerId, @NonNull Long pointsFidelityProgramId) {
+
+    }
+
+
+    /********** Level Fidelity Program **********/
+
+    public LevelFidelityProgram addLevelFidelityProgram(@NonNull Long ownerId, @NonNull Long companyId, @NonNull LevelFidelityProgram levelFidelityProgram) {
+        if (findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))) {
             levelFidelityProgram.setCompany(this.companyService.findById(companyId));
             this.companyService.findById(companyId).addFidelityProgram(levelFidelityProgram);
             return this.levelFidelityProgramService.save(levelFidelityProgram);
@@ -122,22 +212,12 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
         }
     }
 
-    public FidelityProgram addFidelityProgram(@NonNull Long ownerId, @NonNull Long companyId, @NonNull FidelityProgram fidelityProgram){
-        if(findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))){
-            fidelityProgram.setCompany(this.companyService.findById(companyId));
-            this.companyService.findById(companyId).addFidelityProgram(fidelityProgram);
-            if(fidelityProgram instanceof PointsFidelityProgram pointsFidelityProgram){
-                return this.pointsFidelityProgramService.save(pointsFidelityProgram);
-            }else {
-                return this.levelFidelityProgramService.save((LevelFidelityProgram) fidelityProgram);
-            }
-        } else {
-            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company now owned by this owner");
-        }
+    public LevelFidelityProgram updateLevelFidelityProgram(@NonNull Long ownerId, @NonNull Long levelFidelityProgramId, @NonNull LevelFidelityProgram levelFidelityProgram) {
+
     }
 
-    public Company addCompany(@NonNull Long ownerId, @NonNull Company company){
-        company.setOwner(findById(ownerId));
-        return this.companyService.save(company);
+    public void deleteLevelFidelityProgram(@NonNull Long ownerId, @NonNull Long levelFidelityProgramId) {
+
     }
+
 }

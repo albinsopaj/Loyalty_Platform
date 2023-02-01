@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.OwnerServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class CompanyServiceImpl implements GeneralService<Company> {
             company.setFidelityPrograms(new ArrayList<>());
             company.setCampaigns(new ArrayList<>());
             return this.repository.save(company);
-        } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Company is already present!");
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Company is already present!");
     }
 
     @Override

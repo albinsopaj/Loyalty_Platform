@@ -20,13 +20,19 @@ public class ClientController {
     private FidelityProgramServiceImpl fidelityProgramService;
     @Autowired
     private CompanyServiceImpl companyService;
+
+
+    /***********************************
+     ** Owner related CRUD operations **
+     **********************************/
+
     @PostMapping(path = "/add")
     public Client add(@NonNull @RequestBody Client client) {
         return this.clientService.save(client);
     }
 
     @GetMapping(path = "/get/{clientId}")
-    public Client get(@NonNull @PathVariable("clientId") Long clientId){
+    public Client get(@NonNull @PathVariable("clientId") Long clientId) {
         return this.clientService.findById(clientId);
     }
 
@@ -67,4 +73,5 @@ public class ClientController {
     public void deleteAll(){
         this.clientService.deleteAll();
     }
+
 }

@@ -48,10 +48,9 @@ public class CashierController {
         this.cashierService.delete(cashier);
     }
 
-
-
     @PutMapping(path = "/update/pointsDigitalCard/{id}/{value}")
     public void updatePointsDigitalCard(@NonNull @PathVariable("id") Long pointsDigitalCardId, @NonNull Integer value) {
         cashierService.updatePointsDigitalCard(digitalCardService.findById(pointsDigitalCardId), value);
     }
+
 }

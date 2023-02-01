@@ -2,8 +2,10 @@ package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
-import jakarta.persistence.*;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Entity;
 import lombok.*;
+
 import java.util.List;
 
 /**
@@ -28,8 +30,9 @@ public class LevelDigitalCard extends DigitalCard {
     }
 
     /**
-     * Method to add experience to the digital card
-     * @param experience the experience to add
+     * Method to addOwner experience to the digital card
+     *
+     * @param experience the experience to addOwner
      */
     public void addExperience(Integer experience) {
         this.experience += experience;
@@ -44,9 +47,9 @@ public class LevelDigitalCard extends DigitalCard {
     }
 
     /**
-     * Method to add the unlocked rewards
+     * Method to addOwner the unlocked rewards
      *
-     * @param rewards the rewards to add
+     * @param rewards the rewards to addOwner
      */
     public void addRewards(List<String> rewards) {
         rewardsUnlocked.addAll(rewards);

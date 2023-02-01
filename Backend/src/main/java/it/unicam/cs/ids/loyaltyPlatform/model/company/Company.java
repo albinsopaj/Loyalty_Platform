@@ -9,7 +9,6 @@ import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.Owner;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
 
 import java.util.List;
 

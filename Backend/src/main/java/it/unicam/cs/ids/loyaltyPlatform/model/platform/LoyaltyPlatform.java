@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
+
 import java.util.List;
-import java.util.Random;
 
 /**
  * Class that defines the loyalty platform
@@ -26,9 +26,9 @@ public class LoyaltyPlatform {
     private @NonNull List<Client> clients;
 
     /**
-     * Method to add client to the platform
+     * Method to addOwner client to the platform
      *
-     * @param client the client to add
+     * @param client the client to addOwner
      */
     public void addClient(@NonNull Client client) {
         if (!clients.contains(client)) {
@@ -37,9 +37,9 @@ public class LoyaltyPlatform {
     }
 
     /**
-     * Method to add company to the platform
+     * Method to addOwner company to the platform
      *
-     * @param company the company to add
+     * @param company the company to addOwner
      */
     public void addCompany(@NonNull Company company) {
         if (!companies.contains(company)) {
@@ -47,24 +47,24 @@ public class LoyaltyPlatform {
         }
     }
 
-    /**
-     * Method to generate a random 16 char string password
-     * @return a 16 char password
-     */
-    public String createPassword(){
-        String capitalCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
-        String specialCharacters = "!@#$";
-        String numbers = "1234567890";
-        String combinedChars = capitalCaseLetters + lowerCaseLetters + specialCharacters + numbers;
-        Random random = new Random();
-        char[] password = new char[16];
-        for(int i = 0; i< 16 ; i++) {
-            password[i] = combinedChars.charAt(random.nextInt(combinedChars.length()));
-        }
-        String passwordString = String.valueOf(password);
-        return passwordString;
-    }
+//    /**
+//     * Method to generate a random 16 char string password
+//     * @return a 16 char password
+//     */
+//    public String createPassword(){
+//        String capitalCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//        String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
+//        String specialCharacters = "!@#$";
+//        String numbers = "1234567890";
+//        String combinedChars = capitalCaseLetters + lowerCaseLetters + specialCharacters + numbers;
+//        Random random = new Random();
+//        char[] password = new char[16];
+//        for(int i = 0; i< 16 ; i++) {
+//            password[i] = combinedChars.charAt(random.nextInt(combinedChars.length()));
+//        }
+//        String passwordString = String.valueOf(password);
+//        return passwordString;
+//    }
 
     /**
      * Method to remove a client from the platform

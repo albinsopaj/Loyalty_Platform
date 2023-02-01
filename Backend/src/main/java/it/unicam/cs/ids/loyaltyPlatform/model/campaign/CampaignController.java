@@ -2,8 +2,10 @@ package it.unicam.cs.ids.loyaltyPlatform.model.campaign;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -14,10 +16,10 @@ public class CampaignController {
     @Autowired
     private CampaignServiceImpl campaignService;
 
-    @PostMapping(path = "/add")
-    public Campaign addCampaign(@NonNull @RequestBody Campaign campaign) {
-        return this.campaignService.save(campaign);
-    }
+//    @PostMapping(path = "/add")
+//    public Campaign addCampaign(@RequestBody @Param("campaign") Campaign campaign) {
+//        return this.campaignService.save(campaign);
+//    }
 
     @GetMapping(path = "/{campaignId}")
     public Campaign getCampaign(@NonNull @PathVariable("campaignId") Long id) {
@@ -29,19 +31,19 @@ public class CampaignController {
         return this.campaignService.getAll();
     }
 
-    @PutMapping(path = "/update/{campaignId}")
-    public Campaign updateCampaign(@NonNull @PathVariable("campaignId") Long id, @RequestBody Campaign campaign) {
-        return this.campaignService.update(campaign);
-    }
-
-    @DeleteMapping(path = "/delete/{campaignId}")
-    public void deleteCampaign(@NonNull @PathVariable("campaignId") Long id) {
-        this.campaignService.deleteById(id);
-    }
-
-    @DeleteMapping(path = "/delete")
-    public void deleteCampaign(@NonNull @Param("campaign") Campaign campaign) {
-        this.campaignService.delete(campaign);
-    }
+//    @PutMapping(path = "/update/{campaignId}")
+//    public Campaign updateCampaign(@NonNull @PathVariable("campaignId") Long id, @RequestBody Campaign campaign) {
+//        return this.campaignService.update(campaign);
+//    }
+//
+//    @DeleteMapping(path = "/delete/{campaignId}")
+//    public void deleteCampaign(@NonNull @PathVariable("campaignId") Long id) {
+//        this.campaignService.deleteById(id);
+//    }
+//
+//    @DeleteMapping(path = "/delete")
+//    public void deleteCampaign(@NonNull @Param("campaign") Campaign campaign) {
+//        this.campaignService.delete(campaign);
+//    }
 
 }
