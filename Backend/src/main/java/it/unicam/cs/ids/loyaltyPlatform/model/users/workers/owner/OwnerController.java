@@ -7,6 +7,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.FidelityLeve
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier.Cashier;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -178,4 +179,8 @@ public class OwnerController {
         return this.ownerService.addFidelityLevel(ownerId, companyId, levelFidelityProgramId, fidelityLevel);
     }
 
+    @PostMapping(path = "/{ownerId}/getCompanies/{companyId}/addCashier")
+    public Cashier addCashier(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody Cashier cashier) {
+        return this.ownerService.addCashier(ownerId, companyId, cashier);
+    }
 }

@@ -3,6 +3,8 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.ClientServiceImpl;
@@ -30,6 +32,8 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
 
     @Autowired
     private PointsDigitalCardServiceImpl pointsDigitalCardService;
+    @Autowired
+    private FidelityProgramServiceImpl fidelityProgramService;
 
     public Cashier save(@NonNull Cashier cashier) {
         if (!repository.findAll().contains(cashier)) {
@@ -87,4 +91,20 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
         return this.clientService.findById(clientId);
     }
 
+    public Client registerClient(@NonNull Client client){
+        return this.clientService.save(client);
+    }
+
+    public Client registerClientToFidelityProgram(@NonNull Long cashierId, @NonNull Long clientId, @NonNull Long fidelityProgramId){
+        if(findById(cashierId).getCompany().getFidelityPrograms().contains(this.fidelityProgramService.findById(fidelityProgramId))){
+            Client client = this.clientService.findById(clientId);
+            FidelityProgram fidelityProgram = this.fidelityProgramService.findById(fidelityProgramId);
+            DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
+            client.getDigitalWallet().addDigitalCard(digitalCard);
+            digitalCard.setDigitalWallet(client.getDigitalWallet());
+            return client;
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Cashier doesn't belong to the company that contains this fidelity program");
+        }
+    }
 }

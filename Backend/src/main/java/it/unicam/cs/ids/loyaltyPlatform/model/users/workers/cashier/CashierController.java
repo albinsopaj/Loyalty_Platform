@@ -59,4 +59,13 @@ public class CashierController {
         return cashierService.viewClientProfile(clientId);
     }
 
+    @PostMapping(path = "/registerClient")
+    public Client registerClient(@NonNull @RequestBody Client client){
+        return this.cashierService.registerClient(client);
+    }
+    @PutMapping(path = "/{cashierId}/getFidelityPrograms/addClientToFidelityProgram/{clientId}/{fidelityProgramId}")
+    public Client registerClientToFidelityProgram(@NonNull @PathVariable("cashierId") Long cashierId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable Long fidelityProgramId ){
+        return this.cashierService.registerClientToFidelityProgram(cashierId,clientId,fidelityProgramId);
+    }
+
 }

@@ -14,6 +14,8 @@ import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidel
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsFidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsRewardServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier.Cashier;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier.CashierServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.ManagerServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
@@ -44,8 +46,8 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
     private LevelFidelityProgramServiceImpl levelFidelityProgramService;
     @Autowired
     private FidelityProgramServiceImpl fidelityProgramService;
-
-
+    @Autowired
+    private CashierServiceImpl cashierService;
     /***********************************
      ** Owner related CRUD operations **
      **********************************/
@@ -255,6 +257,15 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
         }
     }
 
+    public Cashier addCashier(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Cashier cashier) {
+        if (findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))) {
+            cashier.setCompany(this.companyService.findById(companyId));
+            this.companyService.findById(companyId).addCashier(cashier);
+            return this.cashierService.save(cashier);
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company not owned by this owner");
+        }
+    }
 
 
 }
