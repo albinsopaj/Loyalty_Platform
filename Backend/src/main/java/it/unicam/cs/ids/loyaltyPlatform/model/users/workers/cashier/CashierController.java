@@ -61,11 +61,6 @@ public class CashierController {
         return this.cashierService.registerClient(client);
     }
 
-    @PutMapping(path = "/{cashierId}/getFidelityPrograms/addClientToFidelityProgram/{clientId}/{fidelityProgramId}")
-    public void registerClientToFidelityProgram(@NonNull @PathVariable("cashierId") Long cashierId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable Long fidelityProgramId) {
-        this.cashierService.registerClientToFidelityProgram(cashierId, clientId, fidelityProgramId);
-    }
-
     @PutMapping(path = "/{cashierId}/updatePointsDigitalCardStatus/{digitalCardId}")
     public void updatePointsDigitalCardStatus(@NonNull @PathVariable("cashierId") Long cashierId, @NonNull @PathVariable("digitalCardId") Long digitalCardId, @NonNull @RequestBody Integer value) {
         this.cashierService.updatePointsDigitalCardStatus(cashierId, digitalCardId, value);

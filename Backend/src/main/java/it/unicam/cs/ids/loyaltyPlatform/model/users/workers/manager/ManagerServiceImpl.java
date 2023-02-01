@@ -1,6 +1,9 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.ClientServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
@@ -73,6 +76,18 @@ public class ManagerServiceImpl implements GeneralService<Manager> {
             }
         } else {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Manager isn't part of the company that owns this fidelity program");
+        }
+    }
+
+    public void registerClientToFidelityProgram(@NonNull Long managerId, @NonNull Long clientId, @NonNull Long fidelityProgramId){
+        if(findById(managerId).getCompany().getFidelityPrograms().contains(this.fidelityProgramService.findById(fidelityProgramId))){
+            Client client = this.clientService.findById(clientId);
+            FidelityProgram fidelityProgram = this.fidelityProgramService.findById(fidelityProgramId);
+            DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
+            client.getDigitalWallet().addDigitalCard(digitalCard);
+            digitalCard.setDigitalWallet(client.getDigitalWallet());
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Cashier doesn't belong to the company that contains this fidelity program");
         }
     }
 }

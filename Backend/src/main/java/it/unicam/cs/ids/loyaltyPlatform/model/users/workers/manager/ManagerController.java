@@ -37,7 +37,10 @@ public class ManagerController  {
     public void delete(@NonNull @PathVariable("id") Long id) {
         this.managerService.deleteById(id);
     }
-
+    @PutMapping(path = "/{managerId}/getFidelityPrograms/addClientToFidelityProgram/{clientId}/{fidelityProgramId}")
+    public void registerClientToFidelityProgram(@NonNull @PathVariable("managerId") Long managerId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable Long fidelityProgramId) {
+        this.managerService.registerClientToFidelityProgram(managerId, clientId, fidelityProgramId);
+    }
     @DeleteMapping(path = "/removeClientFromFidelityProgram/{managerId}/{clientId}/{fidelityProgramId}")
     public void removeClient(@NonNull @PathVariable("managerId") Long managerId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId) {
         this.managerService.removeClient(managerId, clientId, fidelityProgramId);

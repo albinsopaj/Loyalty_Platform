@@ -95,18 +95,6 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
         return this.clientService.save(client);
     }
 
-    public void registerClientToFidelityProgram(@NonNull Long cashierId, @NonNull Long clientId, @NonNull Long fidelityProgramId){
-        if(findById(cashierId).getCompany().getFidelityPrograms().contains(this.fidelityProgramService.findById(fidelityProgramId))){
-            Client client = this.clientService.findById(clientId);
-            FidelityProgram fidelityProgram = this.fidelityProgramService.findById(fidelityProgramId);
-            DigitalCard digitalCard = this.fidelityProgramService.registerClient(client, fidelityProgram);
-            client.getDigitalWallet().addDigitalCard(digitalCard);
-            digitalCard.setDigitalWallet(client.getDigitalWallet());
-        } else {
-            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Cashier doesn't belong to the company that contains this fidelity program");
-        }
-    }
-
     public void updatePointsDigitalCardStatus(@NonNull Long cashierId, @NonNull Long digitalCardId, @NonNull Integer value){
         PointsFidelityProgram pointsFidelityProgram = this.pointsFidelityProgramService.findById(this.pointsDigitalCardService.findById(digitalCardId).getFidelityProgramId());
         if(findById(cashierId).getCompany().getFidelityPrograms().contains(pointsFidelityProgram)){
