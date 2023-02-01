@@ -1,16 +1,13 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.clients;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramReview;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.action.internal.OrphanRemovalAction;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Class that defines a client of the platform
@@ -37,9 +34,6 @@ public class Client extends AuthenticatedUser {
 
     public void addReview( FidelityProgramReview review){
         reviews.add(review);
-    }
-    public void removeReview( FidelityProgramReview review){
-        reviews.remove(review);
     }
     public void addFidelityProgram( Long fidelityProgramId){
         this.fidelityProgramIds.add(fidelityProgramId);

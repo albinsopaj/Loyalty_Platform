@@ -16,10 +16,6 @@ public class CampaignController {
     @Autowired
     private CampaignServiceImpl campaignService;
 
-//    @PostMapping(path = "/add")
-//    public Campaign addCampaign(@RequestBody @Param("campaign") Campaign campaign) {
-//        return this.campaignService.save(campaign);
-//    }
 
     @GetMapping(path = "/get/{campaignId}")
     public Campaign getCampaign(@NonNull @PathVariable("campaignId") Long id) {
@@ -31,19 +27,5 @@ public class CampaignController {
         return this.campaignService.getAll();
     }
 
-//    @PutMapping(path = "/update/{campaignId}")
-//    public Campaign updateCampaign(@NonNull @PathVariable("campaignId") Long id, @RequestBody Campaign campaign) {
-//        return this.campaignService.update(campaign);
-//    }
-//
-//    @DeleteMapping(path = "/delete/{campaignId}")
-//    public void deleteCampaign(@NonNull @PathVariable("campaignId") Long id) {
-//        this.campaignService.deleteById(id);
-//    }
-//
-//    @DeleteMapping(path = "/delete")
-//    public void deleteCampaign(@NonNull @Param("campaign") Campaign campaign) {
-//        this.campaignService.delete(campaign);
-//    }
 
 }

@@ -2,7 +2,8 @@ package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points;
 
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
-import jakarta.persistence.*;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Entity;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -46,14 +47,5 @@ public class PointsDigitalCard extends DigitalCard {
     }
 
 
-    /*
-    public void buyReward(PointsReward reward){
-        removePoints(reward.getPrice());
-        rewards.add(reward.getName());
-        if(rewards.isEmpty()){
-            this.completed = true;
-        }
-    }
 
-    */
 }

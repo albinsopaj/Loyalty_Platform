@@ -6,8 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.lang.NonNull;
 
 import java.util.ArrayList;
@@ -39,14 +37,5 @@ public class PointsFidelityProgram extends FidelityProgram {
         catalogue.remove(pointsReward);
     }
 
-    /*
-    public void changeStatus(Integer value, DigitalCard digitalCard) {
-        if(digitalCard instanceof PointsDigitalCard pointsDigitalCard){
-            pointsDigitalCard.addPoints(valueConvert(value));
-        } else {
-            System.out.println("Error: this digital card isn't a points digital card");
-        }
-    }
 
-    */
 }

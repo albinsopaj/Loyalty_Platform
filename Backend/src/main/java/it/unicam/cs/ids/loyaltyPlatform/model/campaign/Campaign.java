@@ -5,8 +5,6 @@ import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-
 /**
  * Class that defines a campaign
  */
@@ -34,12 +32,5 @@ public class Campaign {
     private @NonNull String end;
     private @NonNull String description;
 
-    /*
-    public Campaign( String name, String start, String end, String description ){
-        this.name = name;
-        this.start = start;
-        this.end = end;
-        this.description = description;
-    }
-    */
+
 }
