@@ -27,6 +27,7 @@ public class PointsDigitalCard extends DigitalCard {
         super(pointsFidelityProgramId,digitalWallet);
         this.rewards = new ArrayList<>();
     }
+
     public void addReward(String reward){
         rewards.add(reward);
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,8 @@ public class PointsFidelityProgramServiceImpl implements GeneralService<PointsFi
     }
 
     @Override
-    public Optional<PointsFidelityProgram> get(@NonNull PointsFidelityProgram PointsFidelityProgram) {
-        return this.repository.findById(PointsFidelityProgram.getId());
+    public Optional<PointsFidelityProgram> get(@NonNull PointsFidelityProgram pointsFidelityProgram) {
+        return this.repository.findById(pointsFidelityProgram.getId());
     }
 
     @Override
@@ -42,8 +43,8 @@ public class PointsFidelityProgramServiceImpl implements GeneralService<PointsFi
     }
 
     @Override
-    public PointsFidelityProgram update(@NonNull PointsFidelityProgram PointsFidelityProgram) {
-        return this.repository.save(PointsFidelityProgram);
+    public PointsFidelityProgram update(@NonNull PointsFidelityProgram pointsFidelityProgram) {
+        return this.repository.save(pointsFidelityProgram);
     }
 
     @Override
@@ -52,8 +53,8 @@ public class PointsFidelityProgramServiceImpl implements GeneralService<PointsFi
     }
 
     @Override
-    public void delete(@NonNull PointsFidelityProgram PointsFidelityProgram) {
-        this.repository.delete(PointsFidelityProgram);
+    public void delete(@NonNull PointsFidelityProgram pointsFidelityProgram) {
+        this.repository.delete(pointsFidelityProgram);
     }
 
     @Override

@@ -9,19 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class LevelFidelityProgramServiceImpl implements GeneralService<LevelFidelityProgram> {
+
     @Autowired
     private LevelFidelityProgramRepository repository;
     @Autowired
     private LevelDigitalCardServiceImpl digitalCardService;
+
     @Override
-    public LevelFidelityProgram save(@NonNull LevelFidelityProgram fidelityProgram) {
-        if (!repository.findAll().contains(fidelityProgram)) {
-            return this.repository.save(fidelityProgram);
+    public LevelFidelityProgram save(@NonNull LevelFidelityProgram levelFidelityProgram) {
+        if (!repository.findAll().contains(levelFidelityProgram)) {
+            return this.repository.save(levelFidelityProgram);
         } else throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");
     }
 
