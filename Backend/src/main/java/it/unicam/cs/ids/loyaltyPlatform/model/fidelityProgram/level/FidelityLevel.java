@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class FidelityLevel {
 
     private @NonNull String name;
     @CollectionTable
-    private @NonNull List<String> rewardsList;
+    private @NonNull List<String> rewardsList = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name="levelFidelityProgram_id")

@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Fidelity program based on levels
  */
-
 @Getter
 @Setter
 @Entity
@@ -30,28 +29,14 @@ public class LevelDigitalCard extends DigitalCard {
         super(levelFidelityProgramId,digitalWallet);
     }
 
-    /**
-     * Method to addOwner experience to the digital card
-     *
-     * @param experience the experience to addOwner
-     */
     public void addExperience(Integer experience) {
         this.experience += experience;
     }
 
-    /**
-     * Method to remove experience to the digital card
-     * @param experience the experience to remove
-     */
     public void removeExperience(Integer experience){
         this.experience -= experience;
     }
 
-    /**
-     * Method to addOwner the unlocked rewards
-     *
-     * @param rewards the rewards to addOwner
-     */
     public void addRewards(List<String> rewards) {
         rewardsUnlocked.addAll(rewards);
     }
@@ -59,9 +44,7 @@ public class LevelDigitalCard extends DigitalCard {
     public void removeRewards(List<String> rewards){
         rewardsUnlocked.removeAll(rewards);
     }
-    /**
-     * Method used to calculate if there is a level up
-     */
+
     public void levelUp() {
         this.level++;
     }

@@ -12,11 +12,6 @@ public class LevelFidelityProgramController {
     @Autowired
     private LevelFidelityProgramServiceImpl levelFidelityProgramService;
 
-    @PostMapping(path = "/levelFidelityProgram")
-    public LevelFidelityProgram add(@NonNull @RequestBody LevelFidelityProgram levelFidelityProgram) {
-        return this.levelFidelityProgramService.save(levelFidelityProgram);
-    }
-
     @GetMapping(path = "/get/{id}")
     public LevelFidelityProgram get(@NonNull @PathVariable("id") Long id) {
         return this.levelFidelityProgramService.findById(id);
@@ -25,11 +20,6 @@ public class LevelFidelityProgramController {
     @GetMapping(path = "/getAll")
     public List<LevelFidelityProgram> getAll() {
         return this.levelFidelityProgramService.getAll();
-    }
-
-    @PutMapping(path = "/update/{levelFidelityProgram}")
-    public LevelFidelityProgram update(@NonNull @RequestBody @PathVariable("levelFidelityProgram") LevelFidelityProgram levelFidelityProgram) {
-        return this.levelFidelityProgramService.update(levelFidelityProgram);
     }
 
     @DeleteMapping(path = "/delete/{id}")

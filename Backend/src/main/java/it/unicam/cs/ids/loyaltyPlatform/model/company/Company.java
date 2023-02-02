@@ -3,13 +3,12 @@ package it.unicam.cs.ids.loyaltyPlatform.model.company;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.campaign.Campaign;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
-import it.unicam.cs.ids.loyaltyPlatform.model.marketingModule.MarketingModule;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier.Cashier;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager.Manager;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.Owner;
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,17 +35,13 @@ public class Company {
     private Owner owner;
 
     @OneToMany(mappedBy = "company")
-    private List<FidelityProgram> fidelityPrograms;
+    private @NonNull List<FidelityProgram> fidelityPrograms = new ArrayList<>();
     @OneToMany(mappedBy = "company")
-    private List<Campaign> campaigns;
+    private @NonNull List<Campaign> campaigns = new ArrayList<>();
     @OneToMany(mappedBy = "company")
-    private List<Manager> managers;
+    private @NonNull List<Manager> managers = new ArrayList<>();
     @OneToMany(mappedBy = "company")
-    private List<Cashier> cashiers;
-
-    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
-    private MarketingModule marketingModule;
-
+    private @NonNull List<Cashier> cashiers = new ArrayList<>();
 
     public void addFidelityProgram(@NonNull FidelityProgram fidelityProgram) {
         fidelityPrograms.add(fidelityProgram);

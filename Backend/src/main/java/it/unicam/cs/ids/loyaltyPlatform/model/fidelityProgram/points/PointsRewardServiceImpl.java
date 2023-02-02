@@ -41,8 +41,7 @@ public class PointsRewardServiceImpl implements GeneralService<PointsReward> {
     }
     @Override
     public PointsReward updateById(@NonNull Long id) {
-        //TODO
-        return null;
+        return this.repository.save(this.repository.getReferenceById(id));
     }
     @Override
     public void delete(@NonNull PointsReward pointsReward) {
@@ -52,6 +51,5 @@ public class PointsRewardServiceImpl implements GeneralService<PointsReward> {
     public void deleteById(@NonNull Long id) {
         this.repository.deleteById(id);
     }
-
 
 }

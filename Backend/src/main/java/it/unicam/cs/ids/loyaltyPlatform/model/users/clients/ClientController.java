@@ -6,7 +6,6 @@ import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramSer
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -19,11 +18,6 @@ public class ClientController {
     private FidelityProgramServiceImpl fidelityProgramService;
     @Autowired
     private CompanyServiceImpl companyService;
-
-
-    /***********************************
-     ** Owner related CRUD operations **
-     **********************************/
 
     @PostMapping(path = "/add")
     public Client add(@NonNull @RequestBody Client client) {

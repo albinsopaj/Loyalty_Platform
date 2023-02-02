@@ -46,6 +46,4 @@ public class PointsDigitalCard extends DigitalCard {
         this.points -= points;
     }
 
-
-
 }

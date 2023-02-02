@@ -31,6 +31,4 @@ public class Campaign {
     private @NonNull String start;
     private @NonNull String end;
     private @NonNull String description;
-
-
 }

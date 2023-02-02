@@ -3,7 +3,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points.PointsReward;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.ClientServiceImpl;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -41,12 +40,11 @@ public class CashierController {
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public void delete(@NonNull @PathVariable("id") Long id) {
+    public void deleteById(@NonNull @PathVariable("id") Long id) {
         this.cashierService.deleteById(id);
     }
 
-    //questo metodo potrebbe non funzionare in quanto è improbabile che un oggetto venga passato direttamente nell'URL
-    @DeleteMapping("delete/{cashier}")
+    @DeleteMapping(path = "/delete/{cashier}")
     public void delete(@NonNull @PathVariable Cashier cashier) {
         this.cashierService.delete(cashier);
     }

@@ -3,7 +3,6 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -12,11 +11,6 @@ public class ManagerController  {
 
     @Autowired
     private ManagerServiceImpl managerService;
-
-//    @PostMapping(path = "/add")
-//    public Manager add(@NonNull @RequestBody Manager manager) {
-//        return this.managerService.save(manager);
-//    }
 
     @GetMapping(path = "/get/{id}")
     public Manager get(@NonNull Long id) {

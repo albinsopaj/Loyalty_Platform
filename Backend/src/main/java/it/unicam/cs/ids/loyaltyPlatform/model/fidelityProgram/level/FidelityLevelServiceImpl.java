@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -42,8 +41,7 @@ public class FidelityLevelServiceImpl implements GeneralService<FidelityLevel> {
     }
     @Override
     public FidelityLevel updateById(@NonNull Long id) {
-        //TODO
-        return null;
+        return this.repository.save(this.repository.getReferenceById(id));
     }
     @Override
     public void delete(@NonNull FidelityLevel fidelityLevel) {

@@ -54,8 +54,7 @@ public class FidelityProgramServiceImpl implements GeneralService<FidelityProgra
 
     @Override
     public FidelityProgram updateById(@NonNull Long id) {
-        //TODO
-        return null;
+        return this.repository.save(this.repository.getReferenceById(id));
     }
 
     @Override
@@ -69,7 +68,7 @@ public class FidelityProgramServiceImpl implements GeneralService<FidelityProgra
     }
 
 
-    public DigitalCard registerClient(@NonNull Client client, @NonNull FidelityProgram fidelityProgram) {
+    public void registerClient(@NonNull Client client, @NonNull FidelityProgram fidelityProgram) {
         if(fidelityProgram.getClientIds().contains(client.getId())){
             throw new ResponseStatusException(HttpStatus.FOUND, "Client already in fidelity program");
         } else {
@@ -85,7 +84,6 @@ public class FidelityProgramServiceImpl implements GeneralService<FidelityProgra
             digitalCard.setFidelityProgramId(fidelityProgram.getId());
             client.getDigitalWallet().addDigitalCard(digitalCard);
             digitalCardService.save(digitalCard);
-            return digitalCard;
         }
     }
 }

@@ -5,10 +5,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.lang.NonNull;
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**

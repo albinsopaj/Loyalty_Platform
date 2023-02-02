@@ -1,13 +1,11 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet;
 
-
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -63,13 +61,11 @@ DigitalWalletServiceImpl implements GeneralService<DigitalWallet> {
 
     @Override
     public void delete(@NonNull DigitalWallet digitalCard) {
-        //da verificare se l'elemento da cancellare è presente o no
         this.repository.delete(digitalCard);
     }
 
     @Override
     public void deleteById(@NonNull Long id) {
-        //da verificare se l'elemento da cancellare è presente o no
         this.repository.deleteById(id);
     }
 

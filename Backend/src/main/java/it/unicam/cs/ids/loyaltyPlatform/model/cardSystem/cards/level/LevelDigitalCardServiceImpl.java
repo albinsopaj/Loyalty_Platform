@@ -45,8 +45,7 @@ public class LevelDigitalCardServiceImpl implements GeneralService<LevelDigitalC
 
     @Override
     public LevelDigitalCard updateById(@NonNull Long id) {
-        //TODO
-        return null;
+        return this.repository.save(this.repository.getReferenceById(id));
     }
 
     @Override

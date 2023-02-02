@@ -1,10 +1,7 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.DigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.level.LevelDigitalCardServiceImpl;
-import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
-import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.level.LevelFidelityProgramServiceImpl;
@@ -19,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -28,10 +24,8 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
 
     @Autowired
     private CashierRepository repository;
-
     @Autowired
     private PointsFidelityProgramServiceImpl pointsFidelityProgramService;
-
     @Autowired
     private LevelFidelityProgramServiceImpl levelFidelityProgramService;
     @Autowired

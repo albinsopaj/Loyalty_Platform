@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.util;
 
 import lombok.NonNull;
-
 import java.util.List;
 import java.util.Optional;
 

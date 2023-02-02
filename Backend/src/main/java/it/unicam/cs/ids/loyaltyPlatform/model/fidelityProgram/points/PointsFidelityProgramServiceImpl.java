@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.points;
 
-
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCard;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.cards.points.PointsDigitalCardServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.util.GeneralService;
@@ -9,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,8 +50,7 @@ public class PointsFidelityProgramServiceImpl implements GeneralService<PointsFi
 
     @Override
     public PointsFidelityProgram updateById(@NonNull Long id) {
-        //TODO
-        return null;
+        return this.repository.save(this.repository.getReferenceById(id));
     }
 
     @Override
