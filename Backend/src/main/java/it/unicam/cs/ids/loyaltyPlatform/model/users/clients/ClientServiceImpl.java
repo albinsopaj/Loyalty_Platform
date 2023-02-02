@@ -31,14 +31,12 @@ public class ClientServiceImpl implements GeneralService<Client> {
         if (!repository.findAll().contains(client)) {
             this.digitalWalletService.save(new DigitalWallet(client));
             return this.repository.save(client);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "client already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Client already exists");
     }
 
     @Override
     public Client findById(@NonNull Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "client not found"));
+        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found"));
     }
 
     @Override

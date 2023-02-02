@@ -18,9 +18,7 @@ public class FidelityLevelServiceImpl implements GeneralService<FidelityLevel> {
     public FidelityLevel save(@NonNull FidelityLevel fidelityLevel) {
         if (!repository.findAll().contains(fidelityLevel)) {
             return this.repository.save(fidelityLevel);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity level already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity level already exists");
     }
     @Override
     public FidelityLevel findById(@NonNull Long id) {

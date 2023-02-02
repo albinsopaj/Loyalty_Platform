@@ -17,9 +17,7 @@ public class PointsDigitalCardServiceImpl implements GeneralService<PointsDigita
     public PointsDigitalCard save(@NonNull PointsDigitalCard pointsDigitalCard) {
         if (!repository.findAll().contains(pointsDigitalCard)) {
             return this.repository.save(pointsDigitalCard);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Digital card already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Digital card already exists");
     }
 
     @Override

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -40,33 +39,22 @@ public class CompanyServiceImpl implements GeneralService<Company> {
 
     @Override
     public Company update(@NonNull Company company) {
-        if (this.repository.existsById(company.getId())) {
-            this.repository.save(company);
-            return company;
-        } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Campaign does not exist!");
+        return this.repository.save(company);
     }
 
     @Override
     public Company updateById(@NonNull Long id) {
-        if (this.repository.existsById(id)) {
-            return this.repository.save(findById(id));
-        } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Trying to update non-existing campaign!");
+        return this.repository.save(this.repository.getReferenceById(id));
     }
 
     @Override
     public void delete(@NonNull Company company) {
-        for (Company c : this.repository.findAll()) {
-            if (this.repository.existsById(company.getId())) {
-                this.repository.delete(company);
-            } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found");
-        }
+        this.repository.delete(company);
     }
 
     @Override
     public void deleteById(@NonNull Long id) {
-        if (this.repository.findById(id).isPresent()) {
-            this.repository.deleteById(id);
-        } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found");
+        this.repository.deleteById(id);
     }
 
 }

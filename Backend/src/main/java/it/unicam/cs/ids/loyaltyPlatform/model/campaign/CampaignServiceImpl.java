@@ -19,9 +19,7 @@ public class CampaignServiceImpl implements GeneralService<Campaign> {
     public Campaign save(@NonNull Campaign campaign) {
         if (!repository.findAll().contains(campaign)) {
             return this.repository.save(campaign);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "campaign already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Campaign already exists");
     }
 
     @Override
@@ -41,35 +39,22 @@ public class CampaignServiceImpl implements GeneralService<Campaign> {
 
     @Override
     public Campaign update(@NonNull Campaign campaign) {
-        if (this.repository.existsById(campaign.getId())) {
-            this.repository.save(campaign);
-            return campaign;
-        } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Campaign does not exist!");
+        return this.repository.save(campaign);
     }
 
     @Override
     public Campaign updateById(@NonNull Long id) {
-        if (this.repository.existsById(id)) {
-            this.repository.save(findById(id));
-            return findById(id);
-        } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Trying to update non-existing campaign!");
+        return this.repository.save(this.repository.getReferenceById(id));
     }
 
     @Override
     public void delete(@NonNull Campaign campaign) {
-        for (Campaign c : this.repository.findAll()) {
-            if (this.repository.existsById(c.getId())) {
-                this.repository.delete(campaign);
-            } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found");
-        }
+        this.repository.delete(campaign);
     }
 
     @Override
     public void deleteById(@NonNull Long id) {
-        if (this.repository.findById(id).isPresent()) {
-            this.repository.deleteById(id);
-            System.out.println("Campaign deleted successfully");
-        } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Campaign not found");
+        this.repository.deleteById(id);
     }
 
 }

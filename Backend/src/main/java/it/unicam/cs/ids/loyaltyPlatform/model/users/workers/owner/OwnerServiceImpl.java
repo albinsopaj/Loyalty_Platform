@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,11 +49,8 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
 
     public Owner save(@NonNull Owner owner) {
         if (!repository.findAll().contains(owner)) {
-            owner.setCompanies(new ArrayList<>());
             return this.repository.save(owner);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Owner already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Owner already exists");
     }
 
     @Override
@@ -84,10 +80,7 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
 
     @Override
     public void delete(@NonNull Owner owner) {
-        if (this.repository.existsById(owner.getId())) {
-            this.repository.delete(owner);
-        } else
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User to be deleted is not present!");
+        this.repository.delete(owner);
     }
 
     @Override

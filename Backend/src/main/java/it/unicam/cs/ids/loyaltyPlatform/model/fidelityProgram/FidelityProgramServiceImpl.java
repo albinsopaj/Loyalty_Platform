@@ -27,9 +27,7 @@ public class FidelityProgramServiceImpl implements GeneralService<FidelityProgra
     public FidelityProgram save(@NonNull FidelityProgram fidelityProgram) {
         if (!repository.findAll().contains(fidelityProgram)) {
             return this.repository.save(fidelityProgram);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");
     }
 
     @Override

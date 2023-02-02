@@ -25,14 +25,12 @@ public class ManagerServiceImpl implements GeneralService<Manager> {
     public Manager save(@NonNull Manager manager) {
         if (!repository.findAll().contains(manager)) {
             return this.repository.save(manager);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "manager already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Manager already exists");
     }
 
     @Override
     public Manager findById(@NonNull Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "manager not found"));
+        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Manager not found"));
     }
 
     @Override

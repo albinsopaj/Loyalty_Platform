@@ -19,9 +19,7 @@ public class DigitalCardServiceImpl implements GeneralService<DigitalCard> {
     public DigitalCard save(@NonNull DigitalCard digitalCard) {
         if (!repository.findAll().contains(digitalCard)) {
             return this.repository.save(digitalCard);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Digital card already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Digital card already exists");
     }
 
     @Override
@@ -31,7 +29,7 @@ public class DigitalCardServiceImpl implements GeneralService<DigitalCard> {
 
     @Override
     public DigitalCard updateById(@NonNull Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Digital card not found"));
+        return this.repository.save(this.repository.getReferenceById(id));
     }
 
     @Override

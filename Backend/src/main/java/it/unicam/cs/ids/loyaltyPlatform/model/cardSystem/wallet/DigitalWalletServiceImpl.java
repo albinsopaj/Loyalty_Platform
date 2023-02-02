@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,11 +18,8 @@ DigitalWalletServiceImpl implements GeneralService<DigitalWallet> {
 
     public DigitalWallet save(@NonNull DigitalWallet digitalWallet) {
         if (!repository.findAll().contains(digitalWallet)) {
-            digitalWallet.setDigitalCards(new ArrayList<>());
             return this.repository.save(digitalWallet);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "client already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Digital wallet already exists");
     }
 
     @Override
@@ -44,20 +39,12 @@ DigitalWalletServiceImpl implements GeneralService<DigitalWallet> {
 
     @Override
     public DigitalWallet update(DigitalWallet digitalWallet) {
-        //TODO da verificare il comportamento e anche la validazione
         return this.repository.save(digitalWallet);
     }
 
     @Override
     public DigitalWallet updateById(@NonNull Long id) {
-        //TODO to be reviewed
-        Optional<DigitalWallet> oldDigitalWallet = this.repository.findById(id);
-
-        if (oldDigitalWallet.isPresent()) {
-            DigitalWallet originalDigitalWallet = oldDigitalWallet.get();
-            return this.repository.save(originalDigitalWallet);
-        }
-        return null;
+        return this.repository.save(this.repository.getReferenceById(id));
     }
 
     @Override

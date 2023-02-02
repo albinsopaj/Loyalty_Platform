@@ -7,6 +7,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ import java.util.List;
 public class Owner extends AuthenticatedUser {
 
     @OneToMany(mappedBy = "owner")
-    private List<Company> companies;
+    private @NonNull List<Company> companies = new ArrayList<>();
 
    public void addCompany( Company company){
        companies.add(company);

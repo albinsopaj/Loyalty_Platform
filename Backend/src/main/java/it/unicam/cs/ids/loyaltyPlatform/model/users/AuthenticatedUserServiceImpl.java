@@ -17,14 +17,12 @@ public class AuthenticatedUserServiceImpl implements GeneralService<Authenticate
     public AuthenticatedUser save(@NonNull AuthenticatedUser authenticatedUser) {
         if (!repository.findAll().contains(authenticatedUser)) {
             return this.repository.save(authenticatedUser);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "authenticatedUser already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "AuthenticatedUser already exists");
     }
 
     @Override
     public AuthenticatedUser findById(@NonNull Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "authenticatedUser not found"));
+        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "AuthenticatedUser not found"));
     }
 
     @Override

@@ -22,9 +22,7 @@ public class LevelFidelityProgramServiceImpl implements GeneralService<LevelFide
     public LevelFidelityProgram save(@NonNull LevelFidelityProgram fidelityProgram) {
         if (!repository.findAll().contains(fidelityProgram)) {
             return this.repository.save(fidelityProgram);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Fidelity program already exists");
     }
 
     @Override

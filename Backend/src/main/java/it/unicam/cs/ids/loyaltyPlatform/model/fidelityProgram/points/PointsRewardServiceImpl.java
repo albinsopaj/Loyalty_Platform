@@ -18,9 +18,7 @@ public class PointsRewardServiceImpl implements GeneralService<PointsReward> {
     public PointsReward save(@NonNull PointsReward pointsReward) {
         if (!repository.findAll().contains(pointsReward)) {
             return this.repository.save(pointsReward);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Points reward already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Points reward already exists");
     }
     @Override
     public PointsReward findById(@NonNull Long id) {

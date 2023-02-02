@@ -18,9 +18,7 @@ public class LevelDigitalCardServiceImpl implements GeneralService<LevelDigitalC
     public LevelDigitalCard save(@NonNull LevelDigitalCard levelDigitalCard) {
         if (!repository.findAll().contains(levelDigitalCard)) {
             return this.repository.save(levelDigitalCard);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Digital card already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Digital card already exists");
     }
 
     @Override

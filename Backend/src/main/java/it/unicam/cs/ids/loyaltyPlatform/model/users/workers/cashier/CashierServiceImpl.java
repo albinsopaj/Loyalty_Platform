@@ -40,14 +40,12 @@ public class CashierServiceImpl implements GeneralService<Cashier> {
     public Cashier save(@NonNull Cashier cashier) {
         if (!repository.findAll().contains(cashier)) {
             return this.repository.save(cashier);
-        } else {
-            throw new ResponseStatusException(HttpStatus.FOUND, "Cashier already exists");
-        }
+        } else throw new ResponseStatusException(HttpStatus.FOUND, "Cashier already exists");
     }
 
     @Override
     public Cashier findById(@NonNull Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "cashier not found"));
+        return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cashier not found"));
     }
 
     @Override
