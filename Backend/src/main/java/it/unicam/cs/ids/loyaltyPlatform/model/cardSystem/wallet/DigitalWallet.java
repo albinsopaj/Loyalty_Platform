@@ -6,6 +6,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.List;
 
 /**
@@ -30,6 +31,7 @@ public class DigitalWallet {
     private Client client;
     @OneToMany(mappedBy = "digitalWallet")
     private @NonNull List<DigitalCard> digitalCards;
+
     public DigitalWallet(Client client){
         this.client = client;
     }
@@ -60,4 +62,5 @@ public class DigitalWallet {
         }
         throw new IllegalArgumentException("Card doesn't exist");
     }
+
 }

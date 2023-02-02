@@ -30,7 +30,7 @@ public class FidelityLevel {
     private @NonNull List<String> rewardsList = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name="levelFidelityProgram_id")
+    @JoinColumn(name = "levelFidelityProgram_id")
     @JsonIgnore
     private LevelFidelityProgram levelFidelityProgram;
 
@@ -38,5 +38,8 @@ public class FidelityLevel {
         this.rewardsList.add(reward);
     }
 
-    public void removeReward(String reward){ this.rewardsList.remove(reward);}
+    public void removeReward(String reward) {
+        this.rewardsList.remove(reward);
+    }
+
 }

@@ -58,8 +58,8 @@ public class FidelityProgramServiceImpl implements GeneralService<FidelityProgra
     }
 
     @Override
-    public void delete(@NonNull FidelityProgram FidelityProgram) {
-        this.repository.delete(FidelityProgram);
+    public void delete(@NonNull FidelityProgram fidelityProgram) {
+        this.repository.delete(fidelityProgram);
     }
 
     @Override
