@@ -23,7 +23,6 @@ public class LevelDigitalCard extends DigitalCard {
     private Integer experience = 0;
     @CollectionTable
     private @NonNull List<String> rewardsUnlocked = new ArrayList<>();
-    private boolean completed;
 
     public LevelDigitalCard(Long levelFidelityProgramId, DigitalWallet digitalWallet){
         super(levelFidelityProgramId,digitalWallet);

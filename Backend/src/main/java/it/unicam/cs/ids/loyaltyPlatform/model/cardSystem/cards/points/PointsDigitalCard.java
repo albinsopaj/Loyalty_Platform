@@ -23,8 +23,6 @@ public class PointsDigitalCard extends DigitalCard {
     @CollectionTable
     private @NonNull List<String> rewards;
 
-    private boolean completed;
-
     public PointsDigitalCard(Long pointsFidelityProgramId, DigitalWallet digitalWallet){
         super(pointsFidelityProgramId,digitalWallet);
         this.rewards = new ArrayList<>();
