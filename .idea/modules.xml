@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Frontend.iml" filepath="$PROJECT_DIR$/Frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Loyalty Platform.iml" filepath="$PROJECT_DIR$/.idea/Loyalty Platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/loyaltyPlatform.main.iml" filepath="$PROJECT_DIR$/.idea/modules/loyaltyPlatform.main.iml" />
     </modules>
   </component>
 </project>

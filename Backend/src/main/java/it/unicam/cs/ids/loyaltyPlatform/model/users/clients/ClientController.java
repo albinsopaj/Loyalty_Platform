@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "loyaltyPlatform/client")
+@CrossOrigin("http://localhost:3000/")
 public class ClientController {
 
     @Autowired
