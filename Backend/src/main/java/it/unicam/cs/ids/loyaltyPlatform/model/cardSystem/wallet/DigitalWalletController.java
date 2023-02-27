@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "loyaltyPlatform/digitalWallet")
+@CrossOrigin("http://localhost:3000/")
 public class DigitalWalletController {
 
     @Autowired

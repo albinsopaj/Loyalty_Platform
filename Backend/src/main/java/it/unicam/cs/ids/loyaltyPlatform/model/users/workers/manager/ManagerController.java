@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "loyaltyPlatform/manager")
+@CrossOrigin("http://localhost:3000/")
 public class ManagerController  {
 
     @Autowired

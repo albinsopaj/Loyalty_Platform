@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "loyaltyPlatform/cashier")
+@CrossOrigin("http://localhost:3000/")
 public class CashierController {
 
     @Autowired

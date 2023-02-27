@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUser;
 import jakarta.persistence.Entity;
@@ -24,6 +25,7 @@ import java.util.List;
 public class Owner extends AuthenticatedUser {
 
     @OneToMany(mappedBy = "owner")
+    @JsonIgnore
     private @NonNull List<Company> companies = new ArrayList<>();
 
    public void addCompany( Company company){

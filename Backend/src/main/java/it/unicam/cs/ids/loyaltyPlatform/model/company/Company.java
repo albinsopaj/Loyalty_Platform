@@ -31,7 +31,6 @@ public class Company {
 
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
-    @JsonIgnore
     private Owner owner;
 
     @OneToMany(mappedBy = "company")

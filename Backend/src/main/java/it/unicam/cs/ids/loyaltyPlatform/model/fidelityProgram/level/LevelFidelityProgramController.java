@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "loyaltyPlatform/levelFidelityProgram")
+@CrossOrigin("http://localhost:3000/")
 public class LevelFidelityProgramController {
     @Autowired
     private LevelFidelityProgramServiceImpl levelFidelityProgramService;
