@@ -7,13 +7,11 @@
 
 <script>
 import PlatformClient from "@/components/PlatformClient.vue";
-import {SignupForm} from "@userfront/vue";
 
 export default {
   name: 'App',
   components: {
     PlatformClient,
-    SignupForm
   }
 }
 </script>
