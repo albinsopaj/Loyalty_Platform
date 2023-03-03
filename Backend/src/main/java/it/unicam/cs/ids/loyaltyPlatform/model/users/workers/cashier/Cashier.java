@@ -23,6 +23,7 @@ public class Cashier extends AuthenticatedUser {
     @ManyToOne
     @JoinColumn(name="company_id", nullable = false)
     @JsonIgnore
-    private @NonNull Company company;
+    private Company company;
 
+    private @NonNull String role = "ROLE_CASHIER";
 }

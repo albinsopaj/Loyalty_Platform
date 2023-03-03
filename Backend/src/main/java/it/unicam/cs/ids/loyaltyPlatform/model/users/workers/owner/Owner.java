@@ -28,6 +28,8 @@ public class Owner extends AuthenticatedUser {
     @JsonIgnore
     private @NonNull List<Company> companies = new ArrayList<>();
 
+    private @NonNull String role = "owner";
+
    public void addCompany( Company company){
        companies.add(company);
     }

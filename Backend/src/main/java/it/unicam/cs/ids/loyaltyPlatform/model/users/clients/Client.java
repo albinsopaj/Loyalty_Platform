@@ -14,19 +14,20 @@ import java.util.Set;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ToString
 @Entity
 @Table(name="clients")
 public class Client extends AuthenticatedUser {
 
-
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
     private DigitalWallet digitalWallet;
 
     @CollectionTable()
-    private @NonNull Set<Long> fidelityProgramIds = new HashSet<>();
+    private Set<Long> fidelityProgramIds = new HashSet<>();
+
+    private String role = "ROLE_CLIENT";
 
     public void addFidelityProgram( Long fidelityProgramId){
         this.fidelityProgramIds.add(fidelityProgramId);

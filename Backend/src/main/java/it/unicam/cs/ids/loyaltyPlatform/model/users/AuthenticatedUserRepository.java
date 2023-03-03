@@ -10,3 +10,4 @@ import org.springframework.stereotype.Repository;
 public interface AuthenticatedUserRepository extends JpaRepository<AuthenticatedUser, Long> {
 
 }
+

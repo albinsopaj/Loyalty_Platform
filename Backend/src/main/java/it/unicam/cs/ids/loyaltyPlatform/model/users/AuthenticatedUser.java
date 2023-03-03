@@ -10,6 +10,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @EqualsAndHashCode
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -24,7 +25,8 @@ public abstract class AuthenticatedUser {
     private @NonNull String lastName;
     private @NonNull String email;
     private @NonNull String phoneNumber;
-    private @NonNull Character biologicalGender;
+    private @NonNull String biologicalGender;
     private @NonNull String domicile;
-
+    private @NonNull String username;
+    private @NonNull String password;
 }
