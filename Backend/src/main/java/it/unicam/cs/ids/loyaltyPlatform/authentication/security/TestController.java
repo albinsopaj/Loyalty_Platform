@@ -27,4 +27,14 @@ public class TestController {
         return "Cashier Board.";
     }
 
+    @GetMapping("/manager")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    public String managerAccess() {
+        return "Manager Board.";
+    }
+    @GetMapping("/owner")
+    @PreAuthorize("hasRole('ROLE_OWNER')")
+    public String ownerAccess() {
+        return "Owner Board.";
+    }
 }

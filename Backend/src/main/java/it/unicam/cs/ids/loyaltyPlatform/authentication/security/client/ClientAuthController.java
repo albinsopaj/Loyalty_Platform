@@ -8,6 +8,7 @@ import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.SignupRequest.Cli
 import it.unicam.cs.ids.loyaltyPlatform.authentication.security.JwUtils;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWalletRepository;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserRepository;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.Client;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.clients.ClientRepository;
 import jakarta.validation.Valid;
@@ -35,6 +36,8 @@ public class ClientAuthController {
     @Autowired
     ClientRepository clientRepository;
     @Autowired
+    AuthenticatedUserRepository authenticatedUserRepository;
+    @Autowired
     DigitalWalletRepository digitalWalletRepository;
     @Autowired
     PasswordEncoder encoder;
@@ -49,7 +52,7 @@ public class ClientAuthController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
+        String jwt = jwtUtils.generateClientJwtToken(authentication);
 
         ClientDetailsImpl clientDetails = (ClientDetailsImpl) authentication.getPrincipal();
         List<String> roles = clientDetails.getAuthorities().stream()
@@ -65,13 +68,13 @@ public class ClientAuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody ClientSignupRequest clientSignUpRequest) {
-        if (clientRepository.existsByUsername(clientSignUpRequest.getUsername())) {
+        if (authenticatedUserRepository.existsByUsername(clientSignUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username is already taken!"));
         }
 
-        if (clientRepository.existsByEmail(clientSignUpRequest.getEmail())) {
+        if (authenticatedUserRepository.existsByEmail(clientSignUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already in use!"));

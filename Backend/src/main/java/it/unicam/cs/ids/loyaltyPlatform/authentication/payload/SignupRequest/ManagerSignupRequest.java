@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyPlatform.authentication.payload.SignupRequest;
 
-import it.unicam.cs.ids.loyaltyPlatform.model.company.Company;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -17,5 +16,5 @@ public class ManagerSignupRequest {
     private @NonNull String domicile;
     private @NonNull String username;
     private @NonNull String password;
-    private @NonNull Company company;
+    private @NonNull Long companyId;
 }

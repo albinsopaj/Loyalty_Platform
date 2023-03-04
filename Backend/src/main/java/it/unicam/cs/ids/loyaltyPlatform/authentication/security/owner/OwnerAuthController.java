@@ -1,18 +1,17 @@
-package it.unicam.cs.ids.loyaltyPlatform.authentication.security.cashier;
+package it.unicam.cs.ids.loyaltyPlatform.authentication.security.owner;
 
 import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.JwtResponse;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.LoginRequest;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.MessageResponse;
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.SignupRequest.CashierSignupRequest;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.SignupRequest.OwnerSignupRequest;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.security.JwUtils;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.CompanyRepository;
 import it.unicam.cs.ids.loyaltyPlatform.model.users.AuthenticatedUserRepository;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier.Cashier;
-import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.cashier.CashierRepository;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.Owner;
+import it.unicam.cs.ids.loyaltyPlatform.model.users.workers.owner.OwnerRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,12 +23,12 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth/cashier")
-public class CashierAuthController {
+@RequestMapping("/api/auth/owner")
+public class OwnerAuthController {
     @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
-    CashierRepository cashierRepository;
+    OwnerRepository ownerRepository;
     @Autowired
     AuthenticatedUserRepository authenticatedUserRepository;
     @Autowired
@@ -46,47 +45,45 @@ public class CashierAuthController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateCashierJwtToken(authentication);
+        String jwt = jwtUtils.generateOwnerJwtToken(authentication);
 
-        CashierDetailsImpl cashierDetails = (CashierDetailsImpl) authentication.getPrincipal();
-        List<String> roles = cashierDetails.getAuthorities().stream()
+        OwnerDetailsImpl ownerDetails = (OwnerDetailsImpl) authentication.getPrincipal();
+        List<String> roles = ownerDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .toList();
         String role = roles.get(0);
         return ResponseEntity.ok(new JwtResponse(jwt,
-                cashierDetails.getId(),
-                cashierDetails.getUsername(),
-                cashierDetails.getEmail(),
+                ownerDetails.getId(),
+                ownerDetails.getUsername(),
+                ownerDetails.getEmail(),
                 role));
     }
 
     @PostMapping("/signup")
-    @PreAuthorize("hasRole('ROLE_OWNER')")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody CashierSignupRequest cashierSignUpRequest) {
-        if (authenticatedUserRepository.existsByUsername(cashierSignUpRequest.getUsername())) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody OwnerSignupRequest ownerSignUpRequest) {
+        if (authenticatedUserRepository.existsByUsername(ownerSignUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username is already taken!"));
         }
 
-        if (authenticatedUserRepository.existsByEmail(cashierSignUpRequest.getEmail())) {
+        if (authenticatedUserRepository.existsByEmail(ownerSignUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
 
-        Cashier cashier = new Cashier();
-        cashier.setFirstName(cashierSignUpRequest.getFirstName());
-        cashier.setLastName(cashierSignUpRequest.getLastName());
-        cashier.setEmail(cashierSignUpRequest.getEmail());
-        cashier.setPhoneNumber(cashierSignUpRequest.getPhoneNumber());
-        cashier.setBiologicalGender(cashierSignUpRequest.getBiologicalGender());
-        cashier.setDomicile(cashierSignUpRequest.getDomicile());
-        cashier.setUsername(cashierSignUpRequest.getUsername());
-        cashier.setPassword(encoder.encode(cashierSignUpRequest.getPassword()));
-        cashier.setCompany(companyRepository.getReferenceById(cashierSignUpRequest.getCompanyId()));
-        cashierRepository.save(cashier);
+        Owner owner = new Owner();
+        owner.setFirstName(ownerSignUpRequest.getFirstName());
+        owner.setLastName(ownerSignUpRequest.getLastName());
+        owner.setEmail(ownerSignUpRequest.getEmail());
+        owner.setPhoneNumber(ownerSignUpRequest.getPhoneNumber());
+        owner.setBiologicalGender(ownerSignUpRequest.getBiologicalGender());
+        owner.setDomicile(ownerSignUpRequest.getDomicile());
+        owner.setUsername(ownerSignUpRequest.getUsername());
+        owner.setPassword(encoder.encode(ownerSignUpRequest.getPassword()));
+        ownerRepository.save(owner);
 
-        return ResponseEntity.ok(new MessageResponse("Cashier registered successfully!"));
+        return ResponseEntity.ok(new MessageResponse("Owner registered successfully!"));
     }
 }

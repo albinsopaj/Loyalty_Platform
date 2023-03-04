@@ -24,5 +24,5 @@ public class Manager extends AuthenticatedUser {
     @JsonIgnore
     private @NonNull Company company;
 
-    private @NonNull String role = "manager";
+    private @NonNull String role = "ROLE_MANAGER";
 }

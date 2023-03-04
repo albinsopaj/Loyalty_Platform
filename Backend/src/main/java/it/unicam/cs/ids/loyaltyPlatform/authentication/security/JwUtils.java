@@ -7,6 +7,8 @@ import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.security.cashier.CashierDetailsImpl;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.security.client.ClientDetailsImpl;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.security.manager.ManagerDetailsImpl;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.security.owner.OwnerDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +25,7 @@ public class JwUtils {
     @Value("${loyaltyPlatform.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
-    public String generateJwtToken(Authentication authentication) {
+    public String generateClientJwtToken(Authentication authentication) {
 
         ClientDetailsImpl userPrincipal = (ClientDetailsImpl) authentication.getPrincipal();
 
@@ -38,6 +40,30 @@ public class JwUtils {
     public String generateCashierJwtToken(Authentication authentication) {
 
         CashierDetailsImpl userPrincipal = (CashierDetailsImpl) authentication.getPrincipal();
+
+        return Jwts.builder()
+                .setSubject((userPrincipal.getUsername()))
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .signWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret)),SignatureAlgorithm.HS512)
+                .compact();
+    }
+
+    public String generateManagerJwtToken(Authentication authentication) {
+
+        ManagerDetailsImpl userPrincipal = (ManagerDetailsImpl) authentication.getPrincipal();
+
+        return Jwts.builder()
+                .setSubject((userPrincipal.getUsername()))
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .signWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret)),SignatureAlgorithm.HS512)
+                .compact();
+    }
+
+    public String generateOwnerJwtToken(Authentication authentication) {
+
+        OwnerDetailsImpl userPrincipal = (OwnerDetailsImpl) authentication.getPrincipal();
 
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
