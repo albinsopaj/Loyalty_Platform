@@ -1,8 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.authentication.security.owner;
 
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.JwtResponse;
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.LoginRequest;
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.MessageResponse;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.*;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.SignupRequest.OwnerSignupRequest;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.security.JwUtils;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.CompanyRepository;

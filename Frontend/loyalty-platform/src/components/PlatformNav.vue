@@ -61,7 +61,7 @@
 <script>
 // import { mapGetters } from 'vuex'
 export default {
-  name: 'Nav',
+  name: 'PlatformNav',
 
   data() {
     return {

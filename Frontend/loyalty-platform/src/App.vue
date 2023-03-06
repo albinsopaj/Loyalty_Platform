@@ -1,28 +1,70 @@
 <template>
   <div id="app">
-    <PlatformClient/>
-    <signup-form tool-id="nkmbbm"/>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a href="/" class="navbar-brand">Platform</a>
+      <div class="navbar-nav mr-auto">
+        <ul>
+        <li class="nav-item">
+          <router-link to="/home" class="nav-link">
+            Home
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link v-if="currentUser" to="/client" class="nav-link">Client</router-link>
+        </li>
+        </ul>
+      </div>
+
+      <div v-if="!currentUser" class="navbar-nav ml-auto">
+        <ul>
+        <li class="nav-item">
+          <router-link to="/register" class="nav-link">
+             Sign Up
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/login" class="nav-link">
+            Login
+          </router-link>
+        </li>
+        </ul>
+      </div>
+
+      <div v-if="currentUser" class="navbar-nav ml-auto">
+        <ul>
+        <li class="nav-item">
+          <router-link to="/profile" class="nav-link">
+            {{ currentUser.username }}
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" @click.prevent="logOut">
+            LogOut
+          </a>
+        </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-import PlatformClient from "@/components/PlatformClient.vue";
-
 export default {
-  name: 'App',
-  components: {
-    PlatformClient,
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.client;
+    },
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

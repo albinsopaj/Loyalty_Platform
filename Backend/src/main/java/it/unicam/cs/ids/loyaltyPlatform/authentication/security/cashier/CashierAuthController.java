@@ -1,8 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.authentication.security.cashier;
 
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.JwtResponse;
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.LoginRequest;
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.MessageResponse;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.*;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.SignupRequest.CashierSignupRequest;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.security.JwUtils;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.CompanyRepository;
@@ -53,6 +51,7 @@ public class CashierAuthController {
                 .map(GrantedAuthority::getAuthority)
                 .toList();
         String role = roles.get(0);
+
         return ResponseEntity.ok(new JwtResponse(jwt,
                 cashierDetails.getId(),
                 cashierDetails.getUsername(),

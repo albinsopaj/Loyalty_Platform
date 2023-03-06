@@ -1,9 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.authentication.security.client;
 
 import java.util.List;
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.JwtResponse;
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.LoginRequest;
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.MessageResponse;
+
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.*;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.SignupRequest.ClientSignupRequest;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.security.JwUtils;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
@@ -59,6 +58,7 @@ public class ClientAuthController {
                 .map(GrantedAuthority::getAuthority)
                 .toList();
         String role = roles.get(0);
+
         return ResponseEntity.ok(new JwtResponse(jwt,
                 clientDetails.getId(),
                 clientDetails.getUsername(),
