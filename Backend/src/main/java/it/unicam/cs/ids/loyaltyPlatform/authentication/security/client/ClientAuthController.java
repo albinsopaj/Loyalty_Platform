@@ -63,7 +63,12 @@ public class ClientAuthController {
                 clientDetails.getId(),
                 clientDetails.getUsername(),
                 clientDetails.getEmail(),
-                role));
+                role,
+                clientDetails.getFirstName(),
+                clientDetails.getLastName(),
+                clientDetails.getPhoneNumber(),
+                clientDetails.getBiologicalGender(),
+                clientDetails.getDomicile()));
     }
 
     @PostMapping("/signup")

@@ -25,7 +25,6 @@ import java.util.List;
 public class Owner extends AuthenticatedUser {
 
     @OneToMany(mappedBy = "owner")
-    @JsonIgnore
     private @NonNull List<Company> companies = new ArrayList<>();
 
     private @NonNull String role = "ROLE_OWNER";

@@ -56,7 +56,12 @@ public class ManagerAuthController {
                 managerDetails.getId(),
                 managerDetails.getUsername(),
                 managerDetails.getEmail(),
-                role));
+                role,
+                managerDetails.getFirstName(),
+                managerDetails.getLastName(),
+                managerDetails.getPhoneNumber(),
+                managerDetails.getBiologicalGender(),
+                managerDetails.getDomicile()));
     }
 
     @PostMapping("/signup")

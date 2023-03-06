@@ -56,7 +56,12 @@ public class CashierAuthController {
                 cashierDetails.getId(),
                 cashierDetails.getUsername(),
                 cashierDetails.getEmail(),
-                role));
+                role,
+                cashierDetails.getFirstName(),
+                cashierDetails.getLastName(),
+                cashierDetails.getPhoneNumber(),
+                cashierDetails.getBiologicalGender(),
+                cashierDetails.getDomicile()));
     }
 
     @PostMapping("/signup")

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TestService from "@/services/client/TestService";
+import TestService from "@/services/TestService";
 
 export default {
   name: "BoardClient",

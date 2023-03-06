@@ -27,10 +27,10 @@ public class OwnerDetailsImpl implements UserDetails {
     private String username;
     @JsonIgnore
     private String password;
-    private List<Company> company;
+    private List<Company> companies;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public OwnerDetailsImpl(Long id, String firstName, String lastName, String email, String phoneNumber, String biologicalGender, String domicile, String username, String password, List<Company> company,
+    public OwnerDetailsImpl(Long id, String firstName, String lastName, String email, String phoneNumber, String biologicalGender, String domicile, String username, String password, List<Company> companies,
                               Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.firstName = firstName;
@@ -41,7 +41,7 @@ public class OwnerDetailsImpl implements UserDetails {
         this.domicile = domicile;
         this.username = username;
         this.password = password;
-        this.company = company;
+        this.companies = companies;
         this.authorities = authorities;
     }
 

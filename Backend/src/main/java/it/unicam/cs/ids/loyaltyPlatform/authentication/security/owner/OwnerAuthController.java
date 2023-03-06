@@ -50,11 +50,18 @@ public class OwnerAuthController {
                 .map(GrantedAuthority::getAuthority)
                 .toList();
         String role = roles.get(0);
-        return ResponseEntity.ok(new JwtResponse(token,
+        return ResponseEntity.ok(new JwtOwnerResponse(token,
                 ownerDetails.getId(),
                 ownerDetails.getUsername(),
                 ownerDetails.getEmail(),
-                role));
+                role,
+                ownerDetails.getFirstName(),
+                ownerDetails.getLastName(),
+                ownerDetails.getPhoneNumber(),
+                ownerDetails.getBiologicalGender(),
+                ownerDetails.getDomicile(),
+                ownerDetails.getCompanies()
+                ));
     }
 
     @PostMapping("/signup")
