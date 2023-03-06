@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-      <Form @submit="handleLogin" :validation-schema="schema">
+      <Form @submit="handleClientLogin" :validation-schema="schema">
         <div class="form-group">
           <label for="username">Username</label>
           <Field name="username" type="text" class="form-control" />
@@ -38,7 +38,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 
 export default {
-  name: "PlatformLogin",
+  name: "PlatformClientLogin",
   components: {
     Form,
     Field,
@@ -58,21 +58,21 @@ export default {
   },
   computed: {
     loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
+      return this.$store.state.clientAuth.status.loggedIn;
     },
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push("/profile");
+      this.$router.push("/client/profile");
     }
   },
   methods: {
-    handleLogin(client) {
+    handleClientLogin(client) {
       this.loading = true;
 
-      this.$store.dispatch("auth/login", client).then(
+      this.$store.dispatch("clientAuth/login", client).then(
           () => {
-            this.$router.push("/profile");
+            this.$router.push("/client/profile");
           },
           (error) => {
             this.loading = false;

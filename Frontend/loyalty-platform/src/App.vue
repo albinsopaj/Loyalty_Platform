@@ -10,38 +10,63 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link v-if="currentUser" to="/client" class="nav-link">Client</router-link>
+          <router-link v-if="currentClient" to="/client" class="nav-link">Client</router-link>
+          <router-link v-if="currentOwner" to="/owner" class="nav-link">Owner</router-link>
         </li>
         </ul>
       </div>
 
-      <div v-if="!currentUser" class="navbar-nav ml-auto">
+      <div v-if="!currentClient && !currentOwner" class="navbar-nav ml-auto">
         <ul>
         <li class="nav-item">
-          <router-link to="/register" class="nav-link">
-             Sign Up
+          <router-link to="/client/register" class="nav-link">
+             Client Sign Up
           </router-link>
         </li>
+          <li class="nav-item">
+            <router-link to="/owner/register" class="nav-link">
+              Owner Sign Up
+            </router-link>
+          </li>
         <li class="nav-item">
-          <router-link to="/login" class="nav-link">
-            Login
+          <router-link to="/client/login" class="nav-link">
+            Client Login
           </router-link>
         </li>
+          <li class="nav-item">
+            <router-link to="/owner/login" class="nav-link">
+              Owner Login
+            </router-link>
+          </li>
         </ul>
       </div>
 
-      <div v-if="currentUser" class="navbar-nav ml-auto">
+      <div v-if="currentClient" class="navbar-nav ml-auto">
         <ul>
         <li class="nav-item">
-          <router-link to="/profile" class="nav-link">
-            {{ currentUser.username }}
+          <router-link to="/client/profile" class="nav-link">
+            {{ currentClient.username }}
           </router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" @click.prevent="logOut">
+          <a class="nav-link" @click.prevent="clientLogOut">
             LogOut
           </a>
         </li>
+        </ul>
+      </div>
+      <div v-if="currentOwner" class="navbar-nav ml-auto">
+        <ul>
+          <li class="nav-item">
+            <router-link to="/owner/profile" class="nav-link">
+              {{ currentOwner.username }}
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" @click.prevent="ownerLogOut">
+              LogOut
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -55,14 +80,21 @@
 <script>
 export default {
   computed: {
-    currentUser() {
-      return this.$store.state.auth.client;
+    currentClient() {
+      return this.$store.state.clientAuth.client;
     },
+    currentOwner(){
+      return this.$store.state.ownerAuth.owner;
+    }
   },
   methods: {
-    logOut() {
-      this.$store.dispatch('auth/logout');
-      this.$router.push('/login');
+    clientLogOut() {
+      this.$store.dispatch('clientAuth/logout');
+      this.$router.push('/home');
+    },
+    ownerLogOut() {
+      this.$store.dispatch('ownerAuth/logout');
+      this.$router.push('/home');
     }
   }
 };

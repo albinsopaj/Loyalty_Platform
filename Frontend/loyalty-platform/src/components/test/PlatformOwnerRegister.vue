@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-      <Form @submit="handleRegister" :validation-schema="schema">
+      <Form @submit="handleOwnerRegister" :validation-schema="schema">
         <div v-if="!successful">
           <div class="form-group">
             <label for="firstName">Name</label>
@@ -72,7 +72,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 
 export default {
-  name: "PlatformRegister",
+  name: "PlatformOwnerRegister",
   components: {
     Form,
     Field,
@@ -106,21 +106,21 @@ export default {
   },
   computed: {
     loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
+      return this.$store.state.ownerAuth.status.loggedIn;
     },
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push("/profile");
+      this.$router.push("/owner/profile");
     }
   },
   methods: {
-    handleRegister(client) {
+    handleOwnerRegister(owner) {
       this.message = "";
       this.successful = false;
       this.loading = true;
 
-      this.$store.dispatch("auth/register", client).then(
+      this.$store.dispatch("ownerAuth/register", owner).then(
           (data) => {
             this.message = data.message;
             this.successful = true;

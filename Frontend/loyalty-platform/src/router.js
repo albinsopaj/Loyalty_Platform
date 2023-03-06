@@ -1,11 +1,14 @@
 import { createWebHistory, createRouter } from "vue-router";
 import PlatformHome from "@/components/test/PlatformHome.vue";
-import PlatformLogin from "@/components/test/PlatformLogin.vue";
-import PlatformRegister from "@/components/test/PlatformRegister.vue";
+import PlatformClientLogin from "@/components/test/PlatformClientLogin.vue";
+import PlatformClientRegister from "@/components/test/PlatformClientRegister.vue";
+import PlatformOwnerLogin from "@/components/test/PlatformOwnerLogin.vue";
+import PlatformOwnerRegister from "@/components/test/PlatformOwnerRegister.vue";
 
-const Profile = () => import("@/components/test/PlatformProfile.vue")
+const ClientProfile = () => import("@/components/test/PlatformClientProfile.vue")
+const OwnerProfile = () => import("@/components/test/PlatformOwnerProfile.vue")
 const BoardClient = () => import("@/components/test/BoardClient.vue")
-
+const BoardOwner = () => import("@/components/test/BoardOwner.vue")
 const routes = [
     {
         path: "/",
@@ -17,24 +20,44 @@ const routes = [
         component: PlatformHome,
     },
     {
-        path: "/login",
-        component: PlatformLogin,
+        path: "/client/login",
+        component: PlatformClientLogin,
     },
     {
-        path: "/register",
-        component: PlatformRegister,
+        path: "/owner/login",
+        component: PlatformOwnerLogin,
     },
     {
-        path: "/profile",
-        name: "profile",
+        path: "/client/register",
+        component: PlatformClientRegister,
+    },
+    {
+        path: "/owner/register",
+        component: PlatformOwnerRegister,
+    },
+    {
+        path: "/client/profile",
+        name: "clientProfile",
         // lazy-loaded
-        component: Profile,
+        component: ClientProfile,
+    },
+    {
+        path: "/owner/profile",
+        name: "ownerProfile",
+        // lazy-loaded
+        component: OwnerProfile,
     },
     {
         path: "/client",
         name: "client",
         // lazy-loaded
         component: BoardClient,
+    },
+    {
+        path: "/owner",
+        name: "owner",
+        // lazy-loaded
+        component: BoardOwner,
     }
 ];
 

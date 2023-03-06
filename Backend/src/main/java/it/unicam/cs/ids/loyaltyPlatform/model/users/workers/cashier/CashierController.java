@@ -9,10 +9,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "loyaltyPlatform/cashier")
-@CrossOrigin("http://localhost:3000/")
 public class CashierController {
 
     @Autowired
