@@ -16,13 +16,13 @@
         <!-- execute the following dive iff the owner or client are not authenticated nor registered -->
         <div v-if="!currentClient && !currentOwner">
           <a>
-            <router-link to="/owner/register">Register as Company</router-link>
+            <router-link to="/owner/register">Register as Owner</router-link>
           </a>
           <a>
             <router-link to="/client/register">Register as Client</router-link>
           </a>
           <a>
-            <router-link to="/owner/login">Login as Company</router-link>
+            <router-link to="/owner/login">Login as Owner</router-link>
           </a>
           <a>
             <router-link to="/client/login">Login as Client</router-link>
