@@ -51,7 +51,7 @@ public class ClientAuthController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateClientJwtToken(authentication);
+        String token = jwtUtils.generateClientJwtToken(authentication);
 
         ClientDetailsImpl clientDetails = (ClientDetailsImpl) authentication.getPrincipal();
         List<String> roles = clientDetails.getAuthorities().stream()
@@ -59,7 +59,7 @@ public class ClientAuthController {
                 .toList();
         String role = roles.get(0);
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        return ResponseEntity.ok(new JwtResponse(token,
                 clientDetails.getId(),
                 clientDetails.getUsername(),
                 clientDetails.getEmail(),

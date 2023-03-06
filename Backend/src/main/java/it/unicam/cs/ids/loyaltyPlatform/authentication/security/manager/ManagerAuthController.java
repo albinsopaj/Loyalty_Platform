@@ -44,7 +44,7 @@ public class ManagerAuthController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateManagerJwtToken(authentication);
+        String token = jwtUtils.generateManagerJwtToken(authentication);
 
         ManagerDetailsImpl managerDetails = (ManagerDetailsImpl) authentication.getPrincipal();
         List<String> roles = managerDetails.getAuthorities().stream()
@@ -52,7 +52,7 @@ public class ManagerAuthController {
                 .toList();
         String role = roles.get(0);
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        return ResponseEntity.ok(new JwtResponse(token,
                 managerDetails.getId(),
                 managerDetails.getUsername(),
                 managerDetails.getEmail(),

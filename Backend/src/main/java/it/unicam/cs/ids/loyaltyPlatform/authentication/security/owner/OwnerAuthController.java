@@ -43,14 +43,14 @@ public class OwnerAuthController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateOwnerJwtToken(authentication);
+        String token = jwtUtils.generateOwnerJwtToken(authentication);
 
         OwnerDetailsImpl ownerDetails = (OwnerDetailsImpl) authentication.getPrincipal();
         List<String> roles = ownerDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .toList();
         String role = roles.get(0);
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        return ResponseEntity.ok(new JwtResponse(token,
                 ownerDetails.getId(),
                 ownerDetails.getUsername(),
                 ownerDetails.getEmail(),

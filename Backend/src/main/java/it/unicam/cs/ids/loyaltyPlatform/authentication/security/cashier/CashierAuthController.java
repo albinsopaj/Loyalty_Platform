@@ -44,7 +44,7 @@ public class CashierAuthController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateCashierJwtToken(authentication);
+        String token = jwtUtils.generateCashierJwtToken(authentication);
 
         CashierDetailsImpl cashierDetails = (CashierDetailsImpl) authentication.getPrincipal();
         List<String> roles = cashierDetails.getAuthorities().stream()
@@ -52,7 +52,7 @@ public class CashierAuthController {
                 .toList();
         String role = roles.get(0);
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        return ResponseEntity.ok(new JwtResponse(token,
                 cashierDetails.getId(),
                 cashierDetails.getUsername(),
                 cashierDetails.getEmail(),

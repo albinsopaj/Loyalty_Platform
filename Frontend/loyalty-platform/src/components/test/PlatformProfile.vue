@@ -7,7 +7,7 @@
     </header>
     <p>
       <strong>Token:</strong>
-      {{currentUser.accessToken}}
+      {{currentUser.token.substring(0, 20)}} ... {{currentUser.token.substr(currentUser.token.length - 20)}}
     </p>
     <p>
       <strong>Id:</strong>

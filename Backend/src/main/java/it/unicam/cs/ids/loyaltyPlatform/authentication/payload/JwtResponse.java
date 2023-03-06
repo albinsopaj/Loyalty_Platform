@@ -5,15 +5,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class JwtResponse {
-    private String accessToken;
+    private String token;
     private String type = "Bearer";
     private Long id;
     private String username;
     private String email;
     private String role;
 
-    public JwtResponse(String accessToken, Long id, String username, String email, String role) {
-        this.accessToken = accessToken;
+    public JwtResponse(String token, Long id, String username, String email, String role) {
+        this.token = token;
         this.id = id;
         this.username = username;
         this.email = email;
