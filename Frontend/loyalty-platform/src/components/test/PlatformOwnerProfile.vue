@@ -47,14 +47,14 @@
     <ul v-for="company in currentOwner.companies" :key="company.id">
       <li>{{ company.name }}</li>
     </ul>
-    <button @click="showAddCompany">Add Company</button>
+    <button @click="showAddCompany" class="btn btn-primary btn-block">Add Company</button>
     <div v-if="show" class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
           <form @submit.prevent="addNewCompany(currentOwner.id)">
             <label>Company Name</label>
             <input type="text" v-model="form.name"/>
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
           </form>
           <button @click="showAddCompany" class="btn btn-primary btn-block">
             Cancel
