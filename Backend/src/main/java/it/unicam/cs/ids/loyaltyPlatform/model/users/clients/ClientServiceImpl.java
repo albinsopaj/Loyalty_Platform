@@ -39,6 +39,17 @@ public class ClientServiceImpl implements GeneralService<Client> {
         return this.repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found"));
     }
 
+    public Client updateProfile(@NonNull Client client, Long id) {
+        Client newClient = findById(id);
+        newClient.setFirstName(client.getFirstName());
+        newClient.setLastName(client.getLastName());
+        newClient.setEmail(client.getEmail());
+        newClient.setPhoneNumber(client.getPhoneNumber());
+        newClient.setBiologicalGender(client.getBiologicalGender());
+        newClient.setDomicile(client.getDomicile());
+        newClient.setUsername(client.getUsername());
+        return this.repository.save(newClient);
+    }
     @Override
     public Optional<Client> get(@NonNull Client client) {
         return this.repository.findById(client.getId());

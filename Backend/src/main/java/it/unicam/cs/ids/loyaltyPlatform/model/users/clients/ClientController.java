@@ -41,6 +41,10 @@ public class ClientController {
         return this.clientService.update(client);
     }
 
+    @PutMapping(path = "/update/profile/{clientId}")
+    public Client updateProfile(@NonNull @RequestBody Client client, @NonNull @PathVariable("clientId") Long id) {
+        return this.clientService.updateProfile(client, id);
+    }
     @PutMapping(path = "/update/{clientId}")
     public Client update(@NonNull @RequestBody @PathVariable("clientId") Long id) {
         return this.clientService.updateById(id);

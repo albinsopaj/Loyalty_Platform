@@ -6,20 +6,28 @@
       </h3>
     </header>
     <p>
-      <strong>Token:</strong>
-      {{currentClient.token.substring(0, 20)}} ... {{currentClient.token.substr(currentClient.token.length - 20)}}
+      <strong>Name:</strong>
+      {{ currentClient.firstName }}
     </p>
     <p>
-      <strong>Id:</strong>
-      {{currentClient.id}}
+      <strong>Surname:</strong>
+      {{ currentClient.lastName }}
+    </p>
+    <p>
+      <strong>Domicile:</strong>
+      {{ currentClient.domicile }}
+    </p>
+    <p>
+      <strong>Phone Number:</strong>
+      {{ currentClient.phoneNumber }}
+    </p>
+    <p>
+      <strong>Biological Gender:</strong>
+      {{ currentClient.biologicalGender }}
     </p>
     <p>
       <strong>Email:</strong>
-      {{currentClient.email}}
-    </p>
-    <strong>Role:</strong>
-    <p>
-      <strong>{{currentClient.role}}</strong>
+      {{ currentClient.email }}
     </p>
   </div>
 </template>
