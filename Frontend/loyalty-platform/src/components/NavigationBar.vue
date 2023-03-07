@@ -1,10 +1,11 @@
 <template>
+
   <header>
     <div>
       <nav class="navigation-bar">
         <h3>Loyalty Platform</h3>
         <a>
-          <router-link class="nav-link" to="/home">
+          <router-link to="/home" class="nav-link">
             Home
           </router-link>
         </a>
@@ -16,12 +17,12 @@
             <router-link to="/owner/addCompany">Add Company</router-link>
           </a>
         </div>
-        <div v-if="currentOwner" class="navbar-nav ml-auto">
+        <div v-if="currentOwner || currentClient" class="navbar-nav ml-auto">
           <a>
             <router-link to="/profile/modify">Modify Profile</router-link>
           </a>
         </div>
-        <!-- execute the following div iff the owner or client are not authenticated nor registered -->
+        <!-- execute the following dive iff the owner or client are not authenticated nor registered -->
         <div v-if="!currentClient && !currentOwner">
           <a>
             <router-link to="/owner/register">Register as Owner</router-link>
@@ -42,7 +43,7 @@
     <div v-if="currentClient" class="navbar-nav ml-auto">
 
       <a>
-        <router-link class="nav-link" to="/client/profile">
+        <router-link to="/client/profile" class="nav-link">
           Profile
         </router-link>
       </a>
@@ -56,7 +57,7 @@
     <div v-if="currentOwner" class="navbar-nav ml-auto">
 
       <a>
-        <router-link class="nav-link" to="/owner/profile">
+        <router-link to="/owner/profile" class="nav-link">
           Profile
         </router-link>
       </a>
@@ -67,10 +68,18 @@
     </div>
 
   </header>
+
+
+  <router-view/>
+
 </template>
+
 <script>
 
+
 export default {
+
+  components: {},
 
   computed: {
     currentClient() {
@@ -93,6 +102,7 @@ export default {
 
 };
 </script>
+
 <style>
 
 header {
