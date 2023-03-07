@@ -33,6 +33,7 @@
 
 <script>
 export default {
+  name: "PlatformLogin2",
   data() {
     return {}
   }

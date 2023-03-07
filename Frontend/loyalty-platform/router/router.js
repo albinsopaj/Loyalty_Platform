@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import PlatformHome from "@/components/test/PlatformHome.vue";
 import PlatformClientLogin from "@/components/test/PlatformClientLogin.vue";
 import PlatformClientRegister from "@/components/test/PlatformClientRegister.vue";
