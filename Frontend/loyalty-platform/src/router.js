@@ -4,6 +4,8 @@ import PlatformClientLogin from "@/components/test/PlatformClientLogin.vue";
 import PlatformClientRegister from "@/components/test/PlatformClientRegister.vue";
 import PlatformOwnerLogin from "@/components/test/PlatformOwnerLogin.vue";
 import PlatformOwnerRegister from "@/components/test/PlatformOwnerRegister.vue";
+import AddCompany from "@/components/test/AddCompany.vue";
+import ModifyProfile from "@/components/test/ModifyProfile.vue";
 
 const ClientProfile = () => import("@/components/test/PlatformClientProfile.vue")
 const OwnerProfile = () => import("@/components/test/PlatformOwnerProfile.vue")
@@ -34,6 +36,14 @@ const routes = [
     {
         path: "/owner/register",
         component: PlatformOwnerRegister,
+    },
+    {
+        path: "/owner/addCompany",
+        component: AddCompany,
+    },
+    {
+        path: "/profile/modify",
+        component: ModifyProfile,
     },
     {
         path: "/client/profile",

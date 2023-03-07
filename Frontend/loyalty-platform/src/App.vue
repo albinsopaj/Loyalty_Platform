@@ -12,7 +12,16 @@
         <a>
           <router-link to="">Search Companies</router-link>
         </a>
-
+        <div v-if="currentOwner" class="navbar-nav ml-auto">
+          <a>
+            <router-link to="/owner/addCompany">Add Company</router-link>
+          </a>
+        </div>
+        <div v-if="currentOwner" class="navbar-nav ml-auto">
+          <a>
+            <router-link to="/profile/modify">Modify Profile</router-link>
+          </a>
+        </div>
         <!-- execute the following dive iff the owner or client are not authenticated nor registered -->
         <div v-if="!currentClient && !currentOwner">
           <a>
@@ -35,7 +44,7 @@
 
       <a>
         <router-link to="/client/profile" class="nav-link">
-          {{ currentClient.username }}
+          Profile
         </router-link>
       </a>
 

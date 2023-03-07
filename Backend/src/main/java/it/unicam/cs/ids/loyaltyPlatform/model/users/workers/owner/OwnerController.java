@@ -40,7 +40,10 @@ public class OwnerController {
     public Owner update(@NonNull @RequestBody @PathVariable("id") Long id) {
         return this.ownerService.update(this.ownerService.findById(id));
     }
-
+    @PutMapping(path = "/update/profile/{ownerId}")
+    public Owner updateProfile(@NonNull @RequestBody Owner owner, @NonNull @PathVariable("ownerId") Long id) {
+        return this.ownerService.updateProfile(owner, id);
+    }
     @DeleteMapping(path = "/delete/{id}")
     public void delete(@NonNull @PathVariable("id") Long id) {
         this.ownerService.deleteById(id);

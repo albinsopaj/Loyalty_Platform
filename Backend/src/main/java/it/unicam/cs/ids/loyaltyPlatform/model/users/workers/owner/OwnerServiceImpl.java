@@ -73,6 +73,18 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
         return this.repository.save(owner);
     }
 
+    public Owner updateProfile(@NonNull Owner owner, Long id) {
+        Owner newOwner = findById(id);
+        newOwner.setFirstName(owner.getFirstName());
+        newOwner.setLastName(owner.getLastName());
+        newOwner.setEmail(owner.getEmail());
+        newOwner.setPhoneNumber(owner.getPhoneNumber());
+        newOwner.setBiologicalGender(owner.getBiologicalGender());
+        newOwner.setDomicile(owner.getDomicile());
+        newOwner.setUsername(owner.getUsername());
+        return this.repository.save(newOwner);
+    }
+
     @Override
     public Owner updateById(@NonNull Long id) {
         return this.repository.save(this.repository.getReferenceById(id));

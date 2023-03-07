@@ -7,6 +7,9 @@ class APIService {
         return axios.post(OWNER_API_REST_URL + "addCompany/" + ownerId, form);
     }
 
+    modifyProfile(ownerId, form){
+        return axios.put(OWNER_API_REST_URL + "update/profile/" + ownerId, form)
+    }
 }
 
 export default new APIService();
