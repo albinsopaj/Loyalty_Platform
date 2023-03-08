@@ -7,6 +7,9 @@
     <div v-if="currentOwner" class="menu-item">
       <router-link to="/owner/addCompany">Add Company</router-link>
     </div>
+    <div v-if="currentOwner" class="menu-item">
+      <router-link to="/owner/companies">Companies</router-link>
+    </div>
     <div v-if="currentOwner || currentClient" class="menu-item">
       <router-link to="/profile/modify">Modify Profile</router-link>
     </div>

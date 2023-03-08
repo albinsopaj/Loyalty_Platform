@@ -254,4 +254,7 @@ label {
 .error-feedback {
   color: red;
 }
+.btn {
+  margin:10px 10px 10px 10px;
+}
 </style>
