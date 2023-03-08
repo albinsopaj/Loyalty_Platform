@@ -1,23 +1,20 @@
 <template>
-  <div id="app">
-    <NavigationBar/>
+  <div id="app" class="bg-green-400 h-screen">
+    <NavBar/>
   </div>
+  <router-view/>
 </template>
-
 <script>
-import NavigationBar from "@/components/NavigationBar";
+import NavBar from "@/components/NavBar";
 
 export default {
-
   name: "App",
-
   components: {
-    NavigationBar,
-  }
+    NavBar
+}
 
 };
 </script>
-
 <style>
 
 </style>
