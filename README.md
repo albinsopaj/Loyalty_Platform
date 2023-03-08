@@ -6,7 +6,7 @@
 <p align="center">
     <img src="https://forthebadge.com/images/badges/made-with-java.svg"/>
     <img src="https://forthebadge.com/images/badges/powered-by-coffee.svg"/><br><br>
-    Il progetto <strong>Loyalty Platform</strong> è stato realizzato in <b>Java</b> con il supporto del framework <strong>SpringBoot</strong> per il corso di <b>Laurea Triennale in Scienze e Tecnologie Informatiche L-31</b> presso l<b>'Università di Camerino</b>, nell'anno accademico <strong>2022/2023</strong> dagli studenti <b>Alessandro Maric</b>, <b>Klea Pici</b> e <b>Albin Sopaj</b>, per gli esami di <b>Ingegneria del Software</b> (IdS) e <b>Programmazione di Applicazioni Web e Mobili </b> (PAWM), utilizzando le tecnologie mostrate nella sezione Tecnologie Utilizzate
+    Il progetto <strong>Loyalty Platform</strong> è stato realizzato in <b>Java</b> con il supporto dei framework <strong>SpringBoot</strong> e <strong>Vue JS</strong> per il corso di <b>Laurea Triennale in Scienze e Tecnologie Informatiche L-31</b> presso l<b>'Università di Camerino</b>, nell'anno accademico <strong>2022/2023</strong> dagli studenti <b>Alessandro Maric</b>, <b>Klea Pici</b> e <b>Albin Sopaj</b>, per gli esami di <b>Ingegneria del Software</b> (IdS) e <b>Programmazione di Applicazioni Web e Mobili </b> (PAWM), utilizzando le tecnologie mostrate nella sezione Tecnologie Utilizzate
 </p>
 
 # Indice
@@ -17,7 +17,7 @@
 4. [Iterazioni](#iterazioni)
 5. [Autori](#autori)
 
-# Panoramica e funzionalità
+# Panoramica generale
 
 ---
 Lo scopo dell’applicativo proposto è quello di realizzare un'applicazione che permetta alle aziende, ai negozi e a tutte
@@ -45,11 +45,7 @@ Titolare, Manager e Cassiere</b>.
   messaggi pesonalizzati.
 
 
-- Il <b>`Cashier`</b> è colui che gestisce la cassa e convalida gli acquisiti effettuati dai clienti. Quando i clienti
-  acquistano un prodotto o servizio, alla cassa verranno chiesti dal commesso se appartengono già a un qualsiasi
-  programma fedeltà. Se la risposta è no, allora il cliente può iscriversi direttamente in loco oppure ancha da remoto (
-  accedendo all pagina della piattaforma), altrimenti il cassiere procede con la convalidazione dell'acquisto e il
-  sistema aggiorna lo stato fedeltà del cliente (in base ai punti, livelli, ecc).
+- Il <b>`Cashier`</b> è colui che gestisce la cassa e convalida gli acquisiti effettuati dai clienti.
 
 
 - L'<b>`Amministratore`</b> si occupa di gestire la piattaforma nel suo complesso, bensi essa funzioni in modo
@@ -70,9 +66,26 @@ Titolare, Manager e Cassiere</b>.
   lasicare una recensione su un programma fedeltà a cui è stato aderito.
 
 
-- Il `Titolare` una volta autenticato alla piattaforma, potrà creare delle campagne e dei programmi fedeltà, può
-  invitare altri esercenti per collaborare in programmi fedeltà coalizione e può anche registrare nuovi dipendenti con
-  permessi specifici-
+- Il `Titolare` una volta autenticato alla piattaforma, potrà creare delle campagne e dei programmi fedeltà.
+
+# Funzionalità principali
+
+---
+
+## Titolare
+
+- Registrazione e Autenticazione
+- Creazione azienda
+- Modifica Profilo
+- Visualizza Profilo
+- Creazione Programma Fedeltà
+
+## Cliente
+
+- Registrazione e Autenticazione
+- Iscrizione a un Programma Fedeltà
+- Modifica Profilo
+- Visualizza Profilo
 
 # Processo di Sviluppo
 
@@ -104,8 +117,72 @@ Le varie iterazioni hanno dato origine ai seguenti artefatti:
 # Tecnologie Utilizzate <a name = "tecno"></a>
 
 ---
+
+## Frontend
+
+Il lato `Frontend` è stato sviluppato tramite l'utilizzo del framework `VueJS` ed il suo relativo
+linguaggio `JavaScript`.
+
+La scelta di utilizzare proprio questo strumento è stata fatta dopo aver considerato i vantaggi che VueJS offre, tra cue
+i seguenti:
+
+- È un framework JavaScript progressivo open source del modello Model-View-View-Model (MVVM) per la costruzione di
+  interfacce utente web interattive e applicazioni a pagina singola (SPA).
+
+- Vue.js presenta un'architettura incredibilmente adattabile che si concentra sul rendering dichiarativo e sulla
+  composizione dei componenti. La libreria principale è focalizzata solo sul livello di visualizzazione. Funzionalità
+  avanzate richieste per applicazioni complesse come routing, gestione dello stato e strumenti di costruzione sono
+  offerte tramite librerie e pacchetti di supporto ufficialmente gestiti.
+
+- Vue presenta un sistema di reattività che utilizza oggetti JavaScript semplici e rendering ottimizzato. Ogni
+  componente tiene traccia delle sue dipendenze reattive durante il suo rendering, quindi il sistema sa esattamente
+  quando riesaminare e quali componenti riesaminare.
+
+- Ha tutte le caratteristiche e le qualità che rendono lo sviluppo liscio e facile. La sua curva di apprendimento
+  delicata è il primo fattore significativo. Inoltre, è anche leggero, flessibile, modulare e altamente performante
+
+Per quanto riguarda le rotte con cui è possibile muoversi attraverso le varie pagine dell'applicazione, esse sono:
+
+- `.../home` pagina di default overo la homepage
+
+- `.../client/register` pagina di registrazione dove il cliente può registrarsi
+
+- `.../client/login` pagina di login dove il cliente può autenticarsi
+
+- `.../client/profile` pagina che mostra i dati da visualizzare del cliente
+
+- `.../owner/register` pagina di registrazione dove il titolare può registrarsi
+
+- `.../owner/login` pagina di login dove il titolare può autenticarsi
+
+- `.../owner/addCompany` pagina dove il titolare può aggiungere un'azienda
+
+- `.../profile/modify` pagina dove si possono modificare i dati personali
+
+- `.../owner/profile` pagina che mostra i dati da visualizzare del titolare
+
+(I tre puntini rappresentano il dominio del backend, che quando verrà eseguito in local sarà `localhost:8081`
+oppure `localhost:8082`).
+
+Tale rotte sono protette e non si possono accedere senza aver effetuato l'autenticazione.
+
+L'autenticazione tra il client e il server avviene attraverso l'utilizzo di un codice JWT
+
+## Backend
+
 Il lato <b>`Backend`</b> del sistema è stato sviluppato in <b>`Java`</b> con il supporto del framework `Spring-Boot` a
 cui è stato affrontato il compito di gestire le `REST API`.
+
+### Elenco API
+
+Le seguenti sono delle API esposte dal backend:
+
+- `POST /api/auth/client/signin` utilizzata per autenticare il cliente
+- `POST /api/auth/client/signup` utilizzata per registrare il cliente
+- `POST/api/auth/owner/signin` utilizzata per autenticare il titolare
+- `POST/api/auth/owner/signup` utilizzata per registrare il titolare
+- `GET /api/test/owner` utilizzata per visualizzare le informazioni del titolare
+- `GET /api/test/client` utilizzata per visualizzare le informazioni del cliente
 
 Come strumento per il building automatizzato del sistema si è impiegato **`Gradle`**.
 
