@@ -6,6 +6,8 @@ import PlatformOwnerLogin from "@/components/test/PlatformOwnerLogin.vue";
 import PlatformOwnerRegister from "@/components/test/PlatformOwnerRegister.vue";
 import AddCompany from "@/components/test/AddCompany.vue";
 import ModifyProfile from "@/components/test/ModifyProfile.vue";
+import OwnerCompanies from "@/components/test/OwnerCompanies.vue";
+import AddFidelityProgram from "@/components/test/AddFidelityProgram.vue";
 
 const ClientProfile = () => import("@/components/test/PlatformClientProfile.vue")
 const OwnerProfile = () => import("@/components/test/PlatformOwnerProfile.vue")
@@ -44,6 +46,15 @@ const routes = [
     {
         path: "/profile/modify",
         component: ModifyProfile,
+    },
+    {
+        path: "/owner/companies",
+        component: OwnerCompanies,
+    },
+    {
+        path: "/owner/addFidelityProgram/:ownerId/:companyId",
+        component: AddFidelityProgram,
+        props: true
     },
     {
         path: "/client/profile",

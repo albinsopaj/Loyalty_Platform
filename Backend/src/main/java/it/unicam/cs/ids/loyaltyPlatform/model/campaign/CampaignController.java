@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "loyaltyPlatform/campaign")
-@CrossOrigin("http://localhost:3000/")
 public class CampaignController {
 
     @Autowired

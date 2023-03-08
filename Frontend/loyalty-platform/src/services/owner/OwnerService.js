@@ -10,6 +10,10 @@ class APIService {
     modifyProfile(ownerId, form){
         return axios.put(OWNER_API_REST_URL + "update/profile/" + ownerId, form)
     }
+
+    addPointsFidelityProgram(ownerId, companyId, form){
+        return axios.post(OWNER_API_REST_URL + "addPointsFidelityProgram/" + ownerId +"/" + companyId, form)
+    }
 }
 
 export default new APIService();

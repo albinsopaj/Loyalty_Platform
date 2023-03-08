@@ -1,6 +1,6 @@
 <template>
   <div class="modal-mask">
-    <div @click.self="pushToProfile" class="modal-wrapper">
+    <div @click.self="pushToCompaniesList" class="modal-wrapper">
       <div class="modal-container">
         <div
             v-if="message"
@@ -9,11 +9,16 @@
         >
           {{ message }}
         </div>
-        <Form v-if="!successful" @submit="addNewCompany" @click="getId(currentOwner.id)" :validation-schema="schema">
+        <Form v-if="!successful" @submit="addNewFidelityProgram" :validation-schema="schema">
           <div class="form-group">
-            <label for="name">Company Name</label>
+            <label for="name">Program Name</label>
             <Field name="name" type="text" class="form-control" />
             <ErrorMessage name="name" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="conversionRate">Conversion Rate</label>
+            <Field name="conversionRate" type="text" class="form-control" />
+            <ErrorMessage name="conversionRate" class="error-feedback" />
           </div>
           <div class="form-group">
             <button class="btn btn-primary btn-block" :disabled="loading">
@@ -31,12 +36,16 @@
 </template>
 
 <script>
-import OwnerService from "@/services/owner/OwnerService";
 import {ErrorMessage, Field, Form} from "vee-validate";
 import * as yup from "yup";
+import OwnerService from "@/services/owner/OwnerService";
 
 export default {
-  name: "addCompany",
+  name: "AddFidelityProgram",
+  props: {
+    ownerId: {},
+    companyId: {},
+  },
   components: {
     Form,
     Field,
@@ -49,6 +58,14 @@ export default {
           .required("Name is required!")
           .min(1, "Must be at least 3 characters!")
           .max(40, "Must be maximum 40 characters!"),
+      conversionRate: yup
+          .number()
+          .typeError("Insert a number!")
+          .positive("Conversion rate must be positive!")
+          .integer("A conversion rate can't include a decimal point!")
+          .required("Conversion rate is required!")
+          .min(9, "Must be at least 1 digit!")
+          .max(99999999999999999999, "Must be maximum 20 digits!")
     });
 
     return {
@@ -64,10 +81,13 @@ export default {
     }
   },
   methods: {
-    addNewCompany(owner) {
-      OwnerService.addCompany(this.userId, owner).then(
+    pushToCompaniesList(){
+      this.$router.push("/owner/companies");
+    },
+    addNewFidelityProgram(fidelityProgram) {
+      OwnerService.addPointsFidelityProgram(this.ownerId, this.companyId, fidelityProgram).then(
           () => {
-            this.message = "Company created";
+            this.message = "Points Fidelity Program created and added";
             this.successful = true;
             this.loading = false;
           },
@@ -82,15 +102,10 @@ export default {
             this.loading = false;
           }
       )
-    },
-    getId(id){
-      this.userId = id;
-    },
-    pushToProfile(){
-      this.$router.push("/owner/profile")
     }
   }
 }
+
 </script>
 
 <style scoped>

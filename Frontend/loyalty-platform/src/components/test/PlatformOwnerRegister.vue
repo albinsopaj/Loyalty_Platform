@@ -95,6 +95,34 @@ export default {
           .required("Password is required!")
           .min(6, "Must be at least 6 characters!")
           .max(40, "Must be maximum 40 characters!"),
+      firstName: yup
+          .string()
+          .required("Name is required!")
+          .min(1, "Must be at least 1 character!")
+          .max(40, "Must be maximum 40 characters!"),
+      lastName: yup
+          .string()
+          .required("Surname is required!")
+          .min(1, "Must be at least 1 character!")
+          .max(40, "Must be maximum 40 characters!"),
+      phoneNumber: yup
+          .number()
+          .typeError("Insert a number!")
+          .positive("A phone number can't start with a minus!")
+          .integer("A phone number can't include a decimal point!")
+          .required("Phone number is required!")
+          .min(9, "Must be at least 2 digits!")
+          .max(99999999999999999999, "Must be maximum 20 digits!"),
+      biologicalGender: yup
+          .string()
+          .required("Gender is required!")
+          .min(1, "Must be at least 1 character!")
+          .max(40, "Must be maximum 40 characters!"),
+      domicile: yup
+          .string()
+          .required("Domicile is required!")
+          .min(1, "Must be at least 1 character!")
+          .max(40, "Must be maximum 40 characters!")
     });
 
     return {

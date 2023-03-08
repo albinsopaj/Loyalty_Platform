@@ -8,7 +8,7 @@
       >
         {{ message }}
       </div>
-      <Form v-if="!successful && currentOwner" @submit="handleOwnerProfileChange" @click="getId(currentOwner.id)">
+      <Form v-if="!successful && currentOwner" @submit="handleOwnerProfileChange" @click="getId(currentOwner.id)" :validation-schema="schema" :initial-values="currentOwner">
         <div class="form-group">
           <label for="firstName">Name</label>
           <Field name="firstName" type="text" class="form-control" />
@@ -44,9 +44,6 @@
           <Field name="username" type="text" class="form-control" />
           <ErrorMessage name="username" class="error-feedback" />
         </div>
-        <pre>
-          {{values}}
-        </pre>
         <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
               <span
@@ -57,7 +54,7 @@
           </button>
         </div>
       </Form>
-      <Form v-if="!successful && currentClient" @submit="handleClientProfileChange" @click="getId(currentClient.id)">
+      <Form v-if="!successful && currentClient" @submit="handleClientProfileChange" @click="getId(currentClient.id)" :validation-schema="schema" :initial-values="currentClient">
         <div class="form-group">
           <label for="firstName">Name</label>
           <Field name="firstName" type="text" class="form-control" />
@@ -93,9 +90,6 @@
           <Field name="username" type="text" class="form-control" />
           <ErrorMessage name="username" class="error-feedback" />
         </div>
-        <pre>
-          {{values}}
-        </pre>
         <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
               <span
@@ -135,11 +129,34 @@ export default {
           .required("Email is required!")
           .email("Email is invalid!")
           .max(50, "Must be maximum 50 characters!"),
-      password: yup
+      firstName: yup
           .string()
-          .required("Password is required!")
-          .min(6, "Must be at least 6 characters!")
+          .required("Name is required!")
+          .min(1, "Must be at least 1 character!")
           .max(40, "Must be maximum 40 characters!"),
+      lastName: yup
+          .string()
+          .required("Surname is required!")
+          .min(1, "Must be at least 1 character!")
+          .max(40, "Must be maximum 40 characters!"),
+      phoneNumber: yup
+          .number()
+          .typeError("Insert a number!")
+          .positive("A phone number can't start with a minus!")
+          .integer("A phone number can't include a decimal point!")
+          .required("Phone number is required!")
+          .min(9, "Must be at least 2 digits!")
+          .max(99999999999999999999, "Must be maximum 20 digits!"),
+      biologicalGender: yup
+          .string()
+          .required("Gender is required!")
+          .min(1, "Must be at least 1 character!")
+          .max(40, "Must be maximum 40 characters!"),
+      domicile: yup
+          .string()
+          .required("Domicile is required!")
+          .min(1, "Must be at least 1 character!")
+          .max(40, "Must be maximum 40 characters!")
     });
 
     return {
@@ -210,7 +227,7 @@ label {
   margin-top: 10px;
 }
 .card-container.card {
-  max-width: 275px !important;
+  max-width: 350px !important;
   padding: 40px 40px;
 }
 .card {
@@ -224,5 +241,17 @@ label {
   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.error-feedback {
+  color: red;
 }
 </style>

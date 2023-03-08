@@ -29,12 +29,6 @@
       <strong>Email:</strong>
       {{ currentOwner.email }}
     </p>
-    <p>
-      <strong>Companies:</strong>
-    </p>
-    <ul v-for="company in currentOwner.companies" :key="company.id">
-      <li>{{ company.name }}</li>
-    </ul>
   </div>
 </template>
 

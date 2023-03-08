@@ -17,6 +17,11 @@
             <router-link to="/owner/addCompany">Add Company</router-link>
           </a>
         </div>
+        <div v-if="currentOwner" class="navbar-nav ml-auto">
+          <a>
+            <router-link to="/owner/companies">Companies</router-link>
+          </a>
+        </div>
         <div v-if="currentOwner || currentClient" class="navbar-nav ml-auto">
           <a>
             <router-link to="/profile/modify">Modify Profile</router-link>
