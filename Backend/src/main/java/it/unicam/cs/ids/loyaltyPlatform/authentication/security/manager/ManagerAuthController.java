@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.authentication.security.manager;
 
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.*;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.JwtResponse;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.LoginRequest;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.MessageResponse;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.SignupRequest.ManagerSignupRequest;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.security.JwUtils;
 import it.unicam.cs.ids.loyaltyPlatform.model.company.CompanyRepository;
@@ -18,9 +20,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:8081"}, maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth/manager")
 public class ManagerAuthController {

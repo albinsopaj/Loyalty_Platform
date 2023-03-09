@@ -1,8 +1,8 @@
 package it.unicam.cs.ids.loyaltyPlatform.authentication.security.client;
 
-import java.util.List;
-
-import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.*;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.JwtResponse;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.LoginRequest;
+import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.MessageResponse;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.payload.SignupRequest.ClientSignupRequest;
 import it.unicam.cs.ids.loyaltyPlatform.authentication.security.JwUtils;
 import it.unicam.cs.ids.loyaltyPlatform.model.cardSystem.wallet.DigitalWallet;
@@ -19,13 +19,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+import java.util.List;
+
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:8081"}, maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth/client")
 public class ClientAuthController {
