@@ -3,8 +3,10 @@ package it.unicam.cs.ids.loyaltyPlatform.model.users.workers.manager;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-@CrossOrigin(origins = "*", maxAge = 3600)
+
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:8081"}, maxAge = 3600)
 @RestController
 @RequestMapping(path = "loyaltyPlatform/manager")
 public class ManagerController  {

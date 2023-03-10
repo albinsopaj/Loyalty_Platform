@@ -20,7 +20,7 @@
         <div v-if="currentOwner">
           <router-link :to="'/owner/profile/' + currentOwner.id">View Profile</router-link>
         </div>
-        <div v-if="currentOwner" @click.prevent="ownerLogOut">Logout</div>
+        <div v-if="currentOwner" class="menu-item" @click.prevent="ownerLogOut">Logout</div>
       </div>
     </transition>
   </div>
