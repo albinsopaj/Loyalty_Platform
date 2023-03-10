@@ -17,7 +17,7 @@
         <div v-if="currentClient" class="menu-item" @click.prevent="clientLogOut">
           Logout
         </div>
-        <div v-if="currentOwner">
+        <div v-if="currentOwner" class="menu-item">
           <router-link :to="'/owner/profile/' + currentOwner.id">View Profile</router-link>
         </div>
         <div v-if="currentOwner" class="menu-item" @click.prevent="ownerLogOut">Logout</div>
