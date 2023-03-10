@@ -10,8 +10,11 @@
     <div v-if="currentOwner" class="menu-item">
       <router-link to="/owner/companies">Companies</router-link>
     </div>
-    <div v-if="currentOwner || currentClient" class="menu-item">
-      <router-link to="/profile/modify">Modify Profile</router-link>
+    <div v-if="currentOwner" class="menu-item">
+      <router-link :to="'/profile/modify/' + currentOwner.id">Modify Profile</router-link>
+    </div>
+    <div v-if="currentClient" class="menu-item">
+      <router-link :to="'/profile/modify/' + currentClient.id">Modify Profile</router-link>
     </div>
     <RegisterService v-if="!currentClient && !currentOwner" title="Register" />
     <LoginService v-if="!currentClient && !currentOwner" title="Login" />

@@ -1,40 +1,51 @@
 <template>
-  <div class="container">
+  <div v-if="!correct" class="container">
     <header class="jumbotron">
       <h3>
-        <strong>{{currentClient.username}}</strong> Profile
+        <strong>{{ client.username }}</strong> Profile
       </h3>
     </header>
     <p>
       <strong>Name:</strong>
-      {{ currentClient.firstName }}
+      {{ client.firstName }}
     </p>
     <p>
       <strong>Surname:</strong>
-      {{ currentClient.lastName }}
+      {{ client.lastName }}
     </p>
     <p>
       <strong>Domicile:</strong>
-      {{ currentClient.domicile }}
+      {{ client.domicile }}
     </p>
     <p>
       <strong>Phone Number:</strong>
-      {{ currentClient.phoneNumber }}
+      {{ client.phoneNumber }}
     </p>
     <p>
       <strong>Biological Gender:</strong>
-      {{ currentClient.biologicalGender }}
+      {{ client.biologicalGender }}
     </p>
     <p>
       <strong>Email:</strong>
-      {{ currentClient.email }}
+      {{ client.email }}
     </p>
   </div>
 </template>
 
 <script>
+import clientService from "@/services/client/ClientService";
+
 export default {
   name: 'PlatformProfile',
+  data() {
+    return {
+      client: {},
+      correct: false
+    }
+  },
+  props : {
+    clientId: {}
+  },
   computed: {
     currentClient() {
       return this.$store.state.clientAuth.client;
@@ -43,6 +54,11 @@ export default {
   mounted() {
     if (!this.currentClient) {
       this.$router.push('/client/login');
+    }
+    if (this.clientId == this.currentClient.id){
+      this.client = clientService.getClient(this.clientId).then(response => {this.client = response.data})
+    } else {
+      this.correct = true;
     }
   }
 };

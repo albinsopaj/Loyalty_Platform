@@ -63,7 +63,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push("/owner/profile");
+      this.$router.push("/home");
     }
   },
   methods: {
@@ -72,7 +72,7 @@ export default {
 
       this.$store.dispatch("ownerAuth/login", owner).then(
           () => {
-            this.$router.push("/owner/profile");
+            this.$router.push("/home");
           },
           (error) => {
             this.loading = false;

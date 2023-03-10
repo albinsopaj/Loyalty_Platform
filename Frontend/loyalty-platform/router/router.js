@@ -8,6 +8,7 @@ import AddCompany from "@/components/test/AddCompany.vue";
 import ModifyProfile from "@/components/test/ModifyProfile.vue";
 import OwnerCompanies from "@/components/test/OwnerCompanies.vue";
 import AddFidelityProgram from "@/components/test/AddFidelityProgram.vue";
+import CompanyFidelityPrograms from "@/components/test/CompanyFidelityPrograms.vue";
 
 const ClientProfile = () => import("@/components/test/PlatformClientProfile.vue")
 const OwnerProfile = () => import("@/components/test/PlatformOwnerProfile.vue")
@@ -44,8 +45,9 @@ const routes = [
         component: AddCompany,
     },
     {
-        path: "/profile/modify",
+        path: "/profile/modify/:userId",
         component: ModifyProfile,
+        props: true
     },
     {
         path: "/owner/companies",
@@ -57,16 +59,23 @@ const routes = [
         props: true
     },
     {
-        path: "/client/profile",
+        path: "/owner/fidelityPrograms/:ownerId/:companyId",
+        component: CompanyFidelityPrograms,
+        props: true,
+    },
+    {
+        path: "/client/profile/:clientId",
         name: "clientProfile",
         // lazy-loaded
         component: ClientProfile,
+        props: true
     },
     {
-        path: "/owner/profile",
+        path: "/owner/profile/:ownerId",
         name: "ownerProfile",
         // lazy-loaded
         component: OwnerProfile,
+        props: true
     },
     {
         path: "/client",

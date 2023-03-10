@@ -12,13 +12,13 @@
     <transition name="fade" apear>
       <div class="sub-menu" v-if="isOpen">
         <div v-if="currentClient" class="menu-item">
-          <router-link to="/client/profile">View Profile</router-link>
+          <router-link :to="'/client/profile/' + currentClient.id">View Profile</router-link>
         </div>
         <div v-if="currentClient" class="menu-item" @click.prevent="clientLogOut">
           Logout
         </div>
         <div v-if="currentOwner">
-          <router-link to="/owner/profile">View Profile</router-link>
+          <router-link :to="'/owner/profile/' + currentOwner.id">View Profile</router-link>
         </div>
         <div v-if="currentOwner" @click.prevent="ownerLogOut">Logout</div>
       </div>

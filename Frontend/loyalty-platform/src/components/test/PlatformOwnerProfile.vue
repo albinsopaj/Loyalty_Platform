@@ -1,50 +1,55 @@
 <template>
-  <div class="container">
+  <div v-if="!correct" class="container">
     <header class="jumbotron">
       <h3>
-        <strong>{{ currentOwner.username }}</strong> Profile
+        <strong>{{ owner.username }}</strong> Profile
       </h3>
     </header>
     <p>
       <strong>Name:</strong>
-      {{ currentOwner.firstName }}
+      {{ owner.firstName }}
     </p>
     <p>
       <strong>Surname:</strong>
-      {{ currentOwner.lastName }}
+      {{ owner.lastName }}
     </p>
     <p>
       <strong>Domicile:</strong>
-      {{ currentOwner.domicile }}
+      {{ owner.domicile }}
     </p>
     <p>
       <strong>Phone Number:</strong>
-      {{ currentOwner.phoneNumber }}
+      {{ owner.phoneNumber }}
     </p>
     <p>
       <strong>Biological Gender:</strong>
-      {{ currentOwner.biologicalGender }}
+      {{ owner.biologicalGender }}
     </p>
     <p>
       <strong>Email:</strong>
-      {{ currentOwner.email }}
+      {{ owner.email }}
     </p>
   </div>
 </template>
 
 <script>
 
+
+import ownerService from "@/services/owner/OwnerService";
+
 export default {
   name: 'PlatformOwnerProfile',
   data() {
     return {
-      form: {
-        name: ''
-      },
+      correct: false,
       successful: false,
       loading: false,
-      message: ""
+      message: "",
+      owner: {}
     }
+  },
+  props: {
+    ownerId: {}
   },
   computed: {
     currentOwner() {
@@ -54,6 +59,11 @@ export default {
   mounted() {
     if (!this.currentOwner) {
       this.$router.push('/owner/login');
+    }
+    if (this.ownerId == this.currentOwner.id){
+      this.owner = ownerService.getOwner(this.ownerId).then(response => {this.owner = response.data})
+    } else {
+      this.correct = true;
     }
   },
 };

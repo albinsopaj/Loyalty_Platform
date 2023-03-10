@@ -105,7 +105,13 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
         findById(ownerId).addCompany(company);
         return this.companyService.save(company);
     }
-
+    public Company getCompany(@NonNull Long ownerId, @NonNull Long companyId){
+        if(findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))){
+            return this.companyService.findById(companyId);
+        } else {
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company not owned by this owner");
+        }
+    }
     public Campaign addCampaign(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Campaign campaign) {
         if (findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))) {
             campaign.setCompany(this.companyService.findById(companyId));

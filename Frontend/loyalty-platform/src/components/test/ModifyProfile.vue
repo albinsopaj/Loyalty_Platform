@@ -8,7 +8,7 @@
       >
         {{ message }}
       </div>
-      <Form v-if="!successful && currentOwner" @submit="handleOwnerProfileChange" @click="getId(currentOwner.id)" :validation-schema="schema" :initial-values="currentOwner">
+      <Form v-if="!successful && currentOwner && !correct" @submit="handleOwnerProfileChange" @click="getId(currentOwner.id)" :validation-schema="schema" :initial-values="user">
         <div class="form-group">
           <label for="firstName">Name</label>
           <Field name="firstName" type="text" class="form-control" />
@@ -54,7 +54,7 @@
           </button>
         </div>
       </Form>
-      <Form v-if="!successful && currentClient" @submit="handleClientProfileChange" @click="getId(currentClient.id)" :validation-schema="schema" :initial-values="currentClient">
+      <Form v-if="!successful && currentClient && !correct" @submit="handleClientProfileChange" @click="getId(currentClient.id)" :validation-schema="schema" :initial-values="user">
         <div class="form-group">
           <label for="firstName">Name</label>
           <Field name="firstName" type="text" class="form-control" />
@@ -109,6 +109,8 @@ import OwnerService from "@/services/owner/OwnerService";
 import ClientService from "@/services/client/ClientService";
 import {ErrorMessage, Field, Form} from "vee-validate";
 import * as yup from "yup";
+import clientService from "@/services/client/ClientService";
+import ownerService from "@/services/owner/OwnerService";
 
 export default {
   name: "PlatformOwnerRegister",
@@ -163,9 +165,14 @@ export default {
       successful: false,
       loading: false,
       message: "",
-      userId: null,
+      currentUserId: null,
+      correct: false,
+      user: {},
       schema,
     };
+  },
+  props: {
+    userId: {}
   },
   computed: {
     currentOwner() {
@@ -175,9 +182,24 @@ export default {
       return this.$store.state.clientAuth.client;
     }
   },
+  mounted(){
+    if(this.currentClient){
+      if (this.userId == this.currentClient.id){
+        this.user = clientService.getClient(this.userId).then(response => {this.user = response.data})
+      } else {
+        this.correct = true;
+      }
+    } else {
+      if (this.userId == this.currentOwner.id){
+        this.user = ownerService.getOwner(this.userId).then(response => {this.user = response.data})
+      } else {
+        this.correct = true;
+      }
+    }
+  },
   methods: {
     handleOwnerProfileChange(owner) {
-      OwnerService.modifyProfile(this.userId, owner).then(
+      OwnerService.modifyProfile(this.currentUserId, owner).then(
           () => {
             this.message = "Profile modified"
             this.successful = true;
@@ -196,10 +218,10 @@ export default {
       );
     },
     getId(id){
-      this.userId = id;
+      this.currentUserId = id;
     },
     handleClientProfileChange(client) {
-      ClientService.modifyProfile(this.userId, client).then(
+      ClientService.modifyProfile(this.currentUserId, client).then(
           () => {
             this.message = "Profile modified"
             this.successful = true;

@@ -59,6 +59,11 @@ public class OwnerController {
         return this.ownerService.addCompany(ownerId, company);
     }
 
+    @GetMapping(path = "/companies/{ownerId}/{companyId}")
+    public Company getCompany(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId) {
+        return this.ownerService.getCompany(ownerId, companyId);
+    }
+
     @PostMapping(path = "/addCampaign/{ownerId}/{companyId}")
     public Campaign addCampaign(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId, @NonNull @RequestBody Campaign campaign) {
         return this.ownerService.addCampaign(ownerId, companyId, campaign);

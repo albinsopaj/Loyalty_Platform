@@ -3,7 +3,7 @@
     <ol v-for="company in currentOwner.companies" :key="company.id" class="list-group">
       <li class="list-group-item">
         {{ company.name }}
-        <button class="btn btn-primary btn-block">
+        <button class="btn btn-primary btn-block" @click="pushToViewPrograms(currentOwner.id,company.id)">
           View Fidelity Programs
         </button>
         <button class="btn btn-primary btn-block" @click="pushToAddProgram(currentOwner.id,company.id)">
@@ -25,6 +25,9 @@ export default {
   methods: {
     pushToAddProgram(ownerId,companyId){
       this.$router.push("/owner/addFidelityProgram/" + ownerId + "/" + companyId)
+    },
+    pushToViewPrograms(ownerId,companyId){
+      this.$router.push("/owner/fidelityPrograms/" + ownerId + "/" + companyId)
     }
   }
 }
