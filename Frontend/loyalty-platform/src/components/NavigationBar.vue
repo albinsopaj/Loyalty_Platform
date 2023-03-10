@@ -54,17 +54,17 @@
         </div>
         <div v-if="currentOwner" class="navbar-nav ml-auto">
           <a>
-            <router-link to="/owner/companies">Companies</router-link>
+            <router-link :to="'/owner/companies/' + currentOwner.id">Companies</router-link>
           </a>
         </div>
         <div v-if="currentClient" class="navbar-nav ml-auto">
           <a>
-            <router-link :to="'/profile/modify' + currentClient.id">Modify Profile</router-link>
+            <router-link :to="'/profile/modify/' + currentClient.id">Modify Profile</router-link>
           </a>
         </div>
         <div v-if="currentOwner" class="navbar-nav ml-auto">
           <a>
-            <router-link :to="'/profile/modify' + currentOwner.id">Modify Profile</router-link>
+            <router-link :to="'/profile/modify/' + currentOwner.id">Modify Profile</router-link>
           </a>
         </div>
         <!-- execute the following div iff the owner or client are not authenticated nor registered -->
@@ -99,7 +99,7 @@
 
         <div v-if="currentOwner" class="navbar-nav ml-auto">
           <a>
-            <router-link :to="'/owner/profile' + currentOwner.id" class="nav-link">
+            <router-link :to="'/owner/profile/' + currentOwner.id" class="nav-link">
               Profile
             </router-link>
           </a>

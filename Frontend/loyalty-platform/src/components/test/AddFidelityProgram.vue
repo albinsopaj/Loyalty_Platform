@@ -1,6 +1,6 @@
 <template>
   <div class="modal-mask">
-    <div @click.self="pushToCompaniesList" class="modal-wrapper">
+    <div @click.self="pushToProgramsList" class="modal-wrapper">
       <div class="modal-container">
         <div
             v-if="message"
@@ -81,8 +81,8 @@ export default {
     }
   },
   methods: {
-    pushToCompaniesList(){
-      this.$router.push("/owner/companies");
+    pushToProgramsList(){
+      this.$router.push("/owner/fidelityPrograms/" + this.currentOwner.id + "/" + this.companyId);
     },
     addNewFidelityProgram(fidelityProgram) {
       OwnerService.addPointsFidelityProgram(this.ownerId, this.companyId, fidelityProgram).then(

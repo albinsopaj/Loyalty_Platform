@@ -56,7 +56,7 @@ export default {
       this.$router.push('/client/login');
     }
     if (this.clientId == this.currentClient.id){
-      this.client = clientService.getClient(this.clientId).then(response => {this.client = response.data})
+      clientService.getClient(this.clientId).then(response => {this.client = response.data})
     } else {
       this.correct = true;
     }

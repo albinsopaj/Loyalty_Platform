@@ -60,9 +60,14 @@ public class OwnerController {
         return this.ownerService.addCompany(ownerId, company);
     }
 
-    @GetMapping(path = "/companies/{ownerId}/{companyId}")
+    @GetMapping(path = "/company/{ownerId}/{companyId}")
     public Company getCompany(@NonNull @PathVariable("ownerId") Long ownerId, @NonNull @PathVariable("companyId") Long companyId) {
         return this.ownerService.getCompany(ownerId, companyId);
+    }
+
+    @GetMapping(path = "/companies/{ownerId}")
+    public List<Company> getCompanies(@NonNull @PathVariable("ownerId") Long ownerId) {
+        return this.ownerService.getCompanies(ownerId);
     }
 
     @PostMapping(path = "/addCampaign/{ownerId}/{companyId}")

@@ -112,6 +112,10 @@ public class OwnerServiceImpl implements GeneralService<Owner> {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company not owned by this owner");
         }
     }
+
+    public List<Company> getCompanies(@NonNull Long ownerId){
+        return findById(ownerId).getCompanies();
+    }
     public Campaign addCampaign(@NonNull Long ownerId, @NonNull Long companyId, @NonNull Campaign campaign) {
         if (findById(ownerId).getCompanies().contains(this.companyService.findById(companyId))) {
             campaign.setCompany(this.companyService.findById(companyId));

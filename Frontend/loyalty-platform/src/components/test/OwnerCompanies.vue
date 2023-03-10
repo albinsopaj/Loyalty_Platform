@@ -1,6 +1,6 @@
 <template>
-  <h1>
-    <ol v-for="company in currentOwner.companies" :key="company.id" class="list-group">
+  <h1 v-if="!correct">
+    <ol v-for="company in companies" :key="company.id" class="list-group">
       <li class="list-group-item">
         {{ company.name }}
         <button class="btn btn-primary btn-block" @click="pushToViewPrograms(currentOwner.id,company.id)">
@@ -15,12 +15,23 @@
 </template>
 
 <script>
+import ownerService from "@/services/owner/OwnerService";
+
 export default {
   name: "OwnerCompanies",
+  data() {
+    return {
+      companies: [],
+      correct: false
+    }
+  },
   computed: {
     currentOwner() {
       return this.$store.state.ownerAuth.owner;
     }
+  },
+  props:{
+    ownerId: {}
   },
   methods: {
     pushToAddProgram(ownerId,companyId){
@@ -28,6 +39,13 @@ export default {
     },
     pushToViewPrograms(ownerId,companyId){
       this.$router.push("/owner/fidelityPrograms/" + ownerId + "/" + companyId)
+    }
+  },
+  mounted(){
+    if( this.ownerId == this.currentOwner.id){
+      ownerService.getCompanies(this.ownerId).then(response => {this.companies = response.data})
+    } else {
+      this.correct = true;
     }
   }
 }

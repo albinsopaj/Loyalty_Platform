@@ -61,7 +61,7 @@ export default {
       this.$router.push('/owner/login');
     }
     if (this.ownerId == this.currentOwner.id){
-      this.owner = ownerService.getOwner(this.ownerId).then(response => {this.owner = response.data})
+      ownerService.getOwner(this.ownerId).then(response => {this.owner = response.data})
     } else {
       this.correct = true;
     }

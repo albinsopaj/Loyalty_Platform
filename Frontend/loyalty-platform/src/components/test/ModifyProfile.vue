@@ -185,13 +185,13 @@ export default {
   mounted(){
     if(this.currentClient){
       if (this.userId == this.currentClient.id){
-        this.user = clientService.getClient(this.userId).then(response => {this.user = response.data})
+        clientService.getClient(this.userId).then(response => {this.user = response.data})
       } else {
         this.correct = true;
       }
     } else {
       if (this.userId == this.currentOwner.id){
-        this.user = ownerService.getOwner(this.userId).then(response => {this.user = response.data})
+        ownerService.getOwner(this.userId).then(response => {this.user = response.data})
       } else {
         this.correct = true;
       }

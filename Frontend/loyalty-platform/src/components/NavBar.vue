@@ -8,7 +8,7 @@
       <router-link to="/owner/addCompany">Add Company</router-link>
     </div>
     <div v-if="currentOwner" class="menu-item">
-      <router-link to="/owner/companies">Companies</router-link>
+      <router-link :to="'/owner/companies/' + currentOwner.id">Companies</router-link>
     </div>
     <div v-if="currentOwner" class="menu-item">
       <router-link :to="'/profile/modify/' + currentOwner.id">Modify Profile</router-link>

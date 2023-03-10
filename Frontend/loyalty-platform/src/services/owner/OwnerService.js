@@ -16,11 +16,15 @@ class APIService {
     }
 
     getCompany(ownerId, companyId){
-        return axios.get(OWNER_API_REST_URL + "companies/" + ownerId +"/" + companyId)
+        return axios.get(OWNER_API_REST_URL + "company/" + ownerId +"/" + companyId)
     }
 
     getOwner(ownerId){
         return axios.get(OWNER_API_REST_URL + "get/" + ownerId)
+    }
+
+    getCompanies(ownerId){
+        return axios.get(OWNER_API_REST_URL + "companies/" + ownerId)
     }
 }
 
