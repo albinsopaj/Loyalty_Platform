@@ -63,6 +63,9 @@
       >
         {{ message }}
       </div>
+      <div v-if="successful">
+        <button class="btn btn-primary btn-block" @click="pushToLogin">Go to login</button>
+      </div>
     </div>
   </div>
 </template>
@@ -166,6 +169,9 @@ export default {
           }
       );
     },
+    pushToLogin(){
+      this.$router.push("/client/login");
+    }
   },
 };
 </script>
