@@ -80,6 +80,10 @@ public class ClientServiceImpl implements GeneralService<Client> {
         this.repository.deleteById(id);
     }
 
+    public void registerToFidelityProgram(@NonNull Client client, @NonNull FidelityProgram fidelityProgram){
+            this.fidelityProgramService.registerClient(client, fidelityProgram);
+    }
+
     public void registerToFidelityProgram(@NonNull Company company, @NonNull FidelityProgram fidelityProgram, @NonNull Client client){
         if(company.getFidelityPrograms().contains(fidelityProgram)){
             this.fidelityProgramService.registerClient(client, fidelityProgram);
@@ -87,7 +91,9 @@ public class ClientServiceImpl implements GeneralService<Client> {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Company doesn't own this fidelity program");
         }
     }
-
+    public List<DigitalCard> getDigitalCards(@NonNull Long clientId){
+        return this.findById(clientId).getDigitalWallet().getDigitalCards();
+    }
     public DigitalCard viewDigitalCard(@NonNull Long clientId, @NonNull Long digitalWalletId, @NonNull Long digitalCardId){
         if(this.repository.getReferenceById(clientId).getDigitalWallet().getId().equals(digitalWalletId) && this.digitalWalletService.findById(digitalWalletId).getDigitalCards().contains(this.digitalCardService.findById(digitalCardId))){
             return this.digitalCardService.findById(digitalCardId);

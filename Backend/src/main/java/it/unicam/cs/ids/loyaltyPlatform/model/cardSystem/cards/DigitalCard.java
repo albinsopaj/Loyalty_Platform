@@ -22,6 +22,8 @@ public abstract class DigitalCard {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private @NonNull String fidelityProgramName;
+    private @NonNull String companyName;
     private @NonNull Long fidelityProgramId;
 
     @ManyToOne
@@ -29,8 +31,10 @@ public abstract class DigitalCard {
     @JsonIgnore
     private @NonNull DigitalWallet digitalWallet;
 
-    public DigitalCard(Long fidelityProgramId, DigitalWallet digitalWallet){
+    public DigitalCard(Long fidelityProgramId, DigitalWallet digitalWallet, String fidelityProgramName, String companyName){
         this.fidelityProgramId = fidelityProgramId;
         this.digitalWallet = digitalWallet;
+        this.fidelityProgramName = fidelityProgramName;
+        this.companyName = companyName;
     }
 }

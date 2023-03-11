@@ -1,8 +1,11 @@
 <template>
   <nav id="vue">
     <div class="menu-item"><router-link to="/home">Home</router-link></div>
-    <div class="menu-item">
-      <router-link to="/home">Search Companies</router-link>
+    <div v-if="currentClient" class="menu-item">
+      <router-link to="/companies">Search Companies</router-link>
+    </div>
+    <div v-if="currentClient" class="menu-item">
+      <router-link :to="'/digitalWallet/' + currentClient.id">Digital Wallet</router-link>
     </div>
     <div v-if="currentOwner" class="menu-item">
       <router-link to="/owner/addCompany">Add Company</router-link>

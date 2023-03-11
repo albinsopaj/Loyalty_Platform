@@ -18,13 +18,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PointsDigitalCard extends DigitalCard {
+    private String type = "Points";
     private @NonNull Integer points = 0;
 
     @CollectionTable
     private @NonNull List<String> rewards;
 
-    public PointsDigitalCard(Long pointsFidelityProgramId, DigitalWallet digitalWallet){
-        super(pointsFidelityProgramId,digitalWallet);
+    public PointsDigitalCard(Long pointsFidelityProgramId, DigitalWallet digitalWallet, String fidelityProgramName, String companyName){
+        super(pointsFidelityProgramId,digitalWallet,fidelityProgramName,companyName);
         this.rewards = new ArrayList<>();
     }
 

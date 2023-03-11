@@ -24,6 +24,7 @@ import java.util.List;
 @Table(name="pointsFidelityPrograms")
 public class PointsFidelityProgram extends FidelityProgram {
 
+    private @NonNull String type = "Points";
     private @NonNull Integer conversionRate;
 
     @OneToMany(mappedBy = "pointsFidelityProgram")

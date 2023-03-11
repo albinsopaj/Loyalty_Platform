@@ -20,6 +20,7 @@ import java.util.List;
 @Table(name="levelFidelityProgram")
 public class LevelFidelityProgram extends FidelityProgram {
 
+    private @NonNull String type = "Levels";
     private @NonNull Integer conversionRate;
 
     private @NonNull Integer experienceToUnlock;

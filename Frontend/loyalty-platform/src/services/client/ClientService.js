@@ -11,6 +11,14 @@ class APIService {
     getClient(clientId){
         return axios.get(CLIENT_API_REST_URL + "get/" + clientId)
     }
+
+    registerToFidelityProgram(clientId, fidelityProgramId){
+        return axios.put(CLIENT_API_REST_URL + "registerToFidelityProgram/" + clientId + "/" + fidelityProgramId)
+    }
+
+    getDigitalCards(clientId){
+        return axios.get(CLIENT_API_REST_URL + "getDigitalCards/" + clientId)
+    }
 }
 
 export default new APIService();

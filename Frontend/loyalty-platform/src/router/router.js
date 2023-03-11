@@ -9,6 +9,8 @@ import ModifyProfile from "@/components/test/ModifyProfile.vue";
 import OwnerCompanies from "@/components/test/OwnerCompanies.vue";
 import AddFidelityProgram from "@/components/test/AddFidelityProgram.vue";
 import CompanyFidelityPrograms from "@/components/test/CompanyFidelityPrograms.vue";
+import PlatformCompanies from "@/components/test/PlatformCompanies.vue";
+import ClientDigitalWallet from "@/components/test/ClientDigitalWallet.vue";
 
 const ClientProfile = () => import("@/components/test/PlatformClientProfile.vue")
 const OwnerProfile = () => import("@/components/test/PlatformOwnerProfile.vue")
@@ -39,6 +41,15 @@ const routes = [
   {
     path: "/owner/register",
     component: PlatformOwnerRegister,
+  },
+  {
+    path: "/digitalWallet/:clientId",
+    component: ClientDigitalWallet,
+    props: true
+  },
+  {
+    path: "/companies",
+    component: PlatformCompanies
   },
   {
     path: "/owner/addCompany",

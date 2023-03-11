@@ -15,6 +15,10 @@ class APIService {
         return axios.post(OWNER_API_REST_URL + "addPointsFidelityProgram/" + ownerId +"/" + companyId, form)
     }
 
+    addLevelFidelityProgram(ownerId, companyId, form){
+        return axios.post(OWNER_API_REST_URL + "addLevelFidelityProgram/" + ownerId +"/" + companyId, form)
+    }
+
     getCompany(ownerId, companyId){
         return axios.get(OWNER_API_REST_URL + "company/" + ownerId +"/" + companyId)
     }

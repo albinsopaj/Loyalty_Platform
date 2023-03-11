@@ -51,6 +51,10 @@ public class ClientController {
         return this.clientService.updateById(id);
     }
 
+    @PutMapping(path = "/registerToFidelityProgram/{clientId}/{fidelityProgramId}")
+    public void registerToFidelityProgram(@NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable Long fidelityProgramId){
+        this.clientService.registerToFidelityProgram(this.clientService.findById(clientId),this.fidelityProgramService.findById(fidelityProgramId));
+    }
     @PutMapping(path = "/getCompanies/{companyId}/getFidelityPrograms/{fidelityProgramId}/registerToFidelityProgram/{clientId}")
     public void registerToFidelityProgram(@NonNull @PathVariable("companyId") Long companyId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId){
          this.clientService.registerToFidelityProgram(this.companyService.findById(companyId), this.fidelityProgramService.findById(fidelityProgramId), this.clientService.findById(clientId));
@@ -65,7 +69,10 @@ public class ClientController {
     public void deleteById(@NonNull @PathVariable("clientId") Long clientId){
         this.clientService.deleteById(clientId);
     }
-
+    @GetMapping(path = "/getDigitalCards/{clientId}")
+    public List<DigitalCard> getDigitalCards(@NonNull @PathVariable("clientId") Long clientId){
+        return this.clientService.getDigitalCards(clientId);
+    }
     @DeleteMapping(path = "/deleteAll")
     public void deleteAll(){
         this.clientService.deleteAll();

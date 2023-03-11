@@ -1,7 +1,11 @@
 <template>
-  <div class="modal-mask">
+  <div v-if="!show" class="modal-mask">
     <div @click.self="pushToProgramsList" class="modal-wrapper">
       <div class="modal-container">
+        <div v-if="!hide">
+          <button class="btn btn-primary btn-block" :disabled="loading" @click="setTypePoints">Points Program</button>
+          <button class="btn btn-primary btn-block" :disabled="loading" @click="setTypeLevels">Levels Program</button>
+        </div>
         <div
             v-if="message"
             class="alert"
@@ -9,11 +13,37 @@
         >
           {{ message }}
         </div>
-        <Form v-if="!successful" @submit="addNewFidelityProgram" :validation-schema="schema">
+        <Form v-if="!successful && points" @submit="addNewPointsFidelityProgram" :validation-schema="schemaPoints">
           <div class="form-group">
             <label for="name">Program Name</label>
             <Field name="name" type="text" class="form-control" />
             <ErrorMessage name="name" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="conversionRate">Conversion Rate</label>
+            <Field name="conversionRate" type="text" class="form-control" />
+            <ErrorMessage name="conversionRate" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-block" :disabled="loading">
+              <span
+                  v-show="loading"
+                  class="spinner-border spinner-border-sm"
+              ></span>
+              Confirm
+            </button>
+          </div>
+        </Form>
+        <Form v-if="!successful && levels" @submit="addNewLevelFidelityProgram" :validation-schema="schemaLevels">
+          <div class="form-group">
+            <label for="name">Program Name</label>
+            <Field name="name" type="text" class="form-control" />
+            <ErrorMessage name="name" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="experienceToUnlock">Experience to Unlock</label>
+            <Field name="experienceToUnlock" type="text" class="form-control" />
+            <ErrorMessage name="experienceToUnlock" class="error-feedback" />
           </div>
           <div class="form-group">
             <label for="conversionRate">Conversion Rate</label>
@@ -52,7 +82,7 @@ export default {
     ErrorMessage,
   },
   data() {
-    const schema = yup.object().shape({
+    const schemaPoints = yup.object().shape({
       name: yup
           .string()
           .required("Name is required!")
@@ -67,12 +97,40 @@ export default {
           .min(9, "Must be at least 1 digit!")
           .max(99999999999999999999, "Must be maximum 20 digits!")
     });
+    const schemaLevels = yup.object().shape({
+      name: yup
+          .string()
+          .required("Name is required!")
+          .min(1, "Must be at least 3 characters!")
+          .max(40, "Must be maximum 40 characters!"),
+      conversionRate: yup
+          .number()
+          .typeError("Insert a number!")
+          .positive("Conversion rate must be positive!")
+          .integer("A conversion rate can't include a decimal point!")
+          .required("Conversion rate is required!")
+          .min(9, "Must be at least 1 digit!")
+          .max(99999999999999999999, "Must be maximum 20 digits!"),
+      experienceToUnlock: yup
+          .number()
+          .typeError("Insert a number!")
+          .positive("Conversion to Unlock must be positive!")
+          .integer("A conversion to unlock can't include a decimal point!")
+          .required("Conversion to unlock is required!")
+          .min(9, "Must be at least 1 digit!")
+          .max(99999999999999999999, "Must be maximum 20 digits!"),
+    });
 
     return {
       successful: false,
       loading: false,
+      points: false,
+      levels: false,
       message: "",
-      schema,
+      show: false,
+      hide: false,
+      schemaPoints,
+      schemaLevels
     };
   },
   computed: {
@@ -84,7 +142,12 @@ export default {
     pushToProgramsList(){
       this.$router.push("/owner/fidelityPrograms/" + this.currentOwner.id + "/" + this.companyId);
     },
-    addNewFidelityProgram(fidelityProgram) {
+    mounted(){
+      if(this.ownerId == this.currentOwner.id){
+        this.show = true;
+      }
+    },
+    addNewPointsFidelityProgram(fidelityProgram) {
       OwnerService.addPointsFidelityProgram(this.ownerId, this.companyId, fidelityProgram).then(
           () => {
             this.message = "Points Fidelity Program created and added";
@@ -102,6 +165,33 @@ export default {
             this.loading = false;
           }
       )
+    },
+    addNewLevelFidelityProgram(fidelityProgram) {
+      OwnerService.addLevelFidelityProgram(this.ownerId, this.companyId, fidelityProgram).then(
+          () => {
+            this.message = "Levels Fidelity Program created and added";
+            this.successful = true;
+            this.loading = false;
+          },
+          (error) => {
+            this.message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            this.successful = false;
+            this.loading = false;
+          }
+      )
+    },
+    setTypePoints(){
+      this.points = true;
+      this.hide = true;
+    },
+    setTypeLevels(){
+      this.levels = true;
+      this.hide = true;
     }
   }
 }
@@ -150,5 +240,8 @@ label {
 }
 .error-feedback {
   color: red;
+}
+.btn {
+  margin:10px 10px 10px 10px;
 }
 </style>

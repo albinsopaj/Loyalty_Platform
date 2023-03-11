@@ -4,16 +4,20 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
+        <th scope="col">Type</th>
         <th scope="col">Number of Clients</th>
         <th scope="col">Conversion Rate</th>
+        <th scope="col">Experience to Unlock</th>
       </tr>
       </thead>
       <tbody>
         <tr v-for="fidelityProgram in company.fidelityPrograms" :key="fidelityProgram.id" class="list-group-horizontal">
           <td></td>
           <td>{{ fidelityProgram.name }}</td>
+          <td>{{ fidelityProgram.type }}</td>
           <td>{{ fidelityProgram.clientIds.length }}</td>
           <td>{{ fidelityProgram.conversionRate }}</td>
+          <td>{{ fidelityProgram.experienceToUnlock }}</td>
         </tr>
       </tbody>
     </table>

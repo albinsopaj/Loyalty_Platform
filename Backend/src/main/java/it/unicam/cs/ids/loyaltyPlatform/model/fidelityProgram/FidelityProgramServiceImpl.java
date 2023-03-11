@@ -74,9 +74,9 @@ public class FidelityProgramServiceImpl implements GeneralService<FidelityProgra
             client.addFidelityProgram(fidelityProgram.getId());
             DigitalCard digitalCard;
             if(fidelityProgram instanceof PointsFidelityProgram pointsFidelityProgram){
-                 digitalCard = new PointsDigitalCard(fidelityProgram.getId(),client.getDigitalWallet());
+                 digitalCard = new PointsDigitalCard(fidelityProgram.getId(),client.getDigitalWallet(), fidelityProgram.getName(),  fidelityProgram.getCompany().getName());
             } else {
-                digitalCard = new LevelDigitalCard(fidelityProgram.getId(), client.getDigitalWallet());
+                digitalCard = new LevelDigitalCard(fidelityProgram.getId(), client.getDigitalWallet(), fidelityProgram.getName(),  fidelityProgram.getCompany().getName());
             }
             digitalCard.setDigitalWallet(client.getDigitalWallet());
             digitalCard.setFidelityProgramId(fidelityProgram.getId());

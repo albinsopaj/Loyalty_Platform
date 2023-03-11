@@ -18,14 +18,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LevelDigitalCard extends DigitalCard {
-
+    private String type = "Levels";
     private Integer level = 0;
     private Integer experience = 0;
     @CollectionTable
     private @NonNull List<String> rewardsUnlocked = new ArrayList<>();
 
-    public LevelDigitalCard(Long levelFidelityProgramId, DigitalWallet digitalWallet){
-        super(levelFidelityProgramId,digitalWallet);
+    public LevelDigitalCard(Long levelFidelityProgramId, DigitalWallet digitalWallet, String fidelityProgramName, String companyName){
+        super(levelFidelityProgramId,digitalWallet,fidelityProgramName,companyName);
     }
 
     public void addExperience(Integer experience) {

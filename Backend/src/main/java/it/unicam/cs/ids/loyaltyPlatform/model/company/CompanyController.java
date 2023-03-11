@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyPlatform.model.company;
 
+import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgram;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,11 @@ public class CompanyController {
     @GetMapping(path = "/getAll")
     public List<Company> getAllCompanies() {
         return this.service.getAll();
+    }
+
+    @GetMapping(path = "/getFidelityPrograms/{id}")
+    public List<FidelityProgram> getFidelityPrograms(@NonNull @PathVariable("id") Long id){
+        return this.service.findById(id).getFidelityPrograms();
     }
 
 }
