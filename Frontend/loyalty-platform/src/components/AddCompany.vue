@@ -1,6 +1,6 @@
 <template>
   <div class="modal-mask">
-    <div @click.self="pushToProfile" class="modal-wrapper">
+    <div class="modal-wrapper" @click.self="pushToProfile(currentOwner.id)">
       <div class="modal-container">
         <div
             v-if="message"
@@ -50,7 +50,6 @@ export default {
           .min(1, "Must be at least 3 characters!")
           .max(40, "Must be maximum 40 characters!"),
     });
-
     return {
       successful: false,
       loading: false,
@@ -83,13 +82,13 @@ export default {
           }
       )
     },
-    getId(id){
-      if(this.currentOwner.id == id){
+    getId(id) {
+      if (this.currentOwner.id == id) {
         this.userId = id;
       }
     },
-    pushToProfile(){
-      this.$router.push("/owner/companies/" + this.userId)
+    pushToProfile(id) {
+      this.$router.push("/owner/companies/" + id)
     }
   }
 }
@@ -107,12 +106,10 @@ export default {
   display: table;
   transition: opacity 0.3s ease;
 }
-
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
 }
-
 .modal-container {
   width: 300px;
   margin: 0px auto;
@@ -122,7 +119,6 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
 }
-
 .modal-header h3 {
   margin-top: 0;
   color: #42b983;

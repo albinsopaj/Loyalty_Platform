@@ -14,8 +14,6 @@ import ClientDigitalWallet from "@/components/ClientDigitalWallet.vue";
 
 const ClientProfile = () => import("@/components/PlatformClientProfile.vue")
 const OwnerProfile = () => import("@/components/PlatformOwnerProfile.vue")
-const BoardClient = () => import("@/components/BoardClient.vue")
-const BoardOwner = () => import("@/components/BoardOwner.vue")
 const routes = [
   {
     path: "/",
@@ -89,18 +87,6 @@ const routes = [
     component: OwnerProfile,
     props: true
   },
-  {
-    path: "/client",
-    name: "client",
-    // lazy-loaded
-    component: BoardClient,
-  },
-  {
-    path: "/owner",
-    name: "owner",
-    // lazy-loaded
-    component: BoardOwner,
-  }
 ];
 
 const router = createRouter({
@@ -108,17 +94,4 @@ const router = createRouter({
   routes,
 });
 
-/*
-router.beforeEach((to, from, next) => {
-    const publicPages = ['/login', '/register', '/home'];
-    const authRequired = !publicPages.includes(to.path);
-    const loggedIn = localStorage.getItem('client');
-
-    if (authRequired && !loggedIn) {
-        next('/login');
-    } else {
-        next();
-    }
-});
-*/
 export default router;
