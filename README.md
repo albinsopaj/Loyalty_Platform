@@ -171,7 +171,7 @@ L'autenticazione tra il client e il server avviene attraverso l'utilizzo di un c
 ## Backend
 
 Il lato <b>`Backend`</b> del sistema è stato sviluppato in <b>`Java`</b> con il supporto del framework `Spring-Boot` a
-cui è stato affrontato il compito di gestire le `REST API`.
+cui è stato affrontato il compito di gestire le `REST API`. Per l'autenticazione degli utenti utilizziamo i `JWT tokens` 
 
 ### Elenco API
 
@@ -179,10 +179,21 @@ Le seguenti sono delle API esposte dal backend:
 
 - `POST /api/auth/client/signin` utilizzata per autenticare il cliente
 - `POST /api/auth/client/signup` utilizzata per registrare il cliente
-- `POST/api/auth/owner/signin` utilizzata per autenticare il titolare
-- `POST/api/auth/owner/signup` utilizzata per registrare il titolare
+- `POST /api/auth/owner/signin` utilizzata per autenticare il titolare
+- `POST /api/auth/owner/signup` utilizzata per registrare il titolare
 - `GET /api/test/owner` utilizzata per visualizzare le informazioni del titolare
 - `GET /api/test/client` utilizzata per visualizzare le informazioni del cliente
+- `PUT /loyaltyPlatform/client/registerToFidelityProgram/{clientId}/{fidelityProgramId}` utilizzata per registrarsi ad un programma fedeltà
+- `PUT /loyaltyPlatform/client/update/profile/{clientId}` utilizzata per modificare il profilo del cliente
+- `GET /loyaltyPlatform/client/getDigitalCards/{clientId}` utilizzata per ottenere le carte digitale del cliente
+- `POST /loyaltyPlatform/owner/addCompany/{ownerId}` utilizzata per aggiungere un'azienda
+- `PUT /loyaltyPlatform/owner/update/profile/{ownerId}` utilizzata per modificare il profilo del titolare
+- `POST /loyaltyPlatform/owner/addPointsFidelityProgram/{ownerId}/{companyId}` utilizzata per creare ed aggiungere un programma fedeltà a punti ad un azienda
+- `POST /loyaltyPlatform/owner/addLevelFidelityProgram/{ownerId}/{companyId}` utilizzata per creare ed aggiungere un programma fedeltà a livelli ad un azienda
+- `GET /loyaltyPlatform/owner/company/{ownerId}/{companyId}` utilizzata per ottenere una azienda del titolare
+- `GET /loyaltyPlatform/owner/companies/{ownerId}` utilizzata per ottenere tutte le aziende del titolare
+- `GET /loyaltyPlatform/company/getFidelityPrograms/{id}` utilizzata per ottenere tutti i programmi fedeltà di una azienda
+- `GET /loyaltyPlatform/company/getAll` utilizzata per ottenere tutte le aziende nella piattaforma
 
 Come strumento per il building automatizzato del sistema si è impiegato **`Gradle`**.
 
