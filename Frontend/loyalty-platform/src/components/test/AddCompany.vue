@@ -84,7 +84,9 @@ export default {
       )
     },
     getId(id){
-      this.userId = id;
+      if(this.currentOwner.id == id){
+        this.userId = id;
+      }
     },
     pushToProfile(){
       this.$router.push("/owner/companies/" + this.userId)
