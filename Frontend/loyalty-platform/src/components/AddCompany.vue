@@ -1,6 +1,6 @@
 <template>
   <div class="modal-mask">
-    <div @click.self="pushToProfile" class="modal-wrapper">
+    <div @click.self="pushToProfile(currentOwner.id)" class="modal-wrapper">
       <div class="modal-container">
         <div
             v-if="message"
@@ -88,8 +88,8 @@ export default {
         this.userId = id;
       }
     },
-    pushToProfile(){
-      this.$router.push("/owner/companies/" + this.userId)
+    pushToProfile(id){
+      this.$router.push("/owner/companies/" + id)
     }
   }
 }

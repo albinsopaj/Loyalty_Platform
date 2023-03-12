@@ -14,8 +14,6 @@ import ClientDigitalWallet from "@/components/ClientDigitalWallet.vue";
 
 const ClientProfile = () => import("@/components/PlatformClientProfile.vue")
 const OwnerProfile = () => import("@/components/PlatformOwnerProfile.vue")
-const BoardClient = () => import("@/components/BoardClient.vue")
-const BoardOwner = () => import("@/components/BoardOwner.vue")
 const routes = [
   {
     path: "/",
@@ -88,18 +86,6 @@ const routes = [
     // lazy-loaded
     component: OwnerProfile,
     props: true
-  },
-  {
-    path: "/client",
-    name: "client",
-    // lazy-loaded
-    component: BoardClient,
-  },
-  {
-    path: "/owner",
-    name: "owner",
-    // lazy-loaded
-    component: BoardOwner,
   }
 ];
 

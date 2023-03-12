@@ -5,6 +5,7 @@ import it.unicam.cs.ids.loyaltyPlatform.model.company.CompanyServiceImpl;
 import it.unicam.cs.ids.loyaltyPlatform.model.fidelityProgram.FidelityProgramServiceImpl;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,31 +28,35 @@ public class ClientController {
     }
 
     @GetMapping(path = "/get/{clientId}")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public Client get(@NonNull @PathVariable("clientId") Long clientId) {
         return this.clientService.findById(clientId);
     }
 
     @GetMapping(path = "/getAll")
-
     public List<Client> getAll(){
         return this.clientService.getAll();
     }
 
     @PutMapping(path = "/update/{client}")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public Client update(@NonNull @RequestBody @PathVariable("client") Client client) {
         return this.clientService.update(client);
     }
 
     @PutMapping(path = "/update/profile/{clientId}")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public Client updateProfile(@NonNull @RequestBody Client client, @NonNull @PathVariable("clientId") Long id) {
         return this.clientService.updateProfile(client, id);
     }
     @PutMapping(path = "/update/{clientId}")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public Client update(@NonNull @RequestBody @PathVariable("clientId") Long id) {
         return this.clientService.updateById(id);
     }
 
     @PutMapping(path = "/registerToFidelityProgram/{clientId}/{fidelityProgramId}")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public void registerToFidelityProgram(@NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable Long fidelityProgramId){
         this.clientService.registerToFidelityProgram(this.clientService.findById(clientId),this.fidelityProgramService.findById(fidelityProgramId));
     }
@@ -61,6 +66,7 @@ public class ClientController {
     }
 
     @GetMapping(path = "/{clientId}/getDigitalWallet/{digitalWalletId}/getDigitalCard/{digitalCardId}")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public DigitalCard viewDigitalCard(@NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("digitalWalletId") Long digitalWalletId, @NonNull @PathVariable("digitalCardId") Long digitalCardId){
         return this.clientService.viewDigitalCard(clientId,digitalWalletId,digitalCardId);
     }
@@ -70,6 +76,7 @@ public class ClientController {
         this.clientService.deleteById(clientId);
     }
     @GetMapping(path = "/getDigitalCards/{clientId}")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public List<DigitalCard> getDigitalCards(@NonNull @PathVariable("clientId") Long clientId){
         return this.clientService.getDigitalCards(clientId);
     }
