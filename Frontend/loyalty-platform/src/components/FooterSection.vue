@@ -109,7 +109,6 @@
 </template>
 <script>
 import {MDBCol, MDBContainer, MDBFooter, MDBRow} from "mdb-vue-ui-kit";
-
 export default {
   components: {
     MDBFooter,

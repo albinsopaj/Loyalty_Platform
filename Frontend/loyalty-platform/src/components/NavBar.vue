@@ -86,7 +86,7 @@ nav .menu-item a {
 @media only screen and (max-width: 768px) {
   nav {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     width: 100vw;
     padding-top: 2%;

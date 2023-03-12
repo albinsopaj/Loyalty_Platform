@@ -44,6 +44,7 @@ public class OwnerController {
     public Owner update(@NonNull @RequestBody @PathVariable("id") Long id) {
         return this.ownerService.update(this.ownerService.findById(id));
     }
+
     @PutMapping(path = "/update/profile/{ownerId}")
     @PreAuthorize("hasRole('ROLE_OWNER')")
     public Owner updateProfile(@NonNull @RequestBody Owner owner, @NonNull @PathVariable("ownerId") Long id) {

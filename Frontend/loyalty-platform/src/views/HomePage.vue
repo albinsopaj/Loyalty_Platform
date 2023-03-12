@@ -1,9 +1,7 @@
 <template>
-  <v-app>
-    <NavBar/>
-    <router-view/>
-    <FooterSection/>
-  </v-app>
+  <NavBar/>
+  <router-view/>
+  <FooterSection/>
 </template>
 <script>
 import FooterSection from "@/components/FooterSection.vue";

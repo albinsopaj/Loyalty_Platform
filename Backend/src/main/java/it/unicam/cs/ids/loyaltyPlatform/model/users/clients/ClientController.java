@@ -49,6 +49,7 @@ public class ClientController {
     public Client updateProfile(@NonNull @RequestBody Client client, @NonNull @PathVariable("clientId") Long id) {
         return this.clientService.updateProfile(client, id);
     }
+
     @PutMapping(path = "/update/{clientId}")
     @PreAuthorize("hasRole('ROLE_CLIENT')")
     public Client update(@NonNull @RequestBody @PathVariable("clientId") Long id) {
@@ -62,7 +63,7 @@ public class ClientController {
     }
     @PutMapping(path = "/getCompanies/{companyId}/getFidelityPrograms/{fidelityProgramId}/registerToFidelityProgram/{clientId}")
     public void registerToFidelityProgram(@NonNull @PathVariable("companyId") Long companyId, @NonNull @PathVariable("clientId") Long clientId, @NonNull @PathVariable("fidelityProgramId") Long fidelityProgramId){
-         this.clientService.registerToFidelityProgram(this.companyService.findById(companyId), this.fidelityProgramService.findById(fidelityProgramId), this.clientService.findById(clientId));
+        this.clientService.registerToFidelityProgram(this.companyService.findById(companyId), this.fidelityProgramService.findById(fidelityProgramId), this.clientService.findById(clientId));
     }
 
     @GetMapping(path = "/{clientId}/getDigitalWallet/{digitalWalletId}/getDigitalCard/{digitalCardId}")
@@ -75,6 +76,7 @@ public class ClientController {
     public void deleteById(@NonNull @PathVariable("clientId") Long clientId){
         this.clientService.deleteById(clientId);
     }
+
     @GetMapping(path = "/getDigitalCards/{clientId}")
     @PreAuthorize("hasRole('ROLE_CLIENT')")
     public List<DigitalCard> getDigitalCards(@NonNull @PathVariable("clientId") Long clientId){
