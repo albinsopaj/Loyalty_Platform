@@ -72,7 +72,7 @@ export default {
       successful: false,
       loading: false,
       message: "",
-      hidePrograms: false
+      hidePrograms: true
     }
   },
   computed: {
@@ -85,12 +85,14 @@ export default {
   },
   methods: {
     viewCompanyFidelityPrograms(companyId){
-      this.show = true
+      this.show = true;
+      this.hidePrograms = false;
       companyService.getFidelityPrograms(companyId).then(response => {this.fidelityPrograms = response.data})
     },
     goBack(){
       this.show = !this.show;
       this.hidePrograms = !this.hidePrograms;
+      this.message= "";
     },
     registerToFidelityProgram(fidelityProgramId){
       this.hidePrograms = !this.hidePrograms
