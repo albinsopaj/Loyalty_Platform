@@ -1,5 +1,5 @@
 <template>
-  <nav id="vue">
+  <nav id="vue" class="nav_bar">
     <div class="menu-item"><router-link to="/home">Home</router-link></div>
     <div v-if="currentClient" class="menu-item">
       <router-link to="/companies">Search Companies</router-link>
@@ -29,7 +29,6 @@
 import LoginService from "./LoginService.vue";
 import RegisterService from "./RegisterService.vue";
 import AccountProfile from "./AccountProfile.vue";
-
 export default {
   name: "navBar",
   components: {
@@ -83,4 +82,20 @@ nav .menu-item a {
   color: inherit;
   text-decoration: none;
 }
+
+@media only screen and (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: #000000;
+    font-size: 20px;
+  }
+  
+}
+
+
 </style>

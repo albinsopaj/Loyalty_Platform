@@ -51,7 +51,7 @@
               <a class="text-reset" href="#!">Promotions</a>
             </p>
             <p>
-              <a class="text-reset" href="#!">Refer a friend</a>
+              <a class="text-reset" href="#!">Refer to a friend</a>
             </p>
           </MDBCol>
           <!-- Grid column -->
@@ -90,10 +90,10 @@
           >
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-            <p>New York, NY 10012, US</p>
-            <p>info@example.com</p>
-            <p>+ 01 234 567 88</p>
-            <p>+ 01 234 567 89</p>
+            <p>Camerino (MC) 62032, Italy</p>
+            <p>info@unicam.it</p>
+            <p>+ 39 123 456 7890</p>
+            <p>+ 39 123 456 7891</p>
           </MDBCol>
           <!-- Grid column -->
         </MDBRow>
