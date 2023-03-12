@@ -72,7 +72,7 @@ nav .menu-item .sub-menu {
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.5s ease-out;
+  transition: all 0.5s ease;
 }
 .fade-enter,
 .fade-leave-to {

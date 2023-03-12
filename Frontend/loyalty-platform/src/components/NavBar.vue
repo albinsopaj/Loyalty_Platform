@@ -37,7 +37,6 @@ export default {
     RegisterService,
     AccountProfile,
   },
-
   computed: {
     currentClient() {
       return this.$store.state.clientAuth.client;

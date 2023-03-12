@@ -71,4 +71,11 @@ export default {
     margin-top: 120px;
   }
 }
+
+@media (max-width: 767px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
 </style>
