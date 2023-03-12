@@ -1,21 +1,21 @@
 import {createRouter, createWebHistory} from "vue-router";
-import PlatformHome from "@/components/test/PlatformHome.vue";
-import PlatformClientLogin from "@/components/test/PlatformClientLogin.vue";
-import PlatformClientRegister from "@/components/test/PlatformClientRegister.vue";
-import PlatformOwnerLogin from "@/components/test/PlatformOwnerLogin.vue";
-import PlatformOwnerRegister from "@/components/test/PlatformOwnerRegister.vue";
-import AddCompany from "@/components/test/AddCompany.vue";
-import ModifyProfile from "@/components/test/ModifyProfile.vue";
-import OwnerCompanies from "@/components/test/OwnerCompanies.vue";
-import AddFidelityProgram from "@/components/test/AddFidelityProgram.vue";
-import CompanyFidelityPrograms from "@/components/test/CompanyFidelityPrograms.vue";
-import PlatformCompanies from "@/components/test/PlatformCompanies.vue";
-import ClientDigitalWallet from "@/components/test/ClientDigitalWallet.vue";
+import PlatformHome from "@/components/PlatformHome.vue";
+import PlatformClientLogin from "@/components/PlatformClientLogin.vue";
+import PlatformClientRegister from "@/components/PlatformClientRegister.vue";
+import PlatformOwnerLogin from "@/components/PlatformOwnerLogin.vue";
+import PlatformOwnerRegister from "@/components/PlatformOwnerRegister.vue";
+import AddCompany from "@/components/AddCompany.vue";
+import ModifyProfile from "@/components/ModifyProfile.vue";
+import OwnerCompanies from "@/components/OwnerCompanies.vue";
+import AddFidelityProgram from "@/components/AddFidelityProgram.vue";
+import CompanyFidelityPrograms from "@/components/CompanyFidelityPrograms.vue";
+import PlatformCompanies from "@/components/PlatformCompanies.vue";
+import ClientDigitalWallet from "@/components/ClientDigitalWallet.vue";
 
-const ClientProfile = () => import("@/components/test/PlatformClientProfile.vue")
-const OwnerProfile = () => import("@/components/test/PlatformOwnerProfile.vue")
-const BoardClient = () => import("@/components/test/BoardClient.vue")
-const BoardOwner = () => import("@/components/test/BoardOwner.vue")
+const ClientProfile = () => import("@/components/PlatformClientProfile.vue")
+const OwnerProfile = () => import("@/components/PlatformOwnerProfile.vue")
+const BoardClient = () => import("@/components/BoardClient.vue")
+const BoardOwner = () => import("@/components/BoardOwner.vue")
 const routes = [
   {
     path: "/",

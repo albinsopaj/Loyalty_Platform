@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
+import {ErrorMessage, Field, Form} from "vee-validate";
 import * as yup from "yup";
 
 export default {

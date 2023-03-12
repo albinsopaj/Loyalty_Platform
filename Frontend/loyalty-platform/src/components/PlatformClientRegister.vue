@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-      <Form @submit="handleOwnerRegister" :validation-schema="schema">
+      <Form @submit="handleClientRegister" :validation-schema="schema">
         <div v-if="!successful">
           <div class="form-group">
             <label for="firstName">Name</label>
@@ -71,11 +71,11 @@
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
+import {ErrorMessage, Field, Form} from "vee-validate";
 import * as yup from "yup";
 
 export default {
-  name: "PlatformOwnerRegister",
+  name: "PlatformClientRegister",
   components: {
     Form,
     Field,
@@ -137,21 +137,21 @@ export default {
   },
   computed: {
     loggedIn() {
-      return this.$store.state.ownerAuth.status.loggedIn;
+      return this.$store.state.clientAuth.status.loggedIn;
     },
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push("/owner/profile");
+      this.$router.push("/client/profile");
     }
   },
   methods: {
-    handleOwnerRegister(owner) {
+    handleClientRegister(client) {
       this.message = "";
       this.successful = false;
       this.loading = true;
 
-      this.$store.dispatch("ownerAuth/register", owner).then(
+      this.$store.dispatch("clientAuth/register", client).then(
           (data) => {
             this.message = data.message;
             this.successful = true;
@@ -170,7 +170,7 @@ export default {
       );
     },
     pushToLogin(){
-      this.$router.push("/owner/login");
+      this.$router.push("/client/login");
     }
   },
 };
