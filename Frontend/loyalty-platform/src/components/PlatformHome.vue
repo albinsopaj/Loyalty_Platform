@@ -10,15 +10,15 @@
                 world's most trusted loyalty app
               </h1>
               <div
-                class="body-large mb-1_5"
-                style="
+                  class="body-large mb-1_5"
+                  style="
                   font-family: inherit;
                   font-size: 18px;
                   font-weight: 400;
                   line-height: 27px;
                 "
               >
-                Over 125 million shoppers earn points through Smile. Give the
+                Over 125 million shoppers earn points through <i>Loyalty App</i>. Give the
                 people what they love.
               </div>
               <div class="d-flex align-items-center flex-wrap">
@@ -38,6 +38,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -46,9 +47,10 @@ export default {
 };
 </script>
 <style>
-.container {
-  display: flex;
-}
+
+/*.container {*/
+/*  display: flex;*/
+/*}*/
 
 img {
   vertical-align: middle;
