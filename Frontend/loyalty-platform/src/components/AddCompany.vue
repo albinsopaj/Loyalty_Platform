@@ -64,8 +64,8 @@ export default {
     }
   },
   methods: {
-    addNewCompany(owner) {
-      OwnerService.addCompany(this.userId, owner).then(
+    addNewCompany(company) {
+      OwnerService.addCompany(this.userId, company).then(
           () => {
             this.message = "Company created";
             this.successful = true;
