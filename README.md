@@ -114,6 +114,36 @@ Le varie iterazioni hanno dato origine ai seguenti artefatti:
   diagramma verrà utilizzato per le attività di implementazione.
 - Code Base
 
+# Istruzioni di esecuzione
+
+---
+In seguito verrà illustrato come eseguire il progetto in locale.
+
+### Prerequisiti
+
+* clonare la repository ```https://github.com/albinsopaj/Loyalty_Platform.git```
+* scaricare [Gradle Build Tool](https://gradle.org/)
+* scaricare [Node.js](https://nodejs.org)
+
+### Installazione
+
+1. Posizionarsi sul file  ```Loyalty_Platform\Backend\src\main\resources\application.properties``` ed impostare il
+   proprio database
+2. Posizionarsi sulla cartella ```Loyalty_Platform\Backend>```
+3. Eseguire il build e il run con
+   ```sh
+   .\gradlew bootRun
+   ```
+4. Posizionarsi sulla cartella ```Loyalty_Platform\Frontend\loyalty-platform```
+6. Scaricare le dipendenze
+   ```sh
+   npm install or npm i
+   ```
+7. Eseguire il Frontend per servire l'applicazione come una web app
+   ```sh
+   npm run serve
+   ```
+
 # Tecnologie Utilizzate <a name = "tecno"></a>
 
 ---

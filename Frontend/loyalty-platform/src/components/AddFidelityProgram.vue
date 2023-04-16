@@ -109,7 +109,7 @@ export default {
           .positive("Conversion rate must be positive!")
           .integer("A conversion rate can't include a decimal point!")
           .required("Conversion rate is required!")
-          .min(9, "Must be at least 1 digit!")
+          .min(9, "Must be at least 2 digit!")
           .max(99999999999999999999, "Must be maximum 20 digits!"),
       experienceToUnlock: yup
           .number()
@@ -117,7 +117,7 @@ export default {
           .positive("Conversion to Unlock must be positive!")
           .integer("A conversion to unlock can't include a decimal point!")
           .required("Conversion to unlock is required!")
-          .min(9, "Must be at least 1 digit!")
+          .min(9, "Must be at least 2 digit!")
           .max(99999999999999999999, "Must be maximum 20 digits!"),
     });
 
